@@ -56,8 +56,20 @@ public class TrafficController {
 			      "status": "success"
 			    }
 			""")))
-	@ApiResponse(responseCode = "503", description = "Inference service unavailable")
-	@ApiResponse(responseCode = "500", description = "Unexpected internal server error")
+	@ApiResponse(responseCode = "503", description = "Inference service unavailable", content = @Content(mediaType = "application/json", examples = @ExampleObject(name = "Inference service down", value = """
+			{
+			  "status": "error",
+			  "message": "Inference service error: connection refused",
+			  "timestamp": 1710000000000
+			}
+			""")))
+	@ApiResponse(responseCode = "500", description = "Unexpected internal server error", content = @Content(mediaType = "application/json", examples = @ExampleObject(name = "Internal server error", value = """
+			{
+			  "status": "error",
+			  "message": "Internal server error: null pointer exception",
+			  "timestamp": 1710000000000
+			}
+			""")))
 	@GetMapping("/action")
 	public ResponseEntity<?> getTrafficAction() {
 		try {
@@ -101,9 +113,27 @@ public class TrafficController {
 			      "status": "success"
 			    }
 			""")))
-	@ApiResponse(responseCode = "400", description = "Invalid observation data")
-	@ApiResponse(responseCode = "503", description = "Inference service unavailable")
-	@ApiResponse(responseCode = "500", description = "Unexpected internal server error")
+	@ApiResponse(responseCode = "400", description = "Invalid observation data", content = @Content(mediaType = "application/json", examples = @ExampleObject(name = "Invalid observation count", value = """
+			{
+			  "status": "error",
+			  "message": "Expected 9 observations but received 3",
+			  "timestamp": 1710000000000
+			}
+			""")))
+	@ApiResponse(responseCode = "503", description = "Inference service unavailable", content = @Content(mediaType = "application/json", examples = @ExampleObject(name = "Inference service down", value = """
+			{
+			  "status": "error",
+			  "message": "Inference service error: timeout",
+			  "timestamp": 1710000000000
+			}
+			""")))
+	@ApiResponse(responseCode = "500", description = "Unexpected internal server error", content = @Content(mediaType = "application/json", examples = @ExampleObject(name = "Internal server error", value = """
+			{
+			  "status": "error",
+			  "message": "Internal server error: unexpected exception",
+			  "timestamp": 1710000000000
+			}
+			""")))
 	@PostMapping("/action")
 	public ResponseEntity<?> predictTrafficAction(
 			@io.swagger.v3.oas.annotations.parameters.RequestBody(description = "Custom observation values for prediction", required = true, content = @Content(mediaType = "application/json", examples = {
@@ -162,6 +192,20 @@ public class TrafficController {
 			      "inferenceService": "up",
 			      "timestamp": 1710000000000
 			    }
+			""")))
+	@ApiResponse(responseCode = "503", description = "Inference service degraded", content = @Content(mediaType = "application/json", examples = @ExampleObject(name = "Service degraded", value = """
+			{
+			  "status": "degraded",
+			  "inferenceService": "down",
+			  "timestamp": 1710000000000
+			}
+			""")))
+	@ApiResponse(responseCode = "500", description = "Health check failed", content = @Content(mediaType = "application/json", examples = @ExampleObject(name = "Health check error", value = """
+			{
+			  "status": "unhealthy",
+			  "inferenceService": "down",
+			  "timestamp": 1710000000000
+			}
 			""")))
 	@GetMapping("/health")
 	public ResponseEntity<?> healthCheck() {
