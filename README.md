@@ -29,9 +29,10 @@ ai-traffic-api/
 └── README.md                      # This file
 ```
 
-## Components
+<details open>
+  <summary>Components</summary>
 
-### 1. Python FastAPI Service (RL Inference Service)
+#### 1. Python FastAPI Service (RL Inference Service)
 - **Port:** 8000
 - **Purpose:** Loads and serves trained PPO models for action prediction
 - **Key Endpoints:**
@@ -39,7 +40,7 @@ ai-traffic-api/
   - `POST /predict_action` - Action prediction endpoint
   - `GET /model_info` - Model information
 
-### 2. Java Spring Boot API Gateway
+#### 2. Java Spring Boot API Gateway
 - **Port:** 8080
 - **Purpose:** REST API gateway that communicates with the Python service
 - **Key Endpoints:**
@@ -47,23 +48,26 @@ ai-traffic-api/
   - `GET /api/traffic/action` - Get traffic action (generates dummy observations)
   - `POST /api/traffic/action` - Predict action with custom observations
 
-### 3. Docker Compose
+#### 3. Docker Compose
 - Orchestrates both services
 - Manages networking and dependencies
 - Provides health checks and monitoring
 
-## Setup Instructions
+</details>
 
-### Prerequisites
+<details>
+  <summary>Setup Instructions</summary>
+
+#### Prerequisites
 - Docker & Docker Compose
 - Or locally:
   - Python 3.9+
   - Java 17+
   - Maven 3.9+
 
-### Steps to Deploy
+#### Steps to Deploy
 
-#### Option 1: Using Docker Compose (Recommended)
+##### Option 1: Using Docker Compose (Recommended)
 
 1. **Copy your trained model:**
    ```bash
@@ -100,7 +104,7 @@ ai-traffic-api/
    curl http://localhost:8080/api/traffic/health
    ```
 
-#### Option 2: Local Development
+##### Option 2: Local Development
 
 **Python Service:**
 ```bash
@@ -137,9 +141,12 @@ mvn spring-boot:run
 
 - Includes Swagger/OpenAPI documentation for all traffic control endpoints.
 
-## API Usage Examples
+</details>
 
-### Get Traffic Action (Auto-generated observations)
+<details>
+  <summary>API Usage Examples</summary>
+
+#### Get Traffic Action (Auto-generated observations)
 ```bash
 curl -X GET http://localhost:8080/api/traffic/action
 ```
@@ -154,7 +161,7 @@ Response:
 }
 ```
 
-### Predict Action with Custom Observations
+#### Predict Action with Custom Observations
 ```bash
 curl -X POST http://localhost:8080/api/traffic/action \
   -H "Content-Type: application/json" \
@@ -174,7 +181,7 @@ Response:
 }
 ```
 
-### Health Check
+#### Health Check
 ```bash
 curl http://localhost:8080/api/traffic/health
 ```
@@ -188,9 +195,12 @@ Response:
 }
 ```
 
-## Environment Variables
+</details>
 
-### Python Service (RL Inference)
+<details>
+  <summary>Environment Variables</summary>
+
+#### Python Service (RL Inference)
 - `MODEL_PATH`: Path to trained model file (default: `/app/trained_models/model.zip`)
 - `OBSERVATION_SHAPE_DIM`: Observation vector dimension (default: `10`)
 - `NUM_AGENTS`: Number of agents (default: `1`)
@@ -198,11 +208,14 @@ Response:
 - `API_PORT`: API port number (default: `8000`)
 - `API_RELOAD`: Enable auto-reload on code changes (default: `false`)
 
-### Java Gateway
+#### Java Gateway
 - `RL_INFERENCE_SERVICE_URL`: RL Inference Service URL (default: `http://localhost:8000/predict_action`)
 - `RL_INFERENCE_SERVICE_TIMEOUT`: Request timeout in ms (default: `10000`)
 
-## Docker Compose Configuration
+</details>
+
+<details>
+  <summary>Docker Compose Configuration</summary>
 
 The `docker-compose.yml` file includes:
 
@@ -220,7 +233,10 @@ The `docker-compose.yml` file includes:
 
 - **Network:** Bridge network for inter-service communication
 
-## Monitoring and Logging
+</details>
+
+<details>
+  <summary>Monitoring and Logging</summary>
 
 Both services include:
 - Structured logging configuration
@@ -234,7 +250,10 @@ docker-compose logs -f rl-inference
 docker-compose logs -f java-gateway
 ```
 
-## Using Different Models
+</details>
+
+<details>
+  <summary>Using Different Models</summary>
 
 To use different trained models:
 
@@ -258,36 +277,45 @@ To use different trained models:
    docker-compose up --build
    ```
 
-## Performance Tuning
+</details>
 
-### For High-Throughput Scenarios
+<details>
+  <summary>Performance Tuning</summary>
+
+#### For High-Throughput Scenarios
 - Adjust Java `RL_INFERENCE_SERVICE_TIMEOUT` if needed
 - Consider load balancing multiple Python service instances
 - Use connection pooling in Java gateway
 
-### For Lower Latency
+#### For Lower Latency
 - Run services on same machine
 - Use local model paths instead of network mounts
 - Optimize observation preprocessing in Java gateway
 
-## Troubleshooting
+</details>
 
-### Service won't start
+<details>
+  <summary>Troubleshooting</summary>
+
+#### Service won't start
 - Check Docker logs: `docker-compose logs`
 - Verify model file exists and is correct format
 - Check port availability (8000, 8080)
 
-### Prediction fails with timeout
+#### Prediction fails with timeout
 - Increase `RL_INFERENCE_SERVICE_TIMEOUT`
 - Check if Python service is running: `docker-compose ps`
 - Verify network connectivity: `docker-compose exec java-gateway ping rl-inference`
 
-### Model loading fails
+#### Model loading fails
 - Verify model path in environment variables
 - Ensure model.zip is a valid stable-baselines3 PPO model
 - Check file permissions
 
-## Production Deployment
+</details>
+
+<details>
+  <summary>Production Deployment</summary>
 
 For production:
 1. Use Docker Compose with production-grade orchestration (Kubernetes)
@@ -298,7 +326,10 @@ For production:
 6. Implement API rate limiting and authentication
 7. Set up backup strategies for trained models
 
-## Contributing
+</details>
+
+<details>
+  <summary>Contributing</summary>
 
 Guidelines for extending the API:
 - Add new endpoints to `TrafficController`
@@ -306,7 +337,10 @@ Guidelines for extending the API:
 - Add middleware for authentication/authorization
 - Extend observation preprocessing logic
 
-## Support
+</details>
+
+<details>
+  <summary>Support</summary>
 
 For issues or questions:
 1. Check service logs: `docker-compose logs`
@@ -314,8 +348,10 @@ For issues or questions:
 3. Verify environment variables are set correctly
 4. Check API documentation at `/docs` (Swagger UI - Python service)
 
+</details>
 
-## API Documentation (Swagger UI)
+<details>
+  <summary>API Documentation (Swagger UI)</summary>
 
 The Java API Gateway now includes automatically generated API documentation using **springdoc-openapi**.
 
@@ -333,3 +369,5 @@ This provides:
 
 Swagger is generated automatically from annotations in the Java controller classes.  
 Additional endpoint documentation will be added incrementally.
+
+</details>
