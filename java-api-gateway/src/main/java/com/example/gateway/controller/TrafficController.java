@@ -5,6 +5,7 @@ import com.example.gateway.service.RlInferenceClient.RlInferenceException;
 
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Schema;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
@@ -126,6 +127,7 @@ public class TrafficController {
 	 * @return ResponseEntity with health status
 	 */
 	@Operation(summary = "Health check", description = "Checks whether the RL inference service is reachable and responding.")
+	@ApiResponse(responseCode = "200", description = "Service is healthy")
 	@GetMapping("/health")
 	public ResponseEntity<Map<String, Object>> healthCheck() {
 		Map<String, Object> health = new HashMap<>();
@@ -206,6 +208,8 @@ public class TrafficController {
 	public static class TrafficActionRequest {
 		@Schema(description = "List of observation values")
 		private List<Double> observations;
+
+		@Schema(description = "Optional metadata for debugging or tracking")
 		private String metadata;
 	}
 }
