@@ -46,6 +46,7 @@ public class TrafficController {
      *
      * @return ResponseEntity with predicted action
      */
+    @Tag(name = "Traffic Prediction")
     @Operation(summary = "Get predicted traffic signal action", description = "Generates dummy observations and returns the predicted traffic signal state.")
     @ApiResponse(responseCode = "200", description = "Prediction generated successfully", content = @Content(mediaType = "application/json", schema = @Schema(example = """
 			    {
@@ -90,6 +91,7 @@ public class TrafficController {
      * @param request Request containing observation data
      * @return ResponseEntity with predicted action
      */
+    @Tag(name = "Traffic Prediction")
     @Operation(summary = "Predict traffic signal action using custom observations", description = "Accepts a list of observation values and returns the predicted traffic signal state.")
     @ApiResponse(responseCode = "200", description = "Prediction generated successfully", content = @Content(mediaType = "application/json", schema = @Schema(example = """
 			    {
@@ -153,6 +155,7 @@ public class TrafficController {
      *
      * @return ResponseEntity with health status
      */
+    @Tag(name = "System Health")
     @Operation(summary = "Health check", description = "Checks whether the RL inference service is reachable and responding.")
     @ApiResponse(responseCode = "200", description = "Service is healthy", content = @Content(mediaType = "application/json", schema = @Schema(example = """
 			    {
