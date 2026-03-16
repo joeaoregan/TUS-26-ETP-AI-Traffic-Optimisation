@@ -4,6 +4,7 @@ import com.example.gateway.service.RlInferenceClient;
 import com.example.gateway.service.RlInferenceClient.RlInferenceException;
 
 import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
@@ -198,10 +199,12 @@ public class TrafficController {
 	/**
 	 * Request model for custom traffic action prediction.
 	 */
+	@Schema(description = "Request body for custom traffic action prediction")
 	@lombok.Data
 	@lombok.NoArgsConstructor
 	@lombok.AllArgsConstructor
 	public static class TrafficActionRequest {
+		@Schema(description = "List of observation values")
 		private List<Double> observations;
 		private String metadata;
 	}
