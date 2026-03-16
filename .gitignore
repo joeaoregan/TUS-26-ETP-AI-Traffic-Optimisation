@@ -58,3 +58,7 @@ Thumbs.db
 # Node modules (if using npm in future)
 node_modules/
 npm-debug.log
+
+
+.metadata/
+.factorypath
