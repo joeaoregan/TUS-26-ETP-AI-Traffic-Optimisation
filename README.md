@@ -361,13 +361,29 @@ Once the gateway is running, Swagger UI is available at:
 http://localhost:8080/swagger-ui/index.html
 ```
 
-This provides:
-- Interactive documentation for all REST endpoints
-- Example requests and responses
-- Schema information for request bodies
-- Live testing directly from the browser
-
 Swagger is generated automatically from annotations in the Java controller classes.  
 Additional endpoint documentation will be added incrementally.
+
+#### What Swagger Provides
+
+- Interactive documentation for all REST endpoints
+- A complete list of all API endpoints
+- Descriptions of each endpoint and its purpose
+- Example request and response payloads
+- Field‑level documentation for request models
+- Live “Try It Out” testing directly from the browser
+
+#### How It Works
+
+Swagger documentation is generated automatically from annotations in the Java codebase:
+- @Operation — endpoint summary and description
+- @ApiResponse — documented response codes and examples
+- @Schema — request/response model documentation
+- @Tag — groups related endpoints in the UI
+
+#### Where to Add Documentation
+
+All API documentation lives directly in the controller and model classes. \
+This keeps the documentation close to the code and ensures Swagger stays up‑to‑date.
 
 </details>
