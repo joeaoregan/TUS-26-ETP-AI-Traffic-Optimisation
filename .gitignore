@@ -62,3 +62,6 @@ npm-debug.log
 
 .metadata/
 .factorypath
+
+# Virtual environment
+venv/
