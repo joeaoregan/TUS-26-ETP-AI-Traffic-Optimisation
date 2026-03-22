@@ -96,8 +96,8 @@ public class TrafficController {
 			log.info("Successfully generated traffic action: {} ({})", predictedAction, trafficSignalState);
 			return ResponseEntity.ok(response);
 
-		} catch (RlInferenceException e) {
-			log.error("Inference service unavailable, entering FALLBACK mode");
+		} catch (RlInferenceException | org.springframework.web.client.ResourceAccessException e) {
+			log.error("Inference service unavailable, entering FALLBACK mode: {}", e.getMessage());
 
 			int fallbackAction = 0; // RED
 			TrafficSignalState fallbackState = mapActionToSignalState(fallbackAction);
