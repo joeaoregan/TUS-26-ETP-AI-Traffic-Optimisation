@@ -19,6 +19,7 @@
 - **Live Gateway:** [https://ai-traffic-control-api.onrender.com](https://ai-traffic-control-api.onrender.com/)
 - **API Documentation:** [Swagger UI](https://ai-traffic-control-api.onrender.com/swagger-ui/index.html)
 - **Inference Service:** Containerized (Docker)
+- **Gateway JWT Authentication Guide:** [java-api-gateway/README.md](java-api-gateway/README.md)
 
 ### 👥 Research Team
 - [Adam O Neill Mc Knight](https://github.com/AdamQ45), David Claffey, [Edgars Peskaitis](https://github.com/edgar183), [Joe O'Regan](https://github.com/joeaoregan)
@@ -205,8 +206,19 @@ mvn spring-boot:run
   <summary>API Usage Examples</summary>
 
 #### Get Traffic Action (Auto-generated observations)
+First, authenticate and store the JWT:
+
 ```bash
-curl -X GET http://localhost:8080/api/traffic/action
+TOKEN=$(curl -s -X POST http://localhost:8080/api/auth/login \
+  -H "Content-Type: application/json" \
+  -d '{"username":"admin","password":"admin123"}' | jq -r '.accessToken')
+```
+
+Then call the protected endpoint:
+
+```bash
+curl -X GET http://localhost:8080/api/traffic/action \
+  -H "Authorization: Bearer $TOKEN"
 ```
 
 Response:
@@ -223,6 +235,7 @@ Response:
 ```bash
 curl -X POST http://localhost:8080/api/traffic/action \
   -H "Content-Type: application/json" \
+  -H "Authorization: Bearer $TOKEN" \
   -d '{
     "observations": [0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1.0],
     "metadata": "peak-hour"
@@ -269,6 +282,11 @@ Response:
 #### Java Gateway
 - `RL_INFERENCE_SERVICE_URL`: RL Inference Service URL (default: `http://localhost:8000/predict_action`)
 - `RL_INFERENCE_SERVICE_TIMEOUT`: Request timeout in ms (default: `10000`)
+- `JWT_SECRET`: Signing secret for access tokens (minimum 32 chars)
+- `JWT_ISSUER`: JWT issuer name (default: `traffic-api-gateway`)
+- `JWT_EXPIRATION_MINUTES`: Access token lifetime in minutes (default: `60`)
+- `JWT_AUTH_USERNAME`: Login username for `/api/auth/login` (default: `admin`)
+- `JWT_AUTH_PASSWORD`: Login password for `/api/auth/login` (default: `admin123`)
 
 </details>
 

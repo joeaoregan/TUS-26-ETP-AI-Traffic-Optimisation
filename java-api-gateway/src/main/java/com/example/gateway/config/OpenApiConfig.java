@@ -4,6 +4,8 @@ import io.swagger.v3.oas.models.info.Contact;
 import io.swagger.v3.oas.models.info.Info;
 import io.swagger.v3.oas.models.servers.Server;
 import io.swagger.v3.oas.models.OpenAPI;
+import io.swagger.v3.oas.models.Components;
+import io.swagger.v3.oas.models.security.SecurityScheme;
 
 import java.util.List;
 
@@ -32,6 +34,8 @@ public class OpenApiConfig {
 	@Bean
 	OpenAPI trafficControlApi() {
 		return new OpenAPI()
+				.components(new Components().addSecuritySchemes("bearerAuth",
+						new SecurityScheme().type(SecurityScheme.Type.HTTP).scheme("bearer").bearerFormat("JWT")))
 				.info(new Info().title(apiTitle)
 						.description(apiDescription)
 						.version(apiVersion).contact(new Contact().name(appAuthors).email(appEmail)))

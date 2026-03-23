@@ -18,6 +18,31 @@ class TrafficAPIClient:
     def __init__(self, base_url: str = "http://localhost:8080"):
         self.base_url = base_url
         self.session = requests.Session()
+        self.access_token = None
+
+    def authenticate(self, username: str = "admin", password: str = "admin123") -> bool:
+        """Authenticate and cache a bearer token for protected endpoints."""
+        try:
+            response = self.session.post(
+                f"{self.base_url}/api/auth/login",
+                json={"username": username, "password": password},
+                headers={"Content-Type": "application/json"}
+            )
+            response.raise_for_status()
+            data = response.json()
+            self.access_token = data.get("accessToken")
+            return bool(self.access_token)
+        except Exception as e:
+            print(f"Authentication failed: {e}")
+            return False
+
+    def _auth_headers(self) -> Dict[str, str]:
+        if not self.access_token:
+            raise RuntimeError("No access token available. Call authenticate() first.")
+        return {
+            "Content-Type": "application/json",
+            "Authorization": f"Bearer {self.access_token}"
+        }
     
     def check_health(self) -> bool:
         """Check if the API is healthy."""
@@ -32,7 +57,10 @@ class TrafficAPIClient:
     
     def get_action(self) -> Dict[str, Any]:
         """Get traffic action with auto-generated observations."""
-        response = self.session.get(f"{self.base_url}/api/traffic/action")
+        response = self.session.get(
+            f"{self.base_url}/api/traffic/action",
+            headers=self._auth_headers()
+        )
         response.raise_for_status()
         return response.json()
     
@@ -42,7 +70,7 @@ class TrafficAPIClient:
         response = self.session.post(
             f"{self.base_url}/api/traffic/action",
             json=payload,
-            headers={"Content-Type": "application/json"}
+            headers=self._auth_headers()
         )
         response.raise_for_status()
         return response.json()
@@ -199,6 +227,12 @@ def main():
         sys.exit(1)
     
     print("✓ Connected successfully!")
+
+    if not client.authenticate():
+        print("\n✗ Authentication failed. Check JWT_AUTH_USERNAME/JWT_AUTH_PASSWORD settings.")
+        sys.exit(1)
+
+    print("✓ JWT authentication succeeded!")
     
     # Run tests
     test_basic_functionality(client)

@@ -28,6 +28,16 @@ spring:
       connect-timeout: 5000
       read-timeout: 10000
 
+security:
+  jwt:
+    issuer: ${JWT_ISSUER:traffic-api-gateway}
+    # Must be at least 32 bytes for HS256.
+    secret: ${JWT_SECRET:change-this-secret-key-to-a-very-long-random-value}
+    expiration-minutes: ${JWT_EXPIRATION_MINUTES:60}
+  auth:
+    username: ${JWT_AUTH_USERNAME:admin}
+    password: ${JWT_AUTH_PASSWORD:admin123}
+
 api:
   title: "AI Traffic Control API"
   version: "1.0.0"
