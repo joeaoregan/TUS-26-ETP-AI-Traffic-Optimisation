@@ -393,12 +393,3 @@ For production:
 5. Use environment-specific configuration files
 6. Implement API rate limiting and authentication
 7. Set up backup strategies for trained models
-
-
-## 🤝 Contributing
-
-Guidelines for extending the API:
-- Add new endpoints to `TrafficController`
-- Implement new inference clients for other ML services
-- Add middleware for authentication/authorization
-- Extend observation preprocessing logic

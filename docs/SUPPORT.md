@@ -1,5 +1,17 @@
 # 💬 Support
 
+## 🤝 Contributing
+
+Guidelines for extending the API:
+- Add new endpoints to `TrafficController`
+- Implement new inference clients for other ML services
+- Add middleware for authentication/authorization
+- Extend observation preprocessing logic
+
+---
+
+## ⚠️ Issues
+
 For issues or questions:
 
 1. Check service logs: `docker-compose logs`
