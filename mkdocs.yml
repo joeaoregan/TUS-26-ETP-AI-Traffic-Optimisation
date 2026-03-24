@@ -15,8 +15,7 @@ nav:
   - Quick Start: QUICKSTART.md
   - Setup Complete: SETUP_COMPLETE.md
   - File Manifest: FILE_MANIFEST.md
+  - API Docs: DOCUMENTATION.md
   - Changelog: CHANGELOG.md
   - API Gateway: https://ai-traffic-control-api.onrender.com
   - Inference Service: https://traffic-inference-service.onrender.com
-  - Swagger UI - Gateway: https://ai-traffic-control-api.onrender.com/swagger-ui/index.html
-  - Swagger UI - Inference: https://traffic-inference-service.onrender.com/docs

@@ -16,6 +16,20 @@
 
 ---
 
+### 🔗 Quick Links
+
+#### 🌐 API Gateway: 
+
+##### [API Gateway App](https://ai-traffic-control-api.onrender.com/)
+##### [Swagger UI Docs](https://ai-traffic-control-api.onrender.com/swagger-ui/index.html)
+
+#### 🤖 Inference Service:
+
+##### [Inference Service App](https://traffic-inference-service.onrender.com)
+##### [Swagger UI Docs](https://traffic-inference-service.onrender.com/docs)
+
+---
+
 ### 📚 Documentation
 
 - **[Home](index.md)** — Main project overview and quick start
@@ -27,20 +41,6 @@
 
 ---
 
-> **Project Goal:** Target 15-20% reduction in urban traffic congestion for the Athlone "Orange Loop" using Reinforcement Learning.
-
-### 🔗 Quick Links
-
-#### 🌐 API Gateway: 
-
-- **Live on Render:** [https://ai-traffic-control-api.onrender.com](https://ai-traffic-control-api.onrender.com/)
-- **Swagger UI Documentation:** [Swagger UI](https://ai-traffic-control-api.onrender.com/swagger-ui/index.html)
-
-#### 🤖 Inference Service:
-
-- **Live on Render:** [https://traffic-inference-service.onrender.com](https://traffic-inference-service.onrender.com)
-- **Swagger UI Documentation:** [https://traffic-inference-service.onrender.com/docs](https://traffic-inference-service.onrender.com/docs)
-
 ### 👥 Research Team
 
 > - [Joe O'Regan](https://github.com/joeaoregan)
@@ -51,6 +51,8 @@
 ---
 
 ## 📈 Performance Targets
+
+> **Project Goal:** Target 15-20% reduction in urban traffic congestion for the Athlone "Orange Loop" using Reinforcement Learning.
 
 > - **Average Travel Time (ATT):** Target -15%
 > - **Mean Queue Length (MQL):** Target -20%
@@ -410,38 +412,3 @@ For issues or questions:
 3. Verify environment variables are set correctly
 4. Check API documentation at `/docs` (Swagger UI - Python service)
 
-
-## 📖 API Documentation
-
-The Java API Gateway now includes automatically generated API documentation using **springdoc-openapi**.
-
-Once the gateway is running, Swagger UI is available at:
-
-```
-http://localhost:8080/swagger-ui/index.html
-```
-
-Swagger is generated automatically from annotations in the Java controller classes.  
-Additional endpoint documentation will be added incrementally.
-
-### What Swagger Provides
-
-- Interactive documentation for all REST endpoints
-- A complete list of all API endpoints
-- Descriptions of each endpoint and its purpose
-- Example request and response payloads
-- Field‑level documentation for request models
-- Live “Try It Out” testing directly from the browser
-
-### How It Works
-
-Swagger documentation is generated automatically from annotations in the Java codebase:
-- @Operation — endpoint summary and description
-- @ApiResponse — documented response codes and examples
-- @Schema — request/response model documentation
-- @Tag — groups related endpoints in the UI
-
-### Where to Add Documentation
-
-All API documentation lives directly in the controller and model classes. \
-This keeps the documentation close to the code and ensures Swagger stays up‑to‑date.
