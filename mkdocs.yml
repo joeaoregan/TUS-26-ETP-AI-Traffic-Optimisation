@@ -19,3 +19,4 @@ nav:
   - Changelog: CHANGELOG.md
   - API Gateway: https://ai-traffic-control-api.onrender.com
   - Inference Service: https://traffic-inference-service.onrender.com
+  - Support: SUPPORT.md
