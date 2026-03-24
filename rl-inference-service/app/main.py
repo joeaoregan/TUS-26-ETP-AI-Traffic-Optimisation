@@ -38,6 +38,20 @@ class HealthResponse(BaseModel):
     model_loaded: bool
     model_path: str
 
+tags_metadata = [    
+    {
+        "name": "Traffic Inference",
+        "description": "The core engine for RL-based traffic signal prediction.",
+    },
+    {
+        "name": "System Health",
+        "description": "Endpoints to monitor service status and model availability.",
+    },
+    {
+        "name": "Navigation",
+        "description": "Main landing pages and UI components.",
+    },
+]
 
 # Global model variable
 model = None
@@ -173,9 +187,22 @@ def load_model():
 
 # Initialize FastAPI app
 app = FastAPI(
-    title="RL Inference API",
-    description="REST API for traffic signal control using trained RL model",
-    version="1.0.0"
+    title="RL Inference API",    
+    version="1.0.0",
+    openapi_tags=tags_metadata,
+    contact={
+        "name": "Joe O'Regan, Edgars Peskaitis, Adam O Neill Mc Knight, David Claffey",
+        "email": "A00258304@student.tus.ie",
+    },
+    servers=[
+        {"url": "http://localhost:8000", "description": "Local development server"},
+        {"url": "https://traffic-inference-service.onrender.com", "description": "Production Cloud server (Render)"},
+    ],
+    description="""<img src="static/logo.png" width="360" alt="AI Traffic Management System Logo" />
+    <h2>Joe O'Regan, Edgars Peskaitis</h2>
+    <h2>Adam O Neill Mc Knight, David Claffey</h2>
+    <h3>Overview</h3>
+    <p>REST API for traffic signal control using trained RL model</p>"""
 )
 
 
@@ -194,7 +221,7 @@ async def startup_event():
         raise
 
 
-@app.get("/health", response_model=HealthResponse)
+@app.get("/health", response_model=HealthResponse, tags=["System Health"])
 async def health_check():
     """Health check endpoint."""
     return HealthResponse(
@@ -204,7 +231,7 @@ async def health_check():
     )
 
 
-@app.post("/predict_action", response_model=PredictionResponse)
+@app.post("/predict_action", response_model=PredictionResponse, tags=["Traffic Inference"])
 async def predict_action(observation: Observation):
     """
     Predict action for given observation.
@@ -264,7 +291,7 @@ async def predict_action(observation: Observation):
         )
 
 
-@app.get("/model_info")
+@app.get("/model_info", tags=["Traffic Inference"])
 async def get_model_info():
     """Get information about the loaded model."""
     if model is None:
@@ -290,7 +317,7 @@ async def get_model_info():
         )
     
 
-@app.get("/", response_class=HTMLResponse)
+@app.get("/", response_class=HTMLResponse, tags=["Navigation"])
 async def read_root(request: Request):
     return templates.TemplateResponse("index.html", {"request": request})
 
