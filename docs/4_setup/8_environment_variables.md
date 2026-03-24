@@ -4,8 +4,8 @@
 
 ```
 MODEL_PATH=./app/trained_models/model.zip    # Model location
-OBSERVATION_SHAPE_DIM=10                      # Input dimension
-NUM_AGENTS=1                                  # Number of agents
+OBSERVATION_SHAPE_DIM=10                     # Input dimension
+NUM_AGENTS=1                                 # Number of agents
 API_HOST=0.0.0.0                             # Bind address
 API_PORT=8000                                # Service port
 ```

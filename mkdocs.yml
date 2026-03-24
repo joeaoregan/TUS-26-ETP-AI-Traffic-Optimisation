@@ -36,12 +36,16 @@ nav:
     - Development vs Production: 4_setup/9_dev_vs_prod.md
     - Documentation Files: 4_setup/10_documentation_files.md
     - Next Steps: 4_setup/11_next_steps.md
-    - Troubleshooting: 4_setup/12_troubleshooting.md
-    - Support: 4_setup/13_support.md
-    - Notes: 4_setup/14_notes.md  
+    - Support: 4_setup/12_support.md
   - File Manifest: FILE_MANIFEST.md
   - API Docs: DOCUMENTATION.md
   - Changelog: CHANGELOG.md
   - API Gateway: https://ai-traffic-control-api.onrender.com
   - Inference Service: https://traffic-inference-service.onrender.com
   - Support: SUPPORT.md
+  
+markdown_extensions:
+  - pymdownx.tasklist:
+      custom_checkbox: true
+  - def_list
+  - pymdownx.superfences

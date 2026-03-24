@@ -11,6 +11,4 @@
 - [🛠 Development vs Production](9_dev_vs_prod.md)
 - [📚 Documentation Files](10_documentation_files.md)
 - [✅ Next Steps](11_next_steps.md)
-- [🐛 Troubleshooting](12_troubleshooting.md)
-- [📞 Support](13_support.md)
-- [📝 Notes](14_notes.md)
+- [📞 Support](12_support.md)

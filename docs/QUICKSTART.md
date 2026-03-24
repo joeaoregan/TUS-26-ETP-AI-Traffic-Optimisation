@@ -29,6 +29,8 @@ curl http://localhost:8080/api/traffic/action
 python test_api.py
 ```
 
+---
+
 ## API Endpoints
 
 ### Python FastAPI Service (Port 8000)
@@ -41,6 +43,8 @@ python test_api.py
 - `GET /api/traffic/health` - Health check
 - `GET /api/traffic/action` - Get traffic action (auto-generated observations)
 - `POST /api/traffic/action` - Predict action with custom observations
+
+---
 
 ## Example Requests
 
@@ -73,6 +77,8 @@ curl -X POST http://localhost:8080/api/traffic/action \
 curl http://localhost:8080/api/traffic/health
 ```
 
+---
+
 ## Architecture
 
 ```
@@ -100,6 +106,8 @@ docker-compose down
 docker-compose ps
 ```
 
+---
+
 ## Troubleshooting
 
 ### Services won't start
@@ -117,6 +125,8 @@ docker-compose ps
 2. Verify model is loaded: `curl http://localhost:8000/model_info`
 3. Test health: `curl http://localhost:8080/api/traffic/health`
 
+---
+
 ## Next Steps
 
 1. **Integrate with SUMO:** Modify SUMO simulation to call the API
@@ -124,19 +134,47 @@ docker-compose ps
 3. **Production Deployment:** Use Kubernetes or cloud platforms
 4. **Monitoring:** Add logging and metrics collection
 
+---
+
 ## Files Overview
 
 | File | Purpose |
 |------|---------|
-| `select_model.py` | Interactive model selector |
-| `test_api.py` | API test client |
-| `start.bat/.sh` | Quick startup script |
-| `docker-compose.yml` | Service orchestration |
-| `rl-inference-service/` | Python FastAPI service |
-| `java-api-gateway/` | Java Spring Boot gateway |
-| `README.md` | Full documentation |
+| `select_model.py`       | Interactive model selector |
+| `test_api.py`           | API test client            |
+| `start.bat/.sh`         | Quick startup script       |
+| `docker-compose.yml`    | Service orchestration      |
+| `rl-inference-service/` | Python FastAPI service     |
+| `java-api-gateway/`     | Java Spring Boot gateway   |
+| `README.md`             | Full documentation         |
+
+---
 
 ## Documentation
 
-For detailed documentation, see [INDEX.md](1_home/INDEX.md) or README.md
+Install mkdocs:
+
+```bash
+pip install mkdocs
+```
+
+To build MkDocs:
+
+```bash
+python -m mkdocs build
+```
+
+To run documenation locally <http://127.0.0.1:8000/>:
+
+```bash
+python -m mkdocs serve 
+```
+
+To deploy documentation to GitHub pages, after updating (Commit first).
+
+```bash
+python -m mkdocs gh-deploy
+```
+
+*For detailed documentation, see [INDEX.md](1_home/INDEX.md) or [README.md](README.md)*
  
