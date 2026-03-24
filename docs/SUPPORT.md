@@ -3,6 +3,7 @@
 ## 🤝 Contributing
 
 Guidelines for extending the API:
+
 - Add new endpoints to `TrafficController`
 - Implement new inference clients for other ML services
 - Add middleware for authentication/authorization
