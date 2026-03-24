@@ -252,9 +252,9 @@ docker-compose ps
 | File | Purpose |
 |------|---------|
 | [QUICKSTART.md](QUICKSTART.md) | 5-minute setup guide |
-| [README.md](README.md) | Complete documentation |
-| [select_model.py](select_model.py) | Model selection tool |
-| [test_api.py](test_api.py) | API test suite |
+| [index.md](index.md) | Complete documentation |
+| [select_model.py](https://github.com/joeaoregan/TUS-26-ETP-AI-Traffic-Optimisation/blob/main/select_model.py) | Model selection tool |
+| [test_api.py](https://github.com/joeaoregan/TUS-26-ETP-AI-Traffic-Optimisation/blob/main/test_api.py) | API test suite |
 
 ## ✅ Next Steps
 
