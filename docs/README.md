@@ -1,4 +1,5 @@
 # AI-Driven Predictive Traffic Flow Optimisation System
+
 ## Engineering Team Project | TUS Athlone
 
 ![Java 17](https://img.shields.io/badge/Java-17-blue)
@@ -17,20 +18,24 @@
 
 ### 🔗 Quick Links
 
-#### 🌐 API Gateway: 
+#### 📚 Documentation
+- **[System Architecture](docs/SYSTEM_ARCHITECTURE.md)** — Detailed system design
+- **[Quick Start Guide](docs/QUICKSTART.md)** — Get up and running quickly
+- **[Full Documentation](https://joeaoregan.github.io/TUS-26-ETP-AI-Traffic-Optimisation/)** — Complete mkdocs site
 
-- **Live on Render:** [https://ai-traffic-control-api.onrender.com](https://ai-traffic-control-api.onrender.com/)
-- **Swagger UI Documentation:** [Swagger UI](https://ai-traffic-control-api.onrender.com/swagger-ui/index.html)
+#### 🌐 Live Services
+- **[API Gateway](https://ai-traffic-control-api.onrender.com)** — REST API service
+- **[Inference Service](https://traffic-inference-service.onrender.com)** — RL model inference
 
-#### 🤖 Inference Service:
-
-- **Live on Render:** [https://traffic-inference-service.onrender.com](https://traffic-inference-service.onrender.com)
-- **Swagger UI Documentation:** [https://traffic-inference-service.onrender.com/docs](https://traffic-inference-service.onrender.com/docs)
+#### 📖 API Documentation (Swagger)
+- **[API Gateway Swagger](https://ai-traffic-control-api.onrender.com/swagger-ui/index.html)** — Interactive API docs
+- **[Inference Service Swagger](https://traffic-inference-service.onrender.com/docs)** — Interactive API docs
 
 ### 👥 Research Team
 - [Adam O Neill Mc Knight](https://github.com/AdamQ45), [David Claffey](https://github.com/dclaff), [Edgars Peskaitis](https://github.com/edgar183), [Joe O'Regan](https://github.com/joeaoregan)
 
 ---
+
 
 ## 📈 Performance Targets
 - **Average Travel Time (ATT):** Target -15%
