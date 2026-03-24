@@ -31,10 +31,14 @@ public class OpenApiConfig {
 
 	@Bean
 	OpenAPI trafficControlApi() {
+		Server localServer = new Server().url("http://localhost:8080").description("Local development server");
+
+		Server productionServer = new Server().url("https://ai-traffic-control-api.onrender.com")
+				.description("Production Cloud server (Render)");
+
 		return new OpenAPI()
-				.info(new Info().title(apiTitle)
-						.description(apiDescription)
-						.version(apiVersion).contact(new Contact().name(appAuthors).email(appEmail)))
-				.servers(List.of(new Server().url("http://localhost:8080").description("Local development server")));
+				.info(new Info().title(apiTitle).description(apiDescription).version(apiVersion)
+						.contact(new Contact().name(appAuthors).email(appEmail)))
+				.servers(List.of(productionServer, localServer));
 	}
 }
