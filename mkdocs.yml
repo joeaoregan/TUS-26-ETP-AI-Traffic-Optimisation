@@ -16,9 +16,7 @@ nav:
   - Setup Complete: SETUP_COMPLETE.md
   - File Manifest: FILE_MANIFEST.md
   - Changelog: CHANGELOG.md
-  - Live Services:
-      - API Gateway: https://ai-traffic-control-api.onrender.com
-      - Inference Service: https://traffic-inference-service.onrender.com
-  - Swagger UI:
-      - API Gateway: https://ai-traffic-control-api.onrender.com/swagger-ui/index.html
-      - Inference Service: https://traffic-inference-service.onrender.com/docs
+  - API Gateway: https://ai-traffic-control-api.onrender.com
+  - Inference Service: https://traffic-inference-service.onrender.com
+  - Swagger UI - Gateway: https://ai-traffic-control-api.onrender.com/swagger-ui/index.html
+  - Swagger UI - Inference: https://traffic-inference-service.onrender.com/docs
