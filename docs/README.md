@@ -92,7 +92,8 @@ TUS-26-ETP2-Python-Data-Science-and-ML-Pipeline/
 └── SYSTEM_ARCHITECTURE.md                  # 
 ```
 
-### Components
+<details open>
+  <summary>Components</summary>
 
 #### 1. Python FastAPI Service (RL Inference Service)
 - **Port:** 8000
@@ -117,7 +118,10 @@ TUS-26-ETP2-Python-Data-Science-and-ML-Pipeline/
 
 The Java Gateway receives raw vehicle counts, transforms them into an observation vector, and forwards them to the Python service for a decision.
 
-### Setup Instructions
+</details>
+
+<details>
+  <summary>Setup Instructions</summary>
 
 #### Prerequisites
 - Docker & Docker Compose
@@ -202,7 +206,10 @@ mvn spring-boot:run
 
 - Includes Swagger/OpenAPI documentation for all traffic control endpoints.
 
-### API Usage Examples
+</details>
+
+<details>
+  <summary>API Usage Examples</summary>
 
 #### Get Traffic Action (Auto-generated observations)
 ```bash
@@ -253,7 +260,10 @@ Response:
 }
 ```
 
-### Environment Variables
+</details>
+
+<details>
+  <summary>Environment Variables</summary>
 
 #### Python Service (RL Inference)
 - `MODEL_PATH`: Path to trained model file (default: `/app/trained_models/model.zip`)
@@ -267,7 +277,10 @@ Response:
 - `RL_INFERENCE_SERVICE_URL`: RL Inference Service URL (default: `http://localhost:8000/predict_action`)
 - `RL_INFERENCE_SERVICE_TIMEOUT`: Request timeout in ms (default: `10000`)
 
-### Docker Compose Configuration
+</details>
+
+<details>
+  <summary>Docker Compose Configuration</summary>
 
 The `docker-compose.yml` file includes:
 
@@ -285,7 +298,10 @@ The `docker-compose.yml` file includes:
 
 - **Network:** Bridge network for inter-service communication
 
-### Monitoring and Logging
+</details>
+
+<details>
+  <summary>Monitoring and Logging</summary>
 
 Both services include:
 - Structured logging configuration
@@ -299,7 +315,10 @@ docker-compose logs -f rl-inference
 docker-compose logs -f java-gateway
 ```
 
-### Using Different Models
+</details>
+
+<details>
+  <summary>Using Different Models</summary>
 
 To use different trained models:
 
@@ -323,7 +342,10 @@ To use different trained models:
    docker-compose up --build
    ```
 
-### Performance Tuning
+</details>
+
+<details>
+  <summary>Performance Tuning</summary>
 
 #### For High-Throughput Scenarios
 - Adjust Java `RL_INFERENCE_SERVICE_TIMEOUT` if needed
@@ -335,7 +357,10 @@ To use different trained models:
 - Use local model paths instead of network mounts
 - Optimize observation preprocessing in Java gateway
 
-### Troubleshooting
+</details>
+
+<details>
+  <summary>Troubleshooting</summary>
 
 #### Service won't start
 - Check Docker logs: `docker-compose logs`
@@ -352,7 +377,10 @@ To use different trained models:
 - Ensure model.zip is a valid stable-baselines3 PPO model
 - Check file permissions
 
-### Production Deployment
+</details>
+
+<details>
+  <summary>Production Deployment</summary>
 
 For production:
 1. Use Docker Compose with production-grade orchestration (Kubernetes)
@@ -363,7 +391,10 @@ For production:
 6. Implement API rate limiting and authentication
 7. Set up backup strategies for trained models
 
-### Contributing
+</details>
+
+<details>
+  <summary>Contributing</summary>
 
 Guidelines for extending the API:
 - Add new endpoints to `TrafficController`
@@ -371,7 +402,10 @@ Guidelines for extending the API:
 - Add middleware for authentication/authorization
 - Extend observation preprocessing logic
 
-### Support
+</details>
+
+<details>
+  <summary>Support</summary>
 
 For issues or questions:
 1. Check service logs: `docker-compose logs`
@@ -379,7 +413,10 @@ For issues or questions:
 3. Verify environment variables are set correctly
 4. Check API documentation at `/docs` (Swagger UI - Python service)
 
-### API Documentation (Swagger UI)
+</details>
+
+<details>
+  <summary>API Documentation (Swagger UI)</summary>
 
 The Java API Gateway now includes automatically generated API documentation using **springdoc-openapi**.
 
@@ -413,3 +450,5 @@ Swagger documentation is generated automatically from annotations in the Java co
 
 All API documentation lives directly in the controller and model classes. \
 This keeps the documentation close to the code and ensures Swagger stays up‑to‑date.
+
+</details>
