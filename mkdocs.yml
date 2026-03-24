@@ -1,0 +1,19 @@
+site_name: AI Traffic Optimisation System
+docs_dir: docs
+site_dir: site
+theme: material
+
+nav:
+  - Home: index.md
+  - README: README.md
+  - System Architecture: SYSTEM_ARCHITECTURE.md
+  - Quick Start: QUICKSTART.md
+  - Setup Complete: SETUP_COMPLETE.md
+  - File Manifest: FILE_MANIFEST.md
+  - Changelog: CHANGELOG.md
+  - Live Services:
+      - API Gateway: https://ai-traffic-control-api.onrender.com
+      - Inference Service: https://traffic-inference-service.onrender.com
+  - Swagger UI:
+      - API Gateway: https://ai-traffic-control-api.onrender.com/swagger-ui/index.html
+      - Inference Service: https://traffic-inference-service.onrender.com/docs
