@@ -1955,17 +1955,16 @@
 <h2 id="python-fastapi-service">Python FastAPI Service</h2>
 <p>📁 <code>rl-inference-service/</code></p>
 <h3 id="core-application">Core Application</h3>
-<ul>
-<li>🐍 <code>app/main.py</code> - FastAPI application</li>
-<li>Loads trained PPO models</li>
-<li><code>/predict_action</code> endpoint</li>
-<li><code>/health</code> and <code>/model_info</code> endpoints</li>
-<li>Error handling and logging</li>
+<p>🐍 <code>app/main.py</code> </p>
+<ul class="task-list">
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled checked/><span class="task-list-indicator"></span></label> FastAPI application</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled checked/><span class="task-list-indicator"></span></label> Loads trained PPO models</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled checked/><span class="task-list-indicator"></span></label> POST <code>/predict_action</code> endpoint</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled checked/><span class="task-list-indicator"></span></label> GET <code>/health</code> and <code>/model_info</code> endpoints</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled checked/><span class="task-list-indicator"></span></label> Error handling and logging</li>
 </ul>
 <h3 id="configuration">Configuration</h3>
-<ul>
-<li>📄 <code>requirements.txt</code> - Python dependencies</li>
-</ul>
+<p>📄 <code>requirements.txt</code> - Python dependencies</p>
 <div class="highlight"><pre><span></span><code><span class="n">fastapi</span><span class="o">==</span><span class="mf">0.110.0</span>
 <span class="n">uvicorn</span><span class="o">==</span><span class="mf">0.28.0</span>
 <span class="n">stable</span><span class="o">-</span><span class="n">baselines3</span><span class="o">==</span><span class="mf">2.2.1</span>
@@ -1978,86 +1977,90 @@
 <span class="n">aiofiles</span><span class="o">==</span><span class="mf">24.1.0</span>
 </code></pre></div>
 <h3 id="deployment">Deployment</h3>
+<p>📄 <code>Dockerfile</code> </p>
 <ul class="task-list">
-<li>📄 <code>Dockerfile</code> </li>
 <li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled checked/><span class="task-list-indicator"></span></label> Python 3.9-slim container</li>
 <li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled checked/><span class="task-list-indicator"></span></label> Builds dependencies</li>
 <li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled checked/><span class="task-list-indicator"></span></label> Exposes port 8000</li>
 <li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled checked/><span class="task-list-indicator"></span></label> Runs with uvicorn</li>
 </ul>
 <h3 id="configuration-templates">Configuration Templates</h3>
-<ul>
-<li>📄 <code>.env.example</code> - Environment variable template</li>
+<p>📄 <code>.env.example</code> </p>
+<ul class="task-list">
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled checked/><span class="task-list-indicator"></span></label> Environment variable template</li>
 </ul>
 <h3 id="data-directory">Data Directory</h3>
-<ul>
-<li>📁 <code>app/models/</code> - Directory for trained models</li>
-<li>(Models copied here by select_model.py)</li>
-<li><code>model.zip</code> - Trained PPO model</li>
+<p>📁 <code>app/models/</code> </p>
+<ul class="task-list">
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled checked/><span class="task-list-indicator"></span></label> Directory for trained models</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled checked/><span class="task-list-indicator"></span></label> (Models copied here by select_model.py)</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled checked/><span class="task-list-indicator"></span></label> <code>model.zip</code> - Trained PPO model</li>
 </ul>
 <h2 id="java-spring-boot-gateway">Java Spring Boot Gateway</h2>
 <p>📁 <code>java-api-gateway/</code></p>
 <h3 id="project-configuration">Project Configuration</h3>
-<ul>
-<li>📄 <code>pom.xml</code> - Maven configuration</li>
-<li>Spring Boot 3.2.3</li>
-<li>Java 17</li>
-<li>Dependencies: spring-boot-starter-web, spring-boot-starter-webflux, lombok</li>
+<p>📄 <code>pom.xml</code> </p>
+<ul class="task-list">
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled checked/><span class="task-list-indicator"></span></label> Maven configuration</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled checked/><span class="task-list-indicator"></span></label> Spring Boot 3.2.3</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled checked/><span class="task-list-indicator"></span></label> Java 17</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled checked/><span class="task-list-indicator"></span></label> Dependencies: spring-boot-starter-web, spring-boot-starter-webflux, lombok</li>
 </ul>
 <h3 id="application-entry-point">Application Entry Point</h3>
-<ul>
-<li>☕ <code>src/main/java/com/example/gateway/GatewayApplication.java</code></li>
-<li>Spring Boot application class</li>
-<li>RestTemplate and WebClient beans</li>
+<p>☕ <code>src/main/java/com/example/gateway/GatewayApplication.java</code></p>
+<ul class="task-list">
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled checked/><span class="task-list-indicator"></span></label> Spring Boot application class</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled checked/><span class="task-list-indicator"></span></label> RestTemplate and WebClient beans</li>
 </ul>
 <h3 id="rest-controller">REST Controller</h3>
-<ul>
-<li>☕ <code>src/main/java/com/example/gateway/controller/TrafficController.java</code></li>
-<li>GET <code>/api/traffic/health</code> - Health check</li>
-<li>GET <code>/api/traffic/action</code> - Action with auto-generated observations</li>
-<li>POST <code>/api/traffic/action</code> - Action with custom observations</li>
-<li>Helper methods for observation generation and action mapping</li>
+<p>☕ <code>src/main/java/com/example/gateway/controller/TrafficController.java</code></p>
+<ul class="task-list">
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled checked/><span class="task-list-indicator"></span></label> GET <code>/api/traffic/health</code> - Health check</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled checked/><span class="task-list-indicator"></span></label> GET <code>/api/traffic/action</code> - Action with auto-generated observations</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled checked/><span class="task-list-indicator"></span></label> POST <code>/api/traffic/action</code> - Action with custom observations</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled checked/><span class="task-list-indicator"></span></label> Helper methods for observation generation and action mapping</li>
 </ul>
 <h3 id="service-client">Service Client</h3>
-<ul>
-<li>☕ <code>src/main/java/com/example/gateway/service/RlInferenceClient.java</code></li>
-<li>HTTP client for Python FastAPI service</li>
-<li><code>predictAction()</code> method</li>
-<li>Health check functionality</li>
-<li>Error handling with RlInferenceException</li>
-<li>Inner classes: PredictionResponse, HealthResponse</li>
+<p>☕ <code>src/main/java/com/example/gateway/service/RlInferenceClient.java</code></p>
+<ul class="task-list">
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled checked/><span class="task-list-indicator"></span></label> HTTP client for Python FastAPI service</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled checked/><span class="task-list-indicator"></span></label> <code>predictAction()</code> method</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled checked/><span class="task-list-indicator"></span></label> Health check functionality</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled checked/><span class="task-list-indicator"></span></label> Error handling with RlInferenceException</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled checked/><span class="task-list-indicator"></span></label> Inner classes: PredictionResponse, HealthResponse</li>
 </ul>
 <h3 id="configuration_1">Configuration</h3>
-<ul>
-<li>📄 <code>src/main/resources/application.properties</code></li>
-<li>Server configuration</li>
-<li>RL service URL and timeout</li>
-<li>Logging levels</li>
+<p>📄 <code>src/main/resources/application.properties</code></p>
+<ul class="task-list">
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled checked/><span class="task-list-indicator"></span></label> Server configuration</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled checked/><span class="task-list-indicator"></span></label> RL service URL and timeout</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled checked/><span class="task-list-indicator"></span></label> Logging levels</li>
 </ul>
 <h3 id="deployment_1">Deployment</h3>
-<ul>
-<li>📄 <code>Dockerfile</code> - Multi-stage Java container</li>
-<li>Maven builder stage</li>
-<li>Eclipse Temurin 17 JRE runtime</li>
-<li>Exposes port 8080</li>
+<p>📄 <code>Dockerfile</code> </p>
+<ul class="task-list">
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled checked/><span class="task-list-indicator"></span></label> Multi-stage Java container</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled checked/><span class="task-list-indicator"></span></label> Maven builder stage</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled checked/><span class="task-list-indicator"></span></label> Eclipse Temurin 17 JRE runtime</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled checked/><span class="task-list-indicator"></span></label> Exposes port 8080</li>
 </ul>
 <h2 id="file-statistics">File Statistics</h2>
 <h3 id="total-files-created-21">Total Files Created: 21</h3>
 <ul>
-<li>Root level: 9 files</li>
-<li>Python service: 5 files</li>
-<li>Java service: 7 files</li>
+<li><strong>Root level</strong>: 9 files</li>
+<li><strong>Python service</strong>: 5 files</li>
+<li><strong>Java service</strong>: 7 files</li>
 </ul>
 <h3 id="code-files">Code Files</h3>
 <ul>
-<li>Python: 2 main files (main.py, select_model.py, test_api.py)</li>
-<li>Java: 3 files (Application, Controller, Service)</li>
+<li><strong>Python</strong>: 2 main files (main.py, select_model.py, test_api.py)</li>
+<li><strong>Java</strong>: 3 files (Application, Controller, Service)</li>
 </ul>
 <h3 id="configuration-files">Configuration Files</h3>
 <ul>
-<li>Docker: 2 files (Dockerfile x2, docker-compose.yml)</li>
-<li>Build: 1 file (pom.xml, requirements.txt)</li>
-<li>Properties: 2 files (application.properties, .env.example)</li>
+<li><strong>Docker</strong>: 2 files (Dockerfile x2, docker-compose.yml)</li>
+<li><strong>Build</strong>: 1 file (pom.xml, requirements.txt)</li>
+<li><strong>Properties</strong>: 2 files (application.properties, .env.example)</li>
 </ul>
 <h3 id="documentation-files">Documentation Files</h3>
 <ul>
