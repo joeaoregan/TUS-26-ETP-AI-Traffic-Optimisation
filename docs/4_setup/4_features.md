@@ -15,7 +15,9 @@
 - [x] Communicates with Python service  
 - [x] Health checks and monitoring  
 - [x] Robust error handling  
-- [x] Service dependency management  
+- [x] Service dependency management   
+- [x] Load testing capabilities  
+- [x] Circuit breaker pattern (Resilience4j)
 - [x] Load testing capabilities  
 
 ## Docker Integration
@@ -44,3 +46,16 @@
 - [x] Quick start guides (5-minute setup)  
 - [x] GitHub Pages hosting  
 - [x] Inline code documentation and docstrings  
+
+## Security & Authentication (Optional - A00163691-JWTAuth Branch)
+
+- [ ] JWT token generation and validation
+- [ ] Bearer token authentication for API endpoints
+- [ ] Token refresh mechanism
+- [ ] Role-based access control (RBAC)
+- [ ] API key management
+- [ ] Request signing with JWT
+- [ ] Token expiration and revocation
+- [ ] Secure token storage (in transit with HTTPS)
+- [ ] Rate limiting per authenticated user
+- [ ] Audit logging for authentication events
