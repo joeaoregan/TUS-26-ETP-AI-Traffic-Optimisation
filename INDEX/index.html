@@ -845,45 +845,6 @@
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="🐛 Troubleshooting">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#service-wont-start" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Service won't start
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#prediction-fails-with-timeout" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Prediction fails with timeout
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#model-loading-fails" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Model loading fails
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
 </li>
       
         <li class="md-nav__item">
@@ -1219,6 +1180,7 @@
 <li><strong>Simulation Layer (SUMO):</strong> Integrated high-fidelity environment for testing adaptive signal logic against baseline fixed-time controllers.</li>
 </ul>
 <p>This system is specifically modeled to address the saturation flow rates and signal-timing patterns of the Athlone 'Orange Loop' corridor, providing a scalable template for Smart City traffic management in regional Irish hubs.</p>
+<p><em>For more details see <a href="../SYSTEM_ARCHITECTURE/">System Architecture</a> page.</em></p>
 <hr />
 <h2 id="ai-traffic-control-api-setup-guide">🚗 AI Traffic Control API Setup Guide</h2>
 <p>This project provides a complete REST API solution for traffic signal control using trained RL models.</p>
@@ -1402,42 +1364,106 @@ mvn spring-boot:run
 </code></pre>
 <h2 id="environment-variables">🔐 Environment Variables</h2>
 <h3 id="python-service-rl-inference">Python Service (RL Inference)</h3>
-<ul>
-<li><code>MODEL_PATH</code>: Path to trained model file (default: <code>/app/trained_models/model.zip</code>)</li>
-<li><code>OBSERVATION_SHAPE_DIM</code>: Observation vector dimension (default: <code>10</code>)</li>
-<li><code>NUM_AGENTS</code>: Number of agents (default: <code>1</code>)</li>
-<li><code>API_HOST</code>: API host address (default: <code>0.0.0.0</code>)</li>
-<li><code>API_PORT</code>: API port number (default: <code>8000</code>)</li>
-<li><code>API_RELOAD</code>: Enable auto-reload on code changes (default: <code>false</code>)</li>
-</ul>
+<table>
+<thead>
+<tr>
+<th>Environment Variable</th>
+<th>Description</th>
+<th>Default</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>MODEL_PATH</code></td>
+<td>Path to trained model file</td>
+<td><code>/app/trained_models/model.zip</code></td>
+</tr>
+<tr>
+<td><code>OBSERVATION_SHAPE_DIM</code></td>
+<td>Observation vector dimension</td>
+<td><code>10</code></td>
+</tr>
+<tr>
+<td><code>NUM_AGENTS</code></td>
+<td>Number of agents</td>
+<td><code>1</code></td>
+</tr>
+<tr>
+<td><code>API_HOST</code></td>
+<td>API host address</td>
+<td><code>0.0.0.0</code></td>
+</tr>
+<tr>
+<td><code>API_PORT</code></td>
+<td>API port number</td>
+<td><code>8000</code></td>
+</tr>
+<tr>
+<td><code>API_RELOAD</code></td>
+<td>Enable auto-reload on code changes</td>
+<td><code>false</code></td>
+</tr>
+</tbody>
+</table>
 <h3 id="java-gateway">Java Gateway</h3>
 <ul>
 <li><code>RL_INFERENCE_SERVICE_URL</code>: RL Inference Service URL (default: <code>http://localhost:8000/predict_action</code>)</li>
 <li><code>RL_INFERENCE_SERVICE_TIMEOUT</code>: Request timeout in ms (default: <code>10000</code>)</li>
 </ul>
+<table>
+<thead>
+<tr>
+<th>Environment Variable</th>
+<th>Description</th>
+<th>Default</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>RL_INFERENCE_SERVICE_URL</code></td>
+<td>RL Inference Service URL</td>
+<td><code>http://localhost:8000/predict_action</code></td>
+</tr>
+<tr>
+<td><code>RL_INFERENCE_SERVICE_TIMEOUT</code></td>
+<td>Request timeout in ms</td>
+<td><code>10000</code></td>
+</tr>
+</tbody>
+</table>
 <h2 id="docker-compose-configuration">🐳 Docker Compose Configuration</h2>
 <p>The <code>docker-compose.yml</code> file includes:</p>
-<ul>
-<li><strong>RL Inference Service:</strong></li>
-<li>Python 3.9 slim image</li>
-<li>Volume for trained models</li>
-<li>Health checks enabled</li>
-<li>
-<p>Port 8000 exposed</p>
-</li>
-<li>
-<p><strong>Java Gateway:</strong></p>
-</li>
-<li>Multi-stage build for optimized image</li>
-<li>Depends on RL Inference Service</li>
-<li>Health checks enabled</li>
-<li>
-<p>Port 8080 exposed</p>
-</li>
-<li>
-<p><strong>Network:</strong> Bridge network for inter-service communication</p>
-</li>
-</ul>
+<table>
+<thead>
+<tr>
+<th><strong>RL Inference Service</strong></th>
+<th><strong>Java Gateway</strong></th>
+<th><strong>Network</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Python 3.9 slim image</td>
+<td>Multi-stage build for optimized image</td>
+<td>Port 8080 exposed</td>
+</tr>
+<tr>
+<td>Volume for trained models</td>
+<td>Depends on RL Inference Service</td>
+<td></td>
+</tr>
+<tr>
+<td>Health checks enabled</td>
+<td>Health checks enabled</td>
+<td></td>
+</tr>
+<tr>
+<td>Port 8000 exposed</td>
+<td>Port 8080 exposed</td>
+<td></td>
+</tr>
+</tbody>
+</table>
 <h2 id="monitoring-and-logging">📊 Monitoring and Logging</h2>
 <p>Both services include:
 - Structured logging configuration
@@ -1486,33 +1512,43 @@ docker-compose logs -f java-gateway
 <li>Optimize observation preprocessing in Java gateway</li>
 </ul>
 <h2 id="troubleshooting">🐛 Troubleshooting</summary></h2>
-<h3 id="service-wont-start">Service won't start</h3>
-<ul>
-<li>Check Docker logs: <code>docker-compose logs</code></li>
-<li>Verify model file exists and is correct format</li>
-<li>Check port availability (8000, 8080)</li>
-</ul>
-<h3 id="prediction-fails-with-timeout">Prediction fails with timeout</h3>
-<ul>
-<li>Increase <code>RL_INFERENCE_SERVICE_TIMEOUT</code></li>
-<li>Check if Python service is running: <code>docker-compose ps</code></li>
-<li>Verify network connectivity: <code>docker-compose exec java-gateway ping rl-inference</code></li>
-</ul>
-<h3 id="model-loading-fails">Model loading fails</h3>
-<ul>
-<li>Verify model path in environment variables</li>
-<li>Ensure model.zip is a valid stable-baselines3 PPO model</li>
-<li>Check file permissions</li>
-</ul>
+<table>
+<thead>
+<tr>
+<th><strong>Service won't start</strong></th>
+<th><strong>Prediction fails with timeout</strong></th>
+<th><strong>Model loading fails</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Check Docker logs: <code>docker-compose logs</code></td>
+<td>Increase <code>RL_INFERENCE_SERVICE_TIMEOUT</code></td>
+<td>Verify model path in environment variables</td>
+</tr>
+<tr>
+<td>Verify model file exists and is correct format</td>
+<td>Check if Python service is running: <code>docker-compose ps</code></td>
+<td>Ensure model.zip is a valid stable-baselines3 PPO model</td>
+</tr>
+<tr>
+<td>Check port availability (8000, 8080)</td>
+<td>Verify network connectivity: <code>docker-compose exec java-gateway ping rl-inference</code></td>
+<td>Check file permissions</td>
+</tr>
+</tbody>
+</table>
 <h2 id="production-deployment">🌍 Production Deployment</h2>
-<p>For production:
-1. Use Docker Compose with production-grade orchestration (Kubernetes)
-2. Add load balancing for multiple instances
-3. Configure persistent volumes for logs
-4. Set up monitoring and alerting
-5. Use environment-specific configuration files
-6. Implement API rate limiting and authentication
-7. Set up backup strategies for trained models</p>
+<p>For production:</p>
+<ol>
+<li>Use <strong>Docker Compose</strong> with production-grade orchestration (Kubernetes)</li>
+<li>Add <strong>load balancing</strong> for multiple instances</li>
+<li>Configure <strong>persistent volumes</strong> for logs</li>
+<li>Set up <strong>monitoring</strong> and <strong>alerting</strong></li>
+<li>Use environment-specific <strong>configuration files</strong></li>
+<li>Implement <strong>API rate limiting</strong> and <strong>authentication</strong></li>
+<li>Set up <strong>backup strategies</strong> for trained models</li>
+</ol>
 
 
 
