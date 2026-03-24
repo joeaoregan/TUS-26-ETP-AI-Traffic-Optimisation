@@ -1,5 +1,14 @@
 # 💬 Support
 
+## 👥 Contact
+
+- [Adam O Neill Mc Knight](https://github.com/AdamQ45) **<< Start Here🤣**
+- [David Claffey](https://github.com/dclaff)
+- [Edgars Peskaitis](https://github.com/edgar183)
+- [Joe O'Regan](https://github.com/joeaoregan)
+
+---
+
 ## 🤝 Contributing
 
 Guidelines for extending the API:

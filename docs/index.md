@@ -30,17 +30,6 @@
 
 ---
 
-### 📚 Documentation
-
-- **[Home](INDEX.md)** — Main project overview and quick start
-- **[System Architecture](SYSTEM_ARCHITECTURE.md)** — Detailed system design
-- **[Quick Start Guide](QUICKSTART.md)** — Get up and running quickly
-- **[Setup Complete](SETUP_COMPLETE.md)** — Post-setup verification
-- **[File Manifest](FILE_MANIFEST.md)** — File structure and descriptions
-- **[Changelog](CHANGELOG.md)** — Version history and updates
-
----
-
 ### 👥 Research Team
 
 > - [Joe O'Regan](https://github.com/joeaoregan)
