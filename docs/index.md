@@ -2,7 +2,7 @@
 
 ![Logo](images/logo.png)
 
-[Home](1_home/INDEX.md)
+[Home](1_home/index.md)
 
 [Features](FEATURES.md)
 

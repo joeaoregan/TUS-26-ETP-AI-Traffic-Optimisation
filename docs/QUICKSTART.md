@@ -1,6 +1,6 @@
-# Quick Start Guide - AI Traffic Control API
+# Quick Start
 
-## 5-Minute Setup
+## AI Traffic Control API - 5-Minute Setup Guide
 
 ### 1. Select Your Trained Model
 ```bash
@@ -176,5 +176,5 @@ To deploy documentation to GitHub pages, after updating (Commit first).
 python -m mkdocs gh-deploy
 ```
 
-*For detailed documentation, see [INDEX.md](1_home/INDEX.md) or [README.md](README.md)*
+*For detailed documentation, see [INDEX.md](1_home/index.md) or [README.md](README.md)*
  

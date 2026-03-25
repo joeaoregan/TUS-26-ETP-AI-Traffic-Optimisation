@@ -7,11 +7,16 @@ theme:
     - navigation.tabs
     - navigation.tabs.sticky
     - navigation.sections
-    - toc.integrate
+    - toc.follow
+    - navigation.footer
+    - navigation.instant.preview
+    - navigation.tracking
+    - navigation.path
+    - navigation.top
 
 nav:
   - Home: 
-    - 1_home/INDEX.md
+    - 1_home/index.md
     - 🚗 API Setup Guide: 1_home/3_setup.md
     - 📡 API Usage Examples: 1_home/4_api.md
     - 🔐 Environment Variables: 1_home/5_env.md
@@ -50,5 +55,18 @@ markdown_extensions:
       custom_checkbox: true
   - def_list
   - pymdownx.superfences
+  
+  - material.extensions.preview:
+      configurations:
+        - targets:
+            include:
+              - 1_home/*
+              - FEATURES.md
+              - 4_setup/*
+              - QUICKSTART.md
+              - SUPPORT.md
 
 repo_url: https://github.com/joeaoregan/TUS-26-ETP-AI-Traffic-Optimisation
+repo_name: GitHub
+
+site_url: http://127.0.0.1:8000
