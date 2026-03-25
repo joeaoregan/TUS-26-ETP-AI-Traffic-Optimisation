@@ -2,6 +2,7 @@ site_name: AI Traffic Optimisation System
 docs_dir: docs
 site_dir: site
 theme:
+  logo: images/logo.png
   palette: 
 
     # Palette toggle for dark mode
@@ -83,4 +84,4 @@ markdown_extensions:
 repo_url: https://github.com/joeaoregan/TUS-26-ETP-AI-Traffic-Optimisation
 repo_name: GitHub
 
-site_url: http://127.0.0.1:8000
+site_url: https://joeaoregan.github.io/TUS-26-ETP-AI-Traffic-Optimisation/
