@@ -3,7 +3,7 @@
 - [✨ What Was Created](1_created.md)
 - [🚀 Quick Start (5 Minutes)](2_quickstart.md)
 - [📊 Architecture Overview](3_architecture.md)
-- [🔧 Key Features](4_features.md)
+- [🔧 Key Features](../FEATURES.md)
 - [📡 API Endpoints](5_api_endpoints.md)
 - [💾 Using Different Models](6_different_models.md)
 - [🧪 Testing](7_testing.md)

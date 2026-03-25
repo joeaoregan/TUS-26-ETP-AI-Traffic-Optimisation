@@ -21,6 +21,7 @@ nav:
     - ⚡ Performance Tuning: 1_home/9_performance.md
     - 🐛 Troubleshooting: 1_home/10_ts.md
     - 🌍 Production Deployment: 1_home/11_prod.md
+  - Features: FEATURES.md
   - System Architecture: SYSTEM_ARCHITECTURE.md
   - Quick Start: QUICKSTART.md
   - Setup Complete:
@@ -28,7 +29,7 @@ nav:
     - What Was Created: 4_setup/1_created.md
     - Quick Start (5 Minutes): 4_setup/2_quickstart.md
     - Architecture Overview: 4_setup/3_architecture.md
-    - Key Features: 4_setup/4_features.md
+    - Key Features: FEATURES.md
     - API Endpoints: 4_setup/5_api_endpoints.md
     - Using Different Models: 4_setup/6_different_models.md
     - Testing: 4_setup/7_testing.md
