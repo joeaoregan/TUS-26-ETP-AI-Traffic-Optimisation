@@ -50,3 +50,5 @@ markdown_extensions:
       custom_checkbox: true
   - def_list
   - pymdownx.superfences
+
+repo_url: https://github.com/joeaoregan/TUS-26-ETP-AI-Traffic-Optimisation

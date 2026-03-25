@@ -2,20 +2,6 @@
 
 <h2>Engineering Team Project | TUS Athlone</h2>
 
-![Java 17](https://img.shields.io/badge/Java-17-blue)
-![Python 3.9](https://img.shields.io/badge/Python-3.9-green)
-![Spring Boot](https://img.shields.io/badge/Spring_Boot-3.2.3-6DB33F?logo=spring-boot&logoColor=white)
-![FastAPI](https://img.shields.io/badge/FastAPI-0.115.0-009688?logo=fastapi&logoColor=white)
-![Docker](https://img.shields.io/badge/Docker-Enabled-2496ED?logo=docker&logoColor=white)
-![Status](https://img.shields.io/badge/Status-Active_Research-success)
-
-![GitHub repo size](https://img.shields.io/github/repo-size/joeaoregan/TUS-26-ETP-AI-Traffic-Optimisation?color=orange)
-![GitHub last commit](https://img.shields.io/github/last-commit/joeaoregan/TUS-26-ETP-AI-Traffic-Optimisation?color=blue)
-![GitHub top language](https://img.shields.io/github/languages/top/joeaoregan/TUS-26-ETP-AI-Traffic-Optimisation)
-![Stars](https://img.shields.io/github/stars/joeaoregan/TUS-26-ETP-AI-Traffic-Optimisation?style=social)
-
----
-
 ### 🔗 Quick Links
 
 | 🌐 API Gateway | 🤖 Inference Service |
