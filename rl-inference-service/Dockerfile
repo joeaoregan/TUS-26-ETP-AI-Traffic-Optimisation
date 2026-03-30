@@ -25,9 +25,7 @@ EXPOSE 8000
 # Set environment variables with defaults
 ENV API_HOST=0.0.0.0
 ENV API_PORT=8000
-ENV MODEL_PATH=/app/trained_models/model.zip
-ENV OBSERVATION_SHAPE_DIM=9
-ENV NUM_AGENTS=1
+ENV MAPPO_AGENT_PATH=/app/trained_models/agent.th
 
 # Run the application
 CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "8000"]
