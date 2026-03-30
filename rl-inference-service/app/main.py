@@ -1,44 +1,143 @@
+"""
+MAPPO inference API — 5-junction Irish town network.
+
+Architecture (from training):
+  - Shared RNNAgent: fc1(24→128) → GRUCell(128→128) → fc2(128→4)
+  - Input per agent: obs_padded(19) + agent_id_onehot(5) = 24
+  - Separate GRU hidden state maintained per junction between calls
+
+Endpoints:
+  POST /predict_action   — predict green phase for a junction
+  POST /reset_hidden     — reset GRU hidden states (call at start of each sim run)
+  GET  /health
+  GET  /model_info
+  GET  /                 — HTML landing page
+"""
+
 import logging
 import os
-import sys
 from pathlib import Path
 from typing import List, Optional
 
 import numpy as np
+import torch
+import torch.nn as nn
+import torch.nn.functional as F
 from fastapi import FastAPI, HTTPException, Request
+from fastapi.responses import HTMLResponse
 from fastapi.staticfiles import StaticFiles
 from fastapi.templating import Jinja2Templates
-from fastapi.responses import HTMLResponse
-from gymnasium import spaces
 from pydantic import BaseModel, ConfigDict
-from stable_baselines3 import PPO
-from stable_baselines3.common.save_util import load_from_zip_file
 
-# Configure logging
 logging.basicConfig(
     level=logging.INFO,
-    format='%(asctime)s - %(name)s - %(levelname)s - %(message)s'
+    format="%(asctime)s - %(name)s - %(levelname)s - %(message)s",
 )
 logger = logging.getLogger(__name__)
 
-# Pydantic models
+# ─── Junction config ───────────────────────────────────────────────────────────
+TRAFFIC_LIGHTS = [
+    "joinedS_265580996_300839357",
+    "300839359",
+    "265580972",
+    "1270712555",
+    "8541180897",
+]
+
+# Per-junction available actions (1=valid, 0=padded/invalid)
+AVAIL_ACTIONS = {
+    "joinedS_265580996_300839357": [1, 1, 1, 1],
+    "300839359":                   [1, 1, 0, 0],
+    "265580972":                   [1, 1, 0, 0],
+    "1270712555":                  [1, 1, 0, 0],
+    "8541180897":                  [1, 1, 0, 0],
+}
+
+AGENT_INDEX = {tl: i for i, tl in enumerate(TRAFFIC_LIGHTS)}
+
+# Training hyperparams — must match mappo_sumo_v4.yaml
+N_AGENTS   = 5
+OBS_SHAPE  = 19   # max padded obs size (joinedS has 19)
+N_ACTIONS  = 4    # max action size (joinedS has 4)
+HIDDEN_DIM = 128
+
+
+# ─── RNNAgent (matches EPyMARL rnn_agent.py exactly) ──────────────────────────
+class RNNAgent(nn.Module):
+    def __init__(self, input_shape: int, hidden_dim: int, n_actions: int):
+        super().__init__()
+        self.hidden_dim = hidden_dim
+        self.fc1 = nn.Linear(input_shape, hidden_dim)
+        self.rnn = nn.GRUCell(hidden_dim, hidden_dim)
+        self.fc2 = nn.Linear(hidden_dim, n_actions)
+
+    def init_hidden(self) -> torch.Tensor:
+        return self.fc1.weight.new(1, self.hidden_dim).zero_()
+
+    def forward(self, inputs: torch.Tensor, hidden_state: torch.Tensor):
+        x = F.relu(self.fc1(inputs))
+        h = self.rnn(x, hidden_state.reshape(-1, self.hidden_dim))
+        logits = self.fc2(h)
+        return logits, h
+
+
+# ─── Pydantic schemas ──────────────────────────────────────────────────────────
 class Observation(BaseModel):
+    junction_id: str
     obs_data: List[float]
 
 
 class PredictionResponse(BaseModel):
+    junction_id: str
     action: int
     confidence: Optional[float] = None
 
 
 class HealthResponse(BaseModel):
     model_config = ConfigDict(protected_namespaces=())
-
     status: str
     model_loaded: bool
-    model_path: str
+    junctions: List[str]
 
-tags_metadata = [    
+
+# ─── Global state ──────────────────────────────────────────────────────────────
+agent: Optional[RNNAgent] = None
+hidden_states: dict = {}   # junction_id -> torch.Tensor [1, hidden_dim]
+
+
+def _reset_all_hidden():
+    """Reset GRU hidden states for all junctions (call at start of each sim run)."""
+    global hidden_states
+    if agent is None:
+        return
+    hidden_states = {tl: agent.init_hidden() for tl in TRAFFIC_LIGHTS}
+    logger.info("Hidden states reset for all junctions")
+
+
+def load_agent():
+    global agent
+    model_path = os.getenv("MAPPO_AGENT_PATH")
+    if not model_path:
+        raise RuntimeError("MAPPO_AGENT_PATH env var not set — point it to agent.th")
+    if not Path(model_path).exists():
+        raise RuntimeError(f"agent.th not found at {model_path}")
+
+    input_shape = OBS_SHAPE + N_AGENTS  # 24
+
+    agent = RNNAgent(input_shape=input_shape, hidden_dim=HIDDEN_DIM, n_actions=N_ACTIONS)
+    state_dict = torch.load(model_path, map_location="cpu")
+    agent.load_state_dict(state_dict)
+    agent.eval()
+
+    _reset_all_hidden()
+    logger.info(
+        "MAPPO agent loaded from %s  input=%d hidden=%d actions=%d",
+        model_path, input_shape, HIDDEN_DIM, N_ACTIONS,
+    )
+
+
+# ─── FastAPI app ───────────────────────────────────────────────────────────────
+tags_metadata = [
     {
         "name": "Traffic Inference",
         "description": "The core engine for RL-based traffic signal prediction.",
@@ -53,142 +152,9 @@ tags_metadata = [
     },
 ]
 
-# Global model variable
-model = None
-model_path = None
-
-
-def register_numpy_compat_aliases():
-    """Register NumPy module aliases expected by pickled model metadata."""
-    try:
-        import numpy._core as numpy_private_core
-        import numpy._core.numeric as numpy_private_numeric
-
-        sys.modules.setdefault("numpy._core", numpy_private_core)
-        sys.modules.setdefault("numpy._core.numeric", numpy_private_numeric)
-        return
-    except ModuleNotFoundError:
-        pass
-
-    import numpy.core as numpy_core
-    import numpy.core.numeric as numpy_core_numeric
-
-    sys.modules.setdefault("numpy._core", numpy_core)
-    sys.modules.setdefault("numpy._core.numeric", numpy_core_numeric)
-
-
-def patch_numpy_bit_generator_ctor():
-    """Support models pickled with NumPy versions that serialize BitGenerator classes."""
-    import numpy.random._pickle as numpy_random_pickle
-
-    original_ctor = numpy_random_pickle.__bit_generator_ctor
-    if getattr(original_ctor, "_ai_traffic_patched", False):
-        return
-
-    def compat_ctor(bit_generator_name='MT19937'):
-        if isinstance(bit_generator_name, type) and issubclass(bit_generator_name, np.random.BitGenerator):
-            return bit_generator_name()
-        return original_ctor(bit_generator_name)
-
-    compat_ctor._ai_traffic_patched = True
-    numpy_random_pickle.__bit_generator_ctor = compat_ctor
-
-
-def build_model_custom_objects(observation_dim: int, action_dim: int):
-    """Provide explicit objects for model metadata that may not deserialize cross-version."""
-    observation_space = spaces.Box(
-        low=0.0,
-        high=1.0,
-        shape=(observation_dim,),
-        dtype=np.float32,
-    )
-    action_space = spaces.Discrete(action_dim)
-
-    def constant_schedule(_progress_remaining):
-        return 0.0
-
-    return {
-        "observation_space": observation_space,
-        "action_space": action_space,
-        "lr_schedule": constant_schedule,
-        "clip_range": constant_schedule,
-    }
-
-
-def infer_model_dimensions(model_path: str, observation_shape_dim: int, num_agents: int):
-    """Infer observation and action dimensions from saved PPO weights when metadata is incompatible."""
-    default_observation_dim = observation_shape_dim * max(num_agents, 1)
-    default_action_dim = 4
-
-    try:
-        _, params, _ = load_from_zip_file(
-            model_path,
-            custom_objects={
-                "observation_space": None,
-                "action_space": None,
-                "lr_schedule": None,
-                "clip_range": None,
-            },
-        )
-    except Exception as exc:
-        logger.warning("Falling back to configured dimensions because model introspection failed: %s", exc)
-        return default_observation_dim, default_action_dim
-
-    policy_params = params.get("policy", {})
-    policy_weight = policy_params.get("mlp_extractor.policy_net.0.weight")
-    action_bias = policy_params.get("action_net.bias")
-
-    inferred_observation_dim = int(policy_weight.shape[1]) if policy_weight is not None else default_observation_dim
-    inferred_action_dim = int(action_bias.shape[0]) if action_bias is not None else default_action_dim
-
-    return inferred_observation_dim, inferred_action_dim
-
-
-def load_model():
-    """Load the trained PPO model at startup."""
-    global model, model_path
-    
-    # Get model path from environment variable
-    model_path = os.getenv('MODEL_PATH', './app/models/my_ppo_model.zip')
-    observation_shape_dim = int(os.getenv('OBSERVATION_SHAPE_DIM', '10'))
-    num_agents = int(os.getenv('NUM_AGENTS', '1'))
-    
-    logger.info(f"Attempting to load model from: {model_path}")
-    logger.info(f"Observation shape dimension: {observation_shape_dim}")
-    logger.info(f"Number of agents: {num_agents}")
-    
-    try:
-        if not Path(model_path).exists():
-            raise FileNotFoundError(f"Model file not found at {model_path}")
-        
-        register_numpy_compat_aliases()
-        patch_numpy_bit_generator_ctor()
-        inferred_observation_dim, inferred_action_dim = infer_model_dimensions(
-            model_path,
-            observation_shape_dim,
-            num_agents,
-        )
-        logger.info(
-            "Using model dimensions: observation_dim=%s, action_dim=%s",
-            inferred_observation_dim,
-            inferred_action_dim,
-        )
-        custom_objects = build_model_custom_objects(
-            inferred_observation_dim,
-            inferred_action_dim,
-        )
-        model = PPO.load(model_path, custom_objects=custom_objects)
-        logger.info(f"Model loaded successfully from {model_path}")
-        return True
-    except Exception as e:
-        logger.error(f"Failed to load model: {str(e)}")
-        raise RuntimeError(f"Failed to load model at startup: {str(e)}")
-
-
-# Initialize FastAPI app
 app = FastAPI(
-    title="RL Inference API",    
-    version="1.0.0",
+    title="RL Inference API — 5-Junction MAPPO",
+    version="3.0.0",
     openapi_tags=tags_metadata,
     contact={
         "name": "Joe O'Regan, Edgars Peskaitis, Adam O Neill Mc Knight, David Claffey",
@@ -202,22 +168,22 @@ app = FastAPI(
     <h2>Joe O'Regan, Edgars Peskaitis</h2>
     <h2>Adam O Neill Mc Knight, David Claffey</h2>
     <h3>Overview</h3>
-    <p>REST API for traffic signal control using trained RL model</p>"""
+    <p>REST API for traffic signal control using MAPPO (Multi-Agent PPO) with shared GRU actor.
+    Controls 5 junctions in the Athlone town network.</p>
+    <p>Call <code>POST /reset_hidden</code> at the start of each new simulation run to reset GRU state.</p>""",
 )
 
-
-# mount static folder
 app.mount("/static", StaticFiles(directory="static"), name="static")
 templates = Jinja2Templates(directory="templates")
 
+
 @app.on_event("startup")
 async def startup_event():
-    """Load model on startup."""
     try:
-        load_model()
+        load_agent()
         logger.info("Application startup completed successfully")
     except Exception as e:
-        logger.error(f"Application startup failed: {str(e)}")
+        logger.error("Application startup failed: %s", e)
         raise
 
 
@@ -225,112 +191,125 @@ async def startup_event():
 async def health_check():
     """Health check endpoint."""
     return HealthResponse(
-        status="healthy",
-        model_loaded=model is not None,
-        model_path=model_path or "not set"
+        status="healthy" if agent is not None else "no_model",
+        model_loaded=agent is not None,
+        junctions=TRAFFIC_LIGHTS,
     )
 
 
 @app.post("/predict_action", response_model=PredictionResponse, tags=["Traffic Inference"])
 async def predict_action(observation: Observation):
     """
-    Predict action for given observation.
-    
-    Args:
-        observation: Observation data containing obs_data as a list of floats
-        
-    Returns:
-        PredictionResponse with predicted action
-    """
-    if model is None:
-        logger.error("Model not loaded when predict_action was called")
-        raise HTTPException(
-            status_code=500,
-            detail="Model not loaded. Service may not be properly initialized."
-        )
-    
-    try:
-        # Convert observation data to numpy array
-        obs_array = np.array(observation.obs_data, dtype=np.float32)
-        expected_observation_dim = int(model.observation_space.shape[0])
+    Predict the next green phase for a junction.
 
-        if obs_array.size != expected_observation_dim:
-            raise ValueError(
-                f"Expected {expected_observation_dim} observation values but received {obs_array.size}"
-            )
-        
-        logger.info(f"Received observation shape: {obs_array.shape}")
-        
-        # Reshape if necessary
-        if obs_array.ndim == 1:
-            obs_array = obs_array.reshape(1, -1)
-        
-        # Get prediction from model
-        action, _states = model.predict(obs_array, deterministic=True)
-        
-        # Extract the predicted action
-        predicted_action = int(action[0]) if isinstance(action, np.ndarray) else int(action)
-        
-        logger.info(f"Predicted action: {predicted_action}")
-        
-        return PredictionResponse(
-            action=predicted_action,
-            confidence=None
+    Request body:
+      junction_id  — one of the 5 known junction IDs
+      obs_data     — local observation vector (float[]):
+                       [phase_one_hot..., min_green_flag, lane_queue_0, ...]
+                     Sizes: joinedS=19, others=~8-10
+                     (smaller obs are zero-padded to 19 internally)
+
+    Response:
+      action  — green phase index (int)
+                joinedS: 0-3,  others: 0-1
+    """
+    if agent is None:
+        raise HTTPException(status_code=503, detail="Model not loaded")
+
+    junction_id = observation.junction_id
+    if junction_id not in AGENT_INDEX:
+        raise HTTPException(
+            status_code=404,
+            detail=f"Unknown junction '{junction_id}'. Known: {TRAFFIC_LIGHTS}",
         )
-    except ValueError as e:
-        logger.error(f"Value error during prediction: {str(e)}")
+
+    agent_idx = AGENT_INDEX[junction_id]
+
+    obs = np.array(observation.obs_data, dtype=np.float32)
+    if obs.size > OBS_SHAPE:
         raise HTTPException(
             status_code=400,
-            detail=f"Invalid observation data: {str(e)}"
+            detail=f"obs_data has {obs.size} values, expected <= {OBS_SHAPE}",
         )
-    except Exception as e:
-        logger.error(f"Error during prediction: {str(e)}")
-        raise HTTPException(
-            status_code=500,
-            detail=f"Error during prediction: {str(e)}"
-        )
+    if obs.size < OBS_SHAPE:
+        obs = np.pad(obs, (0, OBS_SHAPE - obs.size))
+
+    # Append agent_id one-hot
+    agent_id_onehot = np.zeros(N_AGENTS, dtype=np.float32)
+    agent_id_onehot[agent_idx] = 1.0
+    agent_input = np.concatenate([obs, agent_id_onehot])
+
+    x = torch.tensor(agent_input, dtype=torch.float32).unsqueeze(0)
+    h = hidden_states[junction_id]
+
+    with torch.no_grad():
+        logits, h_new = agent(x, h)
+
+    hidden_states[junction_id] = h_new
+
+    avail = torch.tensor(AVAIL_ACTIONS[junction_id], dtype=torch.float32)
+    logits = logits.squeeze(0)
+    logits[avail == 0] = -1e10
+    probs = F.softmax(logits, dim=-1)
+
+    action = int(probs.argmax().item())
+    confidence = float(probs[action].item())
+
+    logger.info(
+        "junction=%s agent_idx=%d action=%d confidence=%.3f",
+        junction_id, agent_idx, action, confidence,
+    )
+
+    return PredictionResponse(
+        junction_id=junction_id,
+        action=action,
+        confidence=confidence,
+    )
+
+
+@app.post("/reset_hidden", tags=["Traffic Inference"])
+async def reset_hidden():
+    """
+    Reset GRU hidden states for all junctions.
+    Call this at the start of each new simulation run.
+    """
+    _reset_all_hidden()
+    return {"status": "ok", "message": "Hidden states reset for all junctions"}
 
 
 @app.get("/model_info", tags=["Traffic Inference"])
 async def get_model_info():
-    """Get information about the loaded model."""
-    if model is None:
-        raise HTTPException(
-            status_code=500,
-            detail="Model not loaded"
-        )
-    
-    try:
-        return {
-            "model_type": "PPO",
-            "model_path": model_path,
-            "observation_space": str(model.observation_space),
-            "action_space": str(model.action_space),
-            "action_space_shape": model.action_space.shape if hasattr(model.action_space, 'shape') else "N/A",
-            "policy_type": type(model.policy).__name__
-        }
-    except Exception as e:
-        logger.error(f"Error getting model info: {str(e)}")
-        raise HTTPException(
-            status_code=500,
-            detail=f"Error getting model info: {str(e)}"
-        )
-    
+    """Get information about the loaded MAPPO model."""
+    if agent is None:
+        raise HTTPException(status_code=503, detail="Model not loaded")
+    return {
+        "architecture": "RNNAgent (GRU)",
+        "input_shape": OBS_SHAPE + N_AGENTS,
+        "hidden_dim": HIDDEN_DIM,
+        "n_actions": N_ACTIONS,
+        "n_agents": N_AGENTS,
+        "obs_agent_id": True,
+        "junctions": {
+            tl: {
+                "agent_index": AGENT_INDEX[tl],
+                "avail_actions": AVAIL_ACTIONS[tl],
+                "valid_actions": sum(AVAIL_ACTIONS[tl]),
+            }
+            for tl in TRAFFIC_LIGHTS
+        },
+    }
+
 
 @app.get("/", response_class=HTMLResponse, tags=["Navigation"])
 async def read_root(request: Request):
     return templates.TemplateResponse("index.html", {"request": request})
 
+
 if __name__ == "__main__":
     import uvicorn
-    
-    # Get configuration from environment
-    host = os.getenv('API_HOST', '0.0.0.0')
-    port = int(os.getenv('API_PORT', 8000))
-    
     uvicorn.run(
         "main:app",
-        host=host,
-        port=port,
-        reload=os.getenv('API_RELOAD', 'false').lower() == 'true'
+        host=os.getenv("API_HOST", "0.0.0.0"),
+        port=int(os.getenv("API_PORT", 8000)),
+        reload=os.getenv("API_RELOAD", "false").lower() == "true",
     )
