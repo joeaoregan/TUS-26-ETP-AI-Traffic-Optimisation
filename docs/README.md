@@ -36,7 +36,6 @@
 
 ---
 
-
 ## 📈 Performance Targets
 - **Average Travel Time (ATT):** Target -15%
 - **Mean Queue Length (MQL):** Target -20%
@@ -98,7 +97,7 @@ TUS-26-ETP2-Python-Data-Science-and-ML-Pipeline/
 ```
 
 <details open>
-  <summary>Components</summary>
+  <summary>1. Components</summary>
 
 #### 1. Python FastAPI Service (RL Inference Service)
 
@@ -129,7 +128,7 @@ The Java Gateway receives raw vehicle counts, transforms them into an observatio
 </details>
 
 <details>
-  <summary>Setup Instructions</summary>
+  <summary>2. Setup Instructions</summary>
 
 #### Prerequisites
 - Docker & Docker Compose
@@ -217,7 +216,7 @@ mvn spring-boot:run
 </details>
 
 <details>
-  <summary>API Usage Examples</summary>
+  <summary>3. API Usage Examples</summary>
 
 #### Get Traffic Action (Auto-generated observations)
 ```bash
@@ -271,7 +270,7 @@ Response:
 </details>
 
 <details>
-  <summary>Environment Variables</summary>
+  <summary>4. Environment Variables</summary>
 
 #### Python Service (RL Inference)
 - `MODEL_PATH`: Path to trained model file (default: `/app/trained_models/model.zip`)
@@ -288,7 +287,7 @@ Response:
 </details>
 
 <details>
-  <summary>Docker Compose Configuration</summary>
+  <summary>5. Docker Compose Configuration</summary>
 
 The `docker-compose.yml` file includes:
 
@@ -309,7 +308,7 @@ The `docker-compose.yml` file includes:
 </details>
 
 <details>
-  <summary>Monitoring and Logging</summary>
+  <summary>6. Monitoring and Logging</summary>
 
 Both services include:
 - Structured logging configuration
@@ -326,7 +325,7 @@ docker-compose logs -f java-gateway
 </details>
 
 <details>
-  <summary>Using Different Models</summary>
+  <summary>7. Using Different Models</summary>
 
 To use different trained models:
 
@@ -353,7 +352,7 @@ To use different trained models:
 </details>
 
 <details>
-  <summary>Performance Tuning</summary>
+  <summary>8. Performance Tuning</summary>
 
 #### For High-Throughput Scenarios
 - Adjust Java `RL_INFERENCE_SERVICE_TIMEOUT` if needed
@@ -368,7 +367,7 @@ To use different trained models:
 </details>
 
 <details>
-  <summary>Troubleshooting</summary>
+  <summary>9. Troubleshooting</summary>
 
 #### Service won't start
 - Check Docker logs: `docker-compose logs`
@@ -388,7 +387,7 @@ To use different trained models:
 </details>
 
 <details>
-  <summary>Production Deployment</summary>
+  <summary>10. Production Deployment</summary>
 
 For production:
 1. Use Docker Compose with production-grade orchestration (Kubernetes)
@@ -402,7 +401,7 @@ For production:
 </details>
 
 <details>
-  <summary>Contributing</summary>
+  <summary>11. Contributing</summary>
 
 Guidelines for extending the API:
 - Add new endpoints to `TrafficController`
@@ -413,7 +412,7 @@ Guidelines for extending the API:
 </details>
 
 <details>
-  <summary>Support</summary>
+  <summary>12. Support</summary>
 
 For issues or questions:
 1. Check service logs: `docker-compose logs`
@@ -424,7 +423,7 @@ For issues or questions:
 </details>
 
 <details>
-  <summary>API Documentation (Swagger UI)</summary>
+  <summary>13. API Documentation (Swagger UI)</summary>
 
 The Java API Gateway now includes automatically generated API documentation using **springdoc-openapi**.
 
