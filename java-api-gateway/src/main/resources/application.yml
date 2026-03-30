@@ -9,7 +9,7 @@ rl:
     service:
       url: "http://localhost:8000/predict_action"
       timeout: 10000
-    observation-dimension: 9
+    observation-dimension: 19
 
 logging:
   level:
