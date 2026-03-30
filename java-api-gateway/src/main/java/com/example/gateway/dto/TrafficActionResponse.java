@@ -11,6 +11,9 @@ import lombok.NoArgsConstructor;
 @Schema(description = "Response containing predicted traffic signal action")
 public class TrafficActionResponse {
 
+    @Schema(description = "Junction ID the prediction was made for", example = "300839359")
+    private String junctionId;
+
     @Schema(description = "Predicted action index from RL model", example = "2")
     private int predictedAction;
 
