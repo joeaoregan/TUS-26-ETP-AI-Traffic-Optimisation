@@ -1,8 +1,6 @@
 services:
   rl-inference:
-    build:
-      context: ./rl-inference-service
-      dockerfile: Dockerfile
+    image: rl-inference-service:2.0.0
     container_name: rl-inference-service
     ports:
       - "8000:8000"
@@ -28,9 +26,7 @@ services:
         max-file: "3"
 
   java-gateway:
-    build:
-      context: ./java-api-gateway
-      dockerfile: Dockerfile
+    image: traffic-api-gateway:2.0.0
     container_name: traffic-api-gateway
     ports:
       - "8080:8080"
