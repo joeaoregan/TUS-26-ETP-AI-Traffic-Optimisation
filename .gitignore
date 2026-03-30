@@ -63,3 +63,4 @@ venv/
 
 # mkdocs
 site/
+*.tar
