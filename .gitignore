@@ -55,11 +55,6 @@ Thumbs.db
 *.temp
 *.bak
 
-# Node modules (if using npm in future)
-node_modules/
-npm-debug.log
-
-
 .metadata/
 .factorypath
 
@@ -68,3 +63,4 @@ venv/
 
 # mkdocs
 site/
+*.tar

@@ -29,19 +29,21 @@ public class RlInferenceClient {
     private int serviceTimeout;
 
     /**
-     * Predict action for given observation data.
+     * Predict action for a given junction and its observation data.
      *
-     * @param observationData List of observation values
+     * @param junctionId      Junction ID (one of the 5 controlled junctions)
+     * @param observationData Local observation vector (up to 19 floats)
      * @return Predicted action as integer
      * @throws RlInferenceException if prediction fails
      */
-    public int predictAction(List<Double> observationData) {
+    public int predictAction(String junctionId, List<Double> observationData) {
         try {
-            log.info("Sending prediction request with {} observations to {}",
-                    observationData.size(), inferenceServiceUrl);
+            log.info("Sending prediction request for junction={} with {} observations to {}",
+                    junctionId, observationData.size(), inferenceServiceUrl);
 
             // Create request payload
             Map<String, Object> requestBody = new HashMap<>();
+            requestBody.put("junction_id", junctionId);
             requestBody.put("obs_data", observationData);
 
             // Make HTTP POST request
@@ -104,6 +106,21 @@ public class RlInferenceClient {
     }
 
     /**
+     * Reset GRU hidden states for all junctions.
+     * Should be called at the start of each new simulation run.
+     */
+    public void resetHiddenStates() {
+        try {
+            String resetUrl = inferenceServiceUrl.replace("/predict_action", "/reset_hidden");
+            restTemplate.postForObject(resetUrl, null, Map.class);
+            log.info("Hidden states reset on inference service");
+        } catch (Exception e) {
+            log.warn("Failed to reset hidden states: {}", e.getMessage());
+            throw new RlInferenceException("Failed to reset hidden states: " + e.getMessage(), e);
+        }
+    }
+
+    /**
      * Custom exception for RL Inference errors.
      */
     public static class RlInferenceException extends RuntimeException {
@@ -141,6 +158,6 @@ public class RlInferenceClient {
 
         private String status;
         private boolean modelLoaded;
-        private String modelPath;
+        private List<String> junctions;
     }
 }

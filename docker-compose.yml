@@ -1,15 +1,11 @@
 services:
   rl-inference:
-    build:
-      context: ./rl-inference-service
-      dockerfile: Dockerfile
+    image: rl-inference-service:2.0.0
     container_name: rl-inference-service
     ports:
       - "8000:8000"
     environment:
-      MODEL_PATH: /app/trained_models/model.zip
-      OBSERVATION_SHAPE_DIM: 9
-      NUM_AGENTS: 1
+      MAPPO_AGENT_PATH: /app/trained_models/agent.th
       API_HOST: 0.0.0.0
       API_PORT: 8000
       API_RELOAD: "false"
@@ -30,9 +26,7 @@ services:
         max-file: "3"
 
   java-gateway:
-    build:
-      context: ./java-api-gateway
-      dockerfile: Dockerfile
+    image: traffic-api-gateway:2.0.0
     container_name: traffic-api-gateway
     ports:
       - "8080:8080"

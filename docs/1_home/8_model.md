@@ -1,24 +1,25 @@
-To use different trained models:
+To use a different trained MAPPO model:
 
-1. **Locate your model:**
+1. **Locate your checkpoint:**
 
    ```
-   C:\Users\gemer\Sumo\my-network\Results\sweeps_*\<sweep_name>\seed_*\<variant>\model.zip
-   
-   Examples:
-   - Results\sweeps\pressure\seed_42\A\model.zip
-   - Results\sweeps\queue\seed_123\B\model.zip
-   - Results\sweeps_2\diff-waiting-time\seed_7\C\model.zip
+   Results/mappo_sumo_v4/seed_<n>/models/<run_name>/<steps>/agent.th
+
+   Example:
+   - Results/mappo_sumo_v4/seed_42/models/.../2828160/agent.th
    ```
 
-2. **Copy to models directory:**
+2. **Copy to trained_models directory:**
 
    ```bash
-   copy "<source_path>\model.zip" "rl-inference-service\app\trained_models\model.zip"
+   cp "<source_path>/agent.th" "rl-inference-service/app/trained_models/agent.th"
    ```
 
 3. **Rebuild and restart:**
 
    ```bash
-   docker-compose up --build
+   docker build -t rl-inference-service:2.0.0 ./rl-inference-service
+   docker compose up -d
    ```
+
+> **Note:** The model is an EPyMARL RNNAgent checkpoint (PyTorch `.th` file), not a Stable-Baselines3 `.zip`. Architecture: `fc1(24→128) → GRUCell(128→128) → fc2(128→4)`. Input shape = 24 (19 obs + 5 agent-id one-hot).

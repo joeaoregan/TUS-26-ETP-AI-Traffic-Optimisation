@@ -26,53 +26,56 @@ import java.util.List;
 import java.util.Random;
 
 /**
- * REST Controller for traffic signal control.
+ * REST Controller for traffic signal control via MAPPO inference.
  */
 @Slf4j
 @RestController
 @RequestMapping("/api/traffic")
 @RequiredArgsConstructor
-//@Tag(name = "Traffic Control API", description = "Endpoints for traffic signal prediction and health monitoring")
 public class TrafficController {
 
 	private final RlInferenceClient rlInferenceClient;
 	private static final Random random = new Random();
 
-	@Value("${rl.inference.observation-dimension:9}")
+	@Value("${rl.inference.observation-dimension:19}")
 	private int observationDimension;
 
+	private static final List<String> KNOWN_JUNCTIONS = List.of(
+		"joinedS_265580996_300839357",
+		"300839359",
+		"265580972",
+		"1270712555",
+		"8541180897"
+	);
+
 	/**
-	 * Get predicted action for traffic signal control.
-	 *
-	 * @return ResponseEntity with predicted action
+	 * Demo endpoint — picks a random junction, generates dummy observations, returns prediction.
 	 */
 	@Tag(name = "Traffic Prediction")
-	@Operation(operationId = "getTrafficAction", summary = "Get predicted traffic signal action", description = "Generates dummy observations and returns the predicted traffic signal state.")
-	@ApiResponse(responseCode = "200", description = "Prediction generated successfully (or Fallback mode if service is down)", content = @Content(mediaType = "application/json", examples = {
+	@Operation(operationId = "getTrafficAction", summary = "Get predicted traffic signal action (demo)",
+		description = "Picks a random junction, generates dummy observations and returns the predicted traffic signal state.")
+	@ApiResponse(responseCode = "200", description = "Prediction generated successfully (or Fallback mode if service is down)",
+		content = @Content(mediaType = "application/json", examples = {
 			@ExampleObject(name = "Success", summary = "Standard AI Prediction", value = """
-					{
-					  "predictedAction": 2,
-					  "signalState": "GREEN",
-					  "timestamp": 1710000000000,
-					  "status": "success"
-					}
-					"""), @ExampleObject(name = "Fallback", summary = "Inference Service Down", value = """
-					{
-					  "predictedAction": 0,
-					  "signalState": "RED",
-					  "timestamp": 1710000000000,
-					  "status": "fallback_mode (inference service down)"
-					}
-					""") }))
-
-	@ApiResponse(responseCode = "503", description = "Inference service unavailable", content = @Content(mediaType = "application/json", examples = @ExampleObject(name = "Inference service down", value = """
-			{
-			  "status": "error",
-			  "message": "Inference service error: connection refused",
-			  "timestamp": 1710000000000
-			}
-			""")))
-	@ApiResponse(responseCode = "500", description = "Unexpected internal server error", content = @Content(mediaType = "application/json", examples = @ExampleObject(name = "Internal server error", value = """
+				{
+				  "junctionId": "300839359",
+				  "predictedAction": 1,
+				  "signalState": "YELLOW",
+				  "timestamp": 1710000000000,
+				  "status": "success"
+				}
+				"""),
+			@ExampleObject(name = "Fallback", summary = "Inference Service Down", value = """
+				{
+				  "junctionId": "300839359",
+				  "predictedAction": 0,
+				  "signalState": "RED",
+				  "timestamp": 1710000000000,
+				  "status": "fallback_mode (inference service down)"
+				}
+				""") }))
+	@ApiResponse(responseCode = "500", description = "Unexpected internal server error",
+		content = @Content(mediaType = "application/json", examples = @ExampleObject(value = """
 			{
 			  "status": "error",
 			  "message": "Internal server error: null pointer exception",
@@ -81,28 +84,25 @@ public class TrafficController {
 			""")))
 	@GetMapping("/action")
 	public ResponseEntity<?> getTrafficAction() {
+		String junctionId = KNOWN_JUNCTIONS.get(random.nextInt(KNOWN_JUNCTIONS.size()));
 		try {
-			log.info("Received request for traffic action prediction");
-
+			log.info("Demo request — using junction={}", junctionId);
 			List<Double> observationData = generateDummyObservations(observationDimension);
-			log.debug("Generated observation data: {}", observationData);
 
-			int predictedAction = rlInferenceClient.predictAction(observationData);
+			int predictedAction = rlInferenceClient.predictAction(junctionId, observationData);
 			TrafficSignalState trafficSignalState = mapActionToSignalState(predictedAction);
 
-			TrafficActionResponse response = new TrafficActionResponse(predictedAction, trafficSignalState,
-					System.currentTimeMillis(), "success");
+			TrafficActionResponse response = new TrafficActionResponse(
+					junctionId, predictedAction, trafficSignalState, System.currentTimeMillis(), "success");
 
-			log.info("Successfully generated traffic action: {} ({})", predictedAction, trafficSignalState);
+			log.info("Demo action: junction={} action={} state={}", junctionId, predictedAction, trafficSignalState);
 			return ResponseEntity.ok(response);
 
 		} catch (RlInferenceException | org.springframework.web.client.ResourceAccessException e) {
 			log.error("Inference service unavailable, entering FALLBACK mode: {}", e.getMessage());
 
-			int fallbackAction = 0; // RED
-			TrafficSignalState fallbackState = mapActionToSignalState(fallbackAction);
-
-			TrafficActionResponse fallbackResponse = new TrafficActionResponse(fallbackAction, fallbackState,
+			TrafficActionResponse fallbackResponse = new TrafficActionResponse(
+					junctionId, 0, TrafficSignalState.RED,
 					System.currentTimeMillis(), "fallback_mode (inference service down)");
 
 			return ResponseEntity.ok(fallbackResponse);
@@ -110,37 +110,43 @@ public class TrafficController {
 	}
 
 	/**
-	 * Get traffic action with custom observation data.
-	 *
-	 * @param request Request containing observation data
-	 * @return ResponseEntity with predicted action
+	 * Predict traffic action for a specific junction with provided observations.
 	 */
 	@Tag(name = "Traffic Prediction")
-	@Operation(operationId = "predictTrafficAction", summary = "Predict traffic signal action using custom observations", description = "Accepts a list of observation values and returns the predicted traffic signal state.")
-	@ApiResponse(responseCode = "200", description = "Prediction generated successfully", content = @Content(mediaType = "application/json", schema = @Schema(oneOf = {
-			TrafficActionResponse.class }), examples = { @ExampleObject(name = "Success", value = """
-					{
-					  "predictedAction": 2,
-					  "signalState": "GREEN",
-					  "timestamp": 1710000000000,
-					  "status": "success"
-					}
-					"""), @ExampleObject(name = "Fallback (Inference Down)", value = """
-					{
-					  "predictedAction": 0,
-					  "signalState": "RED",
-					  "timestamp": 1710000000000,
-					  "status": "fallback_mode (inference service down)"
-					}
-					""") }))
-	@ApiResponse(responseCode = "400", description = "Invalid observation data", content = @Content(mediaType = "application/json", examples = @ExampleObject(name = "Invalid observation count", value = """
+	@Operation(operationId = "predictTrafficAction",
+		summary = "Predict traffic signal action for a junction",
+		description = "Accepts a junction ID and its local observation vector, returns the MAPPO model prediction.")
+	@ApiResponse(responseCode = "200", description = "Prediction generated successfully",
+		content = @Content(mediaType = "application/json", schema = @Schema(oneOf = {
+			TrafficActionResponse.class }), examples = {
+			@ExampleObject(name = "Success", value = """
+				{
+				  "junctionId": "joinedS_265580996_300839357",
+				  "predictedAction": 2,
+				  "signalState": "GREEN",
+				  "timestamp": 1710000000000,
+				  "status": "success"
+				}
+				"""),
+			@ExampleObject(name = "Fallback (Inference Down)", value = """
+				{
+				  "junctionId": "300839359",
+				  "predictedAction": 0,
+				  "signalState": "RED",
+				  "timestamp": 1710000000000,
+				  "status": "fallback_mode (inference service down)"
+				}
+				""") }))
+	@ApiResponse(responseCode = "400", description = "Invalid request body",
+		content = @Content(mediaType = "application/json", examples = @ExampleObject(value = """
 			{
 			  "status": "error",
-			  "message": "Expected 9 observations but received 3",
+			  "message": "junctionId is required",
 			  "timestamp": 1710000000000
 			}
 			""")))
-	@ApiResponse(responseCode = "500", description = "Unexpected internal server error", content = @Content(mediaType = "application/json", examples = @ExampleObject(name = "Internal server error", value = """
+	@ApiResponse(responseCode = "500", description = "Unexpected internal server error",
+		content = @Content(mediaType = "application/json", examples = @ExampleObject(value = """
 			{
 			  "status": "error",
 			  "message": "Internal server error: unexpected exception",
@@ -149,82 +155,122 @@ public class TrafficController {
 			""")))
 	@PostMapping("/action")
 	public ResponseEntity<?> predictTrafficAction(
-			@io.swagger.v3.oas.annotations.parameters.RequestBody(description = "Custom observation values for prediction", required = true, content = @Content(mediaType = "application/json", examples = {
-					@ExampleObject(name = "Typical morning traffic", value = """
-							{
-							  "observations": [0.12, 0.33, 0.41, 0.55, 0.62, 0.70, 0.81, 0.90, 0.95],
-							  "metadata": "morning-peak"
-							}
-							"""), @ExampleObject(name = "Low congestion", value = """
-							{
-							  "observations": [0.05, 0.10, 0.08, 0.12, 0.15, 0.20, 0.18, 0.22, 0.25],
-							  "metadata": "off-peak"
-							}
-							""") })) @RequestBody TrafficActionRequest request) {
+			@io.swagger.v3.oas.annotations.parameters.RequestBody(
+				description = "Junction ID and observation vector",
+				required = true,
+				content = @Content(mediaType = "application/json", examples = {
+					@ExampleObject(name = "joinedS junction (19 obs)", value = """
+						{
+						  "junctionId": "joinedS_265580996_300839357",
+						  "observations": [0.0, 1.0, 0.0, 0.0, 0.0, 1.0, 0.0, 1.0, 0.12,
+						                   0.08, 0.33, 0.41, 0.22, 0.55, 0.18, 0.62, 0.70, 0.81, 0.50],
+						  "metadata": "morning-peak"
+						}
+						"""),
+					@ExampleObject(name = "2-phase junction (8 obs)", value = """
+						{
+						  "junctionId": "300839359",
+						  "observations": [0.0, 1.0, 1.0, 0.12, 0.33, 0.41, 0.22, 0.55],
+						  "metadata": "off-peak"
+						}
+						""") }))
+			@RequestBody TrafficActionRequest request) {
 		try {
-			log.info("Received custom traffic action request with {} observations", request.getObservations().size());
+			if (request.getJunctionId() == null || request.getJunctionId().isBlank()) {
+				return buildErrorResponse("junctionId is required", HttpStatus.BAD_REQUEST);
+			}
 
 			if (request.getObservations() == null || request.getObservations().isEmpty()) {
-				return buildErrorResponse("Observations data is required", HttpStatus.BAD_REQUEST);
+				return buildErrorResponse("observations is required", HttpStatus.BAD_REQUEST);
 			}
 
-			if (request.getObservations().size() != observationDimension) {
-				return buildErrorResponse(String.format("Expected %d observations but received %d",
-						observationDimension, request.getObservations().size()), HttpStatus.BAD_REQUEST);
+			if (request.getObservations().size() > observationDimension) {
+				return buildErrorResponse(
+					String.format("observations exceeds max size of %d (received %d)",
+						observationDimension, request.getObservations().size()),
+					HttpStatus.BAD_REQUEST);
 			}
 
-			int predictedAction = rlInferenceClient.predictAction(request.getObservations());
+			log.info("Prediction request: junction={} obs_size={}", request.getJunctionId(), request.getObservations().size());
+
+			int predictedAction = rlInferenceClient.predictAction(request.getJunctionId(), request.getObservations());
 			TrafficSignalState trafficSignalState = mapActionToSignalState(predictedAction);
 
-			TrafficActionResponse response = new TrafficActionResponse(predictedAction, trafficSignalState,
+			TrafficActionResponse response = new TrafficActionResponse(
+					request.getJunctionId(), predictedAction, trafficSignalState,
 					System.currentTimeMillis(), "success");
 
-			log.info("Successfully predicted traffic action: {} ({})", predictedAction, trafficSignalState);
+			log.info("Prediction: junction={} action={} state={}", request.getJunctionId(), predictedAction, trafficSignalState);
 			return ResponseEntity.ok(response);
 
 		} catch (RlInferenceException | org.springframework.web.client.ResourceAccessException e) {
 			log.error("Inference service unavailable, entering FALLBACK mode: {}", e.getMessage());
 
-			// FALLBACK LOGIC: Instead of 503 error, return a safe default (e.g., Action 0 =
-			// RED)
-			int fallbackAction = 0;
-			TrafficSignalState fallbackState = mapActionToSignalState(fallbackAction);
-
-			TrafficActionResponse response = new TrafficActionResponse(fallbackAction, fallbackState,
+			TrafficActionResponse response = new TrafficActionResponse(
+					request.getJunctionId(), 0, TrafficSignalState.RED,
 					System.currentTimeMillis(), "fallback_mode (inference service down)");
 
-			// Return 200 OK but with a "fallback" status in the JSON
 			return ResponseEntity.ok(response);
 
 		} catch (Exception e) {
-			// Keep this as 500 because it's a code crash, not just a service being down
 			log.error("Unexpected error", e);
 			return buildErrorResponse("Internal server error: " + e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 	}
 
 	/**
+	 * Reset GRU hidden states on the inference service.
+	 * Call at the start of each new simulation run.
+	 */
+	@Tag(name = "Traffic Prediction")
+	@Operation(operationId = "resetHiddenStates",
+		summary = "Reset MAPPO hidden states",
+		description = "Resets GRU hidden states for all junctions. Call at the start of each new simulation run.")
+	@ApiResponse(responseCode = "200", description = "Hidden states reset successfully",
+		content = @Content(mediaType = "application/json", examples = @ExampleObject(value = """
+			{
+			  "status": "ok",
+			  "message": "Hidden states reset for all junctions"
+			}
+			""")))
+	@PostMapping("/reset")
+	public ResponseEntity<?> resetHiddenStates() {
+		try {
+			rlInferenceClient.resetHiddenStates();
+			return ResponseEntity.ok(java.util.Map.of(
+				"status", "ok",
+				"message", "Hidden states reset for all junctions"
+			));
+		} catch (RlInferenceException e) {
+			log.error("Failed to reset hidden states: {}", e.getMessage());
+			return buildErrorResponse("Failed to reset hidden states: " + e.getMessage(), HttpStatus.SERVICE_UNAVAILABLE);
+		}
+	}
+
+	/**
 	 * Health check endpoint.
-	 *
-	 * @return ResponseEntity with health status
 	 */
 	@Tag(name = "System Health")
-	@Operation(operationId = "healthCheck", summary = "Health check", description = "Checks whether the RL inference service is reachable and responding.")
-	@ApiResponse(responseCode = "200", description = "Service is healthy", content = @Content(mediaType = "application/json", schema = @Schema(oneOf = {
-			TrafficActionResponse.class }), examples = { @ExampleObject(name = "Success", value = """
-					     {
-					  "status": "healthy",
-					  "inferenceService": "up",
-					  "timestamp": 1710000000000
-					}
-					     """), @ExampleObject(name = "Fallback (Inference Down)", value = """
-					         {
-					  "status": "degraded",
-					  "inferenceService": "down",
-					  "timestamp": 1774149764299
-					}
-					         """) }))
-	@ApiResponse(responseCode = "500", description = "Health check failed", content = @Content(mediaType = "application/json", examples = @ExampleObject(name = "Health check error", value = """
+	@Operation(operationId = "healthCheck", summary = "Health check",
+		description = "Checks whether the RL inference service is reachable and responding.")
+	@ApiResponse(responseCode = "200", description = "Service is healthy",
+		content = @Content(mediaType = "application/json", examples = {
+			@ExampleObject(name = "Healthy", value = """
+				{
+				  "status": "healthy",
+				  "inferenceService": "up",
+				  "timestamp": 1710000000000
+				}
+				"""),
+			@ExampleObject(name = "Degraded", value = """
+				{
+				  "status": "degraded",
+				  "inferenceService": "down",
+				  "timestamp": 1774149764299
+				}
+				""") }))
+	@ApiResponse(responseCode = "500", description = "Health check failed",
+		content = @Content(mediaType = "application/json", examples = @ExampleObject(value = """
 			{
 			  "status": "unhealthy",
 			  "inferenceService": "down",
@@ -236,15 +282,18 @@ public class TrafficController {
 		try {
 			boolean inferenceServiceHealthy = rlInferenceClient.isServiceHealthy();
 
-			HealthResponse response = new HealthResponse(inferenceServiceHealthy ? "healthy" : "degraded",
-					inferenceServiceHealthy ? "up" : "down", System.currentTimeMillis());
+			HealthResponse response = new HealthResponse(
+					inferenceServiceHealthy ? "healthy" : "degraded",
+					inferenceServiceHealthy ? "up" : "down",
+					System.currentTimeMillis());
 
 			HttpStatus status = inferenceServiceHealthy ? HttpStatus.OK : HttpStatus.SERVICE_UNAVAILABLE;
 			return new ResponseEntity<>(response, status);
 
 		} catch (Exception e) {
 			log.warn("Health check failed: {}", e.getMessage());
-			return new ResponseEntity<>(new HealthResponse("unhealthy", "down", System.currentTimeMillis()),
+			return new ResponseEntity<>(
+					new HealthResponse("unhealthy", "down", System.currentTimeMillis()),
 					HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 	}
@@ -272,15 +321,19 @@ public class TrafficController {
 	}
 
 	/**
-	 * Request model for custom traffic action prediction.
+	 * Request model for traffic action prediction.
 	 */
-	@Schema(description = "Request body for custom traffic action prediction")
+	@Schema(description = "Request body for traffic signal action prediction")
 	@lombok.Data
 	@lombok.NoArgsConstructor
 	@lombok.AllArgsConstructor
 	public static class TrafficActionRequest {
 
-		@Schema(description = "List of observation values", example = "[0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1.0]")
+		@Schema(description = "Junction ID to predict for", example = "300839359", requiredMode = Schema.RequiredMode.REQUIRED)
+		private String junctionId;
+
+		@Schema(description = "Local observation vector (up to 19 floats). Smaller obs are zero-padded internally.",
+			example = "[0.0, 1.0, 1.0, 0.12, 0.33, 0.41, 0.22, 0.55]")
 		private List<Double> observations;
 
 		@Schema(description = "Optional metadata for debugging or tracking", example = "peak-hour")

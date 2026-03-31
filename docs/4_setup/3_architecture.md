@@ -24,7 +24,8 @@
                 └──────────────┬───────────────────────┘
                               │
                 ┌──────────────▼───────────────────────┐
-                │  Trained RL Model (PPO)           │
-                │  From: Results/sweeps_*/model.zip │
+                │  Trained RL Model (MAPPO v4)      │
+                │  5-agent GRU RNNAgent (EPyMARL)   │
+                │  From: trained_models/agent.th    │
                 └──────────────────────────────────────┘
 ```
