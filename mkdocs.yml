@@ -2,6 +2,12 @@ site_name: AI Traffic Optimisation System
 docs_dir: docs
 site_dir: site
 theme:
+  icon:
+    admonition:
+      note: material/car-sports
+      success: material/car-sports
+      warning: material/car-sports
+      danger: material/car-sports
   logo: images/logo.png
   palette: 
 
@@ -41,6 +47,7 @@ nav:
     - ⚡ Performance Tuning: 1_home/9_performance.md
     - 🐛 Troubleshooting: 1_home/10_ts.md
     - 🌍 Production Deployment: 1_home/11_prod.md
+  - LSTM: lstm/index.md
   - Features: FEATURES.md
   - System Architecture: SYSTEM_ARCHITECTURE.md
   - Quick Start: QUICKSTART.md
@@ -70,6 +77,8 @@ markdown_extensions:
       custom_checkbox: true
   - def_list
   - pymdownx.superfences
+  - admonition
+  - pymdownx.details
   
   - material.extensions.preview:
       configurations:
