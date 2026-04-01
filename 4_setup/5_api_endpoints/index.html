@@ -218,7 +218,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="../../1_home/" class="md-tabs__link">
+        <a href="../../1_home/index.md" class="md-tabs__link">
           
   
   
@@ -227,6 +227,25 @@
         </a>
       </li>
     
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../lstm/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  LSTM
+
+      </a>
+    </li>
   
 
       
@@ -532,14 +551,14 @@
   
   
     <li class="md-nav__item">
-      <a href="../../1_home/" class="md-nav__link">
+      <a href="../../1_home/index.md" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    Home
+    None
   
 
     
@@ -819,6 +838,33 @@
   
   
     <li class="md-nav__item">
+      <a href="../../lstm/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    LSTM
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../FEATURES/" class="md-nav__link">
         
   
@@ -918,10 +964,10 @@
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" checked>
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" checked>
         
           
-          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="">
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="">
             
   
   
@@ -939,8 +985,8 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="true">
-          <label class="md-nav__title" for="__nav_5">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_6">
             <span class="md-nav__icon md-icon"></span>
             
   
@@ -1628,15 +1674,17 @@
 
 <h1 id="api-endpoints">📡 API Endpoints</h1>
 <h2 id="python-service-port-8000">Python Service (Port 8000)</h2>
-<div class="highlight"><pre><span></span><code>GET  /health              - Service health status
-POST /predict_action      - Predict traffic action
-GET  /model_info          - Get model details
+<div class="highlight"><pre><span></span><code>GET  /health              - Service health status (lists controlled junctions)
+POST /predict_action      - Predict action for a junction (requires junction_id + obs_data)
+POST /reset_hidden        - Reset GRU hidden states (call at start of each simulation run)
+GET  /model_info          - MAPPO model details (architecture, junctions, action masks)
 GET  /docs                - Swagger UI documentation
 </code></pre></div>
 <h2 id="java-gateway-port-8080">Java Gateway (Port 8080)</h2>
 <div class="highlight"><pre><span></span><code>GET  /api/traffic/health  - Service health status
-GET  /api/traffic/action  - Get traffic action (auto-generated obs)
-POST /api/traffic/action  - Predict with custom observations
+GET  /api/traffic/action  - Demo prediction (random junction, auto-generated observations)
+POST /api/traffic/action  - Predict action (requires junctionId + observations)
+POST /api/traffic/reset   - Reset MAPPO GRU hidden states
 </code></pre></div>
 
 

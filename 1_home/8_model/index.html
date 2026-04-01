@@ -215,7 +215,7 @@
     
     
       <li class="md-tabs__item md-tabs__item--active">
-        <a href="../" class="md-tabs__link">
+        <a href="../index.md" class="md-tabs__link">
           
   
   
@@ -224,6 +224,25 @@
         </a>
       </li>
     
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../lstm/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  LSTM
+
+      </a>
+    </li>
   
 
       
@@ -532,14 +551,14 @@
   
   
     <li class="md-nav__item">
-      <a href="../" class="md-nav__link">
+      <a href="../index.md" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    Home
+    None
   
 
     
@@ -827,6 +846,33 @@
   
   
     <li class="md-nav__item">
+      <a href="../../lstm/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    LSTM
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../FEATURES/" class="md-nav__link">
         
   
@@ -921,10 +967,10 @@
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
         
           
-          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
             
   
   
@@ -942,8 +988,8 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_5">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
             <span class="md-nav__icon md-icon"></span>
             
   
@@ -1530,27 +1576,29 @@
 
   <h1>🔄 Using Different Models</h1>
 
-<p>To use different trained models:</p>
+<p>To use a different trained MAPPO model:</p>
 <ol>
-<li><strong>Locate your model:</strong></li>
+<li><strong>Locate your checkpoint:</strong></li>
 </ol>
-<div class="highlight"><pre><span></span><code>C:\Users\gemer\Sumo\my-network\Results\sweeps_*\&lt;sweep_name&gt;\seed_*\&lt;variant&gt;\model.zip
+<div class="highlight"><pre><span></span><code>Results/mappo_sumo_v4/seed_&lt;n&gt;/models/&lt;run_name&gt;/&lt;steps&gt;/agent.th
 
-Examples:
-- Results\sweeps\pressure\seed_42\A\model.zip
-- Results\sweeps\queue\seed_123\B\model.zip
-- Results\sweeps_2\diff-waiting-time\seed_7\C\model.zip
+Example:
+- Results/mappo_sumo_v4/seed_42/models/.../2828160/agent.th
 </code></pre></div>
 <ol>
-<li><strong>Copy to models directory:</strong></li>
+<li><strong>Copy to trained_models directory:</strong></li>
 </ol>
-<div class="highlight"><pre><span></span><code>copy<span class="w"> </span><span class="s2">&quot;&lt;source_path&gt;\model.zip&quot;</span><span class="w"> </span><span class="s2">&quot;rl-inference-service\app\trained_models\model.zip&quot;</span>
+<div class="highlight"><pre><span></span><code>cp<span class="w"> </span><span class="s2">&quot;&lt;source_path&gt;/agent.th&quot;</span><span class="w"> </span><span class="s2">&quot;rl-inference-service/app/trained_models/agent.th&quot;</span>
 </code></pre></div>
 <ol>
 <li><strong>Rebuild and restart:</strong></li>
 </ol>
-<div class="highlight"><pre><span></span><code>docker-compose<span class="w"> </span>up<span class="w"> </span>--build
+<div class="highlight"><pre><span></span><code>docker<span class="w"> </span>build<span class="w"> </span>-t<span class="w"> </span>rl-inference-service:2.0.0<span class="w"> </span>./rl-inference-service
+docker<span class="w"> </span>compose<span class="w"> </span>up<span class="w"> </span>-d
 </code></pre></div>
+<blockquote>
+<p><strong>Note:</strong> The model is an EPyMARL RNNAgent checkpoint (PyTorch <code>.th</code> file), not a Stable-Baselines3 <code>.zip</code>. Architecture: <code>fc1(24→128) → GRUCell(128→128) → fc2(128→4)</code>. Input shape = 24 (19 obs + 5 agent-id one-hot).</p>
+</blockquote>
 
 
 
