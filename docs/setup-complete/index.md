@@ -9,6 +9,7 @@
 - [🧪 Testing](testing.md)
 - [🔐 Environment Variables](environment-variables.md)
 - [🛠 Development vs Production](development-vs-production.md)
+- [MkDocs Setup](mkdocs-setup.md)
 - [📚 Documentation Files](documentation-files.md)
 - [✅ Next Steps](next-steps.md)
 - [📞 Support](support.md)

@@ -42,4 +42,4 @@ This repository implements a **Cloud-Native Microservices Pipeline** designed fo
 
 This system is specifically modeled to address the saturation flow rates and signal-timing patterns of the Athlone 'Orange Loop' corridor, providing a scalable template for Smart City traffic management in regional Irish hubs.
 
-*For more details see [System Architecture](../system-architecture.md) page.*
+*For more details see [System Architecture](../system-architecture/index.md) page.*

@@ -6,7 +6,7 @@
 
 [Features](features.md)
 
-[System Architecture](system-architecture.md)
+[System Architecture](system-architecture/index.md)
 
 [Quick Start](quickstart.md)
 
@@ -14,7 +14,7 @@
 
 [File Manifest](file-manifest.md)
 
-[API Docs](api-docs.md)
+[API Docs](api-docs/index.md)
 
 [Changelog](CHANGELOG.md)
 
