@@ -9,15 +9,11 @@
          <lastmod>2026-04-02</lastmod>
     </url>
     <url>
-         <loc>https://joeaoregan.github.io/TUS-26-ETP-AI-Traffic-Optimisation/features/</loc>
+         <loc>https://joeaoregan.github.io/TUS-26-ETP-AI-Traffic-Optimisation/FEATURES/</loc>
          <lastmod>2026-04-02</lastmod>
     </url>
     <url>
-         <loc>https://joeaoregan.github.io/TUS-26-ETP-AI-Traffic-Optimisation/file-manifest/</loc>
-         <lastmod>2026-04-02</lastmod>
-    </url>
-    <url>
-         <loc>https://joeaoregan.github.io/TUS-26-ETP-AI-Traffic-Optimisation/quickstart/</loc>
+         <loc>https://joeaoregan.github.io/TUS-26-ETP-AI-Traffic-Optimisation/QUICKSTART/</loc>
          <lastmod>2026-04-02</lastmod>
     </url>
     <url>
@@ -74,6 +70,38 @@
     </url>
     <url>
          <loc>https://joeaoregan.github.io/TUS-26-ETP-AI-Traffic-Optimisation/api-setup/using-different-models/</loc>
+         <lastmod>2026-04-02</lastmod>
+    </url>
+    <url>
+         <loc>https://joeaoregan.github.io/TUS-26-ETP-AI-Traffic-Optimisation/file-manifest/</loc>
+         <lastmod>2026-04-02</lastmod>
+    </url>
+    <url>
+         <loc>https://joeaoregan.github.io/TUS-26-ETP-AI-Traffic-Optimisation/file-manifest/api-gateway/</loc>
+         <lastmod>2026-04-02</lastmod>
+    </url>
+    <url>
+         <loc>https://joeaoregan.github.io/TUS-26-ETP-AI-Traffic-Optimisation/file-manifest/environment-setup/</loc>
+         <lastmod>2026-04-02</lastmod>
+    </url>
+    <url>
+         <loc>https://joeaoregan.github.io/TUS-26-ETP-AI-Traffic-Optimisation/file-manifest/file-statistics/</loc>
+         <lastmod>2026-04-02</lastmod>
+    </url>
+    <url>
+         <loc>https://joeaoregan.github.io/TUS-26-ETP-AI-Traffic-Optimisation/file-manifest/how-to-use-each-component/</loc>
+         <lastmod>2026-04-02</lastmod>
+    </url>
+    <url>
+         <loc>https://joeaoregan.github.io/TUS-26-ETP-AI-Traffic-Optimisation/file-manifest/inference-service/</loc>
+         <lastmod>2026-04-02</lastmod>
+    </url>
+    <url>
+         <loc>https://joeaoregan.github.io/TUS-26-ETP-AI-Traffic-Optimisation/file-manifest/integration-with-existing-project/</loc>
+         <lastmod>2026-04-02</lastmod>
+    </url>
+    <url>
+         <loc>https://joeaoregan.github.io/TUS-26-ETP-AI-Traffic-Optimisation/file-manifest/quick-reference/</loc>
          <lastmod>2026-04-02</lastmod>
     </url>
     <url>
