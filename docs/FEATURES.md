@@ -1,5 +1,10 @@
 # 🔧 Key Features
 
+## Key
+
+- [x] Have
+- [ ] In progress / Future / Nice to have
+
 ## Python FastAPI Service
 
 - [x] Loads trained PPO models  

@@ -38,14 +38,17 @@ theme:
 nav:
   - Home: 
     - index.md
-    - Features: features.md
     - External Links:    
       - API Gateway: https://ai-traffic-control-api.onrender.com
       - API Gateway Documentation: https://ai-traffic-control-api.onrender.com/swagger-ui/index.html
       - Inference Service: https://traffic-inference-service.onrender.com
       - Inference Service Documentation: https://traffic-inference-service.onrender.com/docs
       - GitHub Repository: https://github.com/joeaoregan/TUS-26-ETP-AI-Traffic-Optimisation
+  - API Gateway: api-gateway/index.md
+  - Inference Service: inference-service/index.md
+  - SUMO: sumo/index.md
   - LSTM: lstm/index.md
+  - Security: security/index.md
   - System Architecture: 
     - system-architecture/index.md
     - 1. High-Level: system-architecture/high-level.md
@@ -72,7 +75,6 @@ nav:
       - What Was Created: setup-complete/what-was-created.md
       - Quick Start (5 Minutes): setup-complete/quickstart.md
       - Architecture Overview: setup-complete/architecture-overview.md
-      - Key Features: features.md
       - API Endpoints: setup-complete/api-endpoints.md
       - Using Different Models: setup-complete/using-different-models.md
       - Testing: setup-complete/testing.md
@@ -98,17 +100,19 @@ nav:
       - ⚡ Performance Tuning: api-setup/performance-tuning.md
       - 🐛 Troubleshooting: api-setup/troubleshooting.md
       - 🌍 Production Deployment: api-setup/production-deployment.md
-  - File Manifest: 
-    - file-manifest/index.md
-    - Inference Service Manifest: file-manifest/inference-service.md
-    - API Gateway Manifest: file-manifest/api-gateway.md
-    - File Statistics: file-manifest/file-statistics.md
-    - Integration with Existing Project: file-manifest/integration-with-existing-project.md
-    - Environment Setup: file-manifest/environment-setup.md
-    - How to Use Each Component: file-manifest/how-to-use-each-component.md
-    - Quick Reference: file-manifest/quick-reference.md
-  - Changelog: CHANGELOG.md
-  - Support: support.md
+  - Features: features.md
+  - About:
+    - Support: support.md
+    - File Manifest: 
+      - file-manifest/index.md
+      - Inference Service Manifest: file-manifest/inference-service.md
+      - API Gateway Manifest: file-manifest/api-gateway.md
+      - File Statistics: file-manifest/file-statistics.md
+      - Integration with Existing Project: file-manifest/integration-with-existing-project.md
+      - Environment Setup: file-manifest/environment-setup.md
+      - How to Use Each Component: file-manifest/how-to-use-each-component.md
+      - Quick Reference: file-manifest/quick-reference.md
+    - Changelog: CHANGELOG.md
   
 markdown_extensions:
   - pymdownx.tasklist:
