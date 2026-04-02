@@ -98,7 +98,15 @@ nav:
       - ⚡ Performance Tuning: api-setup/performance-tuning.md
       - 🐛 Troubleshooting: api-setup/troubleshooting.md
       - 🌍 Production Deployment: api-setup/production-deployment.md
-  - File Manifest: file-manifest.md
+  - File Manifest: 
+    - file-manifest/index.md
+    - Inference Service Manifest: file-manifest/inference-service.md
+    - API Gateway Manifest: file-manifest/api-gateway.md
+    - File Statistics: file-manifest/file-statistics.md
+    - Integration with Existing Project: file-manifest/integration-with-existing-project.md
+    - Environment Setup: file-manifest/environment-setup.md
+    - How to Use Each Component: file-manifest/how-to-use-each-component.md
+    - Quick Reference: file-manifest/quick-reference.md
   - Changelog: CHANGELOG.md
   - Support: support.md
   

@@ -12,7 +12,7 @@
 
 [Setup Complete](setup-complete/index.md)
 
-[File Manifest](file-manifest.md)
+[File Manifest](file-manifest/index.md)
 
 [API Docs](api-docs/index.md)
 
