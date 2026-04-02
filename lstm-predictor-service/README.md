@@ -4,7 +4,11 @@
 
 Predictive Modelling service for the Athlone "Orange Loop" traffic optimization system.
 
-**Goal:** Use Long Short-Term Memory (LSTM) neural networks to forecast vehicle flow 15 minutes into the future with Mean Absolute Error (MAE) < 10%.
+**Purpose:** Forecast vehicle flow 15 minutes into the future using Long Short-Term Memory (LSTM) neural networks.
+
+**Target Performance:** Mean Absolute Error (MAE) < 10%
+
+**Port:** 8001
 
 **Why LSTM?**
 
@@ -12,6 +16,19 @@ Predictive Modelling service for the Athlone "Orange Loop" traffic optimization 
 - Handles non-linear traffic spikes (sudden congestion)
 - Captures "memory" of traffic events across hours
 - Superior to ARIMA for complex urban traffic
+
+---
+
+## 🚀 Quick Start
+
+```bash
+python -m venv venv
+venv\Scripts\activate  # Windows
+
+pip install -r requirements.txt
+
+python -m uvicorn app.main:app --host 0.0.0.0 --port 8001 --reload
+```
 
 ---
 
@@ -56,3 +73,9 @@ A type of neural network that:
 | **Sudden Changes**     | Poor                   | Good                |
 | **Rush Hour Patterns** | Struggles              | Excellent           |
 | **Data Amount Needed** | Small                  | Large (1000+)       |
+
+## 📁 Service Endpoints
+
+- `GET /health` — Service health check
+- `POST /forecast` — Predict vehicle flow 15 min ahead  
+- `GET /model_info` — Model details
