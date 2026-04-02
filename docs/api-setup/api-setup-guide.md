@@ -148,4 +148,4 @@ mvn clean install
 mvn spring-boot:run
 ```
 
-*Includes [Swagger/OpenAPI documentation](../DOCUMENTATION.md) for all traffic control endpoints.*
+*Includes [Swagger/OpenAPI documentation](../api-docs.md) for all traffic control endpoints.*

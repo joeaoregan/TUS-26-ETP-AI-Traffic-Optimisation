@@ -176,5 +176,5 @@ To deploy documentation to GitHub pages, after updating (Commit first).
 python -m mkdocs gh-deploy
 ```
 
-*For detailed documentation, see [INDEX.md](1_home/index.md)*
+*For detailed documentation, see [INDEX.md](api-setup/index.md)*
  

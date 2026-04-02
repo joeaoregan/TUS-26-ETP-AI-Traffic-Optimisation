@@ -2,20 +2,20 @@
 
 ![Logo](images/logo.png)
 
-[Home](1_home/index.md)
+[Home](api-setup/index.md)
 
-[Features](FEATURES.md)
+[Features](features.md)
 
-[System Architecture](SYSTEM_ARCHITECTURE.md)
+[System Architecture](system-architecture.md)
 
-[Quick Start](QUICKSTART.md)
+[Quick Start](quickstart.md)
 
-[Setup Complete](4_setup/index.md)
+[Setup Complete](setup-complete/index.md)
 
-[File Manifest](FILE_MANIFEST.md)
+[File Manifest](file-manifest.md)
 
-[API Docs](DOCUMENTATION.md)
+[API Docs](api-docs.md)
 
 [Changelog](CHANGELOG.md)
 
-[Support](SUPPORT.md)
+[Support](support.md)

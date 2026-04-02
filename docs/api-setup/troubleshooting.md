@@ -4,4 +4,4 @@
 | Verify model file exists and is correct format | Check if Python service is running: `docker-compose ps` | Ensure model.zip is a valid stable-baselines3 PPO model |
 | Check port availability (8000, 8080) | Verify network connectivity: `docker-compose exec java-gateway ping rl-inference` | Check file permissions |
 
-*Also see [Support](../SUPPORT.md)*
+*Also see [Support](../support.md)*
