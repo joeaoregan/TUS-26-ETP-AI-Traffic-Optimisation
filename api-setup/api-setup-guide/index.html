@@ -8,31 +8,31 @@
       
       
       
-        <link rel="canonical" href="https://joeaoregan.github.io/TUS-26-ETP-AI-Traffic-Optimisation/lstm/">
+        <link rel="canonical" href="https://joeaoregan.github.io/TUS-26-ETP-AI-Traffic-Optimisation/api-setup/api-setup-guide/">
       
       
-        <link rel="prev" href="../api-setup/production-deployment/">
+        <link rel="prev" href="../">
       
       
-        <link rel="next" href="../features/">
+        <link rel="next" href="../api-usage-examples/">
       
       
         
       
       
-      <link rel="icon" href="../assets/images/favicon.png">
+      <link rel="icon" href="../../assets/images/favicon.png">
       <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
     
     
       
-        <title>LSTM - AI Traffic Optimisation System</title>
+        <title>🚗 API Setup Guide - AI Traffic Optimisation System</title>
       
     
     
-      <link rel="stylesheet" href="../assets/stylesheets/main.484c7ddc.min.css">
+      <link rel="stylesheet" href="../../assets/stylesheets/main.484c7ddc.min.css">
       
         
-        <link rel="stylesheet" href="../assets/stylesheets/palette.ab4e12ef.min.css">
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
       
       
   
@@ -76,7 +76,7 @@
       
     
     
-    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
 
@@ -101,7 +101,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#lstm-traffic-flow-predictor" class="md-skip">
+        <a href="#project-structure" class="md-skip">
           Skip to content
         </a>
       
@@ -117,9 +117,9 @@
 
 <header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href=".." title="AI Traffic Optimisation System" class="md-header__button md-logo" aria-label="AI Traffic Optimisation System" data-md-component="logo">
+    <a href="../.." title="AI Traffic Optimisation System" class="md-header__button md-logo" aria-label="AI Traffic Optimisation System" data-md-component="logo">
       
-  <img src="../images/logo.png" alt="logo">
+  <img src="../../images/logo.png" alt="logo">
 
     </a>
     <label class="md-header__button md-icon" for="__drawer">
@@ -136,7 +136,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              LSTM
+              🚗 API Setup Guide
             
           </span>
         </div>
@@ -241,7 +241,7 @@
   
   
     <li class="md-tabs__item">
-      <a href=".." class="md-tabs__link">
+      <a href="../.." class="md-tabs__link">
         
   
   
@@ -258,11 +258,13 @@
   
   
   
+    
+  
   
     
     
-      <li class="md-tabs__item">
-        <a href="../api-setup/" class="md-tabs__link">
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../" class="md-tabs__link">
           
   
   
@@ -278,11 +280,9 @@
   
   
   
-    
   
-  
-    <li class="md-tabs__item md-tabs__item--active">
-      <a href="./" class="md-tabs__link">
+    <li class="md-tabs__item">
+      <a href="../../lstm/" class="md-tabs__link">
         
   
   
@@ -301,7 +301,7 @@
   
   
     <li class="md-tabs__item">
-      <a href="../features/" class="md-tabs__link">
+      <a href="../../features/" class="md-tabs__link">
         
   
   
@@ -320,7 +320,7 @@
   
   
     <li class="md-tabs__item">
-      <a href="../system-architecture/" class="md-tabs__link">
+      <a href="../../system-architecture/" class="md-tabs__link">
         
   
   
@@ -339,7 +339,7 @@
   
   
     <li class="md-tabs__item">
-      <a href="../quickstart/" class="md-tabs__link">
+      <a href="../../quickstart/" class="md-tabs__link">
         
   
   
@@ -360,7 +360,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="../setup-complete/" class="md-tabs__link">
+        <a href="../../setup-complete/" class="md-tabs__link">
           
   
   
@@ -378,7 +378,7 @@
   
   
     <li class="md-tabs__item">
-      <a href="../file-manifest/" class="md-tabs__link">
+      <a href="../../file-manifest/" class="md-tabs__link">
         
   
   
@@ -397,7 +397,7 @@
   
   
     <li class="md-tabs__item">
-      <a href="../api-docs/" class="md-tabs__link">
+      <a href="../../api-docs/" class="md-tabs__link">
         
   
   
@@ -416,7 +416,7 @@
   
   
     <li class="md-tabs__item">
-      <a href="../CHANGELOG/" class="md-tabs__link">
+      <a href="../../CHANGELOG/" class="md-tabs__link">
         
   
   
@@ -473,7 +473,7 @@
   
   
     <li class="md-tabs__item">
-      <a href="../support/" class="md-tabs__link">
+      <a href="../../support/" class="md-tabs__link">
         
   
   
@@ -514,9 +514,9 @@
 
 <nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href=".." title="AI Traffic Optimisation System" class="md-nav__button md-logo" aria-label="AI Traffic Optimisation System" data-md-component="logo">
+    <a href="../.." title="AI Traffic Optimisation System" class="md-nav__button md-logo" aria-label="AI Traffic Optimisation System" data-md-component="logo">
       
-  <img src="../images/logo.png" alt="logo">
+  <img src="../../images/logo.png" alt="logo">
 
     </a>
     AI Traffic Optimisation System
@@ -543,7 +543,7 @@
   
   
     <li class="md-nav__item">
-      <a href=".." class="md-nav__link">
+      <a href="../.." class="md-nav__link">
         
   
   
@@ -567,26 +567,31 @@
       
   
   
+    
   
   
+  
     
     
     
     
+      
+        
+        
       
       
         
       
     
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
         
           
-          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="">
             
   
   
@@ -604,7 +609,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_2">
             <span class="md-nav__icon md-icon"></span>
             
@@ -622,7 +627,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../api-setup/" class="md-nav__link">
+      <a href="../" class="md-nav__link">
         
   
   
@@ -647,10 +652,35 @@
                 
   
   
+    
   
   
-    <li class="md-nav__item">
-      <a href="../api-setup/api-setup-guide/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    🚗 API Setup Guide
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         
   
   
@@ -666,6 +696,152 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#project-structure" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Project Structure
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#components" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Components
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Components">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-python-fastapi-service-rl-inference-service" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Python FastAPI Service (RL Inference Service)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-java-spring-boot-api-gateway" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Java Spring Boot API Gateway
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-docker-compose" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Docker Compose
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#setup-instructions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Setup Instructions
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Setup Instructions">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#prerequisites" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Prerequisites
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#steps-to-deploy" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Steps to Deploy
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Steps to Deploy">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#option-1-using-docker-compose-recommended" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Option 1: Using Docker Compose (Recommended)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#option-2-local-development" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Option 2: Local Development
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -678,7 +854,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../api-setup/api-usage-examples/" class="md-nav__link">
+      <a href="../api-usage-examples/" class="md-nav__link">
         
   
   
@@ -706,7 +882,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../api-setup/environment-variables/" class="md-nav__link">
+      <a href="../environment-variables/" class="md-nav__link">
         
   
   
@@ -734,7 +910,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../api-setup/docker-compose-configuration/" class="md-nav__link">
+      <a href="../docker-compose-configuration/" class="md-nav__link">
         
   
   
@@ -762,7 +938,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../api-setup/monitoring-and-logging/" class="md-nav__link">
+      <a href="../monitoring-and-logging/" class="md-nav__link">
         
   
   
@@ -790,7 +966,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../api-setup/using-different-models/" class="md-nav__link">
+      <a href="../using-different-models/" class="md-nav__link">
         
   
   
@@ -818,7 +994,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../api-setup/performance-tuning/" class="md-nav__link">
+      <a href="../performance-tuning/" class="md-nav__link">
         
   
   
@@ -846,7 +1022,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../api-setup/troubleshooting/" class="md-nav__link">
+      <a href="../troubleshooting/" class="md-nav__link">
         
   
   
@@ -874,7 +1050,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../api-setup/production-deployment/" class="md-nav__link">
+      <a href="../production-deployment/" class="md-nav__link">
         
   
   
@@ -906,37 +1082,10 @@
       
   
   
-    
   
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    LSTM
-  
-
-    
-  </span>
-  
-  
-
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../../lstm/" class="md-nav__link">
         
   
   
@@ -952,87 +1101,6 @@
   
 
       </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#project-overview" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        📋 Project Overview
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#data-flow" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        📊 Data Flow
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#key-concepts" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        🔑 Key Concepts
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="🔑 Key Concepts">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#what-is-lstm" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        What is LSTM?
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#lstm-vs-arima" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        LSTM vs ARIMA
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -1044,7 +1112,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../features/" class="md-nav__link">
+      <a href="../../features/" class="md-nav__link">
         
   
   
@@ -1071,7 +1139,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../system-architecture/" class="md-nav__link">
+      <a href="../../system-architecture/" class="md-nav__link">
         
   
   
@@ -1098,7 +1166,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../quickstart/" class="md-nav__link">
+      <a href="../../quickstart/" class="md-nav__link">
         
   
   
@@ -1177,7 +1245,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../setup-complete/" class="md-nav__link">
+      <a href="../../setup-complete/" class="md-nav__link">
         
   
   
@@ -1205,7 +1273,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../setup-complete/what-was-created/" class="md-nav__link">
+      <a href="../../setup-complete/what-was-created/" class="md-nav__link">
         
   
   
@@ -1233,7 +1301,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../setup-complete/quickstart/" class="md-nav__link">
+      <a href="../../setup-complete/quickstart/" class="md-nav__link">
         
   
   
@@ -1261,7 +1329,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../setup-complete/architecture-overview/" class="md-nav__link">
+      <a href="../../setup-complete/architecture-overview/" class="md-nav__link">
         
   
   
@@ -1289,7 +1357,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../features/" class="md-nav__link">
+      <a href="../../features/" class="md-nav__link">
         
   
   
@@ -1317,7 +1385,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../setup-complete/api-endpoints/" class="md-nav__link">
+      <a href="../../setup-complete/api-endpoints/" class="md-nav__link">
         
   
   
@@ -1345,7 +1413,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../setup-complete/using-different-models/" class="md-nav__link">
+      <a href="../../setup-complete/using-different-models/" class="md-nav__link">
         
   
   
@@ -1373,7 +1441,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../setup-complete/testing/" class="md-nav__link">
+      <a href="../../setup-complete/testing/" class="md-nav__link">
         
   
   
@@ -1401,7 +1469,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../setup-complete/environment-variables/" class="md-nav__link">
+      <a href="../../setup-complete/environment-variables/" class="md-nav__link">
         
   
   
@@ -1429,7 +1497,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../setup-complete/development-vs-production/" class="md-nav__link">
+      <a href="../../setup-complete/development-vs-production/" class="md-nav__link">
         
   
   
@@ -1457,7 +1525,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../setup-complete/documentation-files/" class="md-nav__link">
+      <a href="../../setup-complete/documentation-files/" class="md-nav__link">
         
   
   
@@ -1485,7 +1553,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../setup-complete/next-steps/" class="md-nav__link">
+      <a href="../../setup-complete/next-steps/" class="md-nav__link">
         
   
   
@@ -1513,7 +1581,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../setup-complete/support/" class="md-nav__link">
+      <a href="../../setup-complete/support/" class="md-nav__link">
         
   
   
@@ -1548,7 +1616,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../file-manifest/" class="md-nav__link">
+      <a href="../../file-manifest/" class="md-nav__link">
         
   
   
@@ -1575,7 +1643,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../api-docs/" class="md-nav__link">
+      <a href="../../api-docs/" class="md-nav__link">
         
   
   
@@ -1602,7 +1670,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../CHANGELOG/" class="md-nav__link">
+      <a href="../../CHANGELOG/" class="md-nav__link">
         
   
   
@@ -1683,7 +1751,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../support/" class="md-nav__link">
+      <a href="../../support/" class="md-nav__link">
         
   
   
@@ -1720,8 +1788,6 @@
   
   
   
-    
-  
   
     <label class="md-nav__title" for="__toc">
       <span class="md-nav__icon md-icon"></span>
@@ -1730,10 +1796,10 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#project-overview" class="md-nav__link">
+  <a href="#project-structure" class="md-nav__link">
     <span class="md-ellipsis">
       
-        📋 Project Overview
+        Project Structure
       
     </span>
   </a>
@@ -1741,33 +1807,22 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#data-flow" class="md-nav__link">
+  <a href="#components" class="md-nav__link">
     <span class="md-ellipsis">
       
-        📊 Data Flow
+        Components
       
     </span>
   </a>
   
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#key-concepts" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        🔑 Key Concepts
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="🔑 Key Concepts">
+    <nav class="md-nav" aria-label="Components">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#what-is-lstm" class="md-nav__link">
+  <a href="#1-python-fastapi-service-rl-inference-service" class="md-nav__link">
     <span class="md-ellipsis">
       
-        What is LSTM?
+        1. Python FastAPI Service (RL Inference Service)
       
     </span>
   </a>
@@ -1775,13 +1830,91 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#lstm-vs-arima" class="md-nav__link">
+  <a href="#2-java-spring-boot-api-gateway" class="md-nav__link">
     <span class="md-ellipsis">
       
-        LSTM vs ARIMA
+        2. Java Spring Boot API Gateway
       
     </span>
   </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-docker-compose" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Docker Compose
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#setup-instructions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Setup Instructions
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Setup Instructions">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#prerequisites" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Prerequisites
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#steps-to-deploy" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Steps to Deploy
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Steps to Deploy">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#option-1-using-docker-compose-recommended" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Option 1: Using Docker Compose (Recommended)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#option-2-local-development" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Option 2: Local Development
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
         
@@ -1808,6 +1941,46 @@
   
 
 
+  <nav class="md-path" aria-label="Navigation" >
+    <ol class="md-path__list">
+      
+        
+  
+  
+    <li class="md-path__item">
+      <a href="../.." class="md-path__link">
+        
+  <span class="md-ellipsis">
+    Home
+  </span>
+
+      </a>
+    </li>
+  
+
+      
+      
+        
+  
+  
+    
+    
+      <li class="md-path__item">
+        <a href="../" class="md-path__link">
+          
+  <span class="md-ellipsis">
+    API Setup
+  </span>
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ol>
+  </nav>
+
               
               <article class="md-content__inner md-typeset">
                 
@@ -1818,81 +1991,148 @@
   
 
 
-<h1 id="lstm-traffic-flow-predictor">LSTM Traffic Flow Predictor</h1>
-<h2 id="project-overview">📋 Project Overview</h2>
-<p>Predictive Modelling service for the Athlone "Orange Loop" traffic optimization system.</p>
-<p><strong>Goal:</strong> Use Long Short-Term Memory (LSTM) neural networks to forecast vehicle flow 15 minutes into the future with Mean Absolute Error (MAE) &lt; 10%.</p>
-<p><strong>Why LSTM?</strong></p>
-<ul>
-<li>Learns temporal patterns (e.g., morning rush 8:15-9:00am)</li>
-<li>Handles non-linear traffic spikes (sudden congestion)</li>
-<li>Captures "memory" of traffic events across hours</li>
-<li>Superior to ARIMA for complex urban traffic</li>
-</ul>
-<hr />
-<h2 id="data-flow">📊 Data Flow</h2>
-<div class="highlight"><pre><span></span><code>SUMO Simulation
-    ↓
-edgeData.xml (vehicle counts, speed, occupancy per junction)
-    ↓
-Data Loader (extract hourly vehicle flow)
-    ↓
-Preprocessor (scale, normalize, create sliding windows)
-    ↓
-LSTM Model (trained on historical patterns)
-    ↓
-Forecast (predicted vehicle flow 15 min ahead)
-    ↓
-RL Inference Service (uses forecast for signal timing)
-    ↓
-Traffic Signal Control
+  <h1>🚗 API Setup Guide</h1>
+
+<p>This project provides a complete REST API solution for traffic signal control using trained RL models.</p>
+<h2 id="project-structure">Project Structure</h2>
+<div class="highlight"><pre><span></span><code>TUS-26-ETP2-Python-Data-Science-and-ML-Pipeline/
+├── java-api-gateway/                       # Java Spring Boot gateway
+│   ├── src/
+│   │   ├── main/java/com/example/gateway/
+│   │   │   ├── GatewayApplication.java     # Spring Boot app
+│   │   │   ├── controller/
+│   │   │   │   └── TrafficController.java  # REST endpoints
+│   │   │   └── service/
+│   │   │       └── RlInferenceClient.java  # RL service client
+│   │   └── main/resources/
+│   │       └── application.properties      # Spring config
+│   ├── pom.xml                             # Maven configuration
+│   └── Dockerfile                          # Java service Docker image
+├── rl-inference-service/                   # Python FastAPI service
+│   ├── app/
+│   │   ├── main.py                         # FastAPI application
+│   │   └── models/                         # Directory for trained models
+│   ├── Dockerfile                          # Python service Docker image
+│   ├── requirements.txt                    # Python dependencies
+│   └── .env.example                        # Environment variables template
+├── SUMO/                                   # 
+│   ├── results/
+│   │   ├── Base/
+│   ├── Simulations/
+│   │   ├── Base/
+├── docker-compose.yml                      # Docker Compose orchestration
+└── CHANGELOG.md                            # Change log
+└── FILE_MAINFEST.md                        # 
+└── QUICKSTART.md                           # Quick start guide
+└── README.md                               # This file
+└── SETUP_COMPLETE.md                       # 
+└── SYSTEM_ARCHITECTURE.md                  # 
 </code></pre></div>
-<hr />
-<h2 id="key-concepts">🔑 Key Concepts</h2>
-<h3 id="what-is-lstm">What is LSTM?</h3>
-<p>A type of neural network that:</p>
+<h2 id="components">Components</h2>
+<h3 id="1-python-fastapi-service-rl-inference-service">1. Python FastAPI Service (RL Inference Service)</h3>
 <ul>
-<li><strong>Remembers</strong> long-term patterns (e.g., "Mondays are always congested 8-9am with School / Work traffic")</li>
-<li><strong>Forgets</strong> irrelevant old events (e.g., "An accident that happend 3 hours ago is now irrelevant")</li>
-<li><strong>Learns</strong> non-linear relationships (e.g., "When School Reopens, rush hour is 8:15-9:00, but on holidays it's 9:30-10:30")</li>
+<li><strong>Port:</strong> 8000</li>
+<li><strong>Purpose:</strong> Loads and serves trained PPO models for action prediction</li>
+<li><strong>Key Endpoints:</strong></li>
+<li><code>GET /health</code> - Health check</li>
+<li><code>POST /predict_action</code> - Action prediction endpoint</li>
+<li><code>GET /model_info</code> - Model information</li>
 </ul>
-<h3 id="lstm-vs-arima">LSTM vs ARIMA</h3>
-<table>
-<thead>
-<tr>
-<th>Aspect</th>
-<th>ARIMA</th>
-<th>LSTM</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><strong>Pattern Type</strong></td>
-<td>Linear trends</td>
-<td>Non-linear spikes</td>
-</tr>
-<tr>
-<td><strong>Memory</strong></td>
-<td>Limited (p,d,q params)</td>
-<td>Long-term via gates</td>
-</tr>
-<tr>
-<td><strong>Sudden Changes</strong></td>
-<td>Poor</td>
-<td>Good</td>
-</tr>
-<tr>
-<td><strong>Rush Hour Patterns</strong></td>
-<td>Struggles</td>
-<td>Excellent</td>
-</tr>
-<tr>
-<td><strong>Data Amount Needed</strong></td>
-<td>Small</td>
-<td>Large (1000+)</td>
-</tr>
-</tbody>
-</table>
+<h3 id="2-java-spring-boot-api-gateway">2. Java Spring Boot API Gateway</h3>
+<ul>
+<li><strong>Port:</strong> 8080</li>
+<li><strong>Purpose:</strong> REST API gateway that communicates with the Python service</li>
+<li><strong>Key Endpoints:</strong></li>
+<li><code>GET /api/traffic/health</code> - Health check</li>
+<li><code>GET /api/traffic/action</code> - Get traffic action (generates dummy observations)</li>
+<li><code>POST /api/traffic/action</code> - Predict action with custom observations</li>
+</ul>
+<h3 id="3-docker-compose">3. Docker Compose</h3>
+<ul>
+<li>Orchestrates both services</li>
+<li>Manages networking and dependencies</li>
+<li>Provides health checks and monitoring</li>
+</ul>
+<p>The Java Gateway receives raw vehicle counts, transforms them into an observation vector, and forwards them to the Python service for a decision.</p>
+<h2 id="setup-instructions">Setup Instructions</h2>
+<h3 id="prerequisites">Prerequisites</h3>
+<ul>
+<li>Docker &amp; Docker Compose</li>
+<li>Or locally:</li>
+<li>Python 3.9+</li>
+<li>Java 17+</li>
+<li>Maven 3.9+</li>
+</ul>
+<h3 id="steps-to-deploy">Steps to Deploy</h3>
+<h4 id="option-1-using-docker-compose-recommended">Option 1: Using Docker Compose (Recommended)</h4>
+<ol>
+<li>
+<p><strong>Copy your trained model:</strong>
+   <div class="highlight"><pre><span></span><code><span class="c1"># Copy trained model to the models directory</span>
+<span class="c1"># Example: Copy from C:\Users\gemer\Sumo\my-network\Results\sweeps\&lt;sweep_dir&gt;\&lt;seed&gt;\&lt;variant&gt;\model.zip</span>
+mkdir<span class="w"> </span>-p<span class="w"> </span>rl-inference-service/app/trained_models
+copy<span class="w"> </span><span class="s2">&quot;C:\Users\gemer\Sumo\my-network\Results\sweeps\pressure\seed_42\A\model.zip&quot;</span><span class="w"> </span><span class="s2">&quot;rl-inference-service\app\trained_models\model.zip&quot;</span>
+</code></pre></div></p>
+</li>
+<li>
+<p><strong>Set environment variables (optional):</strong>
+   <div class="highlight"><pre><span></span><code><span class="c1"># Create .env file for RL Inference Service</span>
+<span class="nb">echo</span><span class="w"> </span><span class="nv">MODEL_PATH</span><span class="o">=</span>/app/trained_models/model.zip<span class="w"> </span>&gt;<span class="w"> </span>rl-inference-service/.env
+<span class="nb">echo</span><span class="w"> </span><span class="nv">OBSERVATION_SHAPE_DIM</span><span class="o">=</span><span class="m">10</span><span class="w"> </span>&gt;&gt;<span class="w"> </span>rl-inference-service/.env
+<span class="nb">echo</span><span class="w"> </span><span class="nv">NUM_AGENTS</span><span class="o">=</span><span class="m">1</span><span class="w"> </span>&gt;&gt;<span class="w"> </span>rl-inference-service/.env
+</code></pre></div></p>
+</li>
+<li>
+<p><strong>Build and start services:</strong>
+   <div class="highlight"><pre><span></span><code>docker-compose<span class="w"> </span>up<span class="w"> </span>--build
+</code></pre></div></p>
+</li>
+<li>
+<p><strong>Test the API:</strong>
+   <div class="highlight"><pre><span></span><code><span class="c1"># Get traffic action (auto-generated observations)</span>
+curl<span class="w"> </span>http://localhost:8080/api/traffic/action
+
+<span class="c1"># Predict action with custom observations</span>
+curl<span class="w"> </span>-X<span class="w"> </span>POST<span class="w"> </span>http://localhost:8080/api/traffic/action<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-H<span class="w"> </span><span class="s2">&quot;Content-Type: application/json&quot;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-d<span class="w"> </span><span class="s1">&#39;{&quot;observations&quot;: [0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1.0]}&#39;</span>
+
+<span class="c1"># Check health</span>
+curl<span class="w"> </span>http://localhost:8080/api/traffic/health
+</code></pre></div></p>
+</li>
+</ol>
+<h4 id="option-2-local-development">Option 2: Local Development</h4>
+<p><strong>Python Service:</strong>
+<div class="highlight"><pre><span></span><code><span class="nb">cd</span><span class="w"> </span>rl-inference-service
+
+<span class="c1"># Create virtual environment</span>
+python<span class="w"> </span>-m<span class="w"> </span>venv<span class="w"> </span>venv
+venv<span class="se">\S</span>cripts<span class="se">\a</span>ctivate<span class="w">  </span><span class="c1"># Windows</span>
+<span class="nb">source</span><span class="w"> </span>venv/bin/activate<span class="w">  </span><span class="c1"># Linux/Mac</span>
+
+<span class="c1"># Install dependencies</span>
+pip<span class="w"> </span>install<span class="w"> </span>-r<span class="w"> </span>requirements.txt
+
+<span class="c1"># Set environment variables</span>
+<span class="nb">set</span><span class="w"> </span><span class="nv">MODEL_PATH</span><span class="o">=</span>path<span class="se">\t</span>o<span class="se">\y</span>our<span class="se">\m</span>odel.zip<span class="w">  </span><span class="c1"># Windows</span>
+<span class="nb">export</span><span class="w"> </span><span class="nv">MODEL_PATH</span><span class="o">=</span>path/to/your/model.zip<span class="w">  </span><span class="c1"># Linux/Mac</span>
+
+<span class="c1"># Run service</span>
+python<span class="w"> </span>-m<span class="w"> </span>uvicorn<span class="w"> </span>app.main:app<span class="w"> </span>--host<span class="w"> </span><span class="m">0</span>.0.0.0<span class="w"> </span>--port<span class="w"> </span><span class="m">8000</span><span class="w"> </span>--reload
+</code></pre></div></p>
+<p><strong>Java Gateway:</strong>
+<div class="highlight"><pre><span></span><code><span class="nb">cd</span><span class="w"> </span>java-api-gateway
+
+<span class="c1"># Set environment variable</span>
+<span class="nb">set</span><span class="w"> </span><span class="nv">RL_INFERENCE_SERVICE_URL</span><span class="o">=</span>http://localhost:8000/predict_action<span class="w">  </span><span class="c1"># Windows</span>
+<span class="nb">export</span><span class="w"> </span><span class="nv">RL_INFERENCE_SERVICE_URL</span><span class="o">=</span>http://localhost:8000/predict_action<span class="w">  </span><span class="c1"># Linux/Mac</span>
+
+<span class="c1"># Build and run</span>
+mvn<span class="w"> </span>clean<span class="w"> </span>install
+mvn<span class="w"> </span>spring-boot:run
+</code></pre></div></p>
+<p><em>Includes <a href="../../api-docs/">Swagger/OpenAPI documentation</a> for all traffic control endpoints.</em></p>
 
 
 
@@ -1928,7 +2168,7 @@ Traffic Signal Control
       <nav class="md-footer__inner md-grid" aria-label="Footer" >
         
           
-          <a href="../api-setup/production-deployment/" class="md-footer__link md-footer__link--prev" aria-label="Previous: 🌍 Production Deployment">
+          <a href="../" class="md-footer__link md-footer__link--prev" aria-label="Previous: Home">
             <div class="md-footer__button md-icon">
               
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
@@ -1938,20 +2178,20 @@ Traffic Signal Control
                 Previous
               </span>
               <div class="md-ellipsis">
-                🌍 Production Deployment
+                Home
               </div>
             </div>
           </a>
         
         
           
-          <a href="../features/" class="md-footer__link md-footer__link--next" aria-label="Next: Features">
+          <a href="../api-usage-examples/" class="md-footer__link md-footer__link--next" aria-label="Next: 📡 API Usage Examples">
             <div class="md-footer__title">
               <span class="md-footer__direction">
                 Next
               </span>
               <div class="md-ellipsis">
-                Features
+                📡 API Usage Examples
               </div>
             </div>
             <div class="md-footer__button md-icon">
@@ -1988,10 +2228,10 @@ Traffic Signal Control
     
       
       
-      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": ["navigation.tabs", "navigation.tabs.sticky", "navigation.sections", "toc.follow", "navigation.footer", "navigation.instant.preview", "navigation.tracking", "navigation.path", "navigation.top"], "search": "../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.tabs", "navigation.tabs.sticky", "navigation.sections", "toc.follow", "navigation.footer", "navigation.instant.preview", "navigation.tracking", "navigation.path", "navigation.top"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
     
     
-      <script src="../assets/javascripts/bundle.79ae519e.min.js"></script>
+      <script src="../../assets/javascripts/bundle.79ae519e.min.js"></script>
       
     
   </body>
