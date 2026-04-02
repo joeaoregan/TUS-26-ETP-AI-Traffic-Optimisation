@@ -8,31 +8,31 @@
       
       
       
-        <link rel="canonical" href="https://joeaoregan.github.io/TUS-26-ETP-AI-Traffic-Optimisation/system-architecture/request-response-flow/">
+        <link rel="canonical" href="https://joeaoregan.github.io/TUS-26-ETP-AI-Traffic-Optimisation/inference-service/">
       
       
-        <link rel="prev" href="../high-level/">
+        <link rel="prev" href="../api-gateway/">
       
       
-        <link rel="next" href="../system-components/">
+        <link rel="next" href="../sumo/">
       
       
         
       
       
-      <link rel="icon" href="../../assets/images/favicon.png">
+      <link rel="icon" href="../assets/images/favicon.png">
       <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
     
     
       
-        <title>2. Request-Response Flow - AI Traffic Optimisation System</title>
+        <title>Inference Service - AI Traffic Optimisation System</title>
       
     
     
-      <link rel="stylesheet" href="../../assets/stylesheets/main.484c7ddc.min.css">
+      <link rel="stylesheet" href="../assets/stylesheets/main.484c7ddc.min.css">
       
         
-        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
+        <link rel="stylesheet" href="../assets/stylesheets/palette.ab4e12ef.min.css">
       
       
   
@@ -76,7 +76,7 @@
       
     
     
-    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
 
@@ -101,7 +101,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#2-request-response-flow-diagram" class="md-skip">
+        <a href="#rl-inference-service" class="md-skip">
           Skip to content
         </a>
       
@@ -117,9 +117,9 @@
 
 <header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href="../.." title="AI Traffic Optimisation System" class="md-header__button md-logo" aria-label="AI Traffic Optimisation System" data-md-component="logo">
+    <a href=".." title="AI Traffic Optimisation System" class="md-header__button md-logo" aria-label="AI Traffic Optimisation System" data-md-component="logo">
       
-  <img src="../../images/logo.png" alt="logo">
+  <img src="../images/logo.png" alt="logo">
 
     </a>
     <label class="md-header__button md-icon" for="__drawer">
@@ -136,7 +136,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              2. Request-Response Flow
+              Inference Service
             
           </span>
         </div>
@@ -243,7 +243,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="../.." class="md-tabs__link">
+        <a href=".." class="md-tabs__link">
           
   
   
@@ -261,7 +261,7 @@
   
   
     <li class="md-tabs__item">
-      <a href="../../api-gateway/" class="md-tabs__link">
+      <a href="../api-gateway/" class="md-tabs__link">
         
   
   
@@ -278,9 +278,11 @@
   
   
   
+    
   
-    <li class="md-tabs__item">
-      <a href="../../inference-service/" class="md-tabs__link">
+  
+    <li class="md-tabs__item md-tabs__item--active">
+      <a href="./" class="md-tabs__link">
         
   
   
@@ -299,7 +301,7 @@
   
   
     <li class="md-tabs__item">
-      <a href="../../sumo/" class="md-tabs__link">
+      <a href="../sumo/" class="md-tabs__link">
         
   
   
@@ -318,7 +320,7 @@
   
   
     <li class="md-tabs__item">
-      <a href="../../lstm/" class="md-tabs__link">
+      <a href="../lstm/" class="md-tabs__link">
         
   
   
@@ -337,7 +339,7 @@
   
   
     <li class="md-tabs__item">
-      <a href="../../security/" class="md-tabs__link">
+      <a href="../security/" class="md-tabs__link">
         
   
   
@@ -354,13 +356,11 @@
   
   
   
-    
-  
   
     
     
-      <li class="md-tabs__item md-tabs__item--active">
-        <a href="../" class="md-tabs__link">
+      <li class="md-tabs__item">
+        <a href="../system-architecture/" class="md-tabs__link">
           
   
   
@@ -387,7 +387,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="../../quickstart/" class="md-tabs__link">
+        <a href="../quickstart/" class="md-tabs__link">
           
   
   
@@ -417,7 +417,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="../../api-docs/" class="md-tabs__link">
+        <a href="../api-docs/" class="md-tabs__link">
           
   
   
@@ -438,7 +438,7 @@
   
   
     <li class="md-tabs__item">
-      <a href="../../features/" class="md-tabs__link">
+      <a href="../features/" class="md-tabs__link">
         
   
   
@@ -459,7 +459,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="../../support/" class="md-tabs__link">
+        <a href="../support/" class="md-tabs__link">
           
   
   
@@ -499,9 +499,9 @@
 
 <nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="../.." title="AI Traffic Optimisation System" class="md-nav__button md-logo" aria-label="AI Traffic Optimisation System" data-md-component="logo">
+    <a href=".." title="AI Traffic Optimisation System" class="md-nav__button md-logo" aria-label="AI Traffic Optimisation System" data-md-component="logo">
       
-  <img src="../../images/logo.png" alt="logo">
+  <img src="../images/logo.png" alt="logo">
 
     </a>
     AI Traffic Optimisation System
@@ -580,7 +580,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../.." class="md-nav__link">
+      <a href=".." class="md-nav__link">
         
   
   
@@ -815,7 +815,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../api-gateway/" class="md-nav__link">
+      <a href="../api-gateway/" class="md-nav__link">
         
   
   
@@ -839,10 +839,37 @@
       
   
   
+    
   
   
-    <li class="md-nav__item">
-      <a href="../../inference-service/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Inference Service
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         
   
   
@@ -858,6 +885,37 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#to-do" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        To do
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -869,7 +927,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../sumo/" class="md-nav__link">
+      <a href="../sumo/" class="md-nav__link">
         
   
   
@@ -896,7 +954,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../lstm/" class="md-nav__link">
+      <a href="../lstm/" class="md-nav__link">
         
   
   
@@ -923,7 +981,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../security/" class="md-nav__link">
+      <a href="../security/" class="md-nav__link">
         
   
   
@@ -947,31 +1005,26 @@
       
   
   
-    
   
   
-  
     
     
     
     
-      
-        
-        
       
       
         
       
     
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" checked>
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" >
         
           
-          <label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="">
+          <label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="0">
             
   
   
@@ -989,7 +1042,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="true">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_7">
             <span class="md-nav__icon md-icon"></span>
             
@@ -1007,7 +1060,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../" class="md-nav__link">
+      <a href="../system-architecture/" class="md-nav__link">
         
   
   
@@ -1035,7 +1088,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../high-level/" class="md-nav__link">
+      <a href="../system-architecture/high-level/" class="md-nav__link">
         
   
   
@@ -1060,37 +1113,10 @@
                 
   
   
-    
   
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    2. Request-Response Flow
-  
-
-    
-  </span>
-  
-  
-
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../system-architecture/request-response-flow/" class="md-nav__link">
         
   
   
@@ -1106,59 +1132,6 @@
   
 
       </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#get-apitrafficaction-auto-generated-observations" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        GET /api/traffic/action (Auto-generated observations)
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#post-apitrafficaction-custom-observations" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        POST /api/traffic/action (Custom observations)
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#get-apitraffichealth-health-check" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        GET /api/traffic/health (Health Check)
-      
-    </span>
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -1171,7 +1144,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../system-components/" class="md-nav__link">
+      <a href="../system-architecture/system-components/" class="md-nav__link">
         
   
   
@@ -1199,7 +1172,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../data-flow-through-system/" class="md-nav__link">
+      <a href="../system-architecture/data-flow-through-system/" class="md-nav__link">
         
   
   
@@ -1227,7 +1200,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../deployment-architecture/" class="md-nav__link">
+      <a href="../system-architecture/deployment-architecture/" class="md-nav__link">
         
   
   
@@ -1255,7 +1228,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../detailed-internal-flow/" class="md-nav__link">
+      <a href="../system-architecture/detailed-internal-flow/" class="md-nav__link">
         
   
   
@@ -1283,7 +1256,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../error-handling-flow/" class="md-nav__link">
+      <a href="../system-architecture/error-handling-flow/" class="md-nav__link">
         
   
   
@@ -1311,7 +1284,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../inter-service-communication-protocol/" class="md-nav__link">
+      <a href="../system-architecture/inter-service-communication-protocol/" class="md-nav__link">
         
   
   
@@ -1339,7 +1312,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../model-loading-and-caching-strategy/" class="md-nav__link">
+      <a href="../system-architecture/model-loading-and-caching-strategy/" class="md-nav__link">
         
   
   
@@ -1367,7 +1340,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../complete-end-to-end-workflow/" class="md-nav__link">
+      <a href="../system-architecture/complete-end-to-end-workflow/" class="md-nav__link">
         
   
   
@@ -1395,7 +1368,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../architecture-decision-rationale/" class="md-nav__link">
+      <a href="../system-architecture/architecture-decision-rationale/" class="md-nav__link">
         
   
   
@@ -1423,7 +1396,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../performance-characteristics/" class="md-nav__link">
+      <a href="../system-architecture/performance-characteristics/" class="md-nav__link">
         
   
   
@@ -1451,7 +1424,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../scalability-considerations/" class="md-nav__link">
+      <a href="../system-architecture/scalability-considerations/" class="md-nav__link">
         
   
   
@@ -1479,7 +1452,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../security-architecture/" class="md-nav__link">
+      <a href="../system-architecture/security-architecture/" class="md-nav__link">
         
   
   
@@ -1507,7 +1480,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../monitoring-and-observability-points/" class="md-nav__link">
+      <a href="../system-architecture/monitoring-and-observability-points/" class="md-nav__link">
         
   
   
@@ -1535,7 +1508,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../deployment-patterns/" class="md-nav__link">
+      <a href="../system-architecture/deployment-patterns/" class="md-nav__link">
         
   
   
@@ -1674,7 +1647,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../quickstart/" class="md-nav__link">
+      <a href="../quickstart/" class="md-nav__link">
         
   
   
@@ -1762,7 +1735,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../setup-complete/" class="md-nav__link">
+      <a href="../setup-complete/" class="md-nav__link">
         
   
   
@@ -1790,7 +1763,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../setup-complete/what-was-created/" class="md-nav__link">
+      <a href="../setup-complete/what-was-created/" class="md-nav__link">
         
   
   
@@ -1818,7 +1791,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../setup-complete/quickstart/" class="md-nav__link">
+      <a href="../setup-complete/quickstart/" class="md-nav__link">
         
   
   
@@ -1846,7 +1819,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../setup-complete/architecture-overview/" class="md-nav__link">
+      <a href="../setup-complete/architecture-overview/" class="md-nav__link">
         
   
   
@@ -1874,7 +1847,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../setup-complete/api-endpoints/" class="md-nav__link">
+      <a href="../setup-complete/api-endpoints/" class="md-nav__link">
         
   
   
@@ -1902,7 +1875,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../setup-complete/using-different-models/" class="md-nav__link">
+      <a href="../setup-complete/using-different-models/" class="md-nav__link">
         
   
   
@@ -1930,7 +1903,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../setup-complete/testing/" class="md-nav__link">
+      <a href="../setup-complete/testing/" class="md-nav__link">
         
   
   
@@ -1958,7 +1931,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../setup-complete/environment-variables/" class="md-nav__link">
+      <a href="../setup-complete/environment-variables/" class="md-nav__link">
         
   
   
@@ -1986,7 +1959,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../setup-complete/development-vs-production/" class="md-nav__link">
+      <a href="../setup-complete/development-vs-production/" class="md-nav__link">
         
   
   
@@ -2014,7 +1987,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../setup-complete/mkdocs-setup/" class="md-nav__link">
+      <a href="../setup-complete/mkdocs-setup/" class="md-nav__link">
         
   
   
@@ -2042,7 +2015,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../setup-complete/documentation-files/" class="md-nav__link">
+      <a href="../setup-complete/documentation-files/" class="md-nav__link">
         
   
   
@@ -2070,7 +2043,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../setup-complete/next-steps/" class="md-nav__link">
+      <a href="../setup-complete/next-steps/" class="md-nav__link">
         
   
   
@@ -2098,7 +2071,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../setup-complete/support/" class="md-nav__link">
+      <a href="../setup-complete/support/" class="md-nav__link">
         
   
   
@@ -2245,7 +2218,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../api-docs/" class="md-nav__link">
+      <a href="../api-docs/" class="md-nav__link">
         
   
   
@@ -2273,7 +2246,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../api-docs/api-gateway/" class="md-nav__link">
+      <a href="../api-docs/api-gateway/" class="md-nav__link">
         
   
   
@@ -2301,7 +2274,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../api-docs/inference-service/" class="md-nav__link">
+      <a href="../api-docs/inference-service/" class="md-nav__link">
         
   
   
@@ -2389,7 +2362,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../api-setup/" class="md-nav__link">
+      <a href="../api-setup/" class="md-nav__link">
         
   
   
@@ -2417,7 +2390,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../api-setup/api-setup-guide/" class="md-nav__link">
+      <a href="../api-setup/api-setup-guide/" class="md-nav__link">
         
   
   
@@ -2445,7 +2418,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../api-setup/api-usage-examples/" class="md-nav__link">
+      <a href="../api-setup/api-usage-examples/" class="md-nav__link">
         
   
   
@@ -2473,7 +2446,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../api-setup/environment-variables/" class="md-nav__link">
+      <a href="../api-setup/environment-variables/" class="md-nav__link">
         
   
   
@@ -2501,7 +2474,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../api-setup/docker-compose-configuration/" class="md-nav__link">
+      <a href="../api-setup/docker-compose-configuration/" class="md-nav__link">
         
   
   
@@ -2529,7 +2502,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../api-setup/monitoring-and-logging/" class="md-nav__link">
+      <a href="../api-setup/monitoring-and-logging/" class="md-nav__link">
         
   
   
@@ -2557,7 +2530,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../api-setup/using-different-models/" class="md-nav__link">
+      <a href="../api-setup/using-different-models/" class="md-nav__link">
         
   
   
@@ -2585,7 +2558,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../api-setup/performance-tuning/" class="md-nav__link">
+      <a href="../api-setup/performance-tuning/" class="md-nav__link">
         
   
   
@@ -2613,7 +2586,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../api-setup/troubleshooting/" class="md-nav__link">
+      <a href="../api-setup/troubleshooting/" class="md-nav__link">
         
   
   
@@ -2641,7 +2614,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../api-setup/production-deployment/" class="md-nav__link">
+      <a href="../api-setup/production-deployment/" class="md-nav__link">
         
   
   
@@ -2684,7 +2657,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../features/" class="md-nav__link">
+      <a href="../features/" class="md-nav__link">
         
   
   
@@ -2763,7 +2736,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../support/" class="md-nav__link">
+      <a href="../support/" class="md-nav__link">
         
   
   
@@ -2843,7 +2816,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../file-manifest/" class="md-nav__link">
+      <a href="../file-manifest/" class="md-nav__link">
         
   
   
@@ -2871,7 +2844,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../file-manifest/inference-service/" class="md-nav__link">
+      <a href="../file-manifest/inference-service/" class="md-nav__link">
         
   
   
@@ -2899,7 +2872,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../file-manifest/api-gateway/" class="md-nav__link">
+      <a href="../file-manifest/api-gateway/" class="md-nav__link">
         
   
   
@@ -2927,7 +2900,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../file-manifest/file-statistics/" class="md-nav__link">
+      <a href="../file-manifest/file-statistics/" class="md-nav__link">
         
   
   
@@ -2955,7 +2928,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../file-manifest/integration-with-existing-project/" class="md-nav__link">
+      <a href="../file-manifest/integration-with-existing-project/" class="md-nav__link">
         
   
   
@@ -2983,7 +2956,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../file-manifest/environment-setup/" class="md-nav__link">
+      <a href="../file-manifest/environment-setup/" class="md-nav__link">
         
   
   
@@ -3011,7 +2984,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../file-manifest/how-to-use-each-component/" class="md-nav__link">
+      <a href="../file-manifest/how-to-use-each-component/" class="md-nav__link">
         
   
   
@@ -3039,7 +3012,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../file-manifest/quick-reference/" class="md-nav__link">
+      <a href="../file-manifest/quick-reference/" class="md-nav__link">
         
   
   
@@ -3075,7 +3048,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../CHANGELOG/" class="md-nav__link">
+      <a href="../CHANGELOG/" class="md-nav__link">
         
   
   
@@ -3130,32 +3103,10 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#get-apitrafficaction-auto-generated-observations" class="md-nav__link">
+  <a href="#to-do" class="md-nav__link">
     <span class="md-ellipsis">
       
-        GET /api/traffic/action (Auto-generated observations)
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#post-apitrafficaction-custom-observations" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        POST /api/traffic/action (Custom observations)
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#get-apitraffichealth-health-check" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        GET /api/traffic/health (Health Check)
+        To do
       
     </span>
   </a>
@@ -3188,84 +3139,8 @@
   
 
 
-<h1 id="2-request-response-flow-diagram">2. Request-Response Flow Diagram</h1>
-<h2 id="get-apitrafficaction-auto-generated-observations"><strong>GET /api/traffic/action</strong> (Auto-generated observations)</h2>
-<div class="highlight"><pre><span></span><code>sequenceDiagram
-    participant Client as External Client
-    participant JG as Java Gateway&lt;br/&gt;Port 8080
-    participant PS as Python Service&lt;br/&gt;Port 8000
-    participant Model as RL Model&lt;br/&gt;PPO
-
-    Client-&gt;&gt;JG: GET /api/traffic/action
-
-    Note over JG: Generate dummy&lt;br/&gt;observations (10 values)
-    JG-&gt;&gt;JG: Create random observation&lt;br/&gt;values [0-1]
-
-    JG-&gt;&gt;PS: POST /predict_action&lt;br/&gt;{&quot;obs_data&quot;: [0.1, 0.2, ...]}
-
-    Note over PS: Load model &amp; predict
-    PS-&gt;&gt;Model: Call model.predict()
-    Model--&gt;&gt;PS: Return action (0-3)
-
-    Note over PS: Format response
-    PS--&gt;&gt;JG: {&quot;action&quot;: 2}
-
-    Note over JG: Map action to signal
-    JG-&gt;&gt;JG: 2 → &quot;GREEN&quot;
-
-    JG--&gt;&gt;Client: {&lt;br/&gt;&quot;predictedAction&quot;: 2,&lt;br/&gt;&quot;signalState&quot;: &quot;GREEN&quot;,&lt;br/&gt;&quot;timestamp&quot;: ...,&lt;br/&gt;&quot;status&quot;: &quot;success&quot;&lt;br/&gt;}
-</code></pre></div>
-<h2 id="post-apitrafficaction-custom-observations"><strong>POST /api/traffic/action</strong> (Custom observations)</h2>
-<div class="highlight"><pre><span></span><code>sequenceDiagram
-    participant Client as External Client
-    participant JG as Java Gateway&lt;br/&gt;Port 8080
-    participant Val as Validator
-    participant PS as Python Service&lt;br/&gt;Port 8000
-    participant Model as RL Model&lt;br/&gt;PPO
-
-    Client-&gt;&gt;JG: POST /api/traffic/action&lt;br/&gt;{&quot;observations&quot;: [0.1, 0.2, ...]}
-
-    JG-&gt;&gt;Val: Validate observations
-    alt Validation Success
-        Val--&gt;&gt;JG: ✓ Valid
-    else Validation Failed
-        Val--&gt;&gt;JG: ✗ Error: Empty/Null
-        JG--&gt;&gt;Client: 400 Bad Request
-    end
-
-    JG-&gt;&gt;PS: POST /predict_action&lt;br/&gt;{&quot;obs_data&quot;: [0.1, 0.2, ...]}
-
-    Note over PS: Process with model
-    PS-&gt;&gt;Model: Call model.predict()
-    Model--&gt;&gt;PS: Return action
-
-    PS--&gt;&gt;JG: {&quot;action&quot;: 1}
-
-    JG--&gt;&gt;Client: {&lt;br/&gt;&quot;predictedAction&quot;: 1,&lt;br/&gt;&quot;signalState&quot;: &quot;YELLOW&quot;,&lt;br/&gt;&quot;timestamp&quot;: ...,&lt;br/&gt;&quot;status&quot;: &quot;success&quot;&lt;br/&gt;}
-</code></pre></div>
-<h2 id="get-apitraffichealth-health-check"><strong>GET /api/traffic/health</strong> (Health Check)</h2>
-<div class="highlight"><pre><span></span><code>sequenceDiagram
-    participant Client as External Client
-    participant JG as Java Gateway&lt;br/&gt;Port 8080
-    participant HealthCheck as Health Checker
-    participant PS as Python Service&lt;br/&gt;Port 8000
-
-    Client-&gt;&gt;JG: GET /api/traffic/health
-
-    JG-&gt;&gt;HealthCheck: Check all services
-
-    HealthCheck-&gt;&gt;PS: GET /health
-
-    alt Python Service &quot;Up&quot;
-        PS--&gt;&gt;HealthCheck: {&quot;status&quot;: &quot;healthy&quot;}
-        HealthCheck--&gt;&gt;JG: ✓ All healthy
-    else Python Service &quot;Down&quot;
-        PS--xHealthCheck: Connection refused
-        HealthCheck--&gt;&gt;JG: ⚠️ Degraded
-    end
-
-    JG--&gt;&gt;Client: {&lt;br/&gt;&quot;status&quot;: &quot;healthy&quot;,&lt;br/&gt;&quot;inferenceService&quot;: &quot;up&quot;,&lt;br/&gt;&quot;timestamp&quot;: ...&lt;br/&gt;}
-</code></pre></div>
+<h1 id="rl-inference-service">RL Inference Service</h1>
+<h2 id="to-do">To do</h2>
 
 
 
@@ -3301,7 +3176,7 @@
       <nav class="md-footer__inner md-grid" aria-label="Footer" >
         
           
-          <a href="../high-level/" class="md-footer__link md-footer__link--prev" aria-label="Previous: 1. High-Level">
+          <a href="../api-gateway/" class="md-footer__link md-footer__link--prev" aria-label="Previous: API Gateway">
             <div class="md-footer__button md-icon">
               
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
@@ -3311,20 +3186,20 @@
                 Previous
               </span>
               <div class="md-ellipsis">
-                1. High-Level
+                API Gateway
               </div>
             </div>
           </a>
         
         
           
-          <a href="../system-components/" class="md-footer__link md-footer__link--next" aria-label="Next: 3. System Components">
+          <a href="../sumo/" class="md-footer__link md-footer__link--next" aria-label="Next: SUMO">
             <div class="md-footer__title">
               <span class="md-footer__direction">
                 Next
               </span>
               <div class="md-ellipsis">
-                3. System Components
+                SUMO
               </div>
             </div>
             <div class="md-footer__button md-icon">
@@ -3361,10 +3236,10 @@
     
       
       
-      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.tabs", "navigation.tabs.sticky", "navigation.sections", "toc.follow", "navigation.footer", "navigation.instant.preview", "navigation.tracking", "navigation.path", "navigation.top"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": ["navigation.tabs", "navigation.tabs.sticky", "navigation.sections", "toc.follow", "navigation.footer", "navigation.instant.preview", "navigation.tracking", "navigation.path", "navigation.top"], "search": "../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
     
     
-      <script src="../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      <script src="../assets/javascripts/bundle.79ae519e.min.js"></script>
       
     
   </body>

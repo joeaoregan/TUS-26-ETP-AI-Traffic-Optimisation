@@ -33,6 +33,10 @@
          <lastmod>2026-04-02</lastmod>
     </url>
     <url>
+         <loc>https://joeaoregan.github.io/TUS-26-ETP-AI-Traffic-Optimisation/api-gateway/</loc>
+         <lastmod>2026-04-02</lastmod>
+    </url>
+    <url>
          <loc>https://joeaoregan.github.io/TUS-26-ETP-AI-Traffic-Optimisation/api-setup/</loc>
          <lastmod>2026-04-02</lastmod>
     </url>
@@ -105,7 +109,15 @@
          <lastmod>2026-04-02</lastmod>
     </url>
     <url>
+         <loc>https://joeaoregan.github.io/TUS-26-ETP-AI-Traffic-Optimisation/inference-service/</loc>
+         <lastmod>2026-04-02</lastmod>
+    </url>
+    <url>
          <loc>https://joeaoregan.github.io/TUS-26-ETP-AI-Traffic-Optimisation/lstm/</loc>
+         <lastmod>2026-04-02</lastmod>
+    </url>
+    <url>
+         <loc>https://joeaoregan.github.io/TUS-26-ETP-AI-Traffic-Optimisation/security/</loc>
          <lastmod>2026-04-02</lastmod>
     </url>
     <url>
@@ -158,6 +170,10 @@
     </url>
     <url>
          <loc>https://joeaoregan.github.io/TUS-26-ETP-AI-Traffic-Optimisation/setup-complete/what-was-created/</loc>
+         <lastmod>2026-04-02</lastmod>
+    </url>
+    <url>
+         <loc>https://joeaoregan.github.io/TUS-26-ETP-AI-Traffic-Optimisation/sumo/</loc>
          <lastmod>2026-04-02</lastmod>
     </url>
     <url>
