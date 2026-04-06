@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+  Calibrated route file — MAPPO v5
+  ─────────────────────────────────────────────────────────────────────────────
+  West entry (Bali/N61):  TII counter N61 020.0 N (south) × 75% capture ÷ 3 routes
+  East entry (B&Q/N55):   TII counter N55 050.0 N (south) × 45% capture ÷ 4 routes
+
+  Source data (Average Daily Flow, cars only):
+    N61 southbound peak: 273 veh/h (17:00)  — counter ~20km north of Athlone
+    N55 southbound peak: 149 veh/h (08:00)  — counter ~50km northeast of Athlone
+
+  Capture rates:
+    West 75% — N61 is the primary west approach, counter close to town
+    East 45% — N55 is far out; R446 Dublin Road traffic not captured here
+
+  Time 0 = 07:00.  Each slot = 3600 s.
+-->
+
+<routes xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="http://sumo.dlr.de/xsd/routes_file.xsd">
+
+    <vType id="car_town" accel="2.6" decel="4.5" sigma="0.5" length="5.0" minGap="2.5" maxSpeed="30" guiShape="passenger"/>
+
+    <route id="bali-bali-goldenIsland"  edges="-312266114#2 -269002813 -617128762 -105067707#6 -55825090 -96489720#1 96489707#2 -312085875#3 96489711#1 -96489719#3 -105068385#0 55825090 105067707#0 617128762 269002813 903454651"/>
+    <route id="bali-bali-long"          edges="-312266114#2 -269002813 27405591#0 27405591#1 269097661#0 -27405590#7 -27405590#6 -27405590#1 105067707#0 617128762 269002813 903454651"/>
+    <route id="bali-shannon-short"      edges="-312266114#2 -269002813 -617128762 -105067707#6 103330669#0 -132608092#2"/>
+    <route id="bAndQ-shannon-orenge"    edges="-1018306737 -269002814#7 -165655881 -578973711 -55825089 -617128762 -105067707#6 103330669#0 -132608092#2"/>
+    <route id="bAndQ-bAndq-orenge"     edges="-1018306737 -269002814#7 -165655881 -578973711 -55825089 -617128762 -105067707#6 103330669#0 132608093#0 1018300044#0 1018300044#1 104746990#0"/>
+    <route id="bAndQ-bAndQ-long"       edges="-1018306737 -269002814#7 -165655881 -578973711 -55825089 27405591#0 27405591#1 269097661#0 269097661#1 -105068385#3 -105068385#0 55825090 105067707#0 617128762 55825089 578973713#0 165655881 165655877#0 104746990#0"/>
+    <route id="bAndQ-shannon-long"     edges="-1018306737 -269002814#7 -165655881 -578973711 -55825089 27405591#0 27405591#1 269097661#0 269097661#1 -105068385#3 -105068385#0 55825090 105067707#0 617128762 55825089 578973713#0 165655881 165655877#0 -578973707 -1018300044#0 -132608093#5 -132608092#2"/>
+
+    <!-- ── Hour 0: 07:00–08:00  N61=161 → West/route=40   N55=136 → East/route=15 ── -->
+    <flow id="f1_h0"  type="car_town" route="bali-bali-goldenIsland" begin="0"     end="3600"  vehsPerHour="40"  departLane="best" departSpeed="max"/>
+    <flow id="f2_h0"  type="car_town" route="bali-bali-long"         begin="0"     end="3600"  vehsPerHour="40"  departLane="best" departSpeed="max"/>
+    <flow id="f7_h0"  type="car_town" route="bali-shannon-short"     begin="0"     end="3600"  vehsPerHour="40"  departLane="best" departSpeed="max"/>
+    <flow id="f3_h0"  type="car_town" route="bAndQ-shannon-orenge"   begin="0"     end="3600"  vehsPerHour="15"  departLane="best" departSpeed="max"/>
+    <flow id="f4_h0"  type="car_town" route="bAndQ-bAndq-orenge"    begin="0"     end="3600"  vehsPerHour="15"  departLane="best" departSpeed="max"/>
+    <flow id="f5_h0"  type="car_town" route="bAndQ-bAndQ-long"      begin="0"     end="3600"  vehsPerHour="15"  departLane="best" departSpeed="max"/>
+    <flow id="f6_h0"  type="car_town" route="bAndQ-shannon-long"    begin="0"     end="3600"  vehsPerHour="15"  departLane="best" departSpeed="max"/>
+
+    <!-- ── Hour 1: 08:00–09:00  N61=222 → West/route=55   N55=149 → East/route=17 ── -->
+    <flow id="f1_h1"  type="car_town" route="bali-bali-goldenIsland" begin="3600"  end="7200"  vehsPerHour="55"  departLane="best" departSpeed="max"/>
+    <flow id="f2_h1"  type="car_town" route="bali-bali-long"         begin="3600"  end="7200"  vehsPerHour="55"  departLane="best" departSpeed="max"/>
+    <flow id="f7_h1"  type="car_town" route="bali-shannon-short"     begin="3600"  end="7200"  vehsPerHour="55"  departLane="best" departSpeed="max"/>
+    <flow id="f3_h1"  type="car_town" route="bAndQ-shannon-orenge"   begin="3600"  end="7200"  vehsPerHour="17"  departLane="best" departSpeed="max"/>
+    <flow id="f4_h1"  type="car_town" route="bAndQ-bAndq-orenge"    begin="3600"  end="7200"  vehsPerHour="17"  departLane="best" departSpeed="max"/>
+    <flow id="f5_h1"  type="car_town" route="bAndQ-bAndQ-long"      begin="3600"  end="7200"  vehsPerHour="17"  departLane="best" departSpeed="max"/>
+    <flow id="f6_h1"  type="car_town" route="bAndQ-shannon-long"    begin="3600"  end="7200"  vehsPerHour="17"  departLane="best" departSpeed="max"/>
+
+    <!-- ── Hour 2: 09:00–10:00  N61=191 → West/route=48   N55=113 → East/route=13 ── -->
+    <flow id="f1_h2"  type="car_town" route="bali-bali-goldenIsland" begin="7200"  end="10800" vehsPerHour="48"  departLane="best" departSpeed="max"/>
+    <flow id="f2_h2"  type="car_town" route="bali-bali-long"         begin="7200"  end="10800" vehsPerHour="48"  departLane="best" departSpeed="max"/>
+    <flow id="f7_h2"  type="car_town" route="bali-shannon-short"     begin="7200"  end="10800" vehsPerHour="48"  departLane="best" departSpeed="max"/>
+    <flow id="f3_h2"  type="car_town" route="bAndQ-shannon-orenge"   begin="7200"  end="10800" vehsPerHour="13"  departLane="best" departSpeed="max"/>
+    <flow id="f4_h2"  type="car_town" route="bAndQ-bAndq-orenge"    begin="7200"  end="10800" vehsPerHour="13"  departLane="best" departSpeed="max"/>
+    <flow id="f5_h2"  type="car_town" route="bAndQ-bAndQ-long"      begin="7200"  end="10800" vehsPerHour="13"  departLane="best" departSpeed="max"/>
+    <flow id="f6_h2"  type="car_town" route="bAndQ-shannon-long"    begin="7200"  end="10800" vehsPerHour="13"  departLane="best" departSpeed="max"/>
+
+    <!-- ── Hour 3: 10:00–11:00  N61=184 → West/route=46   N55=105 → East/route=12 ── -->
+    <flow id="f1_h3"  type="car_town" route="bali-bali-goldenIsland" begin="10800" end="14400" vehsPerHour="46"  departLane="best" departSpeed="max"/>
+    <flow id="f2_h3"  type="car_town" route="bali-bali-long"         begin="10800" end="14400" vehsPerHour="46"  departLane="best" departSpeed="max"/>
+    <flow id="f7_h3"  type="car_town" route="bali-shannon-short"     begin="10800" end="14400" vehsPerHour="46"  departLane="best" departSpeed="max"/>
+    <flow id="f3_h3"  type="car_town" route="bAndQ-shannon-orenge"   begin="10800" end="14400" vehsPerHour="12"  departLane="best" departSpeed="max"/>
+    <flow id="f4_h3"  type="car_town" route="bAndQ-bAndq-orenge"    begin="10800" end="14400" vehsPerHour="12"  departLane="best" departSpeed="max"/>
+    <flow id="f5_h3"  type="car_town" route="bAndQ-bAndQ-long"      begin="10800" end="14400" vehsPerHour="12"  departLane="best" departSpeed="max"/>
+    <flow id="f6_h3"  type="car_town" route="bAndQ-shannon-long"    begin="10800" end="14400" vehsPerHour="12"  departLane="best" departSpeed="max"/>
+
+    <!-- ── Hour 4: 11:00–12:00  N61=197 → West/route=49   N55=96  → East/route=11 ── -->
+    <flow id="f1_h4"  type="car_town" route="bali-bali-goldenIsland" begin="14400" end="18000" vehsPerHour="49"  departLane="best" departSpeed="max"/>
+    <flow id="f2_h4"  type="car_town" route="bali-bali-long"         begin="14400" end="18000" vehsPerHour="49"  departLane="best" departSpeed="max"/>
+    <flow id="f7_h4"  type="car_town" route="bali-shannon-short"     begin="14400" end="18000" vehsPerHour="49"  departLane="best" departSpeed="max"/>
+    <flow id="f3_h4"  type="car_town" route="bAndQ-shannon-orenge"   begin="14400" end="18000" vehsPerHour="11"  departLane="best" departSpeed="max"/>
+    <flow id="f4_h4"  type="car_town" route="bAndQ-bAndq-orenge"    begin="14400" end="18000" vehsPerHour="11"  departLane="best" departSpeed="max"/>
+    <flow id="f5_h4"  type="car_town" route="bAndQ-bAndQ-long"      begin="14400" end="18000" vehsPerHour="11"  departLane="best" departSpeed="max"/>
+    <flow id="f6_h4"  type="car_town" route="bAndQ-shannon-long"    begin="14400" end="18000" vehsPerHour="11"  departLane="best" departSpeed="max"/>
+
+    <!-- ── Hour 5: 12:00–13:00  N61=197 → West/route=49   N55=96  → East/route=11 ── -->
+    <flow id="f1_h5"  type="car_town" route="bali-bali-goldenIsland" begin="18000" end="21600" vehsPerHour="49"  departLane="best" departSpeed="max"/>
+    <flow id="f2_h5"  type="car_town" route="bali-bali-long"         begin="18000" end="21600" vehsPerHour="49"  departLane="best" departSpeed="max"/>
+    <flow id="f7_h5"  type="car_town" route="bali-shannon-short"     begin="18000" end="21600" vehsPerHour="49"  departLane="best" departSpeed="max"/>
+    <flow id="f3_h5"  type="car_town" route="bAndQ-shannon-orenge"   begin="18000" end="21600" vehsPerHour="11"  departLane="best" departSpeed="max"/>
+    <flow id="f4_h5"  type="car_town" route="bAndQ-bAndq-orenge"    begin="18000" end="21600" vehsPerHour="11"  departLane="best" departSpeed="max"/>
+    <flow id="f5_h5"  type="car_town" route="bAndQ-bAndQ-long"      begin="18000" end="21600" vehsPerHour="11"  departLane="best" departSpeed="max"/>
+    <flow id="f6_h5"  type="car_town" route="bAndQ-shannon-long"    begin="18000" end="21600" vehsPerHour="11"  departLane="best" departSpeed="max"/>
+
+    <!-- ── Hour 6: 13:00–14:00  N61=218 → West/route=55   N55=111 → East/route=12 ── -->
+    <flow id="f1_h6"  type="car_town" route="bali-bali-goldenIsland" begin="21600" end="25200" vehsPerHour="55"  departLane="best" departSpeed="max"/>
+    <flow id="f2_h6"  type="car_town" route="bali-bali-long"         begin="21600" end="25200" vehsPerHour="55"  departLane="best" departSpeed="max"/>
+    <flow id="f7_h6"  type="car_town" route="bali-shannon-short"     begin="21600" end="25200" vehsPerHour="55"  departLane="best" departSpeed="max"/>
+    <flow id="f3_h6"  type="car_town" route="bAndQ-shannon-orenge"   begin="21600" end="25200" vehsPerHour="12"  departLane="best" departSpeed="max"/>
+    <flow id="f4_h6"  type="car_town" route="bAndQ-bAndq-orenge"    begin="21600" end="25200" vehsPerHour="12"  departLane="best" departSpeed="max"/>
+    <flow id="f5_h6"  type="car_town" route="bAndQ-bAndQ-long"      begin="21600" end="25200" vehsPerHour="12"  departLane="best" departSpeed="max"/>
+    <flow id="f6_h6"  type="car_town" route="bAndQ-shannon-long"    begin="21600" end="25200" vehsPerHour="12"  departLane="best" departSpeed="max"/>
+
+    <!-- ── Hour 7: 14:00–15:00  N61=234 → West/route=59   N55=118 → East/route=13 ── -->
+    <flow id="f1_h7"  type="car_town" route="bali-bali-goldenIsland" begin="25200" end="28800" vehsPerHour="59"  departLane="best" departSpeed="max"/>
+    <flow id="f2_h7"  type="car_town" route="bali-bali-long"         begin="25200" end="28800" vehsPerHour="59"  departLane="best" departSpeed="max"/>
+    <flow id="f7_h7"  type="car_town" route="bali-shannon-short"     begin="25200" end="28800" vehsPerHour="59"  departLane="best" departSpeed="max"/>
+    <flow id="f3_h7"  type="car_town" route="bAndQ-shannon-orenge"   begin="25200" end="28800" vehsPerHour="13"  departLane="best" departSpeed="max"/>
+    <flow id="f4_h7"  type="car_town" route="bAndQ-bAndq-orenge"    begin="25200" end="28800" vehsPerHour="13"  departLane="best" departSpeed="max"/>
+    <flow id="f5_h7"  type="car_town" route="bAndQ-bAndQ-long"      begin="25200" end="28800" vehsPerHour="13"  departLane="best" departSpeed="max"/>
+    <flow id="f6_h7"  type="car_town" route="bAndQ-shannon-long"    begin="25200" end="28800" vehsPerHour="13"  departLane="best" departSpeed="max"/>
+
+    <!-- ── Hour 8: 15:00–16:00  N61=226 → West/route=57   N55=110 → East/route=12 ── -->
+    <flow id="f1_h8"  type="car_town" route="bali-bali-goldenIsland" begin="28800" end="32400" vehsPerHour="57"  departLane="best" departSpeed="max"/>
+    <flow id="f2_h8"  type="car_town" route="bali-bali-long"         begin="28800" end="32400" vehsPerHour="57"  departLane="best" departSpeed="max"/>
+    <flow id="f7_h8"  type="car_town" route="bali-shannon-short"     begin="28800" end="32400" vehsPerHour="57"  departLane="best" departSpeed="max"/>
+    <flow id="f3_h8"  type="car_town" route="bAndQ-shannon-orenge"   begin="28800" end="32400" vehsPerHour="12"  departLane="best" departSpeed="max"/>
+    <flow id="f4_h8"  type="car_town" route="bAndQ-bAndq-orenge"    begin="28800" end="32400" vehsPerHour="12"  departLane="best" departSpeed="max"/>
+    <flow id="f5_h8"  type="car_town" route="bAndQ-bAndQ-long"      begin="28800" end="32400" vehsPerHour="12"  departLane="best" departSpeed="max"/>
+    <flow id="f6_h8"  type="car_town" route="bAndQ-shannon-long"    begin="28800" end="32400" vehsPerHour="12"  departLane="best" departSpeed="max"/>
+
+    <!-- ── Hour 9: 16:00–17:00  N61=266 → West/route=67   N55=111 → East/route=12 ── -->
+    <flow id="f1_h9"  type="car_town" route="bali-bali-goldenIsland" begin="32400" end="36000" vehsPerHour="67"  departLane="best" departSpeed="max"/>
+    <flow id="f2_h9"  type="car_town" route="bali-bali-long"         begin="32400" end="36000" vehsPerHour="67"  departLane="best" departSpeed="max"/>
+    <flow id="f7_h9"  type="car_town" route="bali-shannon-short"     begin="32400" end="36000" vehsPerHour="67"  departLane="best" departSpeed="max"/>
+    <flow id="f3_h9"  type="car_town" route="bAndQ-shannon-orenge"   begin="32400" end="36000" vehsPerHour="12"  departLane="best" departSpeed="max"/>
+    <flow id="f4_h9"  type="car_town" route="bAndQ-bAndq-orenge"    begin="32400" end="36000" vehsPerHour="12"  departLane="best" departSpeed="max"/>
+    <flow id="f5_h9"  type="car_town" route="bAndQ-bAndQ-long"      begin="32400" end="36000" vehsPerHour="12"  departLane="best" departSpeed="max"/>
+    <flow id="f6_h9"  type="car_town" route="bAndQ-shannon-long"    begin="32400" end="36000" vehsPerHour="12"  departLane="best" departSpeed="max"/>
+
+    <!-- ── Hour 10: 17:00–18:00  N61=270 → West/route=67   N55=126 → East/route=14 ── -->
+    <flow id="f1_h10" type="car_town" route="bali-bali-goldenIsland" begin="36000" end="39600" vehsPerHour="67"  departLane="best" departSpeed="max"/>
+    <flow id="f2_h10" type="car_town" route="bali-bali-long"         begin="36000" end="39600" vehsPerHour="67"  departLane="best" departSpeed="max"/>
+    <flow id="f7_h10" type="car_town" route="bali-shannon-short"     begin="36000" end="39600" vehsPerHour="67"  departLane="best" departSpeed="max"/>
+    <flow id="f3_h10" type="car_town" route="bAndQ-shannon-orenge"   begin="36000" end="39600" vehsPerHour="14"  departLane="best" departSpeed="max"/>
+    <flow id="f4_h10" type="car_town" route="bAndQ-bAndq-orenge"    begin="36000" end="39600" vehsPerHour="14"  departLane="best" departSpeed="max"/>
+    <flow id="f5_h10" type="car_town" route="bAndQ-bAndQ-long"      begin="36000" end="39600" vehsPerHour="14"  departLane="best" departSpeed="max"/>
+    <flow id="f6_h10" type="car_town" route="bAndQ-shannon-long"    begin="36000" end="39600" vehsPerHour="14"  departLane="best" departSpeed="max"/>
+
+    <!-- ── Hour 11: 18:00–19:00  N61=273 → West/route=68   N55=123 → East/route=14 ── -->
+    <flow id="f1_h11" type="car_town" route="bali-bali-goldenIsland" begin="39600" end="43200" vehsPerHour="68"  departLane="best" departSpeed="max"/>
+    <flow id="f2_h11" type="car_town" route="bali-bali-long"         begin="39600" end="43200" vehsPerHour="68"  departLane="best" departSpeed="max"/>
+    <flow id="f7_h11" type="car_town" route="bali-shannon-short"     begin="39600" end="43200" vehsPerHour="68"  departLane="best" departSpeed="max"/>
+    <flow id="f3_h11" type="car_town" route="bAndQ-shannon-orenge"   begin="39600" end="43200" vehsPerHour="14"  departLane="best" departSpeed="max"/>
+    <flow id="f4_h11" type="car_town" route="bAndQ-bAndq-orenge"    begin="39600" end="43200" vehsPerHour="14"  departLane="best" departSpeed="max"/>
+    <flow id="f5_h11" type="car_town" route="bAndQ-bAndQ-long"      begin="39600" end="43200" vehsPerHour="14"  departLane="best" departSpeed="max"/>
+    <flow id="f6_h11" type="car_town" route="bAndQ-shannon-long"    begin="39600" end="43200" vehsPerHour="14"  departLane="best" departSpeed="max"/>
+
+</routes>
