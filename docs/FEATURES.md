@@ -1,5 +1,10 @@
 # 🔧 Key Features
 
+## Key
+
+- [x] Have
+- [ ] In progress / Future / Nice to have
+
 ## Python FastAPI Service
 
 - [x] Loads trained PPO models  
@@ -51,6 +56,24 @@
 - [ ] Secure token storage (in transit with HTTPS)
 - [ ] Rate limiting per authenticated user
 - [ ] Audit logging for authentication events
+
+## LSTM Traffic Predictor Service
+
+- [ ] Load SUMO historical data (edgeData.xml)
+- [ ] Preprocess time-series data (stationarity, scaling, sliding windows)
+- [ ] Train LSTM model on historical traffic patterns
+- [ ] Achieve MAE < 10% forecasting accuracy
+- [ ] Predict vehicle flow 15 minutes ahead
+- [ ] Handle missing sensor data (KNN imputation)
+- [ ] REST endpoints (health, forecast, model_info)
+- [ ] Interactive API documentation (Swagger UI)
+- [ ] Health monitoring and logging
+- [ ] Docker containerization
+- [ ] Integration with RL Inference Service
+- [ ] Bidirectional LSTM for enhanced accuracy (future)
+- [ ] Attention mechanism for temporal weighting (future)
+- [ ] Real-time model retraining capability (future)
+- [ ] Weather data integration (future)
 
 ## Docker Integration
 

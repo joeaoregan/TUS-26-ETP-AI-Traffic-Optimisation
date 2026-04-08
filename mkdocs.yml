@@ -2,6 +2,12 @@ site_name: AI Traffic Optimisation System
 docs_dir: docs
 site_dir: site
 theme:
+  icon:
+    admonition:
+      note: material/car-sports
+      success: material/car-sports
+      warning: material/car-sports
+      danger: material/car-sports
   logo: images/logo.png
   palette: 
 
@@ -31,55 +37,100 @@ theme:
 
 nav:
   - Home: 
-    - 1_home/index.md
-    - 🚗 API Setup Guide: 1_home/3_setup.md
-    - 📡 API Usage Examples: 1_home/4_api.md
-    - 🔐 Environment Variables: 1_home/5_env.md
-    - 🐳 Docker Compose Configuration: 1_home/6_docker.md
-    - 📊 Monitoring and Logging: 1_home/7_log.md
-    - 🔄 Using Different Models: 1_home/8_model.md
-    - ⚡ Performance Tuning: 1_home/9_performance.md
-    - 🐛 Troubleshooting: 1_home/10_ts.md
-    - 🌍 Production Deployment: 1_home/11_prod.md
-  - Features: FEATURES.md
-  - System Architecture: SYSTEM_ARCHITECTURE.md
-  - Quick Start: QUICKSTART.md
-  - Setup Complete:
-    - 4_setup/index.md
-    - What Was Created: 4_setup/1_created.md
-    - Quick Start (5 Minutes): 4_setup/2_quickstart.md
-    - Architecture Overview: 4_setup/3_architecture.md
-    - Key Features: FEATURES.md
-    - API Endpoints: 4_setup/5_api_endpoints.md
-    - Using Different Models: 4_setup/6_different_models.md
-    - Testing: 4_setup/7_testing.md
-    - Environment Variables: 4_setup/8_environment_variables.md
-    - Development vs Production: 4_setup/9_dev_vs_prod.md
-    - Documentation Files: 4_setup/10_documentation_files.md
-    - Next Steps: 4_setup/11_next_steps.md
-    - Support: 4_setup/12_support.md
-  - File Manifest: FILE_MANIFEST.md
-  - API Docs: DOCUMENTATION.md
-  - Changelog: CHANGELOG.md
-  - API Gateway: https://ai-traffic-control-api.onrender.com
-  - Inference Service: https://traffic-inference-service.onrender.com
-  - Support: SUPPORT.md
+    - index.md
+    - External Links:    
+      - API Gateway: https://ai-traffic-control-api.onrender.com
+      - API Gateway Documentation: https://ai-traffic-control-api.onrender.com/swagger-ui/index.html
+      - Inference Service: https://traffic-inference-service.onrender.com
+      - Inference Service Documentation: https://traffic-inference-service.onrender.com/docs
+      - GitHub Repository: https://github.com/joeaoregan/TUS-26-ETP-AI-Traffic-Optimisation
+  - API Gateway: api-gateway/index.md
+  - Inference Service: inference-service/index.md
+  - SUMO: sumo/index.md
+  - LSTM: lstm/index.md
+  - Security: security/index.md
+  - System Architecture: 
+    - system-architecture/index.md
+    - 1. High-Level: system-architecture/high-level.md
+    - 2. Request-Response Flow: system-architecture/request-response-flow.md
+    - 3. System Components: system-architecture/system-components.md
+    - 4. Data Flow Through System: system-architecture/data-flow-through-system.md
+    - 5. Deployment Architecture: system-architecture/deployment-architecture.md
+    - 6. Detailed Internal Flow - Action Prediction: system-architecture/detailed-internal-flow.md
+    - 7. Error Handling Flow: system-architecture/error-handling-flow.md
+    - 8. Inter-Service Communication Protocol: system-architecture/inter-service-communication-protocol.md
+    - 9. Model Loading & Caching Strategy: system-architecture/model-loading-and-caching-strategy.md
+    - 10. Complete End-to-End Workflow: system-architecture/complete-end-to-end-workflow.md
+    - 11. Architecture Decision Rationale: system-architecture/architecture-decision-rationale.md
+    - 12. Performance Characteristics: system-architecture/performance-characteristics.md
+    - 13. Scalability Considerations: system-architecture/scalability-considerations.md
+    - 14. Security Architecture: system-architecture/security-architecture.md
+    - 15. Monitoring & Observability Points: system-architecture/monitoring-and-observability-points.md
+    - 16. Deployment Patterns: system-architecture/deployment-patterns.md
+  - Setup:
+    - Quick Start: 
+      - quickstart.md
+    - Setup Complete:
+      - setup-complete/index.md
+      - What Was Created: setup-complete/what-was-created.md
+      - Quick Start (5 Minutes): setup-complete/quickstart.md
+      - Architecture Overview: setup-complete/architecture-overview.md
+      - API Endpoints: setup-complete/api-endpoints.md
+      - Using Different Models: setup-complete/using-different-models.md
+      - Testing: setup-complete/testing.md
+      - Environment Variables: setup-complete/environment-variables.md
+      - Development vs Production: setup-complete/development-vs-production.md
+      - MkDocs Setup: setup-complete/mkdocs-setup.md
+      - Documentation Files: setup-complete/documentation-files.md
+      - Next Steps: setup-complete/next-steps.md
+      - Support: setup-complete/support.md
+  - API:
+    - Documentation:
+      - API Docs: api-docs/index.md
+      - api-docs/api-gateway.md
+      - api-docs/inference-service.md
+    - API Setup: 
+      - api-setup/index.md
+      - 🚗 API Setup Guide: api-setup/api-setup-guide.md
+      - 📡 API Usage Examples: api-setup/api-usage-examples.md
+      - 🔐 Environment Variables: api-setup/environment-variables.md
+      - 🐳 Docker Compose Configuration: api-setup/docker-compose-configuration.md
+      - 📊 Monitoring and Logging: api-setup/monitoring-and-logging.md
+      - 🔄 Using Different Models: api-setup/using-different-models.md
+      - ⚡ Performance Tuning: api-setup/performance-tuning.md
+      - 🐛 Troubleshooting: api-setup/troubleshooting.md
+      - 🌍 Production Deployment: api-setup/production-deployment.md
+  - Features: features.md
+  - About:
+    - Support: support.md
+    - File Manifest: 
+      - file-manifest/index.md
+      - Inference Service Manifest: file-manifest/inference-service.md
+      - API Gateway Manifest: file-manifest/api-gateway.md
+      - File Statistics: file-manifest/file-statistics.md
+      - Integration with Existing Project: file-manifest/integration-with-existing-project.md
+      - Environment Setup: file-manifest/environment-setup.md
+      - How to Use Each Component: file-manifest/how-to-use-each-component.md
+      - Quick Reference: file-manifest/quick-reference.md
+    - Changelog: CHANGELOG.md
   
 markdown_extensions:
   - pymdownx.tasklist:
       custom_checkbox: true
   - def_list
   - pymdownx.superfences
+  - admonition
+  - pymdownx.details
   
   - material.extensions.preview:
       configurations:
         - targets:
             include:
-              - 1_home/*
-              - FEATURES.md
-              - 4_setup/*
-              - QUICKSTART.md
-              - SUPPORT.md
+              - api-setup/*
+              - features.md
+              - setup-complete/*
+              - quickstart.md
+              - support.md
 
 repo_url: https://github.com/joeaoregan/TUS-26-ETP-AI-Traffic-Optimisation
 repo_name: GitHub

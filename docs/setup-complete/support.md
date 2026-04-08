@@ -24,7 +24,7 @@ For issues:
 - [x] Check service logs: `docker-compose logs service_name`
 - [x] Verify services are running: `docker-compose ps`
 - [x] Test individual services: `curl http://localhost:8000/health`
-- [x] Review [INDEX.md](../1_home/index.md) (README.md) for detailed troubleshooting
+- [x] Review [INDEX.md](../api-setup/index.md) (README.md) for detailed troubleshooting
 
 ---
 
