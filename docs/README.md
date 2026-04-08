@@ -18,7 +18,10 @@
 ![GitHub top language](https://img.shields.io/github/languages/top/joeaoregan/TUS-26-ETP-AI-Traffic-Optimisation)
 ![Stars](https://img.shields.io/github/stars/joeaoregan/TUS-26-ETP-AI-Traffic-Optimisation?style=social)
 
-> **Project Goal:** Target 15-20% reduction in urban traffic congestion for the Athlone "Orange Loop" using Reinforcement Learning.
+> **Project Goal:** Target 15-20% reduction in urban traffic congestion for the Athlone "Orange Loop" using Reinforcement Learning, measured by:
+> - **Average Travel Time (ATT):** -15%
+> - **Mean Queue Length (MQL):** -20%
+> - **Data Integrity:** TLS 1.3 secured telemetry pipeline
 
 ### 🔗 Quick Links
 
@@ -26,6 +29,39 @@
 - **[System Architecture](SYSTEM_ARCHITECTURE.md)** — Detailed system design
 - **[Quick Start Guide](QUICKSTART.md)** — Get up and running quickly
 - **[Full Documentation](https://joeaoregan.github.io/TUS-26-ETP-AI-Traffic-Optimisation/)** — Complete mkdocs site
+
+<details>
+  <summary>🛠️ API Setup</summary>
+
+   [🧩 Components]()  
+   [🚗 API Setup Guide](https://joeaoregan.github.io/TUS-26-ETP-AI-Traffic-Optimisation/api-setup/api-setup-guide/#option-1-using-docker-compose-recommended)  
+   [📡 API Usage Examples](https://joeaoregan.github.io/TUS-26-ETP-AI-Traffic-Optimisation/api-setup/api-usage-examples/#get-traffic-action-demo-random-junction)  
+   [🔐 Environment Variables](https://joeaoregan.github.io/TUS-26-ETP-AI-Traffic-Optimisation/api-setup/environment-variables/)  
+   [🐳 Docker Compose Configuration](https://joeaoregan.github.io/TUS-26-ETP-AI-Traffic-Optimisation/api-setup/docker-compose-configuration/)  
+   [📊 Monitoring and Logging](https://joeaoregan.github.io/TUS-26-ETP-AI-Traffic-Optimisation/api-setup/monitoring-and-logging/)  
+   [🔄 Using Different Models](https://joeaoregan.github.io/TUS-26-ETP-AI-Traffic-Optimisation/api-setup/using-different-models/)  
+   [⚡ Performance Tuning](https://joeaoregan.github.io/TUS-26-ETP-AI-Traffic-Optimisation/api-setup/performance-tuning/)  
+   [🐛 Troubleshooting](https://joeaoregan.github.io/TUS-26-ETP-AI-Traffic-Optimisation/api-setup/troubleshooting/)  
+   [🌍 Production Deployment](https://joeaoregan.github.io/TUS-26-ETP-AI-Traffic-Optimisation/api-setup/production-deployment/)  
+
+</details>
+
+<details>
+  <summary>💬 Support</summary>
+
+- [👥 Contact](https://joeaoregan.github.io/TUS-26-ETP-AI-Traffic-Optimisation/support/#contact)
+- [🤝 Contributing](https://joeaoregan.github.io/TUS-26-ETP-AI-Traffic-Optimisation/support/#contributing)
+- [⚠️ Issues](https://joeaoregan.github.io/TUS-26-ETP-AI-Traffic-Optimisation/support/#issues)
+    
+</details>
+<details>
+  <summary>📖 API Documentation</summary>
+
+- [API Documentation](https://joeaoregan.github.io/TUS-26-ETP-AI-Traffic-Optimisation/api-docs/)
+- [Java API Gateway](https://joeaoregan.github.io/TUS-26-ETP-AI-Traffic-Optimisation/api-docs/api-gateway/)
+- [Python Inference Service](https://joeaoregan.github.io/TUS-26-ETP-AI-Traffic-Optimisation/api-docs/inference-service/)
+    
+</details>
 
 #### 🌐 Live Services
 - **[API Gateway](https://ai-traffic-control-api.onrender.com)** — REST API service
@@ -35,16 +71,6 @@
 - **[API Gateway Swagger](https://ai-traffic-control-api.onrender.com/swagger-ui/index.html)** — Interactive API docs
 - **[Inference Service Swagger](https://traffic-inference-service.onrender.com/docs)** — Interactive API docs
 
-### 👥 Research Team
-- [Adam O Neill Mc Knight](https://github.com/AdamQ45), [David Claffey](https://github.com/dclaff), [Edgars Peskaitis](https://github.com/edgar183), [Joe O'Regan](https://github.com/joeaoregan)
-
----
-
-## 📈 Performance Targets
-- **Average Travel Time (ATT):** Target -15%
-- **Mean Queue Length (MQL):** Target -20%
-- **Data Integrity:** TLS 1.3 secured telemetry pipeline
-
 ---
 
 ## 🏗️ System Architecture
@@ -52,8 +78,8 @@
 This repository implements a **Cloud-Native Microservices Pipeline** designed for the Athlone "Orange Loop" case study. 
 
 - **[Traffic Monitoring Gateway](java-api-gateway/README.md) (Java/Spring Boot):** Manages secure telemetry ingestion and orchestrates service communication.
+  - **JWT authentication & role-based access control:** available in [A00163691-JWTAuth](../../tree/A00163691-JWTAuth) branch for production deployments.
 - **[LSTM Predictor Service](lstm-predictor-service/README.md) (Python/FastAPI):** Forecasts vehicle flow 15 minutes ahead using historical traffic patterns, achieving MAE < 10% accuracy to provide high-fidelity state information for the RL agent.
-
 - **[RL-Inference Service](rl-inference-service/README.md) (Python/FastAPI):** Hosts a trained **PPO (Proximal Policy Optimization)** model to predict optimal signal timings based on real-time traffic density.
 - **[Simulation Layer](SUMO\Simulations\Base\README.md) (SUMO):** Integrated high-fidelity environment for testing adaptive signal logic against baseline fixed-time controllers.
 
@@ -103,35 +129,10 @@ TUS-26-ETP2-Python-Data-Science-and-ML-Pipeline/
 └── SYSTEM_ARCHITECTURE.md                  # 
 ```
 
-<details>
-  <summary>🛠️ API Setup</summary>
+---
 
-   [🧩 Components]()  
-   [🚗 API Setup Guide](https://joeaoregan.github.io/TUS-26-ETP-AI-Traffic-Optimisation/api-setup/api-setup-guide/#option-1-using-docker-compose-recommended)  
-   [📡 API Usage Examples](https://joeaoregan.github.io/TUS-26-ETP-AI-Traffic-Optimisation/api-setup/api-usage-examples/#get-traffic-action-demo-random-junction)  
-   [🔐 Environment Variables](https://joeaoregan.github.io/TUS-26-ETP-AI-Traffic-Optimisation/api-setup/environment-variables/)  
-   [🐳 Docker Compose Configuration](https://joeaoregan.github.io/TUS-26-ETP-AI-Traffic-Optimisation/api-setup/docker-compose-configuration/)  
-   [📊 Monitoring and Logging](https://joeaoregan.github.io/TUS-26-ETP-AI-Traffic-Optimisation/api-setup/monitoring-and-logging/)  
-   [🔄 Using Different Models](https://joeaoregan.github.io/TUS-26-ETP-AI-Traffic-Optimisation/api-setup/using-different-models/)  
-   [⚡ Performance Tuning](https://joeaoregan.github.io/TUS-26-ETP-AI-Traffic-Optimisation/api-setup/performance-tuning/)  
-   [🐛 Troubleshooting](https://joeaoregan.github.io/TUS-26-ETP-AI-Traffic-Optimisation/api-setup/troubleshooting/)  
-   [🌍 Production Deployment](https://joeaoregan.github.io/TUS-26-ETP-AI-Traffic-Optimisation/api-setup/production-deployment/)  
+<div align="center">
 
-</details>
+2026 &bull; [Edgars Peskaitis](https://github.com/edgar183) &bull; [Joe O'Regan](https://github.com/joeaoregan) &bull; [David Claffey](https://github.com/dclaff) &bull; [Adam O Neill Mc Knight](https://github.com/AdamQ45)
 
-<details>
-  <summary>💬 Support</summary>
-
-- [👥 Contact](https://joeaoregan.github.io/TUS-26-ETP-AI-Traffic-Optimisation/support/#contact)
-- [🤝 Contributing](https://joeaoregan.github.io/TUS-26-ETP-AI-Traffic-Optimisation/support/#contributing)
-- [⚠️ Issues](https://joeaoregan.github.io/TUS-26-ETP-AI-Traffic-Optimisation/support/#issues)
-    
-</details>
-<details>
-  <summary>📖 API Documentation</summary>
-
-- [API Documentation](https://joeaoregan.github.io/TUS-26-ETP-AI-Traffic-Optimisation/api-docs/)
-- [Java API Gateway](https://joeaoregan.github.io/TUS-26-ETP-AI-Traffic-Optimisation/api-docs/api-gateway/)
-- [Python Inference Service](https://joeaoregan.github.io/TUS-26-ETP-AI-Traffic-Optimisation/api-docs/inference-service/)
-    
-</details>
+</div>
