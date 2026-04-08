@@ -23,17 +23,25 @@
 > - **Mean Queue Length (MQL):** -20%
 > - **Data Integrity:** TLS 1.3 secured telemetry pipeline
 
-### 🔗 Quick Links
+## 🔗 Quick Links
 
-#### 📚 Documentation
+### 🌐 Live Services
+- **[API Gateway](https://ai-traffic-control-api.onrender.com)** — REST API service
+- **[Inference Service](https://traffic-inference-service.onrender.com)** — RL model inference
+
+### 📖 API Documentation (Swagger)
+- **[API Gateway Swagger](https://ai-traffic-control-api.onrender.com/swagger-ui/index.html)** — Interactive API docs
+- **[Inference Service Swagger](https://traffic-inference-service.onrender.com/docs)** — Interactive API docs
+
+### 📚 Documentation
 - **[System Architecture](SYSTEM_ARCHITECTURE.md)** — Detailed system design
 - **[Quick Start Guide](QUICKSTART.md)** — Get up and running quickly
 - **[Full Documentation](https://joeaoregan.github.io/TUS-26-ETP-AI-Traffic-Optimisation/)** — Complete mkdocs site
 
 <details>
-  <summary>🛠️ API Setup</summary>
+  <summary>🛠️ API Setup — Components, Setup, Examples, ENV, Docker, Monitoring & Logging</summary>
 
-- [🧩 Components]()  
+- [🧩 Components](https://joeaoregan.github.io/TUS-26-ETP-AI-Traffic-Optimisation/api-setup/components/)  
 - [🚗 API Setup Guide](https://joeaoregan.github.io/TUS-26-ETP-AI-Traffic-Optimisation/api-setup/api-setup-guide/#option-1-using-docker-compose-recommended)  
 - [📡 API Usage Examples](https://joeaoregan.github.io/TUS-26-ETP-AI-Traffic-Optimisation/api-setup/api-usage-examples/#get-traffic-action-demo-random-junction)  
 - [🔐 Environment Variables](https://joeaoregan.github.io/TUS-26-ETP-AI-Traffic-Optimisation/api-setup/environment-variables/)  
@@ -47,29 +55,21 @@
 </details>
 
 <details>
-  <summary>💬 Support</summary>
-
-- [👥 Contact](https://joeaoregan.github.io/TUS-26-ETP-AI-Traffic-Optimisation/support/#contact)
-- [🤝 Contributing](https://joeaoregan.github.io/TUS-26-ETP-AI-Traffic-Optimisation/support/#contributing)
-- [⚠️ Issues](https://joeaoregan.github.io/TUS-26-ETP-AI-Traffic-Optimisation/support/#issues)
-    
-</details>
-<details>
-  <summary>📖 API Documentation</summary>
+  <summary>📖 API Documentation — Gateway & Inference Service API docs</summary>
 
 - [API Documentation](https://joeaoregan.github.io/TUS-26-ETP-AI-Traffic-Optimisation/api-docs/)
 - [Java API Gateway](https://joeaoregan.github.io/TUS-26-ETP-AI-Traffic-Optimisation/api-docs/api-gateway/)
 - [Python Inference Service](https://joeaoregan.github.io/TUS-26-ETP-AI-Traffic-Optimisation/api-docs/inference-service/)
     
 </details>
+<details>
+  <summary>💬 Support — Contact, Contributing, Issues</summary>
 
-#### 🌐 Live Services
-- **[API Gateway](https://ai-traffic-control-api.onrender.com)** — REST API service
-- **[Inference Service](https://traffic-inference-service.onrender.com)** — RL model inference
-
-#### 📖 API Documentation (Swagger)
-- **[API Gateway Swagger](https://ai-traffic-control-api.onrender.com/swagger-ui/index.html)** — Interactive API docs
-- **[Inference Service Swagger](https://traffic-inference-service.onrender.com/docs)** — Interactive API docs
+- [👥 Contact](https://joeaoregan.github.io/TUS-26-ETP-AI-Traffic-Optimisation/support/#contact)
+- [🤝 Contributing](https://joeaoregan.github.io/TUS-26-ETP-AI-Traffic-Optimisation/support/#contributing)
+- [⚠️ Issues](https://joeaoregan.github.io/TUS-26-ETP-AI-Traffic-Optimisation/support/#issues)
+    
+</details>
 
 ---
 
@@ -88,11 +88,7 @@ This system is specifically modeled to address the saturation flow rates and sig
 
 ---
 
-# AI Traffic Control API Setup Guide
-
-This project provides a complete REST API solution for traffic signal control using trained RL models.
-
-## Project Structure
+## 🗂️ Project Structure
 
 ```
 TUS-26-ETP-AI-Traffic-Optimisation/
