@@ -36,6 +36,10 @@ services:
     environment:
       RL_INFERENCE_URL: http://rl-inference:8000/predict_action
       RL_INFERENCE_SERVICE_TIMEOUT: "10000"
+      JWT_SECRET: change-this-secret-key-to-a-very-long-random-value
+      JWT_AUTH_USERNAME: admin
+      JWT_AUTH_PASSWORD: admin123
+      JWT_EXPIRATION_MINUTES: "60"
     networks:
       - traffic-network
     healthcheck:

@@ -48,7 +48,9 @@ nav:
   - Inference Service: inference-service/index.md
   - SUMO: sumo/index.md
   - LSTM: lstm/index.md
-  - Security: security/index.md
+  - Security: 
+    - Overview: security/index.md
+    - Java API Gateway: security/java-api-gateway.md
   - System Architecture: 
     - system-architecture/index.md
     - 1. High-Level: system-architecture/high-level.md

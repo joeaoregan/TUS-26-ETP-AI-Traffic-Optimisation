@@ -37,6 +37,7 @@
 - **[System Architecture](SYSTEM_ARCHITECTURE.md)** — Detailed system design
 - **[Quick Start Guide](QUICKSTART.md)** — Get up and running quickly
 - **[Full Documentation](https://joeaoregan.github.io/TUS-26-ETP-AI-Traffic-Optimisation/)** — Complete mkdocs site
+- **[Gateway JWT Authentication Guide](https://joeaoregan.github.io/TUS-26-ETP-AI-Traffic-Optimisation/security/java-api-gateway.md)** — JWT guide 
 
 <details>
   <summary>🛠️ API Setup — Components, Setup, Examples, ENV, Docker, Monitoring & Logging</summary>
