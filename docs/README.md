@@ -51,9 +51,12 @@
 
 This repository implements a **Cloud-Native Microservices Pipeline** designed for the Athlone "Orange Loop" case study. 
 
-- **Traffic Monitoring Gateway (Java/Spring Boot):** Manages secure telemetry ingestion and orchestrates service communication.
-- **RL-Inference Service (Python/FastAPI):** Hosts a trained **PPO (Proximal Policy Optimization)** model to predict optimal signal timings based on real-time traffic density.
-- **Simulation Layer (SUMO):** Integrated high-fidelity environment for testing adaptive signal logic against baseline fixed-time controllers.
+- **[Traffic Monitoring Gateway](java-api-gateway/README.md) (Java/Spring Boot):** Manages secure telemetry ingestion and orchestrates service communication.
+- **[LSTM Predictor Service](lstm-predictor-service/README.md) (Python/FastAPI):** Forecasts vehicle flow 15 minutes ahead using historical traffic patterns, achieving MAE < 10% accuracy to provide high-fidelity state information for the RL agent.
+
+- **[RL-Inference Service](rl-inference-service/README.md) (Python/FastAPI):** Hosts a trained **PPO (Proximal Policy Optimization)** model to predict optimal signal timings based on real-time traffic density.
+- **[Simulation Layer](SUMO\Simulations\Base\README.md) (SUMO):** Integrated high-fidelity environment for testing adaptive signal logic against baseline fixed-time controllers.
+
 
 This system is specifically modeled to address the saturation flow rates and signal-timing patterns of the Athlone 'Orange Loop' corridor, providing a scalable template for Smart City traffic management in regional Irish hubs.
 
@@ -100,366 +103,35 @@ TUS-26-ETP2-Python-Data-Science-and-ML-Pipeline/
 └── SYSTEM_ARCHITECTURE.md                  # 
 ```
 
-<details open>
-  <summary>1. Components</summary>
+<details>
+  <summary>🛠️ API Setup</summary>
 
-#### 1. Python FastAPI Service (RL Inference Service)
-
-- **Port:** 8000
-- **Purpose:** Loads and serves trained PPO models for action prediction
-- **Key Endpoints:**
-  - `GET /health` - Health check
-  - `POST /predict_action` - Action prediction endpoint
-  - `GET /model_info` - Model information
-
-#### 2. Java Spring Boot API Gateway
-
-- **Port:** 8080
-- **Purpose:** REST API gateway that communicates with the Python service
-- **Key Endpoints:**
-  - `GET /api/traffic/health` - Health check
-  - `GET /api/traffic/action` - Get traffic action (generates dummy observations)
-  - `POST /api/traffic/action` - Predict action with custom observations
-
-#### 3. Docker Compose
-
-- Orchestrates both services
-- Manages networking and dependencies
-- Provides health checks and monitoring
-
-The Java Gateway receives raw vehicle counts, transforms them into an observation vector, and forwards them to the Python service for a decision.
+   [🧩 Components]()  
+   [🚗 API Setup Guide](https://joeaoregan.github.io/TUS-26-ETP-AI-Traffic-Optimisation/api-setup/api-setup-guide/#option-1-using-docker-compose-recommended)  
+   [📡 API Usage Examples](https://joeaoregan.github.io/TUS-26-ETP-AI-Traffic-Optimisation/api-setup/api-usage-examples/#get-traffic-action-demo-random-junction)  
+   [🔐 Environment Variables](https://joeaoregan.github.io/TUS-26-ETP-AI-Traffic-Optimisation/api-setup/environment-variables/)  
+   [🐳 Docker Compose Configuration](https://joeaoregan.github.io/TUS-26-ETP-AI-Traffic-Optimisation/api-setup/docker-compose-configuration/)  
+   [📊 Monitoring and Logging](https://joeaoregan.github.io/TUS-26-ETP-AI-Traffic-Optimisation/api-setup/monitoring-and-logging/)  
+   [🔄 Using Different Models](https://joeaoregan.github.io/TUS-26-ETP-AI-Traffic-Optimisation/api-setup/using-different-models/)  
+   [⚡ Performance Tuning](https://joeaoregan.github.io/TUS-26-ETP-AI-Traffic-Optimisation/api-setup/performance-tuning/)  
+   [🐛 Troubleshooting](https://joeaoregan.github.io/TUS-26-ETP-AI-Traffic-Optimisation/api-setup/troubleshooting/)  
+   [🌍 Production Deployment](https://joeaoregan.github.io/TUS-26-ETP-AI-Traffic-Optimisation/api-setup/production-deployment/)  
 
 </details>
 
 <details>
-  <summary>2. Setup Instructions</summary>
+  <summary>💬 Support</summary>
 
-#### Prerequisites
-- Docker & Docker Compose
-- Or locally:
-  - Python 3.9+
-  - Java 17+
-  - Maven 3.9+
-
-#### Steps to Deploy
-
-##### Option 1: Using Docker Compose (Recommended)
-
-1. **Copy your trained model:**
-   ```bash
-   # Copy trained model to the models directory
-   # Example: Copy from C:\Users\gemer\Sumo\my-network\Results\sweeps\<sweep_dir>\<seed>\<variant>\model.zip
-   mkdir -p rl-inference-service/app/trained_models
-   copy "C:\Users\gemer\Sumo\my-network\Results\sweeps\pressure\seed_42\A\model.zip" "rl-inference-service\app\trained_models\model.zip"
-   ```
-
-2. **Set environment variables (optional):**
-   ```bash
-   # Create .env file for RL Inference Service
-   echo MODEL_PATH=/app/trained_models/model.zip > rl-inference-service/.env
-   echo OBSERVATION_SHAPE_DIM=10 >> rl-inference-service/.env
-   echo NUM_AGENTS=1 >> rl-inference-service/.env
-   ```
-
-3. **Build and start services:**
-   ```bash
-   docker-compose up --build
-   ```
-
-4. **Test the API:**
-   ```bash
-   # Get traffic action (auto-generated observations)
-   curl http://localhost:8080/api/traffic/action
-
-   # Predict action with custom observations
-   curl -X POST http://localhost:8080/api/traffic/action \
-     -H "Content-Type: application/json" \
-     -d '{"observations": [0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1.0]}'
-
-   # Check health
-   curl http://localhost:8080/api/traffic/health
-   ```
-
-##### Option 2: Local Development
-
-**Python Service:**
-```bash
-cd rl-inference-service
-
-# Create virtual environment
-python -m venv venv
-venv\Scripts\activate  # Windows
-source venv/bin/activate  # Linux/Mac
-
-# Install dependencies
-pip install -r requirements.txt
-
-# Set environment variables
-set MODEL_PATH=path\to\your\model.zip  # Windows
-export MODEL_PATH=path/to/your/model.zip  # Linux/Mac
-
-# Run service
-python -m uvicorn app.main:app --host 0.0.0.0 --port 8000 --reload
-```
-
-**Java Gateway:**
-```bash
-cd java-api-gateway
-
-# Set environment variable
-set RL_INFERENCE_SERVICE_URL=http://localhost:8000/predict_action  # Windows
-export RL_INFERENCE_SERVICE_URL=http://localhost:8000/predict_action  # Linux/Mac
-
-# Build and run
-mvn clean install
-mvn spring-boot:run
-```
-
-- Includes Swagger/OpenAPI documentation for all traffic control endpoints.
-
+- [👥 Contact](https://joeaoregan.github.io/TUS-26-ETP-AI-Traffic-Optimisation/support/#contact)
+- [🤝 Contributing](https://joeaoregan.github.io/TUS-26-ETP-AI-Traffic-Optimisation/support/#contributing)
+- [⚠️ Issues](https://joeaoregan.github.io/TUS-26-ETP-AI-Traffic-Optimisation/support/#issues)
+    
 </details>
-
 <details>
-  <summary>3. API Usage Examples</summary>
+  <summary>📖 API Documentation</summary>
 
-#### Get Traffic Action (Auto-generated observations)
-```bash
-curl -X GET http://localhost:8080/api/traffic/action
-```
-
-Response:
-```json
-{
-  "predictedAction": 2,
-  "signalState": "GREEN",
-  "timestamp": 1684756800000,
-  "status": "success"
-}
-```
-
-#### Predict Action with Custom Observations
-```bash
-curl -X POST http://localhost:8080/api/traffic/action \
-  -H "Content-Type: application/json" \
-  -d '{
-    "observations": [0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1.0],
-    "metadata": "peak-hour"
-  }'
-```
-
-Response:
-```json
-{
-  "predictedAction": 1,
-  "signalState": "YELLOW",
-  "timestamp": 1684756800000,
-  "status": "success"
-}
-```
-
-#### Health Check
-```bash
-curl http://localhost:8080/api/traffic/health
-```
-
-Response:
-```json
-{
-  "status": "healthy",
-  "inferenceService": "up",
-  "timestamp": 1684756800000
-}
-```
-
-</details>
-
-<details>
-  <summary>4. Environment Variables</summary>
-
-#### Python Service (RL Inference)
-- `MODEL_PATH`: Path to trained model file (default: `/app/trained_models/model.zip`)
-- `OBSERVATION_SHAPE_DIM`: Observation vector dimension (default: `10`)
-- `NUM_AGENTS`: Number of agents (default: `1`)
-- `API_HOST`: API host address (default: `0.0.0.0`)
-- `API_PORT`: API port number (default: `8000`)
-- `API_RELOAD`: Enable auto-reload on code changes (default: `false`)
-
-#### Java Gateway
-- `RL_INFERENCE_SERVICE_URL`: RL Inference Service URL (default: `http://localhost:8000/predict_action`)
-- `RL_INFERENCE_SERVICE_TIMEOUT`: Request timeout in ms (default: `10000`)
-
-</details>
-
-<details>
-  <summary>5. Docker Compose Configuration</summary>
-
-The `docker-compose.yml` file includes:
-
-- **RL Inference Service:**
-  - Python 3.9 slim image
-  - Volume for trained models
-  - Health checks enabled
-  - Port 8000 exposed
-
-- **Java Gateway:**
-  - Multi-stage build for optimized image
-  - Depends on RL Inference Service
-  - Health checks enabled
-  - Port 8080 exposed
-
-- **Network:** Bridge network for inter-service communication
-
-</details>
-
-<details>
-  <summary>6. Monitoring and Logging</summary>
-
-Both services include:
-- Structured logging configuration
-- Health check endpoints
-- Service-to-service health dependencies
-- Docker logging drivers with rotation
-
-Monitor logs:
-```bash
-docker-compose logs -f rl-inference
-docker-compose logs -f java-gateway
-```
-
-</details>
-
-<details>
-  <summary>7. Using Different Models</summary>
-
-To use different trained models:
-
-1. **Locate your model:**
-   ```
-   C:\Users\gemer\Sumo\my-network\Results\sweeps_*\<sweep_name>\seed_*\<variant>\model.zip
-   
-   Examples:
-   - Results\sweeps\pressure\seed_42\A\model.zip
-   - Results\sweeps\queue\seed_123\B\model.zip
-   - Results\sweeps_2\diff-waiting-time\seed_7\C\model.zip
-   ```
-
-2. **Copy to models directory:**
-   ```bash
-   copy "<source_path>\model.zip" "rl-inference-service\app\trained_models\model.zip"
-   ```
-
-3. **Rebuild and restart:**
-   ```bash
-   docker-compose up --build
-   ```
-
-</details>
-
-<details>
-  <summary>8. Performance Tuning</summary>
-
-#### For High-Throughput Scenarios
-- Adjust Java `RL_INFERENCE_SERVICE_TIMEOUT` if needed
-- Consider load balancing multiple Python service instances
-- Use connection pooling in Java gateway
-
-#### For Lower Latency
-- Run services on same machine
-- Use local model paths instead of network mounts
-- Optimize observation preprocessing in Java gateway
-
-</details>
-
-<details>
-  <summary>9. Troubleshooting</summary>
-
-#### Service won't start
-- Check Docker logs: `docker-compose logs`
-- Verify model file exists and is correct format
-- Check port availability (8000, 8080)
-
-#### Prediction fails with timeout
-- Increase `RL_INFERENCE_SERVICE_TIMEOUT`
-- Check if Python service is running: `docker-compose ps`
-- Verify network connectivity: `docker-compose exec java-gateway ping rl-inference`
-
-#### Model loading fails
-- Verify model path in environment variables
-- Ensure model.zip is a valid stable-baselines3 PPO model
-- Check file permissions
-
-</details>
-
-<details>
-  <summary>10. Production Deployment</summary>
-
-For production:
-1. Use Docker Compose with production-grade orchestration (Kubernetes)
-2. Add load balancing for multiple instances
-3. Configure persistent volumes for logs
-4. Set up monitoring and alerting
-5. Use environment-specific configuration files
-6. Implement API rate limiting and authentication
-7. Set up backup strategies for trained models
-
-</details>
-
-<details>
-  <summary>11. Contributing</summary>
-
-Guidelines for extending the API:
-- Add new endpoints to `TrafficController`
-- Implement new inference clients for other ML services
-- Add middleware for authentication/authorization
-- Extend observation preprocessing logic
-
-</details>
-
-<details>
-  <summary>12. Support</summary>
-
-For issues or questions:
-1. Check service logs: `docker-compose logs`
-2. Test individual services separately
-3. Verify environment variables are set correctly
-4. Check API documentation at `/docs` (Swagger UI - Python service)
-
-</details>
-
-<details>
-  <summary>13. API Documentation (Swagger UI)</summary>
-
-The Java API Gateway now includes automatically generated API documentation using **springdoc-openapi**.
-
-Once the gateway is running, Swagger UI is available at:
-
-```
-http://localhost:8080/swagger-ui/index.html
-```
-
-Swagger is generated automatically from annotations in the Java controller classes.  
-Additional endpoint documentation will be added incrementally.
-
-#### What Swagger Provides
-
-- Interactive documentation for all REST endpoints
-- A complete list of all API endpoints
-- Descriptions of each endpoint and its purpose
-- Example request and response payloads
-- Field‑level documentation for request models
-- Live “Try It Out” testing directly from the browser
-
-#### How It Works
-
-Swagger documentation is generated automatically from annotations in the Java codebase:
-- @Operation — endpoint summary and description
-- @ApiResponse — documented response codes and examples
-- @Schema — request/response model documentation
-- @Tag — groups related endpoints in the UI
-
-#### Where to Add Documentation
-
-All API documentation lives directly in the controller and model classes. \
-This keeps the documentation close to the code and ensures Swagger stays up‑to‑date.
-
+- [API Documentation](https://joeaoregan.github.io/TUS-26-ETP-AI-Traffic-Optimisation/api-docs/)
+- [Java API Gateway](https://joeaoregan.github.io/TUS-26-ETP-AI-Traffic-Optimisation/api-docs/api-gateway/)
+- [Python Inference Service](https://joeaoregan.github.io/TUS-26-ETP-AI-Traffic-Optimisation/api-docs/inference-service/)
+    
 </details>
