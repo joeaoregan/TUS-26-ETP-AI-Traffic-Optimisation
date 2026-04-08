@@ -33,16 +33,16 @@
 <details>
   <summary>🛠️ API Setup</summary>
 
-   [🧩 Components]()  
-   [🚗 API Setup Guide](https://joeaoregan.github.io/TUS-26-ETP-AI-Traffic-Optimisation/api-setup/api-setup-guide/#option-1-using-docker-compose-recommended)  
-   [📡 API Usage Examples](https://joeaoregan.github.io/TUS-26-ETP-AI-Traffic-Optimisation/api-setup/api-usage-examples/#get-traffic-action-demo-random-junction)  
-   [🔐 Environment Variables](https://joeaoregan.github.io/TUS-26-ETP-AI-Traffic-Optimisation/api-setup/environment-variables/)  
-   [🐳 Docker Compose Configuration](https://joeaoregan.github.io/TUS-26-ETP-AI-Traffic-Optimisation/api-setup/docker-compose-configuration/)  
-   [📊 Monitoring and Logging](https://joeaoregan.github.io/TUS-26-ETP-AI-Traffic-Optimisation/api-setup/monitoring-and-logging/)  
-   [🔄 Using Different Models](https://joeaoregan.github.io/TUS-26-ETP-AI-Traffic-Optimisation/api-setup/using-different-models/)  
-   [⚡ Performance Tuning](https://joeaoregan.github.io/TUS-26-ETP-AI-Traffic-Optimisation/api-setup/performance-tuning/)  
-   [🐛 Troubleshooting](https://joeaoregan.github.io/TUS-26-ETP-AI-Traffic-Optimisation/api-setup/troubleshooting/)  
-   [🌍 Production Deployment](https://joeaoregan.github.io/TUS-26-ETP-AI-Traffic-Optimisation/api-setup/production-deployment/)  
+- [🧩 Components]()  
+- [🚗 API Setup Guide](https://joeaoregan.github.io/TUS-26-ETP-AI-Traffic-Optimisation/api-setup/api-setup-guide/#option-1-using-docker-compose-recommended)  
+- [📡 API Usage Examples](https://joeaoregan.github.io/TUS-26-ETP-AI-Traffic-Optimisation/api-setup/api-usage-examples/#get-traffic-action-demo-random-junction)  
+- [🔐 Environment Variables](https://joeaoregan.github.io/TUS-26-ETP-AI-Traffic-Optimisation/api-setup/environment-variables/)  
+- [🐳 Docker Compose Configuration](https://joeaoregan.github.io/TUS-26-ETP-AI-Traffic-Optimisation/api-setup/docker-compose-configuration/)  
+- [📊 Monitoring and Logging](https://joeaoregan.github.io/TUS-26-ETP-AI-Traffic-Optimisation/api-setup/monitoring-and-logging/)  
+- [🔄 Using Different Models](https://joeaoregan.github.io/TUS-26-ETP-AI-Traffic-Optimisation/api-setup/using-different-models/)  
+- [⚡ Performance Tuning](https://joeaoregan.github.io/TUS-26-ETP-AI-Traffic-Optimisation/api-setup/performance-tuning/)  
+- [🐛 Troubleshooting](https://joeaoregan.github.io/TUS-26-ETP-AI-Traffic-Optimisation/api-setup/troubleshooting/)  
+- [🌍 Production Deployment](https://joeaoregan.github.io/TUS-26-ETP-AI-Traffic-Optimisation/api-setup/production-deployment/)  
 
 </details>
 
@@ -95,7 +95,7 @@ This project provides a complete REST API solution for traffic signal control us
 ## Project Structure
 
 ```
-TUS-26-ETP2-Python-Data-Science-and-ML-Pipeline/
+TUS-26-ETP-AI-Traffic-Optimisation/
 ├── java-api-gateway/                       # Java Spring Boot gateway
 │   ├── src/
 │   │   ├── main/java/com/example/gateway/
@@ -108,25 +108,45 @@ TUS-26-ETP2-Python-Data-Science-and-ML-Pipeline/
 │   │       └── application.properties      # Spring config
 │   ├── pom.xml                             # Maven configuration
 │   └── Dockerfile                          # Java service Docker image
-├── rl-inference-service/                   # Python FastAPI service
+├── lstm-predictor-service/                 # Python LSTM forecasting service
 │   ├── app/
 │   │   ├── main.py                         # FastAPI application
 │   │   └── models/                         # Directory for trained models
 │   ├── Dockerfile                          # Python service Docker image
 │   ├── requirements.txt                    # Python dependencies
 │   └── .env.example                        # Environment variables template
-├── SUMO/                                   # 
+├── rl-inference-service/                   # Python FastAPI RL service
+│   ├── app/
+│   │   ├── main.py                         # FastAPI application
+│   │   └── models/                         # Directory for trained models
+│   ├── Dockerfile                          # Python service Docker image
+│   ├── requirements.txt                    # Python dependencies
+│   └── .env.example                        # Environment variables template
+├── docs/                                   # MkDocs documentation
+│   ├── 1_home/                             # Quick reference guides
+│   │   ├── INDEX.md
+│   │   ├── 3_setup.md
+│   │   ├── 4_api.md
+│   │   └── ...
+│   ├── 4_setup/                            # Detailed setup & configuration
+│   │   ├── 1_created.md
+│   │   ├── 2_quickstart.md
+│   │   ├── 3_architecture.md
+│   │   └── ...
+│   ├── mkdocs.yml                          # MkDocs configuration
+│   └── FEATURES.md                         # Feature matrix
+├── SUMO/                                   # SUMO traffic simulation
 │   ├── results/
-│   │   ├── Base/
-│   ├── Simulations/
-│   │   ├── Base/
+│   │   └── Base/
+│   └── Simulations/
+│       └── Base/
 ├── docker-compose.yml                      # Docker Compose orchestration
-└── CHANGELOG.md                            # Change log
-└── FILE_MAINFEST.md                        # 
-└── QUICKSTART.md                           # Quick start guide
-└── README.md                               # This file
-└── SETUP_COMPLETE.md                       # 
-└── SYSTEM_ARCHITECTURE.md                  # 
+├── CHANGELOG.md                            # Change log
+├── FILE_MANIFEST.md                        # File manifest
+├── QUICKSTART.md                           # Quick start guide
+├── README.md                               # This file
+├── SYSTEM_ARCHITECTURE.md                  # Detailed architecture
+└── SUPPORT.md                              # Support & contributing
 ```
 
 ---
