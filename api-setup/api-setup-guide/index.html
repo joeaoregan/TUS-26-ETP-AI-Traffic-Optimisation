@@ -11,7 +11,7 @@
         <link rel="canonical" href="https://joeaoregan.github.io/TUS-26-ETP-AI-Traffic-Optimisation/api-setup/api-setup-guide/">
       
       
-        <link rel="prev" href="../">
+        <link rel="prev" href="../components/">
       
       
         <link rel="next" href="../api-usage-examples/">
@@ -2344,6 +2344,34 @@
                 
   
   
+  
+  
+    <li class="md-nav__item">
+      <a href="../components/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    🧩 Components
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
     
   
   
@@ -2410,56 +2438,6 @@
       
     </span>
   </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#components" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Components
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Components">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#1-python-fastapi-service-rl-inference-service" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        1. Python FastAPI Service (RL Inference Service)
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#2-java-spring-boot-api-gateway" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        2. Java Spring Boot API Gateway
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#3-docker-compose" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        3. Docker Compose
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
   
 </li>
       
@@ -3240,56 +3218,6 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#components" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Components
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Components">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#1-python-fastapi-service-rl-inference-service" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        1. Python FastAPI Service (RL Inference Service)
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#2-java-spring-boot-api-gateway" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        2. Java Spring Boot API Gateway
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#3-docker-compose" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        3. Docker Compose
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
   <a href="#setup-instructions" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -3470,32 +3398,6 @@
 └── SETUP_COMPLETE.md                       # 
 └── SYSTEM_ARCHITECTURE.md                  # 
 </code></pre></div>
-<h2 id="components">Components</h2>
-<h3 id="1-python-fastapi-service-rl-inference-service">1. Python FastAPI Service (RL Inference Service)</h3>
-<ul>
-<li><strong>Port:</strong> 8000</li>
-<li><strong>Purpose:</strong> Loads and serves trained PPO models for action prediction</li>
-<li><strong>Key Endpoints:</strong></li>
-<li><code>GET /health</code> - Health check</li>
-<li><code>POST /predict_action</code> - Action prediction endpoint</li>
-<li><code>GET /model_info</code> - Model information</li>
-</ul>
-<h3 id="2-java-spring-boot-api-gateway">2. Java Spring Boot API Gateway</h3>
-<ul>
-<li><strong>Port:</strong> 8080</li>
-<li><strong>Purpose:</strong> REST API gateway that communicates with the Python service</li>
-<li><strong>Key Endpoints:</strong></li>
-<li><code>GET /api/traffic/health</code> - Health check</li>
-<li><code>GET /api/traffic/action</code> - Get traffic action (generates dummy observations)</li>
-<li><code>POST /api/traffic/action</code> - Predict action with custom observations</li>
-</ul>
-<h3 id="3-docker-compose">3. Docker Compose</h3>
-<ul>
-<li>Orchestrates both services</li>
-<li>Manages networking and dependencies</li>
-<li>Provides health checks and monitoring</li>
-</ul>
-<p>The Java Gateway receives raw vehicle counts, transforms them into an observation vector, and forwards them to the Python service for a decision.</p>
 <h2 id="setup-instructions">Setup Instructions</h2>
 <h3 id="prerequisites">Prerequisites</h3>
 <ul>
@@ -3610,7 +3512,7 @@ mvn<span class="w"> </span>spring-boot:run
       <nav class="md-footer__inner md-grid" aria-label="Footer" >
         
           
-          <a href="../" class="md-footer__link md-footer__link--prev" aria-label="Previous: Overview">
+          <a href="../components/" class="md-footer__link md-footer__link--prev" aria-label="Previous: 🧩 Components">
             <div class="md-footer__button md-icon">
               
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
@@ -3620,7 +3522,7 @@ mvn<span class="w"> </span>spring-boot:run
                 Previous
               </span>
               <div class="md-ellipsis">
-                Overview
+                🧩 Components
               </div>
             </div>
           </a>

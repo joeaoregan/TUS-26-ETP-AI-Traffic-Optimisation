@@ -101,7 +101,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#sumo" class="md-skip">
+        <a href="#sumo-traffic-simulation-athlone-network" class="md-skip">
           Skip to content
         </a>
       
@@ -929,10 +929,65 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#to-do" class="md-nav__link">
+  <a href="#requirements" class="md-nav__link">
     <span class="md-ellipsis">
       
-        To do
+        Requirements
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#running-the-simulation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Running the Simulation
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#how-the-simulation-works" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How the Simulation Works
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#core-files-required-to-run-the-simulation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Core Files (required to run the simulation)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#source-reference-data" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Source &amp; Reference Data
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#simulation-output-files-generated-on-run" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Simulation Output Files (generated on run)
       
     </span>
   </a>
@@ -2390,6 +2445,34 @@
   
   
     <li class="md-nav__item">
+      <a href="../api-setup/components/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    🧩 Components
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../api-setup/api-setup-guide/" class="md-nav__link">
         
   
@@ -3103,10 +3186,65 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#to-do" class="md-nav__link">
+  <a href="#requirements" class="md-nav__link">
     <span class="md-ellipsis">
       
-        To do
+        Requirements
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#running-the-simulation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Running the Simulation
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#how-the-simulation-works" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How the Simulation Works
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#core-files-required-to-run-the-simulation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Core Files (required to run the simulation)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#source-reference-data" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Source &amp; Reference Data
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#simulation-output-files-generated-on-run" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Simulation Output Files (generated on run)
       
     </span>
   </a>
@@ -3139,8 +3277,131 @@
   
 
 
-<h1 id="sumo">SUMO</h1>
-<h2 id="to-do">To do</h2>
+<h1 id="sumo-traffic-simulation-athlone-network">SUMO Traffic Simulation — Athlone Network</h1>
+<p>A traffic simulation of a local road network built using <a href="https://sumo.dlr.de/">Eclipse SUMO</a> v1.26.0. The simulation runs 7 predefined routes through the town network for a 12-hour period using real-world OSM map data.</p>
+<hr />
+<h2 id="requirements">Requirements</h2>
+<ul>
+<li><a href="https://sumo.dlr.de/docs/Downloads.php">Eclipse SUMO</a> v1.26.0 or later</li>
+<li>Python 3.x</li>
+<li><code>SUMO_HOME</code> environment variable set (e.g. <code>C:\Program Files (x86)\Eclipse\Sumo</code>)</li>
+<li>Python packages: <code>pandas</code>, <code>beautifulsoup4</code> (only needed for data extraction scripts)</li>
+</ul>
+<hr />
+<h2 id="running-the-simulation">Running the Simulation</h2>
+<div class="highlight"><pre><span></span><code>run.bat
+</code></pre></div>
+<p>This launches <code>sumo-gui</code> with the main configuration file <code>osm.sumocfg</code>.</p>
+<hr />
+<h2 id="how-the-simulation-works">How the Simulation Works</h2>
+<p>The active route configuration in <code>osm.sumocfg</code> is:</p>
+<div class="highlight"><pre><span></span><code><span class="nt">&lt;route-files</span><span class="w"> </span><span class="na">value=</span><span class="s">&quot;tii_flows.xml,town_routes.rou.xml&quot;</span><span class="nt">/&gt;</span>
+</code></pre></div>
+<ul>
+<li><code>town_routes.rou.xml</code> is the single active source of traffic. It defines 7 fixed routes with time-varying hourly flows derived from TII counts. Each route contains 12 hourly flow slots covering 07:00–19:00.</li>
+<li>Route split (new):<ul>
+<li>West entry (Bali side) is split across 3 routes:<ul>
+<li>bali-bali-goldenIsland</li>
+<li>bali-bali-long</li>
+<li>bali-shannon-short</li>
+</ul>
+</li>
+<li>East entry (B&amp;Q side) is split across 4 routes:<ul>
+<li>bAndQ-shannon-orenge</li>
+<li>bAndQ-bAndq-orenge</li>
+<li>bAndQ-bAndQ-long</li>
+<li>bAndQ-shannon-long</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><code>tii_flows.xml</code> is loaded but currently contains only a vehicle type definition and contributes no vehicles. All traffic originates from <code>town_routes.rou.xml</code>.</li>
+</ul>
+<hr />
+<h2 id="core-files-required-to-run-the-simulation">Core Files (required to run the simulation)</h2>
+<table>
+<thead>
+<tr>
+<th>File</th>
+<th>Purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>osm.net.xml.gz</code></td>
+<td>The road network generated from OpenStreetMap data. The main network file used by SUMO.</td>
+</tr>
+<tr>
+<td><code>osm.sumocfg</code></td>
+<td>The main SUMO simulation configuration. Defines input files, simulation time (0–43200 s), output files, routing and TLS settings.</td>
+</tr>
+<tr>
+<td><code>town_routes.rou.xml</code></td>
+<td>Defines the 7 predefined routes with hourly time-varying flows derived from TII traffic counts. West counts are distributed across the 3 Bali routes; East counts are distributed across the 4 B&amp;Q routes. 12 flow slots per route (one per hour, 07:00–19:00).</td>
+</tr>
+<tr>
+<td><code>tii_flows.xml</code></td>
+<td>Currently a placeholder. Contains only a <code>car</code> vehicle type definition. No flows are active. Loaded by SUMO but contributes vehicles to the simulation.</td>
+</tr>
+<tr>
+<td><code>tii_hourly_traffic.csv</code></td>
+<td>Source of the hourly East/West vehicle counts used to generate the flow rates in <code>town_routes.rou.xml</code>. Not read directly by SUMO — data was used to populate the flow values.</td>
+</tr>
+<tr>
+<td><code>osm.view.xml</code></td>
+<td>GUI display settings for <code>sumo-gui</code>. Sets the visual scheme to "real world" and a 20 ms simulation delay.</td>
+</tr>
+<tr>
+<td><code>run.bat</code></td>
+<td>One-click launcher. Runs <code>sumo-gui -c osm.sumocfg</code>.</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="source-reference-data">Source &amp; Reference Data</h2>
+<table>
+<thead>
+<tr>
+<th>File</th>
+<th>Purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>osm_bbox.osm.xml.gz</code></td>
+<td>Raw OpenStreetMap export for the bounding box area. Source input used by <code>netconvert</code> to build <code>osm.net.xml.gz</code>.</td>
+</tr>
+<tr>
+<td><code>osm.netccfg</code></td>
+<td><code>netconvert</code> configuration used to convert the OSM data into the SUMO network. Enables left-hand traffic, actuated traffic lights, and street name output.</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="simulation-output-files-generated-on-run">Simulation Output Files (generated on run)</h2>
+<table>
+<thead>
+<tr>
+<th>File</th>
+<th>Purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>edgeData.xml</code></td>
+<td>Per-edge traffic statistics (volume, speed, occupancy) collected every hour during simulation.</td>
+</tr>
+<tr>
+<td><code>tripinfos.xml</code></td>
+<td>Per-vehicle trip statistics (departure time, arrival time, duration, route length).</td>
+</tr>
+<tr>
+<td><code>stats.xml</code></td>
+<td>Overall simulation statistics summary.</td>
+</tr>
+</tbody>
+</table>
+<hr />
 
 
 

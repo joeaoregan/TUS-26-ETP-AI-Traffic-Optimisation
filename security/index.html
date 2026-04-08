@@ -929,8 +929,6 @@
       <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
       
       
-        
-      
       
         <label class="md-nav__link md-nav__link--active" for="__toc">
           
@@ -973,8 +971,6 @@
   
   
   
-    
-  
   
     <label class="md-nav__title" for="__toc">
       <span class="md-nav__icon md-icon"></span>
@@ -983,13 +979,30 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#to-do" class="md-nav__link">
+  <a href="#security-authentication" class="md-nav__link">
     <span class="md-ellipsis">
       
-        To do
+        Security &amp; Authentication
       
     </span>
   </a>
+  
+    <nav class="md-nav" aria-label="Security &amp; Authentication">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#features" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Features
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -2390,6 +2403,34 @@
   
   
     <li class="md-nav__item">
+      <a href="../api-setup/components/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    🧩 Components
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../api-setup/api-setup-guide/" class="md-nav__link">
         
   
@@ -3093,8 +3134,6 @@
   
   
   
-    
-  
   
     <label class="md-nav__title" for="__toc">
       <span class="md-nav__icon md-icon"></span>
@@ -3103,13 +3142,30 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#to-do" class="md-nav__link">
+  <a href="#security-authentication" class="md-nav__link">
     <span class="md-ellipsis">
       
-        To do
+        Security &amp; Authentication
       
     </span>
   </a>
+  
+    <nav class="md-nav" aria-label="Security &amp; Authentication">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#features" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Features
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -3139,8 +3195,22 @@
   
 
 
-<h1 id="security-authentication">Security &amp; Authentication</h1>
-<h2 id="to-do">To do</h2>
+  <h1>Security</h1>
+
+<h2 id="security-authentication">Security &amp; Authentication</h2>
+<p><strong>Branch</strong>: A00163691-JWTAuth  </p>
+<p>This optional branch extends the API Gateway with enterprise-grade JWT (JSON Web Token) authentication, enabling secure production deployments with fine-grained access control.</p>
+<h3 id="features">Features</h3>
+<ul>
+<li><strong>JWT Token Authentication</strong> — Secure Bearer token validation for all protected endpoints</li>
+<li><strong>Token Refresh Mechanism</strong> — Automatic token refresh without re-authentication</li>
+<li><strong>Role-Based Access Control (RBAC)</strong> — Fine-grained permission management per user role</li>
+<li><strong>API Key Management</strong> — Support for machine-to-machine service authentication</li>
+<li><strong>Request Signing</strong> — Digital signatures to prevent request tampering</li>
+<li><strong>Token Expiration &amp; Revocation</strong> — Configurable token lifetimes with blacklist support</li>
+<li><strong>Audit Logging</strong> — Complete authentication event tracking for compliance</li>
+<li><strong>Rate Limiting</strong> — Per-user rate limits to prevent abuse</li>
+</ul>
 
 
 

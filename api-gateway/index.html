@@ -101,7 +101,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#api-gateway" class="md-skip">
+        <a href="#ai-traffic-control-api-gateway" class="md-skip">
           Skip to content
         </a>
       
@@ -875,10 +875,316 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#to-do" class="md-nav__link">
+  <a href="#overview" class="md-nav__link">
     <span class="md-ellipsis">
       
-        To do
+        Overview
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#purpose" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Purpose
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#key-features" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Key Features
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#architecture" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Architecture
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Architecture">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#technology-stack" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Technology Stack
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Configuration
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#core-components" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Core Components
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#api-endpoints" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        API Endpoints
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="API Endpoints">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#traffic-prediction" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Traffic Prediction
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Traffic Prediction">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#get-apitrafficaction" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        GET /api/traffic/action
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#post-apitrafficaction" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        POST /api/traffic/action
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#state-management" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        State Management
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="State Management">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#post-apitrafficreset" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        POST /api/traffic/reset
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#health-monitoring" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Health &amp; Monitoring
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Health &amp; Monitoring">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#get-apitraffichealth" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        GET /api/traffic/health
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#configuration-files" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Configuration Files
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Configuration Files">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#applicationyml-local-development" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        application.yml (Local Development)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#application-prodyml-production" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        application-prod.yml (Production)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#deployment" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Deployment
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Deployment">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#docker-build" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Docker Build
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#running-locally" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Running Locally
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#error-handling" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Error Handling
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#dependencies" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Dependencies
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#integration-with-ai-inference-service" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Integration with AI Inference Service
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#quick-links" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Quick Links
       
     </span>
   </a>
@@ -2390,6 +2696,34 @@
   
   
     <li class="md-nav__item">
+      <a href="../api-setup/components/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    🧩 Components
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../api-setup/api-setup-guide/" class="md-nav__link">
         
   
@@ -3103,10 +3437,316 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#to-do" class="md-nav__link">
+  <a href="#overview" class="md-nav__link">
     <span class="md-ellipsis">
       
-        To do
+        Overview
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#purpose" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Purpose
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#key-features" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Key Features
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#architecture" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Architecture
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Architecture">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#technology-stack" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Technology Stack
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Configuration
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#core-components" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Core Components
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#api-endpoints" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        API Endpoints
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="API Endpoints">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#traffic-prediction" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Traffic Prediction
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Traffic Prediction">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#get-apitrafficaction" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        GET /api/traffic/action
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#post-apitrafficaction" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        POST /api/traffic/action
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#state-management" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        State Management
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="State Management">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#post-apitrafficreset" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        POST /api/traffic/reset
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#health-monitoring" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Health &amp; Monitoring
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Health &amp; Monitoring">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#get-apitraffichealth" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        GET /api/traffic/health
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#configuration-files" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Configuration Files
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Configuration Files">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#applicationyml-local-development" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        application.yml (Local Development)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#application-prodyml-production" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        application-prod.yml (Production)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#deployment" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Deployment
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Deployment">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#docker-build" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Docker Build
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#running-locally" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Running Locally
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#error-handling" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Error Handling
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#dependencies" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Dependencies
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#integration-with-ai-inference-service" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Integration with AI Inference Service
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#quick-links" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Quick Links
       
     </span>
   </a>
@@ -3139,8 +3779,244 @@
   
 
 
-<h1 id="api-gateway">API Gateway</h1>
-<h2 id="to-do">To do</h2>
+<h1 id="ai-traffic-control-api-gateway">AI Traffic Control API Gateway</h1>
+<h2 id="overview">Overview</h2>
+<p>The <strong>Traffic Control API Gateway</strong> is a Spring Boot REST API that serves as the orchestration layer for an AI-driven traffic optimization system. It interfaces with a Reinforcement Learning (RL) inference service to predict optimal traffic signal states and manage traffic flow in real-time.</p>
+<h2 id="purpose">Purpose</h2>
+<p>This microservice provides:</p>
+<ul>
+<li><strong>Traffic Signal Prediction</strong>: Uses a MAPPO (Multi-Agent PPO) RL model to predict optimal traffic signal actions</li>
+<li><strong>Inference Orchestration</strong>: Acts as a bridge between traffic control applications and the RL inference backend</li>
+<li><strong>Resilience &amp; Fallback</strong>: Implements circuit-breaker patterns with graceful fallback when the inference service is unavailable</li>
+<li><strong>Health Monitoring</strong>: Exposes health check endpoints to verify inference service availability</li>
+<li><strong>API Documentation</strong>: Auto-generated OpenAPI (Swagger) documentation for all endpoints</li>
+</ul>
+<h2 id="key-features">Key Features</h2>
+<ul>
+<li><strong>Dual Prediction Modes</strong>:</li>
+<li><strong>Demo Mode</strong> (<code>GET /api/traffic/action</code>): Generates random observations for quick testing</li>
+<li>
+<p><strong>Custom Mode</strong> (<code>POST /api/traffic/action</code>): Accepts real or experimental observation vectors</p>
+</li>
+<li>
+<p><strong>Flexible Observations</strong>: Supports variable-length observation vectors (up to 19 floats per junction)</p>
+</li>
+<li>
+<p><strong>Multiple Junction Support</strong>: Preconfigured for 5 known traffic junctions:</p>
+</li>
+<li><code>joinedS_265580996_300839357</code></li>
+<li><code>300839359</code></li>
+<li><code>265580972</code></li>
+<li><code>1270712555</code></li>
+<li>
+<p><code>8541180897</code></p>
+</li>
+<li>
+<p><strong>Signal State Mapping</strong>: Translates RL model outputs (0-3) to human-readable states:</p>
+</li>
+<li><code>0</code> → RED</li>
+<li><code>1</code> → YELLOW</li>
+<li><code>2</code> → GREEN</li>
+<li><code>3</code> → GREEN_EXTENDED</li>
+<li>
+<p><code>default</code> → UNKNOWN</p>
+</li>
+<li>
+<p><strong>Graceful Degradation</strong>: Falls back to RED signal when inference service is unavailable</p>
+</li>
+<li>
+<p><strong>Stateful Inference</strong>: Includes endpoints to reset GRU hidden states for multi-step simulations</p>
+</li>
+</ul>
+<h2 id="architecture">Architecture</h2>
+<h3 id="technology-stack">Technology Stack</h3>
+<ul>
+<li><strong>Framework</strong>: Spring Boot 3.2.3</li>
+<li><strong>Language</strong>: Java 17</li>
+<li><strong>Build</strong>: Maven</li>
+<li><strong>Deployment</strong>: Docker (Render cloud platform)</li>
+<li><strong>API Documentation</strong>: SpringDoc OpenAPI (Swagger UI)</li>
+</ul>
+<h3 id="configuration">Configuration</h3>
+<ul>
+<li><strong>Local Development</strong>: Port <code>8080</code></li>
+<li><strong>Production URL</strong>: <code>https://ai-traffic-control-api.onrender.com</code></li>
+<li><strong>Inference Service</strong>: Communicates via REST to RL backend (default: <code>http://localhost:8000</code>)</li>
+</ul>
+<h3 id="core-components">Core Components</h3>
+<p><strong>REST Controller</strong> (<code>TrafficController.java</code>)</p>
+<ul>
+<li>Handles all HTTP traffic prediction requests</li>
+<li>Manages error responses and validation</li>
+<li>Coordinates with the inference client</li>
+</ul>
+<p><strong>Inference Client</strong> (<code>RlInferenceClient.java</code>)</p>
+<ul>
+<li>HTTP client for RL inference service communication</li>
+<li>Handles timeouts (2s default), retries, and error mapping</li>
+<li>Provides health checks and state reset functionality</li>
+</ul>
+<p><strong>Configuration</strong></p>
+<ul>
+<li><code>OpenApiConfig</code>: Swagger/OpenAPI configuration</li>
+<li><code>WebConfig</code>: Static resource routing (serves <code>index.html</code>)</li>
+<li><code>GatewayApplication</code>: Spring Boot application entry point with RestTemplate bean</li>
+</ul>
+<h2 id="api-endpoints">API Endpoints</h2>
+<h3 id="traffic-prediction">Traffic Prediction</h3>
+<h4 id="get-apitrafficaction">GET <code>/api/traffic/action</code></h4>
+<p><strong>Demo endpoint</strong> - Picks a random junction and generates dummy observations.</p>
+<p><strong>Response (200)</strong>:
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;junctionId&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;300839359&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;predictedAction&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;signalState&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;YELLOW&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;timestamp&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1710000000000</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;status&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;success&quot;</span>
+<span class="p">}</span>
+</code></pre></div></p>
+<p><strong>Response (Fallback - Inference Down)</strong>:
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;junctionId&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;300839359&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;predictedAction&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;signalState&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;RED&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;timestamp&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1710000000000</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;status&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;fallback_mode (inference service down)&quot;</span>
+<span class="p">}</span>
+</code></pre></div></p>
+<h4 id="post-apitrafficaction">POST <code>/api/traffic/action</code></h4>
+<p><strong>Production endpoint</strong> - Accepts junction ID and custom observation vector.</p>
+<p><strong>Request</strong>:
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;junctionId&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;joinedS_265580996_300839357&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;observations&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="mf">0.0</span><span class="p">,</span><span class="w"> </span><span class="mf">1.0</span><span class="p">,</span><span class="w"> </span><span class="mf">0.0</span><span class="p">,</span><span class="w"> </span><span class="mf">0.0</span><span class="p">,</span><span class="w"> </span><span class="mf">0.0</span><span class="p">,</span><span class="w"> </span><span class="mf">1.0</span><span class="p">,</span><span class="w"> </span><span class="mf">0.0</span><span class="p">,</span><span class="w"> </span><span class="mf">1.0</span><span class="p">,</span><span class="w"> </span><span class="mf">0.12</span><span class="p">,</span><span class="w"> </span><span class="mf">0.08</span><span class="p">,</span><span class="w"> </span><span class="mf">0.33</span><span class="p">,</span><span class="w"> </span><span class="mf">0.41</span><span class="p">,</span><span class="w"> </span><span class="mf">0.22</span><span class="p">,</span><span class="w"> </span><span class="mf">0.55</span><span class="p">,</span><span class="w"> </span><span class="mf">0.18</span><span class="p">,</span><span class="w"> </span><span class="mf">0.62</span><span class="p">,</span><span class="w"> </span><span class="mf">0.70</span><span class="p">,</span><span class="w"> </span><span class="mf">0.81</span><span class="p">,</span><span class="w"> </span><span class="mf">0.50</span><span class="p">],</span>
+<span class="w">  </span><span class="nt">&quot;metadata&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;morning-peak&quot;</span>
+<span class="p">}</span>
+</code></pre></div></p>
+<p><strong>Response (200)</strong>: Same structure as demo endpoint</p>
+<p><strong>Errors</strong>:</p>
+<ul>
+<li><code>400</code>: Missing or invalid <code>junctionId</code> / <code>observations</code></li>
+<li><code>400</code>: Observations exceed maximum size (19)</li>
+<li><code>500</code>: Unexpected internal error</li>
+</ul>
+<h3 id="state-management">State Management</h3>
+<h4 id="post-apitrafficreset">POST <code>/api/traffic/reset</code></h4>
+<p><strong>Reset GRU hidden states</strong> for all junctions (call at start of simulation run).</p>
+<p><strong>Response (200)</strong>:</p>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;status&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;ok&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;message&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Hidden states reset for all junctions&quot;</span>
+<span class="p">}</span>
+</code></pre></div>
+<h3 id="health-monitoring">Health &amp; Monitoring</h3>
+<h4 id="get-apitraffichealth">GET <code>/api/traffic/health</code></h4>
+<p><strong>Service health check</strong> - Verifies inference service availability.</p>
+<p><strong>Response (200 - Healthy)</strong>:
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;status&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;healthy&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;inferenceService&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;up&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;timestamp&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1710000000000</span>
+<span class="p">}</span>
+</code></pre></div></p>
+<p><strong>Response (503 - Degraded)</strong>:
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;status&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;degraded&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;inferenceService&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;down&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;timestamp&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1710000000000</span>
+<span class="p">}</span>
+</code></pre></div></p>
+<h2 id="configuration-files">Configuration Files</h2>
+<h3 id="applicationyml-local-development"><code>application.yml</code> (Local Development)</h3>
+<ul>
+<li>Inference URL: <code>http://localhost:8000/predict_action</code></li>
+<li>Read/connect timeouts: 2s</li>
+<li>Observation dimension: 19 floats</li>
+<li>Logging level: DEBUG</li>
+</ul>
+<h3 id="application-prodyml-production"><code>application-prod.yml</code> (Production)</h3>
+<ul>
+<li>Inference URL: Loaded from <code>RL_INFERENCE_URL</code> environment variable</li>
+<li>Read/connect timeouts: 20s (longer for cloud)</li>
+<li>Logging level: WARN (production-optimized)</li>
+</ul>
+<h2 id="deployment">Deployment</h2>
+<h3 id="docker-build">Docker Build</h3>
+<div class="highlight"><pre><span></span><code>docker<span class="w"> </span>build<span class="w"> </span>-t<span class="w"> </span>traffic-gateway:latest<span class="w"> </span>.
+</code></pre></div>
+<p>The Dockerfile uses a multi-stage build:</p>
+<ol>
+<li><strong>Builder Stage</strong>: Compiles Maven project with Java 17</li>
+<li><strong>Runtime Stage</strong>: Minimal JRE container (~200MB)</li>
+</ol>
+<h3 id="running-locally">Running Locally</h3>
+<div class="highlight"><pre><span></span><code>mvn<span class="w"> </span>clean<span class="w"> </span>install
+mvn<span class="w"> </span>spring-boot:run
+</code></pre></div>
+<p>Then visit:</p>
+<ul>
+<li><strong>Swagger UI</strong>: <code>http://localhost:8080/swagger-ui/index.html</code></li>
+<li><strong>OpenAPI JSON</strong>: <code>http://localhost:8080/v3/api-docs</code></li>
+</ul>
+<h2 id="error-handling">Error Handling</h2>
+<table>
+<thead>
+<tr>
+<th>Error</th>
+<th>Status</th>
+<th>Handling</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Invalid junction ID</td>
+<td>400</td>
+<td>Validation error with message</td>
+</tr>
+<tr>
+<td>Observations too large</td>
+<td>400</td>
+<td>Validation error with size info</td>
+</tr>
+<tr>
+<td>Inference service unreachable</td>
+<td>200 (Fallback)</td>
+<td>Returns RED signal state with fallback status</td>
+</tr>
+<tr>
+<td>Unexpected exception</td>
+<td>500</td>
+<td>Generic error response</td>
+</tr>
+</tbody>
+</table>
+<h2 id="dependencies">Dependencies</h2>
+<p><strong>Core</strong>:</p>
+<ul>
+<li><code>spring-boot-starter-web</code>: REST API framework</li>
+<li><code>spring-boot-starter-webflux</code>: Async support</li>
+<li><code>springdoc-openapi-starter-webmvc-ui</code> (v2.5.0): Swagger documentation</li>
+<li><code>jackson-databind</code>: JSON serialization</li>
+</ul>
+<p><strong>Development</strong>:</p>
+<ul>
+<li><code>lombok</code>: Reduce boilerplate (@Data, @Slf4j, @RequiredArgsConstructor)</li>
+</ul>
+<h2 id="integration-with-ai-inference-service">Integration with AI Inference Service</h2>
+<p>This gateway expects a Python FastAPI backend at the configured <code>RL_INFERENCE_URL</code> with endpoints:</p>
+<ul>
+<li><code>POST /predict_action</code>: Accepts <code>{"junction_id": "...", "obs_data": [...]}</code>, returns <code>{"action": 0-3, "confidence": 0.0-1.0}</code></li>
+<li><code>GET /health</code>: Returns <code>{"status": "healthy", "modelLoaded": true, "junctions": [...]}</code></li>
+<li><code>POST /reset_hidden</code>: Resets GRU hidden states</li>
+</ul>
+<h2 id="quick-links">Quick Links</h2>
+<ul>
+<li><strong>GitHub Repository</strong>: https://github.com/joeaoregan/TUS-26-ETP-AI-Traffic-Optimisation</li>
+<li><strong>Live Swagger UI (Cloud)</strong>: https://ai-traffic-control-api.onrender.com/swagger-ui/index.html</li>
+<li><strong>Inference Service Docs</strong>: https://traffic-inference-service.onrender.com/docs</li>
+<li><strong>Full Project Documentation</strong>: https://joeaoregan.github.io/TUS-26-ETP-AI-Traffic-Optimisation/</li>
+</ul>
+<hr />
 
 
 
