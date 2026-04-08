@@ -79,3 +79,5 @@ A type of neural network that:
 - `GET /health` — Service health check
 - `POST /forecast` — Predict vehicle flow 15 min ahead  
 - `GET /model_info` — Model details
+
+
