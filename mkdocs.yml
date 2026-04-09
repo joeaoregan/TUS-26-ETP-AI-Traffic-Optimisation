@@ -55,8 +55,12 @@ nav:
     - Architecture: inference-service/architecture.md
     - Endpoints: inference-service/endpoints.md
     - Key Features: inference-service/key-features.md
-  - SUMO: sumo/index.md
-  - LSTM: lstm/index.md
+  - LSTM: 
+    - Overview: lstm/index.md
+    - Architecture: lstm/architecture.md
+    - Endpoints: lstm/endpoints.md
+  - SUMO: 
+    - Overview: sumo/index.md
   - Security: 
     - Overview: security/index.md
     - Java API Gateway: security/java-api-gateway.md

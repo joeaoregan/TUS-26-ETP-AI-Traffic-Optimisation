@@ -1,4 +1,4 @@
-# Architecture
+# Architecture (API Gateway)
 
 ## Technology Stack
 
@@ -21,25 +21,89 @@
 | `JWT_AUTH_PASSWORD` | `admin123` | Login password |
 | `JWT_EXPIRATION_MINUTES` | `60`  | Token lifetime in minutes |
 | `JWT_ISSUER`  | `traffic-api-gateway` | Token issuer claim |
+| `RL_INFERENCE_URL` | `http://localhost:8000/predict_action` | RL inference service endpoint |
 
 For details JWT configuration and usage, see [Java API Gateway Authentication Guide](../security/java-api-gateway.md).
 
+## File Structure
+
+```text
+java-api-gateway/
+├── src/main/java/com/example/gateway/
+│   ├── GatewayApplication.java
+│   ├── controller/
+│   │   ├── TrafficController.java
+│   │   └── AuthController.java
+│   ├── config/
+│   │   ├── SecurityConfig.java
+│   │   ├── OpenApiConfig.java
+│   │   └── WebConfig.java
+│   ├── security/
+│   │   ├── JwtService.java
+│   │   └── JwtAuthenticationFilter.java
+│   ├── service/
+│   │   └── RlInferenceClient.java
+│   └── dto/
+│       ├── LoginRequest.java
+│       ├── LoginResponse.java
+│       ├── TrafficActionResponse.java
+│       ├── TrafficSignalState.java
+│       └── ErrorResponse.java
+├── src/main/resources/
+│   ├── application.yml
+│   └── application-prod.yml
+├── pom.xml
+├── Dockerfile
+└── README.md
+```
+
 ## Core Components
 
-**REST Controller** (`TrafficController.java`)
+**AuthController** (`controller/AuthController.java`)
+
+- Handles JWT token generation
+- Validates username/password credentials
+- Issues signed bearer tokens
+
+**TrafficController** (`controller/TrafficController.java`)
 
 - Handles all HTTP traffic prediction requests
 - Manages error responses and validation
 - Coordinates with the inference client
+- Supports demo and custom observation modes
 
-**Inference Client** (`RlInferenceClient.java`)
+**JwtService** (`security/JwtService.java`)
+
+- Validates configured signing secret at startup
+- Signs tokens using HS256
+- Parses and validates incoming tokens
+- Extracts username from token subject
+
+**JwtAuthenticationFilter** (`security/JwtAuthenticationFilter.java`)
+
+- Reads the Authorization header
+- Validates Bearer token format
+- Adds authenticated principal to Spring Security context
+
+**SecurityConfig** (`config/SecurityConfig.java`)
+
+- Disables CSRF for stateless API
+- Configures stateless session management
+- Allows public access to login, health, and Swagger endpoints
+- Requires authentication for traffic action endpoints
+
+**RlInferenceClient** (`service/RlInferenceClient.java`)
 
 - HTTP client for RL inference service communication
 - Handles timeouts (2s default), retries, and error mapping
 - Provides health checks and state reset functionality
 
-**Configuration**
+**OpenApiConfig** (`config/OpenApiConfig.java`)
 
-- `OpenApiConfig`: Swagger/OpenAPI configuration
-- `WebConfig`: Static resource routing (serves `index.html`)
-- `GatewayApplication`: Spring Boot application entry point with RestTemplate bean
+- Swagger/OpenAPI configuration
+- Auto-generates interactive API documentation
+
+**WebConfig** (`config/WebConfig.java`)
+
+- Static resource routing
+- Serves `index.html` and frontend assets

@@ -1,4 +1,4 @@
-# Architecture
+# Architecture (Inference Service)
 
 ## Technology Stack
 - **Framework**: FastAPI 0.110.0 (async Python web framework)

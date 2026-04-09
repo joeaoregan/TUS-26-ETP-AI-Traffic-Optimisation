@@ -5,7 +5,15 @@
 - [x] Have
 - [ ] In progress / Future / Nice to have
 
+## Updated
+
+09/04/2026
+
 ## Python FastAPI Service
+
+**Status**: Fully operational.  
+
+Loads trained PPO models and serves predictions via REST API with health monitoring and comprehensive error handling.
 
 - [x] Loads trained PPO models  
 - [x] RESTful action prediction  
@@ -20,6 +28,10 @@
 
 ## Java API Gateway
 
+**Status**: Fully operational.  
+
+Loads trained PPO models and serves predictions via REST API with health monitoring and comprehensive error handling.
+
 - [x] REST API endpoints for traffic control  
 - [x] Communicates with Python service  
 - [x] Health checks and monitoring  
@@ -28,6 +40,8 @@
 - [x] Load testing capabilities  
 - [x] Circuit breaker pattern (Resilience4j)
 - [x] Load testing capabilities  
+- [x] JWT authentication
+- [x] Stateless token-based security
 - [ ] API request rate limiting
 - [ ] Request/response logging and audit trail
 - [ ] Metrics export (Micrometer/Prometheus)
@@ -35,16 +49,22 @@
 
 ## SUMO Traffic Simulator Integration
 
-- [ ] SUMO TraCI (Traffic Control Interface) integration
-- [ ] Vehicle simulation and tracking
-- [ ] Traffic light control via SUMO
+**Status**: Fully operational as a standalone simulator but not yet live-integrated with the RL control system.
+
+- [x] SUMO network configuration
+- [x] Vehicle simulation and tracking
+- [x] Traffic light control via SUMO
+- [x] Simulation metrics and reporting
+- [x] Vehicle data collection and logging
 - [ ] Real-time traffic state feedback
-- [ ] SUMO network configuration
-- [ ] Vehicle data collection and logging
-- [ ] Simulation metrics and reporting
 - [ ] Integration with RL inference service
+- [ ] SUMO TraCI (Traffic Control Interface) integration
 
 ## Security & Authentication (Optional - A00163691-JWTAuth Branch)
+
+**Status**: JWT authentication implemented and merged to main.  
+
+Stateless token-based security with HS256 signing. Future enhancements: token refresh, RBAC, and audit logging.
 
 - [x] JWT token generation and validation
 - [x] Bearer token authentication for API endpoints
@@ -61,6 +81,10 @@
 - [ ] Audit logging for authentication events
 
 ## LSTM Traffic Predictor Service
+
+**Status**: Framework and endpoints defined. Data pipeline ready.  
+
+Requires model training on SUMO historical data (edgeData.xml) to achieve MAE < 10% forecasting accuracy.
 
 - [ ] Load SUMO historical data (edgeData.xml)
 - [ ] Preprocess time-series data (stationarity, scaling, sliding windows)
@@ -80,6 +104,10 @@
 
 ## Docker Integration
 
+**Status**: Fully operational.  
+
+Multi-stage builds, Docker Compose orchestration, health checks, and persistent volumes configured. Services deployable to cloud platforms (Render).
+
 - [x] Multi-stage builds for optimization  
 - [x] Service orchestration with Docker Compose  
 - [x] Health checks and automatic restart  
@@ -93,6 +121,11 @@
 
 ## Deployment
 
+**Status**: Cloud deployment on Render operational.  
+
+Local Docker Compose development environment fully functional. GitHub Actions CI/CD pipeline ready for automation.
+
+
 - [x] Cloud deployment on Render  
 - [x] GitHub Actions CI/CD pipeline (optional)
 - [x] Environment-based configuration (local/production)  
@@ -105,6 +138,10 @@
 
 ## Monitoring & Observability
 
+**Status**: Basic health checks and logging implemented. 
+
+Foundation in place for Prometheus metrics export and centralized logging (future enhancements).
+
 - [ ] Prometheus metrics export
 - [ ] Grafana dashboards for visualization
 - [ ] Distributed tracing (Jaeger/Zipkin)
@@ -115,6 +152,10 @@
 
 ## Documentation
 
+**Status**: Comprehensive. 
+
+MkDocs with Material theme, auto-generated Swagger/OpenAPI docs, setup guides, architecture documentation, and GitHub Pages hosting all live.
+
 - [x] MkDocs with Material theme  
 - [x] Auto-generated API documentation (Swagger/OpenAPI)  
 - [x] Complete setup and troubleshooting guides  
@@ -123,8 +164,9 @@
 - [x] GitHub Pages hosting  
 - [x] Inline code documentation and docstrings  
 
-
 ## GitHub Pages Site
+
+**Status**: Published.
 
 - [x] MkDocs Material theme
 - [x] Auto-generated from main branch docs
