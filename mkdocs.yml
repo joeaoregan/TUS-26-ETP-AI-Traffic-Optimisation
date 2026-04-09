@@ -59,8 +59,11 @@ nav:
     - Overview: lstm/index.md
     - Architecture: lstm/architecture.md
     - Endpoints: lstm/endpoints.md
+    - Key Features: lstm/key-features.md
   - SUMO: 
     - Overview: sumo/index.md
+    - Architecture: sumo/architecture.md
+    - Key Features: sumo/key-features.md
   - Security: 
     - Overview: security/index.md
     - Java API Gateway: security/java-api-gateway.md
