@@ -76,23 +76,23 @@ nav:
   - System Architecture: 
     - Overview: system-architecture/index.md    
     - 🗂️ Project Structure: system-architecture/project-structure.md
-    - Conceptual Understanding:
+    - 📚 Conceptual Understanding:
       - High-Level: system-architecture/high-level.md
       - System Components: system-architecture/system-components.md
       - Request-Response Flow: system-architecture/request-response-flow.md
-    - Data & Processing:
+    - 🔄 Data & Processing:
       - Data Flow Through System: system-architecture/data-flow-through-system.md
       - Detailed Internal Flow - Action Prediction: system-architecture/detailed-internal-flow.md
       - Model Loading & Caching Strategy: system-architecture/model-loading-and-caching-strategy.md
-    - Workflows & Protocols:
+    - 🔗 Workflows & Protocols:
       - Complete End-to-End Workflow: system-architecture/complete-end-to-end-workflow.md
       - Inter-Service Communication Protocol: system-architecture/inter-service-communication-protocol.md
       - Error Handling Flow: system-architecture/error-handling-flow.md
-    - Operations & Deployment:
+    - 🚀 Operations & Deployment:
       - Deployment Architecture: system-architecture/deployment-architecture.md
       - Deployment Patterns: system-architecture/deployment-patterns.md
       - Monitoring & Observability Points: system-architecture/monitoring-and-observability-points.md
-    - Design & Optimization:
+    - 🎯 Design & Optimization:
       - Architecture Decision Rationale: system-architecture/architecture-decision-rationale.md
       - Security Architecture: system-architecture/security-architecture.md
       - Performance Characteristics: system-architecture/performance-characteristics.md

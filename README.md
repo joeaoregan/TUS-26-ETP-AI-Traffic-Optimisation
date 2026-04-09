@@ -23,6 +23,8 @@
 > - **Mean Queue Length (MQL):** -20%
 > - **Data Integrity:** TLS 1.3 secured telemetry pipeline
 
+---
+
 ## 🔗 Quick Links
 
 ### 🌐 Live Services
@@ -78,6 +80,68 @@
 
 ## 🏗️ System Architecture
 
+```text
+                              ┌──────────────────┐
+                              │   CLIENT LAYER   │
+                              │  (Web/Mobile/    │
+                              │   External API)  │
+                              └────────┬─────────┘
+                                       │
+                                       │ HTTPS (TLS 1.3)
+                                       │
+                    ┌──────────────────▼──────────────────┐
+                    │   JAVA API GATEWAY (Port 8080)     │
+                    │        Spring Boot 3.2.3           │
+                    ├──────────────────────────────────────┤
+                    │  • JWT Authentication (HS256)       │
+                    │  • Request Validation               │
+                    │  • Fallback Logic (RED signal)      │
+                    │  • Circuit Breaker Pattern          │
+                    └──────────┬───────────────────────────┘
+                               │
+                ┌──────────────┼──────────────┐
+                │              │              │
+    ┌───────────▼────────┐  ┌──▼────────────────────┐
+    │  HEALTH CHECK      │  │  PREDICTION REQUESTS  │
+    │  /health           │  │  /traffic/action      │
+    └────────────────────┘  └──┬───────────────────┘
+                                │
+                    ┌───────────▼────────────┐
+                    │ INFERENCE SERVICE     │
+                    │  (Port 8000)          │
+                    │  Python/FastAPI       │
+                    ├──────────────────────┤
+                    │ • MAPPO RL Model      │
+                    │ • 5-Junction Support  │
+                    │ • GRU State Mgmt      │
+                    │ • Action Masking      │
+                    └───────────┬───────────┘
+                                │
+                ┌───────────────┴───────────────┐
+                │                               │
+    ┌───────────▼──────────┐    ┌──────────────▼──────────┐
+    │  LSTM PREDICTOR      │    │  ACTION SELECTION       │
+    │  (Port 8001)         │    │  (MAPPO Output)         │
+    │  Python/FastAPI      │    │                         │
+    ├──────────────────────┤    │ Actions:                │
+    │ • Time-series LSTM   │    │ 0: RED                  │
+    │ • 15-min Forecast    │    │ 1: YELLOW               │
+    │ • MAE < 10%          │    │ 2: GREEN                │
+    │ • Data Pipeline      │    │ 3: GREEN_EXTENDED       │
+    └──────────────────────┘    └─────────────────────────┘
+                                         │
+                                         │ Signal State
+                                         │
+                            ┌────────────▼────────────┐
+                            │  RESPONSE TO CLIENT     │
+                            │ {                       │
+                            │   action: 0-3,          │
+                            │   signalState: "RED",   │
+                            │   confidence: 0.87      │
+                            │ }                       │
+                            └─────────────────────────┘
+```
+
 This repository implements a **Cloud-Native Microservices Pipeline** designed for the Athlone "Orange Loop" case study.
 
 - **[Traffic Monitoring Gateway](java-api-gateway/README.md) (Java/Spring Boot):** Manages secure telemetry ingestion and orchestrates service communication.
@@ -95,7 +159,7 @@ This system is specifically modeled to address the saturation flow rates and sig
 
 ---
 
-# 🗂️ Project Structure
+## 🗂️ Project Structure
 
 ```
 TUS-26-ETP-AI-Traffic-Optimisation/
