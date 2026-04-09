@@ -22,9 +22,9 @@ Swagger UI provides interactive, real-time API documentation with live testing c
 
 For comprehensive endpoint specifications, request/response examples, and usage guides, see the service documentation:
 
-- **[Java API Gateway](../api-gateway/endpoints.md)** — Authentication, traffic prediction, state reset
-- **[Python Inference Service](../inference-service/endpoints.md)** — Model inference, health checks, model information
-- **[LSTM Traffic Predictor](../lstm/endpoints.md)** — Traffic forecasting, model metadata
+- **[Java API Gateway](../../api-gateway/endpoints.md)** — Authentication, traffic prediction, state reset
+- **[Python Inference Service](../../inference-service/endpoints.md)** — Model inference, health checks, model information
+- **[LSTM Traffic Predictor](../../lstm/endpoints.md)** — Traffic forecasting, model metadata
 
 ---
 
@@ -35,7 +35,7 @@ For comprehensive endpoint specifications, request/response examples, and usage 
 1. Authenticate via `POST /api/auth/login` to receive a token
 2. Include token in `Authorization: Bearer <token>` header on protected requests
 
-See [JWT Authentication Guide](../security/java-api-gateway.md) for detailed configuration and examples.
+See [JWT Authentication Guide](../../security/java-api-gateway.md) for detailed configuration and examples.
 
 ---
 
@@ -79,6 +79,6 @@ This keeps documentation in sync with code without extra maintenance overhead.
 
 For step-by-step setup instructions, environment configuration, and usage examples, see:
 
-- **[API Setup Guide](../api-setup/api-setup-guide.md)** — Docker Compose, local development, environment variables
-- **[API Usage Examples](../api-setup/api-usage-examples.md)** — PowerShell, curl, Python examples
-- **[Environment Variables](../api-setup/environment-variables.md)** — Configuration reference
+- **[API Setup Guide](../setup/index.md)** — Docker Compose, local development, environment variables
+- **[API Usage Examples](usage-examples.md)** — PowerShell, curl, Python examples
+- **[Environment Variables](../setup/environment-variables.md)** — Configuration reference

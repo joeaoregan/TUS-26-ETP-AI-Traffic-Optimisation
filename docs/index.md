@@ -9,7 +9,8 @@ AI-Driven Predictive Traffic Flow Optimisation System
 - [Quick Start](quickstart.md)
 - [Setup Complete](setup-complete/index.md)
 - [File Manifest](file-manifest/index.md)
-- [API Docs](api-docs/index.md)
+- [API Docs](api/index.md)
+- [API Endpoints](api/endpoints.md)
 - [Changelog](CHANGELOG.md)
 - [Support](support.md)
 
@@ -36,9 +37,9 @@ AI-Driven Predictive Traffic Flow Optimisation System
 
 ## 🔗 Quick Links
 
-| 🌐 API Gateway | 🤖 Inference Service | 📊 LSTM Predictor |
+| 🌐 API Gateway                                                                 | 🤖 Inference Service                                              | 📊 LSTM Predictor |
 |---|---|---|
-| [App](https://ai-traffic-control-api.onrender.com/) | [App](https://traffic-inference-service.onrender.com) | [Local: 8001](http://localhost:8001) |
+| [App](https://ai-traffic-control-api.onrender.com/)                             | [App](https://traffic-inference-service.onrender.com)             | [Local: 8001](http://localhost:8001)     |
 | [Swagger UI](https://ai-traffic-control-api.onrender.com/swagger-ui/index.html) | [Swagger UI](https://traffic-inference-service.onrender.com/docs) | [Swagger UI](http://localhost:8001/docs) |
 
 ---

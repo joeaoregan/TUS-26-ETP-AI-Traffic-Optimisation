@@ -1,4 +1,4 @@
-# API Setup Guide
+# API Setup
 
 ## Setup Instructions
 
@@ -83,4 +83,4 @@ mvn clean install
 mvn spring-boot:run
 ```
 
-*Includes [Swagger/OpenAPI documentation](../api-docs/index.md) for all traffic control endpoints.*
+*Includes [Swagger/OpenAPI documentation](../endpoints.md) for all traffic control endpoints.*

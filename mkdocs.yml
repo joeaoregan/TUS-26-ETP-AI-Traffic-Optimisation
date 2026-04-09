@@ -100,7 +100,6 @@ nav:
       - What Was Created: setup-complete/what-was-created.md
       - Quick Start (5 Minutes): setup-complete/quickstart.md
       - Architecture Overview: setup-complete/architecture-overview.md
-      - API Endpoints: setup-complete/api-endpoints.md
       - Using Different Models: setup-complete/using-different-models.md
       - Testing: setup-complete/testing.md
       - Environment Variables: setup-complete/environment-variables.md
@@ -111,23 +110,21 @@ nav:
       - MkDocs Setup: setup-complete/mkdocs-setup.md
       - Documentation Files: setup-complete/documentation-files.md
   - API:
-    - Documentation:
-      - API Docs: api-docs/index.md
-      - api-docs/api-gateway.md
-      - api-docs/inference-service.md
-      - api-docs/lstm-traffic-predictor.md
-    - API Setup: 
-      - api-setup/index.md
-      - 🧩 Components: api-setup/components.md
-      - 🚗 API Setup Guide: api-setup/api-setup-guide.md
-      - 📡 API Usage Examples: api-setup/api-usage-examples.md
-      - 🔐 Environment Variables: api-setup/environment-variables.md
-      - 🐳 Docker Compose Configuration: api-setup/docker-compose-configuration.md
-      - 📊 Monitoring and Logging: api-setup/monitoring-and-logging.md
-      - 🔄 Using Different Models: api-setup/using-different-models.md
-      - ⚡ Performance Tuning: api-setup/performance-tuning.md
-      - 🐛 Troubleshooting: api-setup/troubleshooting.md
-      - 🌍 Production Deployment: api-setup/production-deployment.md
+    - Overview: api/index.md
+    - Endpoints: api/endpoints.md    
+    - API Setup:
+      - Overview: api/setup/index.md
+      - 🐳 Docker Compose Configuration: api/setup/docker-compose-configuration.md
+      - 🔐 Environment Variables: api/setup/environment-variables.md
+      - 🌍 Production Deployment: api/setup/production-deployment.md
+      - 🐛 Troubleshooting: api/setup/troubleshooting.md
+      - 🔄 Using Different Models: api/setup/using-different-models.md
+    - Guides:
+      - Overview: api/guides/index.md
+      - 📡 Usage Examples: api/guides/usage-examples.md
+      - 🧩 Components: api/guides/components.md
+      - 📊 Monitoring and Logging: api/guides/monitoring-and-logging.md
+      - ⚡ Performance Tuning: api/guides/performance-tuning.md
   - Features: features.md
   - About:
     - Support: support.md

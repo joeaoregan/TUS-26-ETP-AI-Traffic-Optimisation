@@ -150,5 +150,5 @@ docker-compose ps
 
 ---
 
-*For detailed documentation, see [INDEX.md](api-setup/index.md)*
+*For detailed documentation, see [INDEX.md](api/setup/index.md)*
  
