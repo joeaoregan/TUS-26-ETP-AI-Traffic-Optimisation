@@ -2,6 +2,8 @@
 
 This project provides a complete REST API solution for traffic signal control using trained RL models.
 
+## Endpoints
+
 - [API Endpoints](endpoints.md)
     - [Java API Gateway](../api-gateway/endpoints.md)
     - [Python Inference Service](../inference-service/endpoints.md)
