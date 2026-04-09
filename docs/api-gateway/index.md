@@ -56,6 +56,16 @@ This microservice provides:
 - **Production URL**: `https://ai-traffic-control-api.onrender.com`
 - **Inference Service**: Communicates via REST to RL backend (default: `http://localhost:8000`)
 
+| Environment Variables | Default | Purpose |
+|---|---|---|
+| `JWT_SECRET`  | `change-this-secret-key-to-a-very-long-random-value`  | HMAC signing key (min 32 bytes) |
+| `JWT_AUTH_USERNAME` | `admin` | Login username  |
+| `JWT_AUTH_PASSWORD` | `admin123` | Login password |
+| `JWT_EXPIRATION_MINUTES` | `60`  | Token lifetime in minutes |
+| `JWT_ISSUER`  | `traffic-api-gateway` | Token issuer claim |
+
+For details JWT configuration and usage, see [Java API Gateway Authentication Guide](../security/java-api-gateway.md).
+
 ### Core Components
 
 **REST Controller** (`TrafficController.java`)
@@ -161,6 +171,56 @@ This microservice provides:
   "inferenceService": "down",
   "timestamp": 1710000000000
 }
+```
+
+## Authentication (JWT)
+
+The API Gateway now includes JWT (JSON Web Token) authentication for securing traffic prediction endpoints.
+
+### Overview
+
+- **Stateless authentication**: No server-side sessions
+- **HS256 signing**: Industry-standard HMAC-SHA256
+- **Configurable credentials**: Username/password via environment variables
+- **Token expiration**: 60 minutes default (configurable)
+
+### Protected Endpoints
+
+- `GET /api/traffic/action` — Requires Bearer token
+- `POST /api/traffic/action` — Requires Bearer token
+
+### Public Endpoints
+
+- `POST /api/auth/login` — Issue tokens (no auth required)
+- `GET /api/traffic/health` — Health check (no auth required)
+- `GET /swagger-ui/**` — API documentation (no auth required)
+
+### Authentication Flow
+
+1. **POST /api/auth/login** with credentials:
+
+```json
+  {
+    "username": "admin",
+    "password": "admin123"
+  }
+```
+
+2. Receive Bearer token:
+
+```json
+  {
+    "tokenType": "Bearer",
+    "accessToken": "eyJhbGciOiJIUzI1NiJ9...",
+    "expiresIn": 3600,
+    "timestamp": 1710000000000
+  }
+```
+
+3. Use token on protected endpoints:
+
+```yaml
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9...
 ```
 
 ## Configuration Files

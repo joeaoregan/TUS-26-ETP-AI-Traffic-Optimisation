@@ -80,6 +80,11 @@ This repository implements a **Cloud-Native Microservices Pipeline** designed fo
 
 - **[Traffic Monitoring Gateway](java-api-gateway/README.md) (Java/Spring Boot):** Manages secure telemetry ingestion and orchestrates service communication.
   - **JWT authentication & role-based access control:** available in [A00163691-JWTAuth](../../tree/A00163691-JWTAuth) branch for production deployments.
+
+- **[Traffic Monitoring Gateway](java-api-gateway/README.md) (Java/Spring Boot):** Manages secure telemetry ingestion and orchestrates service communication.
+  - **JWT authentication:** Stateless token-based security with HS256 signing. See [Java API Gateway README](../java-api-gateway/README.md) for configuration and usage examples.
+  - **test_api.py:** Updated with color-coded output, test result tracking (X/4), and JWT token caching for testing protected endpoints.
+
 - **[LSTM Predictor Service](lstm-predictor-service/README.md) (Python/FastAPI):** Forecasts vehicle flow 15 minutes ahead using historical traffic patterns, achieving MAE < 10% accuracy to provide high-fidelity state information for the RL agent.
 - **[RL-Inference Service](rl-inference-service/README.md) (Python/FastAPI):** Hosts a trained **PPO (Proximal Policy Optimization)** model to predict optimal signal timings based on real-time traffic density.
 - **[Simulation Layer](SUMO\Simulations\Base\README.md) (SUMO):** Integrated high-fidelity environment for testing adaptive signal logic against baseline fixed-time controllers.
@@ -93,18 +98,29 @@ This system is specifically modeled to address the saturation flow rates and sig
 
 ```
 TUS-26-ETP-AI-Traffic-Optimisation/
-├── java-api-gateway/                       # Java Spring Boot gateway
+├── java-api-gateway/                       # Java Spring Boot gateway (with JWT Auth)
 │   ├── src/
 │   │   ├── main/java/com/example/gateway/
 │   │   │   ├── GatewayApplication.java     # Spring Boot app
 │   │   │   ├── controller/
-│   │   │   │   └── TrafficController.java  # REST endpoints
+│   │   │   │   ├── AuthController.java      # JWT authentication endpoints
+│   │   │   │   └── TrafficController.java   # REST traffic endpoints
+│   │   │   ├── config/
+│   │   │   │   └── SecurityConfig.java      # Spring Security configuration
+│   │   │   ├── security/
+│   │   │   │   ├── JwtService.java          # JWT token generation and validation
+│   │   │   │   └── JwtAuthenticationFilter.java  # JWT request filter
+│   │   │   ├── dto/
+│   │   │   │   ├── LoginRequest.java        # Login request DTO
+│   │   │   │   └── LoginResponse.java       # Login response DTO
 │   │   │   └── service/
-│   │   │       └── RlInferenceClient.java  # RL service client
+│   │   │       └── RlInferenceClient.java   # RL service client
 │   │   └── main/resources/
-│   │       └── application.properties      # Spring config
+│   │       ├── application.yml              # Spring config
+│   │       └── application-prod.yml         # Production config
 │   ├── pom.xml                             # Maven configuration
-│   └── Dockerfile                          # Java service Docker image
+│   ├── Dockerfile                          # Java service Docker image
+│   └── README.md                           # Gateway JWT Authentication guide
 ├── lstm-predictor-service/                 # Python LSTM forecasting service
 │   ├── app/
 │   │   ├── main.py                         # FastAPI application
@@ -138,10 +154,11 @@ TUS-26-ETP-AI-Traffic-Optimisation/
 │   └── Simulations/
 │       └── Base/
 ├── docker-compose.yml                      # Docker Compose orchestration
+├── test_api.py                             # API test client with color output
 ├── CHANGELOG.md                            # Change log
 ├── FILE_MANIFEST.md                        # File manifest
 ├── QUICKSTART.md                           # Quick start guide
-├── README.md                               # This file
+├── README.md                               # Main readme
 ├── SYSTEM_ARCHITECTURE.md                  # Detailed architecture
 └── SUPPORT.md                              # Support & contributing
 ```

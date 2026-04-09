@@ -224,36 +224,3 @@ You can authenticate by first calling `POST /api/auth/login`, copying the return
 ```text
 Bearer <your-token>
 ```
-
-## Testing
-
-The root-level `test_api.py` script has been updated to:
-
-- Authenticate first
-- Cache the returned access token
-- Send the token on protected requests
-
-Run it from the repository root:
-
-```bash
-python test_api.py
-```
-
-## Relevant Files
-
-- `src/main/java/com/example/gateway/controller/AuthController.java`
-- `src/main/java/com/example/gateway/config/SecurityConfig.java`
-- `src/main/java/com/example/gateway/security/JwtService.java`
-- `src/main/java/com/example/gateway/security/JwtAuthenticationFilter.java`
-- `src/main/resources/application.yml`
-- `src/main/resources/application-prod.yml`
-
-## Current Limitations
-
-- Single configured user only
-- No user database integration
-- No role-based authorization
-- No refresh tokens
-- No logout endpoint because the system is stateless
-
-If the project needs stronger access control later, the next logical step is to replace configured credentials with a persistent user store and add roles.

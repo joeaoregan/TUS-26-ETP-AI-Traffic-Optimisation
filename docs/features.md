@@ -46,14 +46,17 @@
 
 ## Security & Authentication (Optional - A00163691-JWTAuth Branch)
 
-- [ ] JWT token generation and validation
-- [ ] Bearer token authentication for API endpoints
+- [x] JWT token generation and validation
+- [x] Bearer token authentication for API endpoints
+- [x] HS256 signing
+- [x] Token expiration and configuration
+- [x] Stateless (no server sessions)
 - [ ] Token refresh mechanism
 - [ ] Role-based access control (RBAC)
 - [ ] API key management
 - [ ] Request signing with JWT
-- [ ] Token expiration and revocation
-- [ ] Secure token storage (in transit with HTTPS)
+- [ ] Token revocation/blacklist
+- [ ] Secure token storage (HTTPS enforced)
 - [ ] Rate limiting per authenticated user
 - [ ] Audit logging for authentication events
 

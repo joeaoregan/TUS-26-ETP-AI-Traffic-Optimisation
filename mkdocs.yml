@@ -51,6 +51,7 @@ nav:
   - Security: 
     - Overview: security/index.md
     - Java API Gateway: security/java-api-gateway.md
+    - Gateway Testing: security/gateway-testing.md
   - System Architecture: 
     - system-architecture/index.md
     - 1. High-Level: system-architecture/high-level.md
