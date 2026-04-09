@@ -34,7 +34,7 @@ AI-Driven Predictive Traffic Flow Optimisation System
 
 ---
 
-### 🔗 Quick Links
+## 🔗 Quick Links
 
 | 🌐 API Gateway | 🤖 Inference Service | 📊 LSTM Predictor |
 |---|---|---|

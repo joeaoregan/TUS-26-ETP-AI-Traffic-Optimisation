@@ -2,11 +2,12 @@
 
 ## Overview
 
-The **RL Inference Service** is a FastAPI-based Python microservice that hosts a trained MAPPO (Multi-Agent Proximal Policy Optimization) neural network model for traffic signal prediction. It serves as the "AI brain" of the traffic optimization system, making real-time predictions about optimal traffic signal states for 5 junctions in the Athlone town network.
+The [RL Inference Service](https://traffic-inference-service.onrender.com/) is a FastAPI-based Python microservice that hosts a trained MAPPO (Multi-Agent Proximal Policy Optimization) neural network model for traffic signal prediction. It serves as the "AI brain" of the traffic optimization system, making real-time predictions about optimal traffic signal states for 5 junctions in the Athlone town network.
 
 ## Purpose
 
 This service provides:
+
 - **Real-time Traffic Signal Prediction**: Uses a trained MAPPO RL model to predict the next optimal green phase for any junction
 - **Stateful Inference**: Maintains separate GRU hidden states per junction across multiple prediction calls
 - **Multi-junction Support**: Handles 5 different junctions with varying numbers of valid actions (2-4 per junction)
@@ -19,9 +20,11 @@ This service provides:
 ### Environment Variables
 
 **Required:**
+
 - `MAPPO_AGENT_PATH`: Path to trained model weights file (e.g., `/app/trained_models/agent.th`)
 
 **Optional (with defaults):**
+
 - `API_HOST`: Host to bind to (default: `0.0.0.0`)
 - `API_PORT`: Port to listen on (default: `8000`)
 - `API_RELOAD`: Enable auto-reload on code changes (default: `false`)
@@ -44,9 +47,9 @@ uvicorn main:app --host 0.0.0.0 --port 8000 --reload
 ```
 
 4. Access:
-- Swagger UI: http://localhost:8000/docs
-- Landing page: http://localhost:8000/
-- Health check: http://localhost:8000/health
+- Swagger UI: <http://localhost:8000/docs>
+- Landing page: <http://localhost:8000/>
+- Health check: <http://localhost:8000/health>
 
 ### Docker Deployment
 
@@ -64,6 +67,7 @@ docker run -p 8000:8000 \
 ```
 
 **Run on Render:**
+
 - Set `MAPPO_AGENT_PATH` environment variable in Render dashboard
 - Container exposes port 8000
 - Model file must be present in `/app/trained_models/` at runtime
@@ -73,6 +77,7 @@ docker run -p 8000:8000 \
 ### Training Source
 
 The model was trained using EPyMARL (Epyc PyMARL) with the MAPPO algorithm:
+
 - Framework: EPyMARL/SMAC
 - Algorithm: MAPPO (Multi-Agent Proximal Policy Optimization)
 - Configuration: mappo_sumo_v4.yaml
@@ -97,36 +102,79 @@ The model was trained using EPyMARL (Epyc PyMARL) with the MAPPO algorithm:
 
 ### With API Gateway
 
-The API Gateway (Java Spring Boot) communicates with this service via REST:
+This inference service is consumed by the Java API Gateway via REST calls at the configured `RL_INFERENCE_URL`:
 
-**From Gateway Request:**
-``` json
-{
-  "junction_id": "joinedS_265580996_300839357",
-  "obs_data": [0.0, 1.0, 0.0, ...]
-}
-```
+!!! success "POST `/predict_action`"
+    Accepts a junction ID and observation vector from the gateway.
+    
+    **Request**:
+    ``` json
+    {
+      "junction_id": "joinedS_265580996_300839357",
+      "obs_data": [0.0, 1.0, 0.0, 0.0, 0.0, 1.0, 0.0, 1.0, 0.12, 0.08, 0.33, 0.41, 0.22, 0.55, 0.18, 0.62, 0.70, 0.81, 0.50]
+    }
+    ```
+    
+    **Response (200)**:
+    ``` json
+    {
+      "junction_id": "joinedS_265580996_300839357",
+      "action": 2,
+      "confidence": 0.92
+    }
+    ```
 
-**To Gateway Response:**
-``` json
-{
-  "junctionId": "joinedS_265580996_300839357",
-  "predictedAction": 2,
-  "signalState": "GREEN",
-  "timestamp": 1710000000000,
-  "status": "success"
-}
-```
+!!! note "GET `/health`"
+    Health check endpoint for service availability monitoring.
+    
+    **Response (200)**:
+    ``` json
+    {
+      "status": "healthy",
+      "model_loaded": true,
+      "junctions": [
+        "joinedS_265580996_300839357",
+        "300839359",
+        "265580972",
+        "1270712555",
+        "8541180897"
+      ]
+    }
+    ```
 
-**Gateway Timeout**: 2 seconds (local) / 20 seconds (cloud)
+!!! success "POST `/reset_hidden`"
+    Resets GRU hidden states for all junctions. **Call at the start of each simulation run.**
+    
+    **Response (200)**:
+    ``` json
+    {
+      "status": "ok",
+      "message": "Hidden states reset for all junctions"
+    }
+    ```
+
+**Gateway Configuration**:
+
+- **Local Development**: `http://localhost:8000/predict_action`
+- **Production (Cloud)**: Configured via `RL_INFERENCE_URL` environment variable
+- **Timeouts**: 2 seconds (local) / 20 seconds (cloud)
 
 ### With SUMO Simulator
 
-Training and simulation use the SUMO (Simulation of Urban Mobility) traffic simulator:
-- Provides real-world traffic scenarios
-- Calculates observations from vehicle positions and lane queues
-- Applies predicted actions as signal phase changes
-- Measures reward signals for RL training
+Training and validation use the SUMO (Simulation of Urban Mobility) traffic simulator:
+
+- **Training Data Source**: SUMO generates observations from vehicle positions and lane queue lengths
+- **Action Application**: Predicted actions are applied as signal phase changes in the simulation
+- **Reward Calculation**: SUMO provides traffic metrics (wait times, throughput) for RL training
+- **Validation**: Model performance tested on historical SUMO scenarios
+
+### With LSTM Traffic Predictor (Future)
+
+The LSTM service will optionally provide traffic flow forecasts to enhance RL decision-making:
+
+- **Input**: 15-minute ahead vehicle flow predictions
+- **Usage**: Provides context for signal timing decisions
+- **Integration**: LSTM predictions fed as additional observations to the MAPPO model
 
 ## Performance Characteristics
 
