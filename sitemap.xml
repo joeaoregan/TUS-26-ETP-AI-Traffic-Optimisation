@@ -21,19 +21,55 @@
          <lastmod>2026-04-09</lastmod>
     </url>
     <url>
-         <loc>https://joeaoregan.github.io/TUS-26-ETP-AI-Traffic-Optimisation/api-docs/</loc>
+         <loc>https://joeaoregan.github.io/TUS-26-ETP-AI-Traffic-Optimisation/api/</loc>
          <lastmod>2026-04-09</lastmod>
     </url>
     <url>
-         <loc>https://joeaoregan.github.io/TUS-26-ETP-AI-Traffic-Optimisation/api-docs/api-gateway/</loc>
+         <loc>https://joeaoregan.github.io/TUS-26-ETP-AI-Traffic-Optimisation/api/endpoints/</loc>
          <lastmod>2026-04-09</lastmod>
     </url>
     <url>
-         <loc>https://joeaoregan.github.io/TUS-26-ETP-AI-Traffic-Optimisation/api-docs/inference-service/</loc>
+         <loc>https://joeaoregan.github.io/TUS-26-ETP-AI-Traffic-Optimisation/api/guides/</loc>
          <lastmod>2026-04-09</lastmod>
     </url>
     <url>
-         <loc>https://joeaoregan.github.io/TUS-26-ETP-AI-Traffic-Optimisation/api-docs/lstm-traffic-predictor/</loc>
+         <loc>https://joeaoregan.github.io/TUS-26-ETP-AI-Traffic-Optimisation/api/guides/components/</loc>
+         <lastmod>2026-04-09</lastmod>
+    </url>
+    <url>
+         <loc>https://joeaoregan.github.io/TUS-26-ETP-AI-Traffic-Optimisation/api/guides/monitoring-and-logging/</loc>
+         <lastmod>2026-04-09</lastmod>
+    </url>
+    <url>
+         <loc>https://joeaoregan.github.io/TUS-26-ETP-AI-Traffic-Optimisation/api/guides/performance-tuning/</loc>
+         <lastmod>2026-04-09</lastmod>
+    </url>
+    <url>
+         <loc>https://joeaoregan.github.io/TUS-26-ETP-AI-Traffic-Optimisation/api/guides/usage-examples/</loc>
+         <lastmod>2026-04-09</lastmod>
+    </url>
+    <url>
+         <loc>https://joeaoregan.github.io/TUS-26-ETP-AI-Traffic-Optimisation/api/setup/</loc>
+         <lastmod>2026-04-09</lastmod>
+    </url>
+    <url>
+         <loc>https://joeaoregan.github.io/TUS-26-ETP-AI-Traffic-Optimisation/api/setup/docker-compose-configuration/</loc>
+         <lastmod>2026-04-09</lastmod>
+    </url>
+    <url>
+         <loc>https://joeaoregan.github.io/TUS-26-ETP-AI-Traffic-Optimisation/api/setup/environment-variables/</loc>
+         <lastmod>2026-04-09</lastmod>
+    </url>
+    <url>
+         <loc>https://joeaoregan.github.io/TUS-26-ETP-AI-Traffic-Optimisation/api/setup/production-deployment/</loc>
+         <lastmod>2026-04-09</lastmod>
+    </url>
+    <url>
+         <loc>https://joeaoregan.github.io/TUS-26-ETP-AI-Traffic-Optimisation/api/setup/troubleshooting/</loc>
+         <lastmod>2026-04-09</lastmod>
+    </url>
+    <url>
+         <loc>https://joeaoregan.github.io/TUS-26-ETP-AI-Traffic-Optimisation/api/setup/using-different-models/</loc>
          <lastmod>2026-04-09</lastmod>
     </url>
     <url>
@@ -58,50 +94,6 @@
     </url>
     <url>
          <loc>https://joeaoregan.github.io/TUS-26-ETP-AI-Traffic-Optimisation/api-gateway/key-features/</loc>
-         <lastmod>2026-04-09</lastmod>
-    </url>
-    <url>
-         <loc>https://joeaoregan.github.io/TUS-26-ETP-AI-Traffic-Optimisation/api-setup/</loc>
-         <lastmod>2026-04-09</lastmod>
-    </url>
-    <url>
-         <loc>https://joeaoregan.github.io/TUS-26-ETP-AI-Traffic-Optimisation/api-setup/api-setup-guide/</loc>
-         <lastmod>2026-04-09</lastmod>
-    </url>
-    <url>
-         <loc>https://joeaoregan.github.io/TUS-26-ETP-AI-Traffic-Optimisation/api-setup/api-usage-examples/</loc>
-         <lastmod>2026-04-09</lastmod>
-    </url>
-    <url>
-         <loc>https://joeaoregan.github.io/TUS-26-ETP-AI-Traffic-Optimisation/api-setup/components/</loc>
-         <lastmod>2026-04-09</lastmod>
-    </url>
-    <url>
-         <loc>https://joeaoregan.github.io/TUS-26-ETP-AI-Traffic-Optimisation/api-setup/docker-compose-configuration/</loc>
-         <lastmod>2026-04-09</lastmod>
-    </url>
-    <url>
-         <loc>https://joeaoregan.github.io/TUS-26-ETP-AI-Traffic-Optimisation/api-setup/environment-variables/</loc>
-         <lastmod>2026-04-09</lastmod>
-    </url>
-    <url>
-         <loc>https://joeaoregan.github.io/TUS-26-ETP-AI-Traffic-Optimisation/api-setup/monitoring-and-logging/</loc>
-         <lastmod>2026-04-09</lastmod>
-    </url>
-    <url>
-         <loc>https://joeaoregan.github.io/TUS-26-ETP-AI-Traffic-Optimisation/api-setup/performance-tuning/</loc>
-         <lastmod>2026-04-09</lastmod>
-    </url>
-    <url>
-         <loc>https://joeaoregan.github.io/TUS-26-ETP-AI-Traffic-Optimisation/api-setup/production-deployment/</loc>
-         <lastmod>2026-04-09</lastmod>
-    </url>
-    <url>
-         <loc>https://joeaoregan.github.io/TUS-26-ETP-AI-Traffic-Optimisation/api-setup/troubleshooting/</loc>
-         <lastmod>2026-04-09</lastmod>
-    </url>
-    <url>
-         <loc>https://joeaoregan.github.io/TUS-26-ETP-AI-Traffic-Optimisation/api-setup/using-different-models/</loc>
          <lastmod>2026-04-09</lastmod>
     </url>
     <url>
@@ -190,10 +182,6 @@
     </url>
     <url>
          <loc>https://joeaoregan.github.io/TUS-26-ETP-AI-Traffic-Optimisation/setup-complete/</loc>
-         <lastmod>2026-04-09</lastmod>
-    </url>
-    <url>
-         <loc>https://joeaoregan.github.io/TUS-26-ETP-AI-Traffic-Optimisation/setup-complete/api-endpoints/</loc>
          <lastmod>2026-04-09</lastmod>
     </url>
     <url>
