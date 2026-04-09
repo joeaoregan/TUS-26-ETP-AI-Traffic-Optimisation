@@ -1,4 +1,4 @@
-# API Endpoints
+# API Endpoints (LSTM Traffic Predictor)
 
 ## Health & Information
 

@@ -1,4 +1,4 @@
-# Architecture (LSTM)
+# Architecture (LSTM Traffic Predictor)
 
 ## Technology Stack
 
@@ -18,27 +18,6 @@
 - **Port**: 8001 (configurable via `API_PORT`)
 - **Production URL**: https://lstm-predictor-service.onrender.com (planned)
 - **Local Development**: http://localhost:8001
-
-## File Structure
-
-```
-lstm-predictor-service/
-├── app/
-│   ├── main.py                 # FastAPI application & LSTM inference logic
-│   ├── data/
-│   │   ├── loader.py           # SUMO edgeData.xml parser
-│   │   └── preprocessor.py     # Data normalization and windowing
-│   ├── models/
-│   │   └── lstm_model.pt       # Trained LSTM model weights (future)
-│   ├── templates/
-│   │   └── index.html          # Landing page
-│   └── static/                 # Static assets (logo, favicon)
-├── trained_models/
-│   └── lstm_traffic_forecast.pt # Trained LSTM checkpoint (future)
-├── Dockerfile                  # Container configuration
-├── requirements.txt            # Python dependencies
-└── README.md                   # Documentation
-```
 
 ## Configuration
 

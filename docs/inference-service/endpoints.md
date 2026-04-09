@@ -1,4 +1,4 @@
-# API Endpoints
+# API Endpoints (Python Inference Service)
 
 ## Traffic Inference
 

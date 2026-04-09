@@ -1,4 +1,4 @@
-# Architecture (API Gateway)
+# Architecture (Java API Gateway)
 
 ## Technology Stack
 
@@ -24,38 +24,6 @@
 | `RL_INFERENCE_URL` | `http://localhost:8000/predict_action` | RL inference service endpoint |
 
 For details JWT configuration and usage, see [Java API Gateway Authentication Guide](../security/java-api-gateway.md).
-
-## File Structure
-
-```text
-java-api-gateway/
-├── src/main/java/com/example/gateway/
-│   ├── GatewayApplication.java
-│   ├── controller/
-│   │   ├── TrafficController.java
-│   │   └── AuthController.java
-│   ├── config/
-│   │   ├── SecurityConfig.java
-│   │   ├── OpenApiConfig.java
-│   │   └── WebConfig.java
-│   ├── security/
-│   │   ├── JwtService.java
-│   │   └── JwtAuthenticationFilter.java
-│   ├── service/
-│   │   └── RlInferenceClient.java
-│   └── dto/
-│       ├── LoginRequest.java
-│       ├── LoginResponse.java
-│       ├── TrafficActionResponse.java
-│       ├── TrafficSignalState.java
-│       └── ErrorResponse.java
-├── src/main/resources/
-│   ├── application.yml
-│   └── application-prod.yml
-├── pom.xml
-├── Dockerfile
-└── README.md
-```
 
 ## Core Components
 
