@@ -105,10 +105,11 @@ nav:
       - Testing: setup-complete/testing.md
       - Environment Variables: setup-complete/environment-variables.md
       - Development vs Production: setup-complete/development-vs-production.md
-      - MkDocs Setup: setup-complete/mkdocs-setup.md
-      - Documentation Files: setup-complete/documentation-files.md
       - Next Steps: setup-complete/next-steps.md
       - Support: setup-complete/support.md
+    - Documentation:
+      - MkDocs Setup: setup-complete/mkdocs-setup.md
+      - Documentation Files: setup-complete/documentation-files.md
   - API:
     - Documentation:
       - API Docs: api-docs/index.md
