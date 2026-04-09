@@ -64,9 +64,12 @@ class TrafficAPIClient:
         response.raise_for_status()
         return response.json()
     
-    def predict_action(self, observations: List[float]) -> Dict[str, Any]:
+    def predict_action(self, observations: List[float], junction_id: str = "300839359") -> Dict[str, Any]:
         """Predict action with custom observations."""
-        payload = {"observations": observations}
+        payload = {
+            "junctionId": junction_id,
+            "observations": observations
+        }
         response = self.session.post(
             f"{self.base_url}/api/traffic/action",
             json=payload,
@@ -126,7 +129,8 @@ def test_custom_observations(client: TrafficAPIClient) -> None:
     print("\n1. Low Traffic Scenario (mostly zeros)...")
     low_traffic = [0.1 * random.random() for _ in range(10)]
     try:
-        response = client.predict_action(low_traffic)
+        # response = client.predict_action(low_traffic)
+        response = client.predict_action(low_traffic, junction_id="300839359")
         print_response(response)
         print(f"✓ Action for low traffic: {response.get('signalState')}")
     except Exception as e:
@@ -136,7 +140,8 @@ def test_custom_observations(client: TrafficAPIClient) -> None:
     print("\n2. High Traffic Scenario (mostly ones)...")
     high_traffic = [0.9 + 0.1 * random.random() for _ in range(10)]
     try:
-        response = client.predict_action(high_traffic)
+        # response = client.predict_action(high_traffic)
+        response = client.predict_action(high_traffic, junction_id="300839359")
         print_response(response)
         print(f"✓ Action for high traffic: {response.get('signalState')}")
     except Exception as e:
@@ -146,7 +151,8 @@ def test_custom_observations(client: TrafficAPIClient) -> None:
     print("\n3. Mixed Traffic Scenario...")
     mixed_traffic = [random.random() for _ in range(10)]
     try:
-        response = client.predict_action(mixed_traffic)
+        # response = client.predict_action(mixed_traffic)
+        response = client.predict_action(mixed_traffic, junction_id="300839359")
         print_response(response)
         print(f"✓ Action for mixed traffic: {response.get('signalState')}")
     except Exception as e:

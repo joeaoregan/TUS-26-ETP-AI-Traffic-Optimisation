@@ -36,13 +36,13 @@ Requests to protected endpoints must include a bearer token.
 
 Authentication and JWT settings are configured in `application.yml` and can be overridden with environment variables.
 
-| Property | Environment variable | Default | Notes |
-|---|---|---|---|
-| `security.jwt.issuer` | `JWT_ISSUER` | `traffic-api-gateway` | Used as the JWT issuer claim |
-| `security.jwt.secret` | `JWT_SECRET` | `change-this-secret-key-to-a-very-long-random-value` | Must be at least 32 bytes for HS256 |
-| `security.jwt.expiration-minutes` | `JWT_EXPIRATION_MINUTES` | `60` | Token lifetime |
-| `security.auth.username` | `JWT_AUTH_USERNAME` | `admin` | Login username |
-| `security.auth.password` | `JWT_AUTH_PASSWORD` | `admin123` | Login password |
+| Property                          | Environment variable     | Default                                              | Notes |
+|-----------------------------------|--------------------------|------------------------------------------------------|-------|
+| `security.jwt.issuer`             | `JWT_ISSUER`             | `traffic-api-gateway`                                | Used as the JWT issuer claim        |
+| `security.jwt.secret`             | `JWT_SECRET`             | `change-this-secret-key-to-a-very-long-random-value` | Must be at least 32 bytes for HS256 |
+| `security.jwt.expiration-minutes` | `JWT_EXPIRATION_MINUTES` | `60`                                                 | Token lifetime |
+| `security.auth.username`          | `JWT_AUTH_USERNAME`      | `admin`                                              | Login username |
+| `security.auth.password`          | `JWT_AUTH_PASSWORD`      | `admin123`                                           | Login password |
 
 ## Security Notes
 
