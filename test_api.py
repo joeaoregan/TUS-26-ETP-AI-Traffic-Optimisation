@@ -238,7 +238,7 @@ def main():
     print("\n")
     print("╔" + "=" * 58 + "╗")
     # print("║" + " " * 15 + "AI Traffic Control API - Test Client" + " " * 7 + "║")
-    print(f"║{Fore.BLUE}" + " " * 11 + "AI Traffic Control API - Test Client" + " " * 11 + f"{Fore.WHITE}║")
+    print("║" + " " * 11 + f"{Fore.BLUE}AI Traffic Control API - Test Client{Style.RESET_ALL}" + " " * 11 + f"{Fore.WHITE}║")
     print("╚" + "=" * 58 + "╝")
     
     # Initialize client

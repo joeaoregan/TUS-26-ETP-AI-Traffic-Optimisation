@@ -9,6 +9,8 @@ import shutil
 import json
 from pathlib import Path
 from typing import List, Tuple
+from colorama import Fore, Back, Style, init
+init(autoreset=True)
 
 RESULTS_BASE = Path(__file__).parent.parent / "Results"
 
@@ -109,14 +111,14 @@ def copy_model(source_path: Path, destination_dir: Path) -> bool:
 def main():
     """Main function."""
     print("=" * 85)
-    print("AI Traffic Control API - Model Selector")
+    print(" " * 23 + f"{Fore.BLUE}AI Traffic Control API - Model Selector{Style.RESET_ALL}")
     print("=" * 85)
     
     # Find all available models
     models = find_all_models()
     
     if not models:
-        print("\nNo trained models found in the Results directory.")
+        print(f"\n{Fore.RED}✗ No trained models found in the Results directory.")
         print(f"Expected location: {RESULTS_BASE}")
         return
     
