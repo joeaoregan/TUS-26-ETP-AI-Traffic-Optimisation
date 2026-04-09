@@ -1045,34 +1045,6 @@
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Traffic Inference">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#post-predict_action" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        POST /predict_action
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#post-reset_hidden" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        POST /reset_hidden
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
 </li>
         
           <li class="md-nav__item">
@@ -1084,34 +1056,6 @@
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="System Health &amp; Information">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#get-health" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        GET /health
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#get-model_info" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        GET /model_info
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
 </li>
         
           <li class="md-nav__item">
@@ -1122,34 +1066,6 @@
       
     </span>
   </a>
-  
-    <nav class="md-nav" aria-label="Navigation">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#get" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        GET /
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#get-docs" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        GET /docs
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
   
 </li>
         
@@ -3119,6 +3035,34 @@
   
   
     <li class="md-nav__item">
+      <a href="../api-setup/project-structure/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    🗂️ Project Structure
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../api-setup/api-setup-guide/" class="md-nav__link">
         
   
@@ -3974,34 +3918,6 @@
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Traffic Inference">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#post-predict_action" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        POST /predict_action
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#post-reset_hidden" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        POST /reset_hidden
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
 </li>
         
           <li class="md-nav__item">
@@ -4013,34 +3929,6 @@
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="System Health &amp; Information">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#get-health" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        GET /health
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#get-model_info" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        GET /model_info
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
 </li>
         
           <li class="md-nav__item">
@@ -4051,34 +3939,6 @@
       
     </span>
   </a>
-  
-    <nav class="md-nav" aria-label="Navigation">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#get" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        GET /
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#get-docs" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        GET /docs
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
   
 </li>
         
@@ -4543,7 +4403,8 @@
 </code></pre></div>
 <h2 id="api-endpoints">API Endpoints</h2>
 <h3 id="traffic-inference">Traffic Inference</h3>
-<h4 id="post-predict_action">POST <code>/predict_action</code></h4>
+<div class="admonition success">
+<p class="admonition-title">POST <code>/predict_action</code></p>
 <p>Predict the next optimal green phase for a specific junction.</p>
 <p><strong>Request Body:</strong>
 <div class="highlight"><pre><span></span><code><span class="p">{</span>
@@ -4558,19 +4419,27 @@
 <span class="w">  </span><span class="nt">&quot;confidence&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">0.87</span>
 <span class="p">}</span>
 </code></pre></div></p>
-<p><strong>Parameters:</strong>
-- <code>junction_id</code> (string, required): One of the 5 known junction IDs
-- <code>obs_data</code> (array of floats, required): Local observation vector
-  - Smaller observations are automatically zero-padded to 19 floats
-  - Maximum size: 19 floats</p>
-<p><strong>Errors:</strong>
-- <code>404</code>: Unknown junction ID
-- <code>400</code>: Observation size exceeds 19 floats
-- <code>503</code>: Model not loaded</p>
-<p><strong>Hidden State Management:</strong>
-- Each call updates and persists the GRU hidden state for that junction
-- Call <code>POST /reset_hidden</code> at the start of each new simulation run</p>
-<h4 id="post-reset_hidden">POST <code>/reset_hidden</code></h4>
+<p><strong>Parameters:</strong>  </p>
+<ul>
+<li><code>junction_id</code> (string, required): One of the 5 known junction IDs  </li>
+<li><code>obs_data</code> (array of floats, required): Local observation vector  </li>
+<li>Smaller observations are automatically zero-padded to 19 floats  </li>
+<li>Maximum size: 19 floats  </li>
+</ul>
+<p><strong>Errors:</strong>  </p>
+<ul>
+<li><code>404</code>: Unknown junction ID  </li>
+<li><code>400</code>: Observation size exceeds 19 floats  </li>
+<li><code>503</code>: Model not loaded  </li>
+</ul>
+<p><strong>Hidden State Management:</strong>  </p>
+<ul>
+<li>Each call updates and persists the GRU hidden state for that junction  </li>
+<li>Call <code>POST /reset_hidden</code> at the start of each new simulation run  </li>
+</ul>
+</div>
+<div class="admonition success">
+<p class="admonition-title">POST <code>/reset_hidden</code></p>
 <p>Reset GRU hidden states for all junctions. <strong>Call at the start of each new simulation run.</strong></p>
 <p><strong>Request Body:</strong> (empty)</p>
 <p><strong>Response (200):</strong>
@@ -4579,10 +4448,12 @@
 <span class="w">  </span><span class="nt">&quot;message&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Hidden states reset for all junctions&quot;</span>
 <span class="p">}</span>
 </code></pre></div></p>
+</div>
 <h3 id="system-health-information">System Health &amp; Information</h3>
-<h4 id="get-health">GET <code>/health</code></h4>
+<div class="admonition note">
+<p class="admonition-title">GET <code>/health</code></p>
 <p>Service health check.</p>
-<p><strong>Response (200):</strong>
+<p><strong>Response (200):</strong>  <br />
 <div class="highlight"><pre><span></span><code><span class="p">{</span>
 <span class="w">  </span><span class="nt">&quot;status&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;healthy&quot;</span><span class="p">,</span>
 <span class="w">  </span><span class="nt">&quot;model_loaded&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
@@ -4595,11 +4466,15 @@
 <span class="w">  </span><span class="p">]</span>
 <span class="p">}</span>
 </code></pre></div></p>
-<p><strong>Status Values:</strong>
-- <code>healthy</code>: Model loaded and ready
-- <code>no_model</code>: Service running but model not loaded
-- <code>unhealthy</code>: Service error</p>
-<h4 id="get-model_info">GET <code>/model_info</code></h4>
+<p><strong>Status Values:</strong></p>
+<ul>
+<li><code>healthy</code>: Model loaded and ready  </li>
+<li><code>no_model</code>: Service running but model not loaded  </li>
+<li><code>unhealthy</code>: Service error  </li>
+</ul>
+</div>
+<div class="admonition note">
+<p class="admonition-title">GET <code>/model_info</code></p>
 <p>Get detailed information about the loaded MAPPO model.</p>
 <p><strong>Response (200):</strong>
 <div class="highlight"><pre><span></span><code><span class="p">{</span>
@@ -4623,11 +4498,16 @@
 <span class="w">  </span><span class="p">}</span>
 <span class="p">}</span>
 </code></pre></div></p>
+</div>
 <h3 id="navigation">Navigation</h3>
-<h4 id="get">GET <code>/</code></h4>
+<div class="admonition note">
+<p class="admonition-title">GET <code>/</code></p>
 <p>HTML landing page with links to documentation, status checks, and the API Gateway.</p>
 <p><strong>Response</strong>: HTML page with navigation links</p>
-<h4 id="get-docs">GET <code>/docs</code></h4>
+</div>
+<div class="admonition note">
+<p class="admonition-title">GET <code>/docs</code></p>
+</div>
 <p>FastAPI Swagger UI (auto-generated from OpenAPI schema).</p>
 <p><strong>Response</strong>: Interactive API documentation</p>
 <h2 id="configuration">Configuration</h2>
