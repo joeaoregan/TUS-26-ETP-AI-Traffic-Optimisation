@@ -17,56 +17,59 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import io.swagger.v3.oas.annotations.media.Schema;
 
 @RestController
 @RequestMapping("/api/auth")
 @Tag(name = "Authentication")
 public class AuthController {
 
-    private final JwtService jwtService;
+	private final JwtService jwtService;
 
-    @Value("${security.auth.username:admin}")
-    private String configuredUsername;
+	@Value("${security.auth.username:admin}")
+	private String configuredUsername;
 
-    @Value("${security.auth.password:admin123}")
-    private String configuredPassword;
+	@Value("${security.auth.password:admin123}")
+	private String configuredPassword;
 
-    public AuthController(JwtService jwtService) {
-        this.jwtService = jwtService;
-    }
+	public AuthController(JwtService jwtService) {
+		this.jwtService = jwtService;
+	}
 
-    @Operation(summary = "Authenticate user and issue JWT")
-    @ApiResponse(responseCode = "200", description = "Authentication successful", content = @Content(mediaType = "application/json", examples = @ExampleObject(value = """
-            {
-              \"tokenType\": \"Bearer\",
-              \"accessToken\": \"eyJhbGciOiJIUzI1NiJ9...\",
-              \"expiresIn\": 3600,
-              \"timestamp\": 1710000000000
-            }
-            """)))
-    @ApiResponse(responseCode = "401", description = "Invalid credentials", content = @Content(mediaType = "application/json", examples = @ExampleObject(value = """
-            {
-              \"status\": \"error\",
-              \"message\": \"Invalid username or password\",
-              \"timestamp\": 1710000000000
-            }
-            """)))
-    @PostMapping("/login")
-    public ResponseEntity<?> login(@RequestBody LoginRequest request) {
-        if (request == null || !StringUtils.hasText(request.getUsername()) || !StringUtils.hasText(request.getPassword())) {
-            return new ResponseEntity<>(
-                    new ErrorResponse("error", "Username and password are required", System.currentTimeMillis()),
-                    HttpStatus.BAD_REQUEST);
-        }
+	@Operation(summary = "Authenticate user and issue JWT")
+	@ApiResponse(responseCode = "200", description = "Authentication successful", content = @Content(mediaType = "application/json", schema = @Schema(implementation = LoginResponse.class), examples = @ExampleObject(value = """
+			{
+			  \"tokenType\": \"Bearer\",
+			  \"accessToken\": \"eyJhbGciOiJIUzI1NiJ9...\",
+			  \"expiresIn\": 3600,
+			  \"timestamp\": 1710000000000
+			}
+			""")))
+	@ApiResponse(responseCode = "401", description = "Invalid credentials", content = @Content(mediaType = "application/json", schema = @Schema(implementation = ErrorResponse.class), examples = @ExampleObject(value = """
+			{
+			  \"status\": \"error\",
+			  \"message\": \"Invalid username or password\",
+			  \"timestamp\": 1710000000000
+			}
+			""")))
+	@PostMapping("/login")
+	public ResponseEntity<?> login(@RequestBody LoginRequest request) {
+		if (request == null || !StringUtils.hasText(request.getUsername())
+				|| !StringUtils.hasText(request.getPassword())) {
+			return new ResponseEntity<>(
+					new ErrorResponse("error", "Username and password are required", System.currentTimeMillis()),
+					HttpStatus.BAD_REQUEST);
+		}
 
-        if (!configuredUsername.equals(request.getUsername()) || !configuredPassword.equals(request.getPassword())) {
-            return new ResponseEntity<>(
-                    new ErrorResponse("error", "Invalid username or password", System.currentTimeMillis()),
-                    HttpStatus.UNAUTHORIZED);
-        }
+		if (!configuredUsername.equals(request.getUsername()) || !configuredPassword.equals(request.getPassword())) {
+			return new ResponseEntity<>(
+					new ErrorResponse("error", "Invalid username or password", System.currentTimeMillis()),
+					HttpStatus.UNAUTHORIZED);
+		}
 
-        String token = jwtService.generateToken(request.getUsername());
-        LoginResponse response = new LoginResponse("Bearer", token, jwtService.getExpirationSeconds(), System.currentTimeMillis());
-        return ResponseEntity.ok(response);
-    }
+		String token = jwtService.generateToken(request.getUsername());
+		LoginResponse response = new LoginResponse("Bearer", token, jwtService.getExpirationSeconds(),
+				System.currentTimeMillis());
+		return ResponseEntity.ok(response);
+	}
 }
