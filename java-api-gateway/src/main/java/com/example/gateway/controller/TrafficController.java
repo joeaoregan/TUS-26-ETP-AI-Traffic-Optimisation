@@ -4,8 +4,8 @@ import com.example.gateway.dto.ErrorResponse;
 import com.example.gateway.dto.HealthResponse;
 import com.example.gateway.dto.TrafficActionResponse;
 import com.example.gateway.dto.TrafficSignalState;
+import com.example.gateway.exception.RlInferenceException;
 import com.example.gateway.service.RlInferenceClient;
-import com.example.gateway.service.RlInferenceClient.RlInferenceException;
 
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.ExampleObject;
