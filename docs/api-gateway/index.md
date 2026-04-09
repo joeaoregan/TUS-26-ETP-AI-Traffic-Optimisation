@@ -90,88 +90,87 @@ For details JWT configuration and usage, see [Java API Gateway Authentication Gu
 
 ### Traffic Prediction
 
-#### GET `/api/traffic/action`
-**Demo endpoint** - Picks a random junction and generates dummy observations.
+!!! note "GET `/api/traffic/action`"
+    **Demo endpoint** - Picks a random junction and generates dummy observations.
 
-**Response (200)**:
-``` json
-{
-  "junctionId": "300839359",
-  "predictedAction": 1,
-  "signalState": "YELLOW",
-  "timestamp": 1710000000000,
-  "status": "success"
-}
-```
+    **Response (200)**:
+    ``` json
+    {
+      "junctionId": "300839359",
+      "predictedAction": 1,
+      "signalState": "YELLOW",
+      "timestamp": 1710000000000,
+      "status": "success"
+    }
+    ```
 
-**Response (Fallback - Inference Down)**:
-``` json
-{
-  "junctionId": "300839359",
-  "predictedAction": 0,
-  "signalState": "RED",
-  "timestamp": 1710000000000,
-  "status": "fallback_mode (inference service down)"
-}
-```
+    **Response (Fallback - Inference Down)**:
+    ``` json
+    {
+      "junctionId": "300839359",
+      "predictedAction": 0,
+      "signalState": "RED",
+      "timestamp": 1710000000000,
+      "status": "fallback_mode (inference service down)"
+    }
+    ```
 
-#### POST `/api/traffic/action`
-**Production endpoint** - Accepts junction ID and custom observation vector.
+!!! success "POST `/api/traffic/action`"
+    **Production endpoint** - Accepts junction ID and custom observation vector.
 
-**Request**:
-``` json
-{
-  "junctionId": "joinedS_265580996_300839357",
-  "observations": [0.0, 1.0, 0.0, 0.0, 0.0, 1.0, 0.0, 1.0, 0.12, 0.08, 0.33, 0.41, 0.22, 0.55, 0.18, 0.62, 0.70, 0.81, 0.50],
-  "metadata": "morning-peak"
-}
-```
+    **Request**:
+    ``` json
+    {
+      "junctionId": "joinedS_265580996_300839357",
+      "observations": [0.0, 1.0, 0.0, 0.0, 0.0, 1.0, 0.0, 1.0, 0.12, 0.08, 0.33, 0.41, 0.22, 0.55, 0.18, 0.62, 0.70, 0.81, 0.50],
+      "metadata": "morning-peak"
+    }
+    ```
 
-**Response (200)**: Same structure as demo endpoint
+    **Response (200)**: Same structure as demo endpoint
 
-**Errors**:
+    **Errors**:
 
-- `400`: Missing or invalid `junctionId` / `observations`
-- `400`: Observations exceed maximum size (19)
-- `500`: Unexpected internal error
+    - `400`: Missing or invalid `junctionId` / `observations`
+    - `400`: Observations exceed maximum size (19)
+    - `500`: Unexpected internal error
 
 ### State Management
 
-#### POST `/api/traffic/reset`
-**Reset GRU hidden states** for all junctions (call at start of simulation run).
+!!! success "POST `/api/traffic/reset`"
+    **Reset GRU hidden states** for all junctions (call at start of simulation run).
 
-**Response (200)**:
+    **Response (200)**:
 
-``` json
-{
-  "status": "ok",
-  "message": "Hidden states reset for all junctions"
-}
-```
+    ``` json
+    {
+      "status": "ok",
+      "message": "Hidden states reset for all junctions"
+    }
+    ```
 
 ### Health & Monitoring
 
-#### GET `/api/traffic/health`
+!!! note "GET `/api/traffic/health`"
+    **Service health check** - Verifies inference service availability.
 
-**Service health check** - Verifies inference service availability.
+    **Response (200 - Healthy)**:
+    ``` json
+    {
+      "status": "healthy",
+      "inferenceService": "up",
+      "timestamp": 1710000000000
+    }
+    ```
 
-**Response (200 - Healthy)**:
-``` json
-{
-  "status": "healthy",
-  "inferenceService": "up",
-  "timestamp": 1710000000000
-}
-```
-
-**Response (503 - Degraded)**:
-``` json
-{
-  "status": "degraded",
-  "inferenceService": "down",
-  "timestamp": 1710000000000
-}
-```
+    **Response (503 - Degraded)**:
+    ``` json
+    {
+      "status": "degraded",
+      "inferenceService": "down",
+      "timestamp": 1710000000000
+    }
+    ```
 
 ## Authentication (JWT)
 
@@ -197,7 +196,7 @@ The API Gateway now includes JWT (JSON Web Token) authentication for securing tr
 
 ### Authentication Flow
 
-1. **POST /api/auth/login** with credentials:
+1) **POST /api/auth/login** with credentials:
 
 ```json
   {
@@ -206,7 +205,7 @@ The API Gateway now includes JWT (JSON Web Token) authentication for securing tr
   }
 ```
 
-2. Receive Bearer token:
+2) Receive Bearer token:
 
 ```json
   {
@@ -217,7 +216,7 @@ The API Gateway now includes JWT (JSON Web Token) authentication for securing tr
   }
 ```
 
-3. Use token on protected endpoints:
+3) Use token on protected endpoints:
 
 ```yaml
 Authorization: Bearer eyJhbGciOiJIUzI1NiJ9...
@@ -289,9 +288,37 @@ Then visit:
 
 This gateway expects a Python FastAPI backend at the configured `RL_INFERENCE_URL` with endpoints:
 
-- `POST /predict_action`: Accepts `{"junction_id": "...", "obs_data": [...]}`, returns `{"action": 0-3, "confidence": 0.0-1.0}`
-- `GET /health`: Returns `{"status": "healthy", "modelLoaded": true, "junctions": [...]}`
-- `POST /reset_hidden`: Resets GRU hidden states
+!!! success "POST `/predict_action`"
+    Accepts
+
+    ``` json
+    {
+      "junction_id": "...", 
+      "obs_data": [...]
+    }
+    ```
+    returns
+       
+    ``` json
+    {
+      "action": 0-3, 
+      "confidence": 0.0-1.0
+    }
+    ```
+
+!!! note "GET `/health`"
+    Returns
+    
+    ``` json
+    {
+      "status": "healthy", 
+      "modelLoaded": true, 
+      "junctions": [...]
+    }
+    ```
+
+!!! success "POST `/reset_hidden`"
+    Resets GRU hidden states
 
 ## Quick Links
 

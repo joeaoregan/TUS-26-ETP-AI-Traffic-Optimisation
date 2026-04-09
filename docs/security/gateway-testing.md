@@ -16,10 +16,10 @@ python test_api.py
 ```
 Test output includes:
 
-✅ Green checkmarks for successful operations
-❌ Red X marks for failures
-🔵 Blue headers for test sections
-🔄 Test counter showing passed/total tests
+✅ Green checkmarks for successful operations  
+❌ Red X marks for failures  
+🔵 Blue headers for test sections  
+🔄 Test counter showing passed/total tests  
 
 ## Requirements
 

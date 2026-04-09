@@ -1,41 +1,4 @@
-This project provides a complete REST API solution for traffic signal control using trained RL models.
-
-## Project Structure
-
-```
-TUS-26-ETP2-Python-Data-Science-and-ML-Pipeline/
-├── java-api-gateway/                       # Java Spring Boot gateway
-│   ├── src/
-│   │   ├── main/java/com/example/gateway/
-│   │   │   ├── GatewayApplication.java     # Spring Boot app
-│   │   │   ├── controller/
-│   │   │   │   └── TrafficController.java  # REST endpoints
-│   │   │   └── service/
-│   │   │       └── RlInferenceClient.java  # RL service client
-│   │   └── main/resources/
-│   │       └── application.properties      # Spring config
-│   ├── pom.xml                             # Maven configuration
-│   └── Dockerfile                          # Java service Docker image
-├── rl-inference-service/                   # Python FastAPI service
-│   ├── app/
-│   │   ├── main.py                         # FastAPI application
-│   │   └── models/                         # Directory for trained models
-│   ├── Dockerfile                          # Python service Docker image
-│   ├── requirements.txt                    # Python dependencies
-│   └── .env.example                        # Environment variables template
-├── SUMO/                                   # 
-│   ├── results/
-│   │   ├── Base/
-│   ├── Simulations/
-│   │   ├── Base/
-├── docker-compose.yml                      # Docker Compose orchestration
-└── CHANGELOG.md                            # Change log
-└── FILE_MAINFEST.md                        # 
-└── QUICKSTART.md                           # Quick start guide
-└── README.md                               # This file
-└── SETUP_COMPLETE.md                       # 
-└── SYSTEM_ARCHITECTURE.md                  # 
-```
+# API Setup Guide
 
 ## Setup Instructions
 

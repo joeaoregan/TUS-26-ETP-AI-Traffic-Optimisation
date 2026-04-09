@@ -95,6 +95,7 @@ nav:
     - API Setup: 
       - api-setup/index.md
       - 🧩 Components: api-setup/components.md
+      - 🗂️ Project Structure: api-setup/project-structure.md
       - 🚗 API Setup Guide: api-setup/api-setup-guide.md
       - 📡 API Usage Examples: api-setup/api-usage-examples.md
       - 🔐 Environment Variables: api-setup/environment-variables.md

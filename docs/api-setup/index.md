@@ -1,5 +1,7 @@
 # Overview
 
+This project provides a complete REST API solution for traffic signal control using trained RL models.
+
 1. [API Setup Guide](api-setup-guide.md)
 1. [API Usage Examples](api-usage-examples.md)
 1. [Environment Variables](environment-variables.md)
