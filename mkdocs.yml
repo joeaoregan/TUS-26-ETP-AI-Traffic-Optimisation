@@ -44,8 +44,17 @@ nav:
       - Inference Service: https://traffic-inference-service.onrender.com
       - Inference Service Documentation: https://traffic-inference-service.onrender.com/docs
       - GitHub Repository: https://github.com/joeaoregan/TUS-26-ETP-AI-Traffic-Optimisation
-  - API Gateway: api-gateway/index.md
-  - Inference Service: inference-service/index.md
+  - API Gateway: 
+    - Overview: api-gateway/index.md
+    - Architecture: api-gateway/architecture.md
+    - Endpoints: api-gateway/endpoints.md
+    - Authentication: api-gateway/authentication.md
+    - Key Features: api-gateway/key-features.md
+  - Inference Service: 
+    - Overview: inference-service/index.md
+    - Architecture: inference-service/architecture.md
+    - Endpoints: inference-service/endpoints.md
+    - Key Features: inference-service/key-features.md
   - SUMO: sumo/index.md
   - LSTM: lstm/index.md
   - Security: 
