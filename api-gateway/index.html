@@ -338,17 +338,18 @@
   
   
   
-    <li class="md-tabs__item">
-      <a href="../security/" class="md-tabs__link">
-        
-  
-  
     
+    
+      <li class="md-tabs__item">
+        <a href="../security/" class="md-tabs__link">
+          
+  
   
   Security
 
-      </a>
-    </li>
+        </a>
+      </li>
+    
   
 
       
@@ -1070,6 +1071,67 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#authentication-jwt" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Authentication (JWT)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Authentication (JWT)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#overview_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Overview
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#protected-endpoints" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Protected Endpoints
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#public-endpoints" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Public Endpoints
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#authentication-flow" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Authentication Flow
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#configuration-files" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -1286,9 +1348,25 @@
   
   
   
-    <li class="md-nav__item">
-      <a href="../security/" class="md-nav__link">
+    
+    
+    
+    
+      
+      
         
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
+            
   
   
   <span class="md-ellipsis">
@@ -1302,7 +1380,107 @@
   
   
 
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Security
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../security/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Overview
+  
+
+    
+  </span>
+  
+  
+
       </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../security/java-api-gateway/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Java API Gateway
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../security/gateway-testing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Gateway Testing
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
     </li>
   
 
@@ -3632,6 +3810,67 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#authentication-jwt" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Authentication (JWT)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Authentication (JWT)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#overview_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Overview
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#protected-endpoints" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Protected Endpoints
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#public-endpoints" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Public Endpoints
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#authentication-flow" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Authentication Flow
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#configuration-files" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -3843,6 +4082,43 @@
 <li><strong>Production URL</strong>: <code>https://ai-traffic-control-api.onrender.com</code></li>
 <li><strong>Inference Service</strong>: Communicates via REST to RL backend (default: <code>http://localhost:8000</code>)</li>
 </ul>
+<table>
+<thead>
+<tr>
+<th>Environment Variables</th>
+<th>Default</th>
+<th>Purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>JWT_SECRET</code></td>
+<td><code>change-this-secret-key-to-a-very-long-random-value</code></td>
+<td>HMAC signing key (min 32 bytes)</td>
+</tr>
+<tr>
+<td><code>JWT_AUTH_USERNAME</code></td>
+<td><code>admin</code></td>
+<td>Login username</td>
+</tr>
+<tr>
+<td><code>JWT_AUTH_PASSWORD</code></td>
+<td><code>admin123</code></td>
+<td>Login password</td>
+</tr>
+<tr>
+<td><code>JWT_EXPIRATION_MINUTES</code></td>
+<td><code>60</code></td>
+<td>Token lifetime in minutes</td>
+</tr>
+<tr>
+<td><code>JWT_ISSUER</code></td>
+<td><code>traffic-api-gateway</code></td>
+<td>Token issuer claim</td>
+</tr>
+</tbody>
+</table>
+<p>For details JWT configuration and usage, see <a href="../security/java-api-gateway/">Java API Gateway Authentication Guide</a>.</p>
 <h3 id="core-components">Core Components</h3>
 <p><strong>REST Controller</strong> (<code>TrafficController.java</code>)</p>
 <ul>
@@ -3926,6 +4202,50 @@
 <span class="w">  </span><span class="nt">&quot;timestamp&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1710000000000</span>
 <span class="p">}</span>
 </code></pre></div></p>
+<h2 id="authentication-jwt">Authentication (JWT)</h2>
+<p>The API Gateway now includes JWT (JSON Web Token) authentication for securing traffic prediction endpoints.</p>
+<h3 id="overview_1">Overview</h3>
+<ul>
+<li><strong>Stateless authentication</strong>: No server-side sessions</li>
+<li><strong>HS256 signing</strong>: Industry-standard HMAC-SHA256</li>
+<li><strong>Configurable credentials</strong>: Username/password via environment variables</li>
+<li><strong>Token expiration</strong>: 60 minutes default (configurable)</li>
+</ul>
+<h3 id="protected-endpoints">Protected Endpoints</h3>
+<ul>
+<li><code>GET /api/traffic/action</code> — Requires Bearer token</li>
+<li><code>POST /api/traffic/action</code> — Requires Bearer token</li>
+</ul>
+<h3 id="public-endpoints">Public Endpoints</h3>
+<ul>
+<li><code>POST /api/auth/login</code> — Issue tokens (no auth required)</li>
+<li><code>GET /api/traffic/health</code> — Health check (no auth required)</li>
+<li><code>GET /swagger-ui/**</code> — API documentation (no auth required)</li>
+</ul>
+<h3 id="authentication-flow">Authentication Flow</h3>
+<ol>
+<li><strong>POST /api/auth/login</strong> with credentials:</li>
+</ol>
+<div class="highlight"><pre><span></span><code><span class="w">  </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;username&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;admin&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;password&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;admin123&quot;</span>
+<span class="w">  </span><span class="p">}</span>
+</code></pre></div>
+<ol>
+<li>Receive Bearer token:</li>
+</ol>
+<div class="highlight"><pre><span></span><code><span class="w">  </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;tokenType&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Bearer&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;accessToken&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;eyJhbGciOiJIUzI1NiJ9...&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;expiresIn&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">3600</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;timestamp&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1710000000000</span>
+<span class="w">  </span><span class="p">}</span>
+</code></pre></div>
+<ol>
+<li>Use token on protected endpoints:</li>
+</ol>
+<div class="highlight"><pre><span></span><code><span class="nt">Authorization</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Bearer eyJhbGciOiJIUzI1NiJ9...</span>
+</code></pre></div>
 <h2 id="configuration-files">Configuration Files</h2>
 <h3 id="applicationyml-local-development"><code>application.yml</code> (Local Development)</h3>
 <ul>

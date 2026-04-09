@@ -8,13 +8,13 @@
       
       
       
-        <link rel="canonical" href="https://joeaoregan.github.io/TUS-26-ETP-AI-Traffic-Optimisation/api-setup/using-different-models/">
+        <link rel="canonical" href="https://joeaoregan.github.io/TUS-26-ETP-AI-Traffic-Optimisation/security/java-api-gateway/">
       
       
-        <link rel="prev" href="../monitoring-and-logging/">
+        <link rel="prev" href="../">
       
       
-        <link rel="next" href="../performance-tuning/">
+        <link rel="next" href="../gateway-testing/">
       
       
         
@@ -25,7 +25,7 @@
     
     
       
-        <title>🔄 Using Different Models - AI Traffic Optimisation System</title>
+        <title>Java API Gateway - AI Traffic Optimisation System</title>
       
     
     
@@ -100,6 +100,11 @@
     <label class="md-overlay" for="__drawer"></label>
     <div data-md-component="skip">
       
+        
+        <a href="#java-api-gateway-authentication" class="md-skip">
+          Skip to content
+        </a>
+      
     </div>
     <div data-md-component="announce">
       
@@ -131,7 +136,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              🔄 Using Different Models
+              Java API Gateway
             
           </span>
         </div>
@@ -330,11 +335,13 @@
   
   
   
+    
+  
   
     
     
-      <li class="md-tabs__item">
-        <a href="../../security/" class="md-tabs__link">
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../" class="md-tabs__link">
           
   
   
@@ -400,8 +407,6 @@
   
   
   
-    
-  
   
     
     
@@ -409,12 +414,10 @@
   
   
   
-    
-  
   
     
     
-      <li class="md-tabs__item md-tabs__item--active">
+      <li class="md-tabs__item">
         <a href="../../api-docs/" class="md-tabs__link">
           
   
@@ -918,26 +921,31 @@
       
   
   
+    
   
   
+  
     
     
     
     
+      
+        
+        
       
       
         
       
     
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" checked>
         
           
-          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="">
             
   
   
@@ -955,7 +963,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_6">
             <span class="md-nav__icon md-icon"></span>
             
@@ -973,7 +981,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../security/" class="md-nav__link">
+      <a href="../" class="md-nav__link">
         
   
   
@@ -998,10 +1006,37 @@
                 
   
   
+    
   
   
-    <li class="md-nav__item">
-      <a href="../../security/java-api-gateway/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Java API Gateway
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         
   
   
@@ -1017,6 +1052,248 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#overview" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Overview
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#what-is-protected" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        What Is Protected
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="What Is Protected">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#public-endpoints" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Public endpoints
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#protected-endpoints" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Protected endpoints
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Configuration
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#security-notes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Security Notes
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#how-it-works-internally" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How It Works Internally
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="How It Works Internally">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#authcontroller" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        AuthController
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#jwtservice" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        JwtService
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#jwtauthenticationfilter" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        JwtAuthenticationFilter
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#securityconfig" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        SecurityConfig
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#running-locally" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Running Locally
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Running Locally">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#option-1-docker-compose" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Option 1: Docker Compose
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#option-2-maven" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Option 2: Maven
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#usage-examples" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Usage Examples
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Usage Examples">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#powershell" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        PowerShell
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#curl" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        curl
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#swagger-usage" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Swagger Usage
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -1029,7 +1306,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../security/gateway-testing/" class="md-nav__link">
+      <a href="../gateway-testing/" class="md-nav__link">
         
   
   
@@ -2167,31 +2444,26 @@
       
   
   
-    
   
   
-  
     
     
     
     
-      
-        
-        
       
       
         
       
     
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_9" checked>
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_9" >
         
           
-          <label class="md-nav__link" for="__nav_9" id="__nav_9_label" tabindex="">
+          <label class="md-nav__link" for="__nav_9" id="__nav_9_label" tabindex="0">
             
   
   
@@ -2209,7 +2481,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_9_label" aria-expanded="true">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_9_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_9">
             <span class="md-nav__icon md-icon"></span>
             
@@ -2233,20 +2505,17 @@
       
       
         
-          
-          
-        
       
     
     
-    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
         
         
         <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_9_1" >
         
           
-          <label class="md-nav__link" for="__nav_9_1" id="__nav_9_1_label" tabindex="">
+          <label class="md-nav__link" for="__nav_9_1" id="__nav_9_1_label" tabindex="0">
             
   
   
@@ -2371,31 +2640,26 @@
                 
   
   
-    
   
   
-  
     
     
     
     
       
       
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_9_2" >
         
           
-          
-        
-      
-    
-    
-    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
-      
-        
-        
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_9_2" checked>
-        
-          
-          <label class="md-nav__link" for="__nav_9_2" id="__nav_9_2_label" tabindex="">
+          <label class="md-nav__link" for="__nav_9_2" id="__nav_9_2_label" tabindex="0">
             
   
   
@@ -2413,7 +2677,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_9_2_label" aria-expanded="true">
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_9_2_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_9_2">
             <span class="md-nav__icon md-icon"></span>
             
@@ -2431,7 +2695,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../" class="md-nav__link">
+      <a href="../../api-setup/" class="md-nav__link">
         
   
   
@@ -2459,7 +2723,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../components/" class="md-nav__link">
+      <a href="../../api-setup/components/" class="md-nav__link">
         
   
   
@@ -2487,7 +2751,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../api-setup-guide/" class="md-nav__link">
+      <a href="../../api-setup/api-setup-guide/" class="md-nav__link">
         
   
   
@@ -2515,7 +2779,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../api-usage-examples/" class="md-nav__link">
+      <a href="../../api-setup/api-usage-examples/" class="md-nav__link">
         
   
   
@@ -2543,7 +2807,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../environment-variables/" class="md-nav__link">
+      <a href="../../api-setup/environment-variables/" class="md-nav__link">
         
   
   
@@ -2571,7 +2835,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../docker-compose-configuration/" class="md-nav__link">
+      <a href="../../api-setup/docker-compose-configuration/" class="md-nav__link">
         
   
   
@@ -2599,7 +2863,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../monitoring-and-logging/" class="md-nav__link">
+      <a href="../../api-setup/monitoring-and-logging/" class="md-nav__link">
         
   
   
@@ -2624,17 +2888,10 @@
                 
   
   
-    
   
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../../api-setup/using-different-models/" class="md-nav__link">
         
   
   
@@ -2650,7 +2907,6 @@
   
 
       </a>
-      
     </li>
   
 
@@ -2663,7 +2919,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../performance-tuning/" class="md-nav__link">
+      <a href="../../api-setup/performance-tuning/" class="md-nav__link">
         
   
   
@@ -2691,7 +2947,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../troubleshooting/" class="md-nav__link">
+      <a href="../../api-setup/troubleshooting/" class="md-nav__link">
         
   
   
@@ -2719,7 +2975,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../production-deployment/" class="md-nav__link">
+      <a href="../../api-setup/production-deployment/" class="md-nav__link">
         
   
   
@@ -3198,6 +3454,238 @@
   
   
   
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#overview" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Overview
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#what-is-protected" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        What Is Protected
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="What Is Protected">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#public-endpoints" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Public endpoints
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#protected-endpoints" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Protected endpoints
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Configuration
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#security-notes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Security Notes
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#how-it-works-internally" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How It Works Internally
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="How It Works Internally">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#authcontroller" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        AuthController
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#jwtservice" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        JwtService
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#jwtauthenticationfilter" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        JwtAuthenticationFilter
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#securityconfig" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        SecurityConfig
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#running-locally" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Running Locally
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Running Locally">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#option-1-docker-compose" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Option 1: Docker Compose
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#option-2-maven" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Option 2: Maven
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#usage-examples" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Usage Examples
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Usage Examples">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#powershell" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        PowerShell
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#curl" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        curl
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#swagger-usage" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Swagger Usage
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
   
 </nav>
                   </div>
@@ -3213,57 +3701,6 @@
 
 
 
-  <nav class="md-path" aria-label="Navigation" >
-    <ol class="md-path__list">
-      
-      
-        
-  
-  
-    
-    
-      
-  
-  
-    
-    
-      <li class="md-path__item">
-        <a href="../../api-docs/" class="md-path__link">
-          
-  <span class="md-ellipsis">
-    API
-  </span>
-
-        </a>
-      </li>
-    
-  
-
-    
-  
-
-      
-        
-  
-  
-    
-    
-      <li class="md-path__item">
-        <a href="../" class="md-path__link">
-          
-  <span class="md-ellipsis">
-    API Setup
-  </span>
-
-        </a>
-      </li>
-    
-  
-
-      
-    </ol>
-  </nav>
-
               
               <article class="md-content__inner md-typeset">
                 
@@ -3274,31 +3711,202 @@
   
 
 
-  <h1>🔄 Using Different Models</h1>
+<h1 id="java-api-gateway-authentication">Java API Gateway Authentication</h1>
+<p>This document describes the JWT authentication that has been added to the Spring Boot API gateway.</p>
+<h2 id="overview">Overview</h2>
+<p>Authentication is handled at the gateway layer using JSON Web Tokens (JWT).</p>
+<p>The flow is intentionally simple:</p>
+<ol>
+<li>A client sends a username and password to <code>POST /api/auth/login</code>.</li>
+<li>The gateway validates those credentials against configured values.</li>
+<li>If the credentials are valid, the gateway returns a signed bearer token.</li>
+<li>The client sends that token in the <code>Authorization</code> header when calling protected endpoints.</li>
+</ol>
+<p>This implementation uses stateless authentication. No server-side session is created.</p>
+<h2 id="what-is-protected">What Is Protected</h2>
+<h3 id="public-endpoints">Public endpoints</h3>
+<ul>
+<li><code>POST /api/auth/login</code></li>
+<li><code>GET /api/traffic/health</code></li>
+<li><code>GET /swagger-ui/**</code></li>
+<li><code>GET /v3/api-docs/**</code></li>
+<li>Static resources such as <code>/</code>, <code>/index.html</code>, <code>/app.js</code>, <code>/styles.css</code>, and <code>/images/**</code></li>
+</ul>
+<h3 id="protected-endpoints">Protected endpoints</h3>
+<ul>
+<li><code>GET /api/traffic/action</code></li>
+<li><code>POST /api/traffic/action</code></li>
+</ul>
+<p>Requests to protected endpoints must include a bearer token.</p>
+<h2 id="configuration">Configuration</h2>
+<p>Authentication and JWT settings are configured in <code>application.yml</code> and can be overridden with environment variables.</p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Environment variable</th>
+<th>Default</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>security.jwt.issuer</code></td>
+<td><code>JWT_ISSUER</code></td>
+<td><code>traffic-api-gateway</code></td>
+<td>Used as the JWT issuer claim</td>
+</tr>
+<tr>
+<td><code>security.jwt.secret</code></td>
+<td><code>JWT_SECRET</code></td>
+<td><code>change-this-secret-key-to-a-very-long-random-value</code></td>
+<td>Must be at least 32 bytes for HS256</td>
+</tr>
+<tr>
+<td><code>security.jwt.expiration-minutes</code></td>
+<td><code>JWT_EXPIRATION_MINUTES</code></td>
+<td><code>60</code></td>
+<td>Token lifetime</td>
+</tr>
+<tr>
+<td><code>security.auth.username</code></td>
+<td><code>JWT_AUTH_USERNAME</code></td>
+<td><code>admin</code></td>
+<td>Login username</td>
+</tr>
+<tr>
+<td><code>security.auth.password</code></td>
+<td><code>JWT_AUTH_PASSWORD</code></td>
+<td><code>admin123</code></td>
+<td>Login password</td>
+</tr>
+</tbody>
+</table>
+<h2 id="security-notes">Security Notes</h2>
+<ul>
+<li>The default username, password, and secret are for local development only.</li>
+<li>Replace <code>JWT_SECRET</code> before deploying anywhere outside a local environment.</li>
+<li>This implementation currently uses a single configured username and password.</li>
+<li>There is no refresh-token flow yet.</li>
+<li>Invalid or expired tokens are treated as unauthenticated requests.</li>
+</ul>
+<h2 id="how-it-works-internally">How It Works Internally</h2>
+<h3 id="authcontroller"><code>AuthController</code></h3>
+<p><code>POST /api/auth/login</code> accepts a JSON payload:</p>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;username&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;admin&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;password&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;admin123&quot;</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>If the credentials match the configured values, the controller returns:</p>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;tokenType&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Bearer&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;accessToken&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;&lt;jwt&gt;&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;expiresIn&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">3600</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;timestamp&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1710000000000</span>
+<span class="p">}</span>
+</code></pre></div>
+<h3 id="jwtservice"><code>JwtService</code></h3>
+<p>The JWT service:</p>
+<ul>
+<li>Validates the configured signing secret at startup</li>
+<li>Signs tokens using HS256</li>
+<li>Stores the username in the <code>sub</code> claim</li>
+<li>Adds <code>iss</code>, <code>iat</code>, and <code>exp</code> claims</li>
+<li>Parses and validates incoming tokens</li>
+</ul>
+<h3 id="jwtauthenticationfilter"><code>JwtAuthenticationFilter</code></h3>
+<p>The request filter:</p>
+<ul>
+<li>Reads the <code>Authorization</code> header</li>
+<li>Expects the format <code>Bearer &lt;token&gt;</code></li>
+<li>Validates the token</li>
+<li>Extracts the username from the token subject</li>
+<li>Adds an authenticated principal to the Spring Security context</li>
+</ul>
+<h3 id="securityconfig"><code>SecurityConfig</code></h3>
+<p>Spring Security is configured to:</p>
+<ul>
+<li>Disable CSRF for this stateless API</li>
+<li>Disable HTTP Basic authentication</li>
+<li>Use stateless session management</li>
+<li>Allow public access to login, health, Swagger, and static assets</li>
+<li>Require authentication for traffic action endpoints</li>
+</ul>
+<h2 id="running-locally">Running Locally</h2>
+<h3 id="option-1-docker-compose">Option 1: Docker Compose</h3>
+<p>The <code>docker-compose.yml</code> file includes these JWT-related environment variables for the gateway:</p>
+<div class="highlight"><pre><span></span><code><span class="nt">JWT_SECRET</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">change-this-secret-key-to-a-very-long-random-value</span>
+<span class="nt">JWT_AUTH_USERNAME</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">admin</span>
+<span class="nt">JWT_AUTH_PASSWORD</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">admin123</span>
+<span class="nt">JWT_EXPIRATION_MINUTES</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;60&quot;</span>
+</code></pre></div>
+<p>Start the services:</p>
+<div class="highlight"><pre><span></span><code>docker-compose<span class="w"> </span>up<span class="w"> </span>--build
+</code></pre></div>
+<h3 id="option-2-maven">Option 2: Maven</h3>
+<p>From the <code>java-api-gateway</code> directory:</p>
+<div class="highlight"><pre><span></span><code>mvn<span class="w"> </span>spring-boot:run
+</code></pre></div>
+<p>If you want to override the defaults, set environment variables first.</p>
+<p>Example PowerShell:</p>
+<div class="highlight"><pre><span></span><code><span class="nv">$env:JWT_SECRET</span><span class="p">=</span><span class="s2">&quot;replace-with-a-long-random-secret-of-at-least-32-characters&quot;</span>
+<span class="nv">$env:JWT_AUTH_USERNAME</span><span class="p">=</span><span class="s2">&quot;admin&quot;</span>
+<span class="nv">$env:JWT_AUTH_PASSWORD</span><span class="p">=</span><span class="s2">&quot;admin123&quot;</span>
+<span class="nv">$env:JWT_EXPIRATION_MINUTES</span><span class="p">=</span><span class="s2">&quot;60&quot;</span>
+<span class="n">mvn</span> <span class="n">spring-boot</span><span class="p">:</span><span class="n">run</span>
+</code></pre></div>
+<h2 id="usage-examples">Usage Examples</h2>
+<h3 id="powershell">PowerShell</h3>
+<p>Authenticate:</p>
+<div class="highlight"><pre><span></span><code><span class="nv">$loginBody</span> <span class="p">=</span> <span class="p">@{</span>
+    <span class="n">username</span> <span class="p">=</span> <span class="s2">&quot;admin&quot;</span>
+    <span class="n">password</span> <span class="p">=</span> <span class="s2">&quot;admin123&quot;</span>
+<span class="p">}</span> <span class="p">|</span> <span class="nb">ConvertTo-Json</span>
 
-<p>To use a different trained MAPPO model:</p>
-<ol>
-<li><strong>Locate your checkpoint:</strong></li>
-</ol>
-<div class="highlight"><pre><span></span><code>Results/mappo_sumo_v4/seed_&lt;n&gt;/models/&lt;run_name&gt;/&lt;steps&gt;/agent.th
+<span class="nv">$tokenResponse</span> <span class="p">=</span> <span class="nb">Invoke-RestMethod</span> <span class="n">-Method</span> <span class="n">Post</span> <span class="n">-Uri</span> <span class="s2">&quot;http://localhost:8080/api/auth/login&quot;</span> <span class="n">-ContentType</span> <span class="s2">&quot;application/json&quot;</span> <span class="n">-Body</span> <span class="nv">$loginBody</span>
+<span class="nv">$token</span> <span class="p">=</span> <span class="nv">$tokenResponse</span><span class="p">.</span><span class="n">accessToken</span>
+</code></pre></div>
+<p>Call a protected endpoint:</p>
+<div class="highlight"><pre><span></span><code><span class="nv">$headers</span> <span class="p">=</span> <span class="p">@{</span> <span class="n">Authorization</span> <span class="p">=</span> <span class="s2">&quot;Bearer $token&quot;</span> <span class="p">}</span>
+<span class="nb">Invoke-RestMethod</span> <span class="n">-Method</span> <span class="n">Get</span> <span class="n">-Uri</span> <span class="s2">&quot;http://localhost:8080/api/traffic/action&quot;</span> <span class="n">-Headers</span> <span class="nv">$headers</span>
+</code></pre></div>
+<p>Call the prediction endpoint with custom observations:</p>
+<div class="highlight"><pre><span></span><code><span class="nv">$headers</span> <span class="p">=</span> <span class="p">@{</span> <span class="n">Authorization</span> <span class="p">=</span> <span class="s2">&quot;Bearer $token&quot;</span> <span class="p">}</span>
+<span class="nv">$body</span> <span class="p">=</span> <span class="p">@{</span>
+    <span class="n">observations</span> <span class="p">=</span> <span class="p">@(</span><span class="n">0</span><span class="p">.</span><span class="n">12</span><span class="p">,</span> <span class="n">0</span><span class="p">.</span><span class="n">33</span><span class="p">,</span> <span class="n">0</span><span class="p">.</span><span class="n">41</span><span class="p">,</span> <span class="n">0</span><span class="p">.</span><span class="n">55</span><span class="p">,</span> <span class="n">0</span><span class="p">.</span><span class="n">62</span><span class="p">,</span> <span class="n">0</span><span class="p">.</span><span class="n">70</span><span class="p">,</span> <span class="n">0</span><span class="p">.</span><span class="n">81</span><span class="p">,</span> <span class="n">0</span><span class="p">.</span><span class="n">90</span><span class="p">,</span> <span class="n">0</span><span class="p">.</span><span class="n">95</span><span class="p">)</span>
+    <span class="n">metadata</span> <span class="p">=</span> <span class="s2">&quot;morning-peak&quot;</span>
+<span class="p">}</span> <span class="p">|</span> <span class="nb">ConvertTo-Json</span>
 
-Example:
-- Results/mappo_sumo_v4/seed_42/models/.../2828160/agent.th
+<span class="nb">Invoke-RestMethod</span> <span class="n">-Method</span> <span class="n">Post</span> <span class="n">-Uri</span> <span class="s2">&quot;http://localhost:8080/api/traffic/action&quot;</span> <span class="n">-Headers</span> <span class="nv">$headers</span> <span class="n">-ContentType</span> <span class="s2">&quot;application/json&quot;</span> <span class="n">-Body</span> <span class="nv">$body</span>
 </code></pre></div>
-<ol>
-<li><strong>Copy to trained_models directory:</strong></li>
-</ol>
-<div class="highlight"><pre><span></span><code>cp<span class="w"> </span><span class="s2">&quot;&lt;source_path&gt;/agent.th&quot;</span><span class="w"> </span><span class="s2">&quot;rl-inference-service/app/trained_models/agent.th&quot;</span>
+<h3 id="curl">curl</h3>
+<p>Authenticate and capture the token:</p>
+<div class="highlight"><pre><span></span><code><span class="nv">TOKEN</span><span class="o">=</span><span class="k">$(</span>curl<span class="w"> </span>-s<span class="w"> </span>-X<span class="w"> </span>POST<span class="w"> </span>http://localhost:8080/api/auth/login<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-H<span class="w"> </span><span class="s2">&quot;Content-Type: application/json&quot;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-d<span class="w"> </span><span class="s1">&#39;{&quot;username&quot;:&quot;admin&quot;,&quot;password&quot;:&quot;admin123&quot;}&#39;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>jq<span class="w"> </span>-r<span class="w"> </span><span class="s1">&#39;.accessToken&#39;</span><span class="k">)</span>
 </code></pre></div>
-<ol>
-<li><strong>Rebuild and restart:</strong></li>
-</ol>
-<div class="highlight"><pre><span></span><code>docker<span class="w"> </span>build<span class="w"> </span>-t<span class="w"> </span>rl-inference-service:2.0.0<span class="w"> </span>./rl-inference-service
-docker<span class="w"> </span>compose<span class="w"> </span>up<span class="w"> </span>-d
+<p>Call a protected endpoint:</p>
+<div class="highlight"><pre><span></span><code>curl<span class="w"> </span>-X<span class="w"> </span>GET<span class="w"> </span>http://localhost:8080/api/traffic/action<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-H<span class="w"> </span><span class="s2">&quot;Authorization: Bearer </span><span class="nv">$TOKEN</span><span class="s2">&quot;</span>
 </code></pre></div>
-<blockquote>
-<p><strong>Note:</strong> The model is an EPyMARL RNNAgent checkpoint (PyTorch <code>.th</code> file), not a Stable-Baselines3 <code>.zip</code>. Architecture: <code>fc1(24→128) → GRUCell(128→128) → fc2(128→4)</code>. Input shape = 24 (19 obs + 5 agent-id one-hot).</p>
-</blockquote>
+<p>Call the prediction endpoint with custom observations:</p>
+<div class="highlight"><pre><span></span><code>curl<span class="w"> </span>-X<span class="w"> </span>POST<span class="w"> </span>http://localhost:8080/api/traffic/action<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-H<span class="w"> </span><span class="s2">&quot;Content-Type: application/json&quot;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-H<span class="w"> </span><span class="s2">&quot;Authorization: Bearer </span><span class="nv">$TOKEN</span><span class="s2">&quot;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-d<span class="w"> </span><span class="s1">&#39;{</span>
+<span class="s1">    &quot;observations&quot;: [0.12, 0.33, 0.41, 0.55, 0.62, 0.70, 0.81, 0.90, 0.95],</span>
+<span class="s1">    &quot;metadata&quot;: &quot;morning-peak&quot;</span>
+<span class="s1">  }&#39;</span>
+</code></pre></div>
+<h2 id="swagger-usage">Swagger Usage</h2>
+<p>Swagger UI is still publicly reachable.</p>
+<p>Open:</p>
+<div class="highlight"><pre><span></span><code>http://localhost:8080/swagger-ui/index.html
+</code></pre></div>
+<p>You can authenticate by first calling <code>POST /api/auth/login</code>, copying the returned <code>accessToken</code>, and then using the Swagger <code>Authorize</code> button with:</p>
+<div class="highlight"><pre><span></span><code>Bearer &lt;your-token&gt;
+</code></pre></div>
 
 
 
@@ -3334,7 +3942,7 @@ docker<span class="w"> </span>compose<span class="w"> </span>up<span class="w"> 
       <nav class="md-footer__inner md-grid" aria-label="Footer" >
         
           
-          <a href="../monitoring-and-logging/" class="md-footer__link md-footer__link--prev" aria-label="Previous: 📊 Monitoring and Logging">
+          <a href="../" class="md-footer__link md-footer__link--prev" aria-label="Previous: Overview">
             <div class="md-footer__button md-icon">
               
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
@@ -3344,20 +3952,20 @@ docker<span class="w"> </span>compose<span class="w"> </span>up<span class="w"> 
                 Previous
               </span>
               <div class="md-ellipsis">
-                📊 Monitoring and Logging
+                Overview
               </div>
             </div>
           </a>
         
         
           
-          <a href="../performance-tuning/" class="md-footer__link md-footer__link--next" aria-label="Next: ⚡ Performance Tuning">
+          <a href="../gateway-testing/" class="md-footer__link md-footer__link--next" aria-label="Next: Gateway Testing">
             <div class="md-footer__title">
               <span class="md-footer__direction">
                 Next
               </span>
               <div class="md-ellipsis">
-                ⚡ Performance Tuning
+                Gateway Testing
               </div>
             </div>
             <div class="md-footer__button md-icon">

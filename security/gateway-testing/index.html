@@ -8,13 +8,13 @@
       
       
       
-        <link rel="canonical" href="https://joeaoregan.github.io/TUS-26-ETP-AI-Traffic-Optimisation/api-setup/using-different-models/">
+        <link rel="canonical" href="https://joeaoregan.github.io/TUS-26-ETP-AI-Traffic-Optimisation/security/gateway-testing/">
       
       
-        <link rel="prev" href="../monitoring-and-logging/">
+        <link rel="prev" href="../java-api-gateway/">
       
       
-        <link rel="next" href="../performance-tuning/">
+        <link rel="next" href="../../system-architecture/">
       
       
         
@@ -25,7 +25,7 @@
     
     
       
-        <title>🔄 Using Different Models - AI Traffic Optimisation System</title>
+        <title>Gateway Testing - AI Traffic Optimisation System</title>
       
     
     
@@ -100,6 +100,11 @@
     <label class="md-overlay" for="__drawer"></label>
     <div data-md-component="skip">
       
+        
+        <a href="#testing" class="md-skip">
+          Skip to content
+        </a>
+      
     </div>
     <div data-md-component="announce">
       
@@ -131,7 +136,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              🔄 Using Different Models
+              Gateway Testing
             
           </span>
         </div>
@@ -330,11 +335,13 @@
   
   
   
+    
+  
   
     
     
-      <li class="md-tabs__item">
-        <a href="../../security/" class="md-tabs__link">
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../" class="md-tabs__link">
           
   
   
@@ -400,8 +407,6 @@
   
   
   
-    
-  
   
     
     
@@ -409,12 +414,10 @@
   
   
   
-    
-  
   
     
     
-      <li class="md-tabs__item md-tabs__item--active">
+      <li class="md-tabs__item">
         <a href="../../api-docs/" class="md-tabs__link">
           
   
@@ -918,26 +921,31 @@
       
   
   
+    
   
   
+  
     
     
     
     
+      
+        
+        
       
       
         
       
     
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" checked>
         
           
-          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="">
             
   
   
@@ -955,7 +963,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_6">
             <span class="md-nav__icon md-icon"></span>
             
@@ -973,7 +981,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../security/" class="md-nav__link">
+      <a href="../" class="md-nav__link">
         
   
   
@@ -1001,7 +1009,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../security/java-api-gateway/" class="md-nav__link">
+      <a href="../java-api-gateway/" class="md-nav__link">
         
   
   
@@ -1026,10 +1034,37 @@
                 
   
   
+    
   
   
-    <li class="md-nav__item">
-      <a href="../../security/gateway-testing/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Gateway Testing
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         
   
   
@@ -1045,6 +1080,59 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#requirements" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Requirements
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#relevant-files" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Relevant Files
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#current-limitations" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Current Limitations
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -2167,31 +2255,26 @@
       
   
   
-    
   
   
-  
     
     
     
     
-      
-        
-        
       
       
         
       
     
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_9" checked>
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_9" >
         
           
-          <label class="md-nav__link" for="__nav_9" id="__nav_9_label" tabindex="">
+          <label class="md-nav__link" for="__nav_9" id="__nav_9_label" tabindex="0">
             
   
   
@@ -2209,7 +2292,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_9_label" aria-expanded="true">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_9_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_9">
             <span class="md-nav__icon md-icon"></span>
             
@@ -2233,20 +2316,17 @@
       
       
         
-          
-          
-        
       
     
     
-    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
         
         
         <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_9_1" >
         
           
-          <label class="md-nav__link" for="__nav_9_1" id="__nav_9_1_label" tabindex="">
+          <label class="md-nav__link" for="__nav_9_1" id="__nav_9_1_label" tabindex="0">
             
   
   
@@ -2371,31 +2451,26 @@
                 
   
   
-    
   
   
-  
     
     
     
     
       
       
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_9_2" >
         
           
-          
-        
-      
-    
-    
-    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
-      
-        
-        
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_9_2" checked>
-        
-          
-          <label class="md-nav__link" for="__nav_9_2" id="__nav_9_2_label" tabindex="">
+          <label class="md-nav__link" for="__nav_9_2" id="__nav_9_2_label" tabindex="0">
             
   
   
@@ -2413,7 +2488,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_9_2_label" aria-expanded="true">
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_9_2_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_9_2">
             <span class="md-nav__icon md-icon"></span>
             
@@ -2431,7 +2506,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../" class="md-nav__link">
+      <a href="../../api-setup/" class="md-nav__link">
         
   
   
@@ -2459,7 +2534,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../components/" class="md-nav__link">
+      <a href="../../api-setup/components/" class="md-nav__link">
         
   
   
@@ -2487,7 +2562,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../api-setup-guide/" class="md-nav__link">
+      <a href="../../api-setup/api-setup-guide/" class="md-nav__link">
         
   
   
@@ -2515,7 +2590,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../api-usage-examples/" class="md-nav__link">
+      <a href="../../api-setup/api-usage-examples/" class="md-nav__link">
         
   
   
@@ -2543,7 +2618,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../environment-variables/" class="md-nav__link">
+      <a href="../../api-setup/environment-variables/" class="md-nav__link">
         
   
   
@@ -2571,7 +2646,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../docker-compose-configuration/" class="md-nav__link">
+      <a href="../../api-setup/docker-compose-configuration/" class="md-nav__link">
         
   
   
@@ -2599,7 +2674,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../monitoring-and-logging/" class="md-nav__link">
+      <a href="../../api-setup/monitoring-and-logging/" class="md-nav__link">
         
   
   
@@ -2624,17 +2699,10 @@
                 
   
   
-    
   
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../../api-setup/using-different-models/" class="md-nav__link">
         
   
   
@@ -2650,7 +2718,6 @@
   
 
       </a>
-      
     </li>
   
 
@@ -2663,7 +2730,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../performance-tuning/" class="md-nav__link">
+      <a href="../../api-setup/performance-tuning/" class="md-nav__link">
         
   
   
@@ -2691,7 +2758,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../troubleshooting/" class="md-nav__link">
+      <a href="../../api-setup/troubleshooting/" class="md-nav__link">
         
   
   
@@ -2719,7 +2786,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../production-deployment/" class="md-nav__link">
+      <a href="../../api-setup/production-deployment/" class="md-nav__link">
         
   
   
@@ -3198,6 +3265,49 @@
   
   
   
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#requirements" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Requirements
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#relevant-files" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Relevant Files
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#current-limitations" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Current Limitations
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
   
 </nav>
                   </div>
@@ -3213,57 +3323,6 @@
 
 
 
-  <nav class="md-path" aria-label="Navigation" >
-    <ol class="md-path__list">
-      
-      
-        
-  
-  
-    
-    
-      
-  
-  
-    
-    
-      <li class="md-path__item">
-        <a href="../../api-docs/" class="md-path__link">
-          
-  <span class="md-ellipsis">
-    API
-  </span>
-
-        </a>
-      </li>
-    
-  
-
-    
-  
-
-      
-        
-  
-  
-    
-    
-      <li class="md-path__item">
-        <a href="../" class="md-path__link">
-          
-  <span class="md-ellipsis">
-    API Setup
-  </span>
-
-        </a>
-      </li>
-    
-  
-
-      
-    </ol>
-  </nav>
-
               
               <article class="md-content__inner md-typeset">
                 
@@ -3274,31 +3333,48 @@
   
 
 
-  <h1>🔄 Using Different Models</h1>
-
-<p>To use a different trained MAPPO model:</p>
-<ol>
-<li><strong>Locate your checkpoint:</strong></li>
-</ol>
-<div class="highlight"><pre><span></span><code>Results/mappo_sumo_v4/seed_&lt;n&gt;/models/&lt;run_name&gt;/&lt;steps&gt;/agent.th
-
-Example:
-- Results/mappo_sumo_v4/seed_42/models/.../2828160/agent.th
+<h1 id="testing">Testing</h1>
+<p>The root-level <code>test_api.py</code> script has been updated to:</p>
+<ul>
+<li>Authenticate first using JWT credentials</li>
+<li>Cache the returned access token</li>
+<li>Send the token on protected requests</li>
+<li><strong>Display color-coded output for better readability</strong></li>
+<li><strong>Track test results (e.g., "All tests passed! 4/4")</strong></li>
+<li><strong>Return boolean status for each test function</strong></li>
+</ul>
+<p>Run it from the repository root:</p>
+<p><div class="highlight"><pre><span></span><code>python<span class="w"> </span>test_api.py
 </code></pre></div>
-<ol>
-<li><strong>Copy to trained_models directory:</strong></li>
-</ol>
-<div class="highlight"><pre><span></span><code>cp<span class="w"> </span><span class="s2">&quot;&lt;source_path&gt;/agent.th&quot;</span><span class="w"> </span><span class="s2">&quot;rl-inference-service/app/trained_models/agent.th&quot;</span>
-</code></pre></div>
-<ol>
-<li><strong>Rebuild and restart:</strong></li>
-</ol>
-<div class="highlight"><pre><span></span><code>docker<span class="w"> </span>build<span class="w"> </span>-t<span class="w"> </span>rl-inference-service:2.0.0<span class="w"> </span>./rl-inference-service
-docker<span class="w"> </span>compose<span class="w"> </span>up<span class="w"> </span>-d
-</code></pre></div>
-<blockquote>
-<p><strong>Note:</strong> The model is an EPyMARL RNNAgent checkpoint (PyTorch <code>.th</code> file), not a Stable-Baselines3 <code>.zip</code>. Architecture: <code>fc1(24→128) → GRUCell(128→128) → fc2(128→4)</code>. Input shape = 24 (19 obs + 5 agent-id one-hot).</p>
-</blockquote>
+Test output includes:</p>
+<p>✅ Green checkmarks for successful operations<br />
+❌ Red X marks for failures<br />
+🔵 Blue headers for test sections<br />
+🔄 Test counter showing passed/total tests  </p>
+<h2 id="requirements">Requirements</h2>
+<p>To use the enhanced test script with color output, install colorama:</p>
+<h2 id="relevant-files">Relevant Files</h2>
+<ul>
+<li><code>src/main/java/com/example/gateway/controller/AuthController.java</code></li>
+<li><code>src/main/java/com/example/gateway/config/SecurityConfig.java</code></li>
+<li><code>src/main/java/com/example/gateway/security/JwtService.java</code></li>
+<li><code>src/main/java/com/example/gateway/security/JwtAuthenticationFilter.java</code></li>
+<li><code>src/main/resources/application.yml</code></li>
+<li><code>src/main/resources/application-prod.yml</code></li>
+<li><code>src/main/java/com/example/gateway/dto/LoginRequest.java</code></li>
+<li><code>src/main/java/com/example/gateway/dto/LoginResponse.java</code></li>
+<li><code>src/main/java/com/example/gateway/dto/ErrorResponse.java</code></li>
+<li><code>test_api.py</code></li>
+</ul>
+<h2 id="current-limitations">Current Limitations</h2>
+<ul>
+<li>Single configured user only</li>
+<li>No user database integration</li>
+<li>No role-based authorization</li>
+<li>No refresh tokens</li>
+<li>No logout endpoint because the system is stateless</li>
+</ul>
+<p>If the project needs stronger access control later, the next logical step is to replace configured credentials with a persistent user store and add roles.</p>
 
 
 
@@ -3334,7 +3410,7 @@ docker<span class="w"> </span>compose<span class="w"> </span>up<span class="w"> 
       <nav class="md-footer__inner md-grid" aria-label="Footer" >
         
           
-          <a href="../monitoring-and-logging/" class="md-footer__link md-footer__link--prev" aria-label="Previous: 📊 Monitoring and Logging">
+          <a href="../java-api-gateway/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Java API Gateway">
             <div class="md-footer__button md-icon">
               
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
@@ -3344,20 +3420,20 @@ docker<span class="w"> </span>compose<span class="w"> </span>up<span class="w"> 
                 Previous
               </span>
               <div class="md-ellipsis">
-                📊 Monitoring and Logging
+                Java API Gateway
               </div>
             </div>
           </a>
         
         
           
-          <a href="../performance-tuning/" class="md-footer__link md-footer__link--next" aria-label="Next: ⚡ Performance Tuning">
+          <a href="../../system-architecture/" class="md-footer__link md-footer__link--next" aria-label="Next: System Architecture">
             <div class="md-footer__title">
               <span class="md-footer__direction">
                 Next
               </span>
               <div class="md-ellipsis">
-                ⚡ Performance Tuning
+                System Architecture
               </div>
             </div>
             <div class="md-footer__button md-icon">
