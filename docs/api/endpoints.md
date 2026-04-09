@@ -10,7 +10,7 @@
 
 ---
 
-## Java API Gateway (Port 8080)
+## 🔐 Java API Gateway (Port 8080)
 
 !!! success "POST `/api/auth/login`"
     **Authenticate and receive JWT bearer token** — No authentication required (public endpoint)
@@ -105,7 +105,7 @@
 
 ---
 
-## Python Inference Service (Port 8000)
+## 🤖 Python Inference Service (Port 8000)
 
 !!! success "POST `/predict_action`"
     **Predict optimal signal action** — No authentication
@@ -187,7 +187,7 @@
 
 ---
 
-## LSTM Traffic Predictor (Port 8001)
+## 🧠 LSTM Traffic Predictor (Port 8001)
 
 !!! note "GET `/health`"
     **Service health check**
