@@ -979,34 +979,6 @@
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Traffic Prediction">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#get-apitrafficaction" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        GET /api/traffic/action
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#post-apitrafficaction" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        POST /api/traffic/action
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
 </li>
         
           <li class="md-nav__item">
@@ -1018,23 +990,6 @@
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="State Management">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#post-apitrafficreset" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        POST /api/traffic/reset
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
 </li>
         
           <li class="md-nav__item">
@@ -1045,23 +1000,6 @@
       
     </span>
   </a>
-  
-    <nav class="md-nav" aria-label="Health &amp; Monitoring">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#get-apitraffichealth" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        GET /api/traffic/health
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
   
 </li>
         
@@ -3718,34 +3656,6 @@
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Traffic Prediction">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#get-apitrafficaction" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        GET /api/traffic/action
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#post-apitrafficaction" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        POST /api/traffic/action
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
 </li>
         
           <li class="md-nav__item">
@@ -3757,23 +3667,6 @@
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="State Management">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#post-apitrafficreset" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        POST /api/traffic/reset
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
 </li>
         
           <li class="md-nav__item">
@@ -3784,23 +3677,6 @@
       
     </span>
   </a>
-  
-    <nav class="md-nav" aria-label="Health &amp; Monitoring">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#get-apitraffichealth" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        GET /api/traffic/health
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
   
 </li>
         
@@ -4140,7 +4016,8 @@
 </ul>
 <h2 id="api-endpoints">API Endpoints</h2>
 <h3 id="traffic-prediction">Traffic Prediction</h3>
-<h4 id="get-apitrafficaction">GET <code>/api/traffic/action</code></h4>
+<div class="admonition note">
+<p class="admonition-title">GET <code>/api/traffic/action</code></p>
 <p><strong>Demo endpoint</strong> - Picks a random junction and generates dummy observations.</p>
 <p><strong>Response (200)</strong>:
 <div class="highlight"><pre><span></span><code><span class="p">{</span>
@@ -4160,7 +4037,9 @@
 <span class="w">  </span><span class="nt">&quot;status&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;fallback_mode (inference service down)&quot;</span>
 <span class="p">}</span>
 </code></pre></div></p>
-<h4 id="post-apitrafficaction">POST <code>/api/traffic/action</code></h4>
+</div>
+<div class="admonition success">
+<p class="admonition-title">POST <code>/api/traffic/action</code></p>
 <p><strong>Production endpoint</strong> - Accepts junction ID and custom observation vector.</p>
 <p><strong>Request</strong>:
 <div class="highlight"><pre><span></span><code><span class="p">{</span>
@@ -4176,8 +4055,10 @@
 <li><code>400</code>: Observations exceed maximum size (19)</li>
 <li><code>500</code>: Unexpected internal error</li>
 </ul>
+</div>
 <h3 id="state-management">State Management</h3>
-<h4 id="post-apitrafficreset">POST <code>/api/traffic/reset</code></h4>
+<div class="admonition success">
+<p class="admonition-title">POST <code>/api/traffic/reset</code></p>
 <p><strong>Reset GRU hidden states</strong> for all junctions (call at start of simulation run).</p>
 <p><strong>Response (200)</strong>:</p>
 <div class="highlight"><pre><span></span><code><span class="p">{</span>
@@ -4185,8 +4066,10 @@
 <span class="w">  </span><span class="nt">&quot;message&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Hidden states reset for all junctions&quot;</span>
 <span class="p">}</span>
 </code></pre></div>
+</div>
 <h3 id="health-monitoring">Health &amp; Monitoring</h3>
-<h4 id="get-apitraffichealth">GET <code>/api/traffic/health</code></h4>
+<div class="admonition note">
+<p class="admonition-title">GET <code>/api/traffic/health</code></p>
 <p><strong>Service health check</strong> - Verifies inference service availability.</p>
 <p><strong>Response (200 - Healthy)</strong>:
 <div class="highlight"><pre><span></span><code><span class="p">{</span>
@@ -4202,6 +4085,7 @@
 <span class="w">  </span><span class="nt">&quot;timestamp&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1710000000000</span>
 <span class="p">}</span>
 </code></pre></div></p>
+</div>
 <h2 id="authentication-jwt">Authentication (JWT)</h2>
 <p>The API Gateway now includes JWT (JSON Web Token) authentication for securing traffic prediction endpoints.</p>
 <h3 id="overview_1">Overview</h3>
@@ -4223,17 +4107,13 @@
 <li><code>GET /swagger-ui/**</code> — API documentation (no auth required)</li>
 </ul>
 <h3 id="authentication-flow">Authentication Flow</h3>
-<ol>
-<li><strong>POST /api/auth/login</strong> with credentials:</li>
-</ol>
+<p>1) <strong>POST /api/auth/login</strong> with credentials:</p>
 <div class="highlight"><pre><span></span><code><span class="w">  </span><span class="p">{</span>
 <span class="w">    </span><span class="nt">&quot;username&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;admin&quot;</span><span class="p">,</span>
 <span class="w">    </span><span class="nt">&quot;password&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;admin123&quot;</span>
 <span class="w">  </span><span class="p">}</span>
 </code></pre></div>
-<ol>
-<li>Receive Bearer token:</li>
-</ol>
+<p>2) Receive Bearer token:</p>
 <div class="highlight"><pre><span></span><code><span class="w">  </span><span class="p">{</span>
 <span class="w">    </span><span class="nt">&quot;tokenType&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Bearer&quot;</span><span class="p">,</span>
 <span class="w">    </span><span class="nt">&quot;accessToken&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;eyJhbGciOiJIUzI1NiJ9...&quot;</span><span class="p">,</span>
@@ -4241,9 +4121,7 @@
 <span class="w">    </span><span class="nt">&quot;timestamp&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1710000000000</span>
 <span class="w">  </span><span class="p">}</span>
 </code></pre></div>
-<ol>
-<li>Use token on protected endpoints:</li>
-</ol>
+<p>3) Use token on protected endpoints:</p>
 <div class="highlight"><pre><span></span><code><span class="nt">Authorization</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Bearer eyJhbGciOiJIUzI1NiJ9...</span>
 </code></pre></div>
 <h2 id="configuration-files">Configuration Files</h2>
@@ -4324,11 +4202,29 @@ mvn<span class="w"> </span>spring-boot:run
 </ul>
 <h2 id="integration-with-ai-inference-service">Integration with AI Inference Service</h2>
 <p>This gateway expects a Python FastAPI backend at the configured <code>RL_INFERENCE_URL</code> with endpoints:</p>
-<ul>
-<li><code>POST /predict_action</code>: Accepts <code>{"junction_id": "...", "obs_data": [...]}</code>, returns <code>{"action": 0-3, "confidence": 0.0-1.0}</code></li>
-<li><code>GET /health</code>: Returns <code>{"status": "healthy", "modelLoaded": true, "junctions": [...]}</code></li>
-<li><code>POST /reset_hidden</code>: Resets GRU hidden states</li>
-</ul>
+<div class="admonition success">
+<p class="admonition-title">POST <code>/predict_action</code></p>
+<p>Accepts</p>
+<p><div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;junction_id&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;...&quot;</span><span class="p">,</span><span class="w"> </span>
+<span class="w">  </span><span class="nt">&quot;obs_data&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="err">...</span><span class="p">]</span>
+<span class="p">}</span>
+</code></pre></div>
+returns</p>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;action&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">0-3</span><span class="p">,</span><span class="w"> </span>
+<span class="w">  </span><span class="nt">&quot;confidence&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">0.0-1.0</span>
+<span class="p">}</span>
+</code></pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">GET <code>/health</code></p>
+<p>Returns <code>{"status": "healthy", "modelLoaded": true, "junctions": [...]}</code></p>
+</div>
+<div class="admonition success">
+<p class="admonition-title">POST <code>/reset_hidden</code></p>
+<p>Resets GRU hidden states</p>
+</div>
 <h2 id="quick-links">Quick Links</h2>
 <ul>
 <li><strong>GitHub Repository</strong>: https://github.com/joeaoregan/TUS-26-ETP-AI-Traffic-Optimisation</li>
