@@ -90,27 +90,27 @@
                                        │ HTTPS (TLS 1.3)
                                        │
                     ┌──────────────────▼──────────────────┐
-                    │   JAVA API GATEWAY (Port 8080)     │
-                    │        Spring Boot 3.2.3           │
-                    ├──────────────────────────────────────┤
+                    │   JAVA API GATEWAY (Port 8080)      │
+                    │        Spring Boot 3.2.3            │
+                    ├─────────────────────────────────────┤
                     │  • JWT Authentication (HS256)       │
                     │  • Request Validation               │
                     │  • Fallback Logic (RED signal)      │
                     │  • Circuit Breaker Pattern          │
-                    └──────────┬───────────────────────────┘
+                    └──────────┬──────────────────────────┘
                                │
                 ┌──────────────┼──────────────┐
                 │              │              │
     ┌───────────▼────────┐  ┌──▼────────────────────┐
     │  HEALTH CHECK      │  │  PREDICTION REQUESTS  │
     │  /health           │  │  /traffic/action      │
-    └────────────────────┘  └──┬───────────────────┘
+    └────────────────────┘  └───┬───────────────────┘
                                 │
-                    ┌───────────▼────────────┐
+                    ┌───────────▼───────────┐
                     │ INFERENCE SERVICE     │
                     │  (Port 8000)          │
                     │  Python/FastAPI       │
-                    ├──────────────────────┤
+                    ├───────────────────────┤
                     │ • MAPPO RL Model      │
                     │ • 5-Junction Support  │
                     │ • GRU State Mgmt      │
