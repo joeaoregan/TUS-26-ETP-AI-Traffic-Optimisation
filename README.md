@@ -81,11 +81,10 @@
 ## 🏗️ System Architecture
 
 ```text
-                              ┌──────────────────┐
-                              │   CLIENT LAYER   │
-                              │  (Web/Mobile/    │
-                              │   External API)  │
-                              └────────┬─────────┘
+                      ┌─────────────────────────────────┐
+                      │          CLIENT LAYER           │
+                      │   Web • Mobile • External API   │
+                      └────────────────┬────────────────┘
                                        │
                                        │ HTTPS (TLS 1.3)
                                        │
