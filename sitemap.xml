@@ -53,6 +53,10 @@
          <lastmod>2026-04-09</lastmod>
     </url>
     <url>
+         <loc>https://joeaoregan.github.io/TUS-26-ETP-AI-Traffic-Optimisation/api-gateway/file-structure/</loc>
+         <lastmod>2026-04-09</lastmod>
+    </url>
+    <url>
          <loc>https://joeaoregan.github.io/TUS-26-ETP-AI-Traffic-Optimisation/api-gateway/key-features/</loc>
          <lastmod>2026-04-09</lastmod>
     </url>
@@ -90,10 +94,6 @@
     </url>
     <url>
          <loc>https://joeaoregan.github.io/TUS-26-ETP-AI-Traffic-Optimisation/api-setup/production-deployment/</loc>
-         <lastmod>2026-04-09</lastmod>
-    </url>
-    <url>
-         <loc>https://joeaoregan.github.io/TUS-26-ETP-AI-Traffic-Optimisation/api-setup/project-structure/</loc>
          <lastmod>2026-04-09</lastmod>
     </url>
     <url>
@@ -149,6 +149,10 @@
          <lastmod>2026-04-09</lastmod>
     </url>
     <url>
+         <loc>https://joeaoregan.github.io/TUS-26-ETP-AI-Traffic-Optimisation/inference-service/file-structure/</loc>
+         <lastmod>2026-04-09</lastmod>
+    </url>
+    <url>
          <loc>https://joeaoregan.github.io/TUS-26-ETP-AI-Traffic-Optimisation/inference-service/key-features/</loc>
          <lastmod>2026-04-09</lastmod>
     </url>
@@ -162,6 +166,10 @@
     </url>
     <url>
          <loc>https://joeaoregan.github.io/TUS-26-ETP-AI-Traffic-Optimisation/lstm/endpoints/</loc>
+         <lastmod>2026-04-09</lastmod>
+    </url>
+    <url>
+         <loc>https://joeaoregan.github.io/TUS-26-ETP-AI-Traffic-Optimisation/lstm/file-structure/</loc>
          <lastmod>2026-04-09</lastmod>
     </url>
     <url>
@@ -241,6 +249,10 @@
          <lastmod>2026-04-09</lastmod>
     </url>
     <url>
+         <loc>https://joeaoregan.github.io/TUS-26-ETP-AI-Traffic-Optimisation/sumo/file-structure/</loc>
+         <lastmod>2026-04-09</lastmod>
+    </url>
+    <url>
          <loc>https://joeaoregan.github.io/TUS-26-ETP-AI-Traffic-Optimisation/sumo/key-features/</loc>
          <lastmod>2026-04-09</lastmod>
     </url>
@@ -294,6 +306,10 @@
     </url>
     <url>
          <loc>https://joeaoregan.github.io/TUS-26-ETP-AI-Traffic-Optimisation/system-architecture/performance-characteristics/</loc>
+         <lastmod>2026-04-09</lastmod>
+    </url>
+    <url>
+         <loc>https://joeaoregan.github.io/TUS-26-ETP-AI-Traffic-Optimisation/system-architecture/project-structure/</loc>
          <lastmod>2026-04-09</lastmod>
     </url>
     <url>
