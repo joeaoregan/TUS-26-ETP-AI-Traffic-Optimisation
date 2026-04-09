@@ -10,7 +10,7 @@
 
 ## Detailed Endpoint Documentation
 
-See **[Endpoints](endpoints.md)** for comprehensive specifications of:
+See **[Endpoints](../api-gateway/endpoints.md)** for comprehensive specifications of:
 
 - `POST /api/auth/login` — JWT token issuance
 - `GET /api/traffic/action` — Demo traffic prediction (requires authentication)
@@ -35,8 +35,8 @@ See **[JWT Authentication Guide](../security/java-api-gateway.md)** for:
 
 ## Architecture & Features
 
-- **[Architecture](architecture.md)** — Technology stack, configuration, core components
-- **[Key Features](key-features.md)** — Security, prediction modes, signal state mapping, graceful degradation
+- **[Architecture](../api-gateway/architecture.md)** — Technology stack, configuration, core components
+- **[Key Features](../api-gateway/key-features.md)** — Security, prediction modes, signal state mapping, graceful degradation
 
 ---
 

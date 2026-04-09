@@ -10,7 +10,7 @@
 
 ## Detailed Endpoint Documentation
 
-See **[Endpoints](endpoints.md)** for comprehensive specifications of:
+See **[Endpoints](../inference-service/endpoints.md)** for comprehensive specifications of:
 
 - `POST /predict_action` — Predict optimal signal action for a junction
 - `POST /reset_hidden` — Reset GRU hidden states (between simulation runs)
@@ -30,14 +30,14 @@ The inference service loads and manages a trained MAPPO (Multi-Agent Proximal Po
 - **Output:** Action logits for 2-4 possible signal phases per junction
 - **Agents:** 5 agents (one per controlled junction)
 
-See **[Key Features](key-features.md)** for neural network architecture details and supported junctions.
+See **[Key Features](../inference-service/key-features.md)** for neural network architecture details and supported junctions.
 
 ---
 
 ## Architecture & Features
 
-- **[Architecture](architecture.md)** — Technology stack, deployment, file structure, integration points
-- **[Key Features](key-features.md)** — Supported junctions, neural network architecture, observation format
+- **[Architecture](../inference-service/architecture.md)** — Technology stack, deployment, file structure, integration points
+- **[Key Features](../inference-service/key-features.md)** — Supported junctions, neural network architecture, observation format
 
 ---
 

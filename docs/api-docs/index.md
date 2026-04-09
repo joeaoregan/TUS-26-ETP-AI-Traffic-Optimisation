@@ -79,6 +79,6 @@ This keeps documentation in sync with code without extra maintenance overhead.
 
 For step-by-step setup instructions, environment configuration, and usage examples, see:
 
-- **[API Setup Guide](../api-setup/api-setup-guide/)** — Docker Compose, local development, environment variables
-- **[API Usage Examples](../api-setup/api-usage-examples/)** — PowerShell, curl, Python examples
-- **[Environment Variables](../api-setup/environment-variables/)** — Configuration reference
+- **[API Setup Guide](../api-setup/api-setup-guide.md)** — Docker Compose, local development, environment variables
+- **[API Usage Examples](../api-setup/api-usage-examples.md)** — PowerShell, curl, Python examples
+- **[Environment Variables](../api-setup/environment-variables.md)** — Configuration reference

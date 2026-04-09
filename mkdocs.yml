@@ -108,6 +108,7 @@ nav:
       - API Docs: api-docs/index.md
       - api-docs/api-gateway.md
       - api-docs/inference-service.md
+      - api-docs/lstm-traffic-predictor.md
     - API Setup: 
       - api-setup/index.md
       - 🧩 Components: api-setup/components.md
