@@ -1291,6 +1291,17 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#with-lstm-traffic-predictor-future" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        With LSTM Traffic Predictor (Future)
+      
+    </span>
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -4394,6 +4405,17 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#with-lstm-traffic-predictor-future" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        With LSTM Traffic Predictor (Future)
+      
+    </span>
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -4627,23 +4649,29 @@
 
 <h1 id="rl-inference-service">RL Inference Service</h1>
 <h2 id="overview">Overview</h2>
-<p>The <strong>RL Inference Service</strong> is a FastAPI-based Python microservice that hosts a trained MAPPO (Multi-Agent Proximal Policy Optimization) neural network model for traffic signal prediction. It serves as the "AI brain" of the traffic optimization system, making real-time predictions about optimal traffic signal states for 5 junctions in the Athlone town network.</p>
+<p>The <a href="https://traffic-inference-service.onrender.com/">RL Inference Service</a> is a FastAPI-based Python microservice that hosts a trained MAPPO (Multi-Agent Proximal Policy Optimization) neural network model for traffic signal prediction. It serves as the "AI brain" of the traffic optimization system, making real-time predictions about optimal traffic signal states for 5 junctions in the Athlone town network.</p>
 <h2 id="purpose">Purpose</h2>
-<p>This service provides:
-- <strong>Real-time Traffic Signal Prediction</strong>: Uses a trained MAPPO RL model to predict the next optimal green phase for any junction
-- <strong>Stateful Inference</strong>: Maintains separate GRU hidden states per junction across multiple prediction calls
-- <strong>Multi-junction Support</strong>: Handles 5 different junctions with varying numbers of valid actions (2-4 per junction)
-- <strong>Model Management</strong>: Exposes endpoints to reset GRU hidden states between simulation runs
-- <strong>Health Monitoring</strong>: Provides service health checks and model information endpoints
-- <strong>Auto-documented API</strong>: Built with FastAPI for automatic OpenAPI/Swagger documentation</p>
+<p>This service provides:</p>
+<ul>
+<li><strong>Real-time Traffic Signal Prediction</strong>: Uses a trained MAPPO RL model to predict the next optimal green phase for any junction</li>
+<li><strong>Stateful Inference</strong>: Maintains separate GRU hidden states per junction across multiple prediction calls</li>
+<li><strong>Multi-junction Support</strong>: Handles 5 different junctions with varying numbers of valid actions (2-4 per junction)</li>
+<li><strong>Model Management</strong>: Exposes endpoints to reset GRU hidden states between simulation runs</li>
+<li><strong>Health Monitoring</strong>: Provides service health checks and model information endpoints</li>
+<li><strong>Auto-documented API</strong>: Built with FastAPI for automatic OpenAPI/Swagger documentation</li>
+</ul>
 <h2 id="configuration">Configuration</h2>
 <h3 id="environment-variables">Environment Variables</h3>
-<p><strong>Required:</strong>
-- <code>MAPPO_AGENT_PATH</code>: Path to trained model weights file (e.g., <code>/app/trained_models/agent.th</code>)</p>
-<p><strong>Optional (with defaults):</strong>
-- <code>API_HOST</code>: Host to bind to (default: <code>0.0.0.0</code>)
-- <code>API_PORT</code>: Port to listen on (default: <code>8000</code>)
-- <code>API_RELOAD</code>: Enable auto-reload on code changes (default: <code>false</code>)</p>
+<p><strong>Required:</strong></p>
+<ul>
+<li><code>MAPPO_AGENT_PATH</code>: Path to trained model weights file (e.g., <code>/app/trained_models/agent.th</code>)</li>
+</ul>
+<p><strong>Optional (with defaults):</strong></p>
+<ul>
+<li><code>API_HOST</code>: Host to bind to (default: <code>0.0.0.0</code>)</li>
+<li><code>API_PORT</code>: Port to listen on (default: <code>8000</code>)</li>
+<li><code>API_RELOAD</code>: Enable auto-reload on code changes (default: <code>false</code>)</li>
+</ul>
 <h3 id="local-development-setup">Local Development Setup</h3>
 <ol>
 <li>
@@ -4664,9 +4692,9 @@
 <li>
 <p>Access:</p>
 </li>
-<li>Swagger UI: http://localhost:8000/docs</li>
-<li>Landing page: http://localhost:8000/</li>
-<li>Health check: http://localhost:8000/health</li>
+<li>Swagger UI: <a href="http://localhost:8000/docs">http://localhost:8000/docs</a></li>
+<li>Landing page: <a href="http://localhost:8000/">http://localhost:8000/</a></li>
+<li>Health check: <a href="http://localhost:8000/health">http://localhost:8000/health</a></li>
 </ol>
 <h3 id="docker-deployment">Docker Deployment</h3>
 <p><strong>Build:</strong>
@@ -4678,17 +4706,21 @@
 <span class="w">  </span>-v<span class="w"> </span>/path/to/models:/app/trained_models<span class="w"> </span><span class="se">\</span>
 <span class="w">  </span>rl-inference-service:latest
 </code></pre></div></p>
-<p><strong>Run on Render:</strong>
-- Set <code>MAPPO_AGENT_PATH</code> environment variable in Render dashboard
-- Container exposes port 8000
-- Model file must be present in <code>/app/trained_models/</code> at runtime</p>
+<p><strong>Run on Render:</strong></p>
+<ul>
+<li>Set <code>MAPPO_AGENT_PATH</code> environment variable in Render dashboard</li>
+<li>Container exposes port 8000</li>
+<li>Model file must be present in <code>/app/trained_models/</code> at runtime</li>
+</ul>
 <h2 id="model-training-weights">Model Training &amp; Weights</h2>
 <h3 id="training-source">Training Source</h3>
-<p>The model was trained using EPyMARL (Epyc PyMARL) with the MAPPO algorithm:
-- Framework: EPyMARL/SMAC
-- Algorithm: MAPPO (Multi-Agent Proximal Policy Optimization)
-- Configuration: mappo_sumo_v4.yaml
-- Environment: SUMO traffic simulator with 5-junction Athlone town network</p>
+<p>The model was trained using EPyMARL (Epyc PyMARL) with the MAPPO algorithm:</p>
+<ul>
+<li>Framework: EPyMARL/SMAC</li>
+<li>Algorithm: MAPPO (Multi-Agent Proximal Policy Optimization)</li>
+<li>Configuration: mappo_sumo_v4.yaml</li>
+<li>Environment: SUMO traffic simulator with 5-junction Athlone town network</li>
+</ul>
 <h3 id="model-file">Model File</h3>
 <ul>
 <li><strong>Format</strong>: PyTorch state dict (.th)</li>
@@ -4706,29 +4738,72 @@
 </ol>
 <h2 id="integration-points">Integration Points</h2>
 <h3 id="with-api-gateway">With API Gateway</h3>
-<p>The API Gateway (Java Spring Boot) communicates with this service via REST:</p>
-<p><strong>From Gateway Request:</strong>
+<p>This inference service is consumed by the Java API Gateway via REST calls at the configured <code>RL_INFERENCE_URL</code>:</p>
+<div class="admonition success">
+<p class="admonition-title">POST <code>/predict_action</code></p>
+<p>Accepts a junction ID and observation vector from the gateway.</p>
+<p><strong>Request</strong>:
 <div class="highlight"><pre><span></span><code><span class="p">{</span>
 <span class="w">  </span><span class="nt">&quot;junction_id&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;joinedS_265580996_300839357&quot;</span><span class="p">,</span>
-<span class="w">  </span><span class="nt">&quot;obs_data&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="mf">0.0</span><span class="p">,</span><span class="w"> </span><span class="mf">1.0</span><span class="p">,</span><span class="w"> </span><span class="mf">0.0</span><span class="p">,</span><span class="w"> </span><span class="err">...</span><span class="p">]</span>
+<span class="w">  </span><span class="nt">&quot;obs_data&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="mf">0.0</span><span class="p">,</span><span class="w"> </span><span class="mf">1.0</span><span class="p">,</span><span class="w"> </span><span class="mf">0.0</span><span class="p">,</span><span class="w"> </span><span class="mf">0.0</span><span class="p">,</span><span class="w"> </span><span class="mf">0.0</span><span class="p">,</span><span class="w"> </span><span class="mf">1.0</span><span class="p">,</span><span class="w"> </span><span class="mf">0.0</span><span class="p">,</span><span class="w"> </span><span class="mf">1.0</span><span class="p">,</span><span class="w"> </span><span class="mf">0.12</span><span class="p">,</span><span class="w"> </span><span class="mf">0.08</span><span class="p">,</span><span class="w"> </span><span class="mf">0.33</span><span class="p">,</span><span class="w"> </span><span class="mf">0.41</span><span class="p">,</span><span class="w"> </span><span class="mf">0.22</span><span class="p">,</span><span class="w"> </span><span class="mf">0.55</span><span class="p">,</span><span class="w"> </span><span class="mf">0.18</span><span class="p">,</span><span class="w"> </span><span class="mf">0.62</span><span class="p">,</span><span class="w"> </span><span class="mf">0.70</span><span class="p">,</span><span class="w"> </span><span class="mf">0.81</span><span class="p">,</span><span class="w"> </span><span class="mf">0.50</span><span class="p">]</span>
 <span class="p">}</span>
 </code></pre></div></p>
-<p><strong>To Gateway Response:</strong>
+<p><strong>Response (200)</strong>:
 <div class="highlight"><pre><span></span><code><span class="p">{</span>
-<span class="w">  </span><span class="nt">&quot;junctionId&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;joinedS_265580996_300839357&quot;</span><span class="p">,</span>
-<span class="w">  </span><span class="nt">&quot;predictedAction&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span>
-<span class="w">  </span><span class="nt">&quot;signalState&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;GREEN&quot;</span><span class="p">,</span>
-<span class="w">  </span><span class="nt">&quot;timestamp&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1710000000000</span><span class="p">,</span>
-<span class="w">  </span><span class="nt">&quot;status&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;success&quot;</span>
+<span class="w">  </span><span class="nt">&quot;junction_id&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;joinedS_265580996_300839357&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;action&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;confidence&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">0.92</span>
 <span class="p">}</span>
 </code></pre></div></p>
-<p><strong>Gateway Timeout</strong>: 2 seconds (local) / 20 seconds (cloud)</p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">GET <code>/health</code></p>
+<p>Health check endpoint for service availability monitoring.</p>
+<p><strong>Response (200)</strong>:
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;status&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;healthy&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;model_loaded&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;junctions&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">    </span><span class="s2">&quot;joinedS_265580996_300839357&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="s2">&quot;300839359&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="s2">&quot;265580972&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="s2">&quot;1270712555&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="s2">&quot;8541180897&quot;</span>
+<span class="w">  </span><span class="p">]</span>
+<span class="p">}</span>
+</code></pre></div></p>
+</div>
+<div class="admonition success">
+<p class="admonition-title">POST <code>/reset_hidden</code></p>
+<p>Resets GRU hidden states for all junctions. <strong>Call at the start of each simulation run.</strong></p>
+<p><strong>Response (200)</strong>:
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;status&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;ok&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;message&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Hidden states reset for all junctions&quot;</span>
+<span class="p">}</span>
+</code></pre></div></p>
+</div>
+<p><strong>Gateway Configuration</strong>:</p>
+<ul>
+<li><strong>Local Development</strong>: <code>http://localhost:8000/predict_action</code></li>
+<li><strong>Production (Cloud)</strong>: Configured via <code>RL_INFERENCE_URL</code> environment variable</li>
+<li><strong>Timeouts</strong>: 2 seconds (local) / 20 seconds (cloud)</li>
+</ul>
 <h3 id="with-sumo-simulator">With SUMO Simulator</h3>
-<p>Training and simulation use the SUMO (Simulation of Urban Mobility) traffic simulator:
-- Provides real-world traffic scenarios
-- Calculates observations from vehicle positions and lane queues
-- Applies predicted actions as signal phase changes
-- Measures reward signals for RL training</p>
+<p>Training and validation use the SUMO (Simulation of Urban Mobility) traffic simulator:</p>
+<ul>
+<li><strong>Training Data Source</strong>: SUMO generates observations from vehicle positions and lane queue lengths</li>
+<li><strong>Action Application</strong>: Predicted actions are applied as signal phase changes in the simulation</li>
+<li><strong>Reward Calculation</strong>: SUMO provides traffic metrics (wait times, throughput) for RL training</li>
+<li><strong>Validation</strong>: Model performance tested on historical SUMO scenarios</li>
+</ul>
+<h3 id="with-lstm-traffic-predictor-future">With LSTM Traffic Predictor (Future)</h3>
+<p>The LSTM service will optionally provide traffic flow forecasts to enhance RL decision-making:</p>
+<ul>
+<li><strong>Input</strong>: 15-minute ahead vehicle flow predictions</li>
+<li><strong>Usage</strong>: Provides context for signal timing decisions</li>
+<li><strong>Integration</strong>: LSTM predictions fed as additional observations to the MAPPO model</li>
+</ul>
 <h2 id="performance-characteristics">Performance Characteristics</h2>
 <h3 id="prediction-latency">Prediction Latency</h3>
 <ul>
