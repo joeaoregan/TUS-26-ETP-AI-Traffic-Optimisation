@@ -1,3 +1,19 @@
+### Get Traffic Action (Auto-generated observations)
+First, authenticate and store the JWT:
+
+```bash
+TOKEN=$(curl -s -X POST http://localhost:8080/api/auth/login \
+  -H "Content-Type: application/json" \
+  -d '{"username":"admin","password":"admin123"}' | jq -r '.accessToken')
+```
+
+Then call the protected endpoint:
+
+```bash
+curl -X GET http://localhost:8080/api/traffic/action \
+  -H "Authorization: Bearer $TOKEN"
+```
+
 ### 🎯 Get Traffic Action (Demo — random junction)
 ```bash
 curl -X GET http://localhost:8080/api/traffic/action

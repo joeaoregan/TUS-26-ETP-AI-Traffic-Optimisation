@@ -1,26 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<!-- generated on 2026-02-28T17:03:06.664505+00:00 by Eclipse SUMO GUI 1.26.0
+<!-- generated on 2026-04-08T19:24:40.754788+00:00 by Eclipse SUMO sumo 1.26.0
 <sumoConfiguration xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://sumo.dlr.de/xsd/sumoConfiguration.xsd">
 
     <input>
-        <net-file value="C:\Users\gemer\Sumo\my-network\osm.net.xml.gz"/>
-        <route-files value="C:\Users\gemer\Sumo\my-network\tii_flows.xml,C:\Users\gemer\Sumo\my-network\town_routes.rou.xml"/>
-        <additional-files value="C:\Users\gemer\Sumo\my-network\output.add.xml"/>
+        <net-file value="/Users/edgarp/dev/SUMO_trafic/my-network/osm.net.xml.gz"/>
+        <route-files value="/Users/edgarp/dev/SUMO_trafic/my-network/tii_flows.xml,/Users/edgarp/dev/SUMO_trafic/my-network/town_routes.rou_v5_calibrated.xml"/>
+        <additional-files value="/Users/edgarp/dev/SUMO_trafic/my-network/Results/full_sim_v5/fixed/edge_collector.add.xml"/>
     </input>
 
     <output>
-        <tripinfo-output value="C:\Users\gemer\Sumo\my-network\tripinfos.xml"/>
-        <statistic-output value="C:\Users\gemer\Sumo\my-network\stats.xml"/>
+        <tripinfo-output value="/Users/edgarp/dev/SUMO_trafic/my-network/Results/full_sim_v5/fixed/tripinfo.xml"/>
+        <statistic-output value="/Users/edgarp/dev/SUMO_trafic/my-network/Results/full_sim_v5/fixed/stats.xml"/>
     </output>
-
-    <time>
-        <begin value="0"/>
-        <end value="43200"/>
-    </time>
 
     <processing>
         <ignore-route-errors value="true"/>
+        <collision.action value="remove"/>
+        <time-to-teleport value="60"/>
+        <waiting-time-memory value="1000"/>
+        <max-depart-delay value="120"/>
         <tls.actuated.jam-threshold value="30"/>
     </processing>
 
@@ -30,26 +29,31 @@
     </routing>
 
     <report>
-        <verbose value="true"/>
+        <no-warnings value="true"/>
+        <log value="/Users/edgarp/dev/SUMO_trafic/my-network/Results/full_sim_v5/fixed/sumo.log"/>
+        <error-log value="/Users/edgarp/dev/SUMO_trafic/my-network/Results/full_sim_v5/fixed/sumo_err.log"/>
         <duration-log.statistics value="true"/>
-        <no-step-log value="true"/>
     </report>
 
-    <gui_only>
-        <gui-settings-file value="C:\Users\gemer\Sumo\my-network\osm.view.xml"/>
-    </gui_only>
+    <traci_server>
+        <remote-port value="52197"/>
+    </traci_server>
+
+    <random_number>
+        <seed value="42"/>
+    </random_number>
 
 </sumoConfiguration>
 -->
 
 <statistics xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://sumo.dlr.de/xsd/statistic_file.xsd">
-    <performance clockBegin="25182.28" clockEnd="25564.46" clockDuration="382.18" traciDuration="239.95" realTimeFactor="113.04" vehicleUpdatesPerSecond="30631.40" personUpdatesPerSecond="0.00" begin="0.00" end="43200.00" duration="43200.00"/>
-    <vehicles loaded="25858" inserted="7412" running="180" waiting="18446"/>
-    <teleports total="166" jam="42" yield="121" wrongLane="3"/>
+    <performance clockBegin="1775672680.76" clockEnd="1775672727.53" clockDuration="46.78" traciDuration="45.56" realTimeFactor="923.55" vehicleUpdatesPerSecond="12316.36" personUpdatesPerSecond="0.00" begin="0.00" end="43200.00" duration="43200.00"/>
+    <vehicles loaded="2624" inserted="2624" running="14" waiting="0"/>
+    <teleports total="1" jam="0" yield="1" wrongLane="0"/>
     <safety collisions="0" emergencyStops="0" emergencyBraking="0"/>
     <persons loaded="0" running="0" jammed="0"/>
     <personTeleports total="0" abortWait="0" wrongDest="0"/>
-    <vehicleTripStatistics count="7232" routeLength="2014.77" speed="1.61" duration="1607.65" waitingTime="1185.99" timeLoss="1458.09" departDelay="12439.82" departDelayWaiting="-1.00" totalTravelTime="11626517.00" totalDepartDelay="89964786.03"/>
+    <vehicleTripStatistics count="2610" routeLength="1821.31" speed="8.29" duration="219.88" waitingTime="51.73" timeLoss="85.53" departDelay="1.67" departDelayWaiting="-1.00" totalTravelTime="573876.00" totalDepartDelay="4367.72"/>
     <pedestrianStatistics number="0" routeLength="0.00" duration="0.00" timeLoss="0.00"/>
     <rideStatistics number="0"/>
     <transportStatistics number="0"/>

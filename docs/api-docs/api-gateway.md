@@ -1,20 +1,52 @@
 # Java API Gateway
 
-[API Gateway Docs](https://ai-traffic-control-api.onrender.com/swagger-ui/index.html)
+## Live Documentation
 
-The Java API Gateway now includes automatically generated API documentation using **springdoc-openapi**.
+**[API Gateway Swagger UI](https://ai-traffic-control-api.onrender.com/swagger-ui/index.html)** (Production)
 
-Once the gateway is running, Swagger UI is available at:
+**Local:** http://localhost:8080/swagger-ui/index.html
 
-```
-http://localhost:8080/swagger-ui/index.html
-```
+---
 
-The API docs for the Java API Gateway have been [deployed to Render](https://ai-traffic-control-api.onrender.com/swagger-ui/index.html):
+## Detailed Endpoint Documentation
 
-```
-https://ai-traffic-control-api.onrender.com/swagger-ui/index.html
-```
+See **[Endpoints](../api-gateway/endpoints.md)** for comprehensive specifications of:
 
-Swagger is generated automatically from annotations in the Java controller classes.  
-Additional endpoint documentation will be added incrementally.
+- `POST /api/auth/login` — JWT token issuance
+- `GET /api/traffic/action` — Demo traffic prediction (requires authentication)
+- `POST /api/traffic/action` — Custom observation prediction (requires authentication)
+- `POST /api/traffic/reset` — Reset GRU hidden states (requires authentication)
+- `GET /api/traffic/health` — Service health check (public)
+
+---
+
+## Authentication
+
+All prediction and state management endpoints require JWT authentication.
+
+See **[JWT Authentication Guide](../security/java-api-gateway.md)** for:
+
+- Configuration and setup
+- Token generation and usage
+- Request/response examples
+- Testing with Swagger UI
+
+---
+
+## Architecture & Features
+
+- **[Architecture](../api-gateway/architecture.md)** — Technology stack, configuration, core components
+- **[Key Features](../api-gateway/key-features.md)** — Security, prediction modes, signal state mapping, graceful degradation
+
+---
+
+## Swagger Auto-Generation
+
+Documentation is automatically generated from Java annotations in the codebase:
+
+- `@Operation` — Endpoint descriptions
+- `@ApiResponse` — Response codes and examples
+- `@Schema` — Model field documentation
+- `@Tag` — Endpoint grouping
+
+This ensures documentation stays in sync with implementation.

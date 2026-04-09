@@ -9,7 +9,12 @@
 
 ### Java Gateway
 
-| Environment Variable           | Description              | Default                                |
-|--------------------------------|--------------------------|----------------------------------------|
-| `RL_INFERENCE_SERVICE_URL`     | RL Inference Service URL | `http://localhost:8000/predict_action` |
-| `RL_INFERENCE_SERVICE_TIMEOUT` | Request timeout in ms    | `10000`                                |
+| Environment Variable           | Description                          | Default                                |
+|--------------------------------|--------------------------------------|----------------------------------------|
+| `RL_INFERENCE_SERVICE_URL`     | RL Inference Service URL             | `http://localhost:8000/predict_action` |
+| `RL_INFERENCE_SERVICE_TIMEOUT` | Request timeout in ms                | `10000`                                |
+| `JWT_SECRET`                   | Signing secret for access tokens     | (minimum 32 chars)                     |
+| `JWT_ISSUER`                   | JWT issuer name                      | `traffic-api-gateway`                  |
+| `JWT_EXPIRATION_MINUTES`       | Access token lifetime in minutes     | `60`                                   |
+| `JWT_AUTH_USERNAME`            | Login username for `/api/auth/login` | `admin`                                |
+| `JWT_AUTH_PASSWORD`            | Login password for `/api/auth/login` | `admin123`                             |

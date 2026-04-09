@@ -44,11 +44,30 @@ nav:
       - Inference Service: https://traffic-inference-service.onrender.com
       - Inference Service Documentation: https://traffic-inference-service.onrender.com/docs
       - GitHub Repository: https://github.com/joeaoregan/TUS-26-ETP-AI-Traffic-Optimisation
-  - API Gateway: api-gateway/index.md
-  - Inference Service: inference-service/index.md
-  - SUMO: sumo/index.md
-  - LSTM: lstm/index.md
-  - Security: security/index.md
+  - API Gateway: 
+    - Overview: api-gateway/index.md
+    - Architecture: api-gateway/architecture.md
+    - Endpoints: api-gateway/endpoints.md
+    - Authentication: api-gateway/authentication.md
+    - Key Features: api-gateway/key-features.md
+  - Inference Service: 
+    - Overview: inference-service/index.md
+    - Architecture: inference-service/architecture.md
+    - Endpoints: inference-service/endpoints.md
+    - Key Features: inference-service/key-features.md
+  - LSTM: 
+    - Overview: lstm/index.md
+    - Architecture: lstm/architecture.md
+    - Endpoints: lstm/endpoints.md
+    - Key Features: lstm/key-features.md
+  - SUMO: 
+    - Overview: sumo/index.md
+    - Architecture: sumo/architecture.md
+    - Key Features: sumo/key-features.md
+  - Security: 
+    - Overview: security/index.md
+    - Java API Gateway: security/java-api-gateway.md
+    - Gateway Testing: security/gateway-testing.md
   - System Architecture: 
     - system-architecture/index.md
     - 1. High-Level: system-architecture/high-level.md
@@ -89,8 +108,11 @@ nav:
       - API Docs: api-docs/index.md
       - api-docs/api-gateway.md
       - api-docs/inference-service.md
+      - api-docs/lstm-traffic-predictor.md
     - API Setup: 
       - api-setup/index.md
+      - 🧩 Components: api-setup/components.md
+      - 🗂️ Project Structure: api-setup/project-structure.md
       - 🚗 API Setup Guide: api-setup/api-setup-guide.md
       - 📡 API Usage Examples: api-setup/api-usage-examples.md
       - 🔐 Environment Variables: api-setup/environment-variables.md
