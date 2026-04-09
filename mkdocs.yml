@@ -1,6 +1,9 @@
 site_name: AI Traffic Optimisation System
-docs_dir: docs
+site_description: Comprehensive documentation for the AI Traffic Optimisation System, covering architecture, setup, API usage, and more.
+site_url: https://joeaoregan.github.io/TUS-26-ETP-AI-Traffic-Optimisation/
+site_author: Joe O'Regan, Edgars Peskaitis, Adam O Neill Mc Knight, David Claffey
 site_dir: site
+docs_dir: docs
 theme:
   font:
     text: Roboto
@@ -27,6 +30,7 @@ theme:
         name: Switch to dark mode
 
   name: material
+  favicon: images/favicon.ico
   features:
     - navigation.tabs
     - navigation.tabs.sticky
@@ -168,4 +172,3 @@ markdown_extensions:
 repo_url: https://github.com/joeaoregan/TUS-26-ETP-AI-Traffic-Optimisation
 repo_name: GitHub
 
-site_url: https://joeaoregan.github.io/TUS-26-ETP-AI-Traffic-Optimisation/

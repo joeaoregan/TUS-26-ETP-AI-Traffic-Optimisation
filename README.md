@@ -305,6 +305,6 @@ TUS-26-ETP-AI-Traffic-Optimisation/
 
 <div align="center">
 
-2026 • [Edgars Peskaitis](https://github.com/edgar183) • [Joe O'Regan](https://github.com/joeaoregan) • [David Claffey](https://github.com/dclaff) • [Adam O Neill Mc Knight](...)
+2026 • [Edgars Peskaitis](https://github.com/edgar183) • [Joe O'Regan](https://github.com/joeaoregan) • [David Claffey](https://github.com/dclaff) • [Adam O Neill Mc Knight](https://github.com/AdamQ45)
 
 </div>

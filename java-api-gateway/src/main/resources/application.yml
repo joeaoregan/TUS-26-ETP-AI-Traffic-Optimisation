@@ -59,6 +59,9 @@ api:
     <img src="/images/logo.png" width="360" alt="AI Traffic Management System Logo" />
     ## Joe O'Regan, Edgars Peskaitis
     ## Adam O Neill Mc Knight, David Claffey
+    [![Test Page](https://img.shields.io/badge/Render-Test%20Page-blue?logo=internet-explorer)](https://ai-traffic-control-api.onrender.com/)
+    [![Repository](https://img.shields.io/badge/repo-TUS--26--ETP--AI--Traffic--Optimisation-blue?logo=github&logoColor=white)](https://github.com/joeaoregan/TUS-26-ETP-AI-Traffic-Optimisation)
+    [![Docs](https://img.shields.io/badge/Docs-Read-blue?logo=readme)](https://joeaoregan.github.io/TUS-26-ETP-AI-Traffic-Optimisation/)
   
     This API provides traffic signal control capabilities powered by a Reinforcement Learning (RL) inference service.
 
@@ -93,3 +96,6 @@ api:
     - `GET /api/traffic/health` Reports the health status of the RL inference service.
 
     This API is designed for academic, experimental, and demonstration purposes within a cloud‑native microservices architecture.
+
+    ---
+    [Joe O'Regan](https://github.com/joeaoregan), [Edgars Peskaitis](https://github.com/edgar183) [Adam O Neill Mc Knight](https://github.com/AdamQ45), [David Claffey](https://github.com/dclaff)	
