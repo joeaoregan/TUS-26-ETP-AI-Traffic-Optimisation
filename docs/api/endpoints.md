@@ -1,5 +1,15 @@
 # 📡 API Endpoints (Quick Reference)
 
+## 🔐 Authentication Summary
+
+| Service | Endpoints | Auth Required |
+|---------|-----------|---|
+| [**Java Gateway**](#java-api-gateway-port-8080) | `/api/auth/login`, `/api/traffic/*` | ✅ **JWT** (except login & health) |
+| [**Inference Service**](#python-inference-service-port-8000) | All endpoints | ❌ **Public** |
+| [**LSTM Predictor**](#lstm-traffic-predictor-port-8001) | All endpoints | ❌ **Public** |
+
+---
+
 ## Java API Gateway (Port 8080)
 
 !!! success "POST `/api/auth/login`"
@@ -236,3 +246,12 @@
 
 !!! note "GET `/docs`"
     **Interactive Swagger UI**
+
+---
+
+## For Detailed Specifications
+
+See service-specific documentation:
+- **[Java API Gateway Endpoints](../api-gateway/endpoints.md)** — Full specs with error handling
+- **[Python Inference Service Endpoints](../inference-service/endpoints.md)** — Full specs
+- **[LSTM Predictor Endpoints](../lstm/endpoints.md)** — Full specs
