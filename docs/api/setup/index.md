@@ -1,0 +1,86 @@
+# API Setup
+
+## Setup Instructions
+
+### Prerequisites
+- Docker & Docker Compose
+- Or locally:
+  - Python 3.9+
+  - Java 17+
+  - Maven 3.9+
+
+### Steps to Deploy
+
+#### Option 1: Using Docker Compose (Recommended)
+
+1. **Copy your trained model:**
+   ```bash
+   # Copy trained model to the models directory
+   # Example: Copy from C:\Users\gemer\Sumo\my-network\Results\sweeps\<sweep_dir>\<seed>\<variant>\model.zip
+   mkdir -p rl-inference-service/app/trained_models
+   copy "C:\Users\gemer\Sumo\my-network\Results\sweeps\pressure\seed_42\A\model.zip" "rl-inference-service\app\trained_models\model.zip"
+   ```
+
+2. **Set environment variables (optional):**
+   ```bash
+   # Create .env file for RL Inference Service
+   echo MODEL_PATH=/app/trained_models/model.zip > rl-inference-service/.env
+   echo OBSERVATION_SHAPE_DIM=10 >> rl-inference-service/.env
+   echo NUM_AGENTS=1 >> rl-inference-service/.env
+   ```
+
+3. **Build and start services:**
+   ```bash
+   docker-compose up --build
+   ```
+
+4. **Test the API:**
+   ```bash
+   # Get traffic action (auto-generated observations)
+   curl http://localhost:8080/api/traffic/action
+
+   # Predict action with custom observations
+   curl -X POST http://localhost:8080/api/traffic/action \
+     -H "Content-Type: application/json" \
+     -d '{"observations": [0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1.0]}'
+
+   # Check health
+   curl http://localhost:8080/api/traffic/health
+   ```
+
+#### Option 2: Local Development
+
+**Python Service:**
+```bash
+cd rl-inference-service
+
+# Create virtual environment
+python -m venv venv
+venv\Scripts\activate  # Windows
+source venv/bin/activate  # Linux/Mac
+
+# Install dependencies
+pip install -r requirements.txt
+
+# Set environment variables
+set MODEL_PATH=path\to\your\model.zip  # Windows
+export MODEL_PATH=path/to/your/model.zip  # Linux/Mac
+
+# Run service
+python -m uvicorn app.main:app --host 0.0.0.0 --port 8000 --reload
+```
+
+**Java Gateway:**
+```bash
+cd java-api-gateway
+
+# Set environment variable
+set RL_INFERENCE_SERVICE_URL=http://localhost:8000/predict_action  # Windows
+export RL_INFERENCE_SERVICE_URL=http://localhost:8000/predict_action  # Linux/Mac
+
+# Build and run
+mvn clean install
+mvn spring-boot:run
+```
+
+*Includes [Swagger/OpenAPI documentation](../endpoints.md) for all traffic control endpoints.*

@@ -1,5 +1,59 @@
 # Changelog
+
 All notable changes to the AI-Driven Predictive Traffic Flow Optimisation System will be documented in this file.
+
+## [2.1.0] - 2026-04-09
+
+### Added
+- **JWT Authentication:** Implemented stateless token-based security in Java API Gateway
+  - HS256 HMAC signing for bearer tokens
+  - Configurable token expiration (default 60 minutes)
+  - Protected endpoints: `/api/traffic/action` (GET/POST), `/api/traffic/reset`
+  - Public endpoints: `/api/auth/login`, `/api/traffic/health`, Swagger UI
+  - New DTOs: `LoginRequest`, `LoginResponse`, `ErrorResponse`
+
+- **LSTM Traffic Predictor Framework:** Foundation for time-series forecasting service
+  - Architecture defined with FastAPI endpoints (`/health`, `/forecast`, `/model_info`)
+  - Data pipeline ready (loader, preprocessor modules)
+  - Configured for SUMO integration (edgeData.xml input)
+  - Target: 15-minute ahead forecasting with MAE < 10%
+  - Supports all 5 major junctions
+
+- **SUMO Documentation:** Comprehensive service documentation added
+  - `docs/sumo/architecture.md` — Network structure, file organization, data flow
+  - `docs/sumo/key-features.md` — Traffic flows, route configuration, output formats
+
+- **Enhanced Test Suite:** `test_api.py` updated with improved usability
+  - Color-coded output (green/red/blue) for better readability
+  - Test result tracking (e.g., "4/4 tests passed")
+  - Boolean status returns for each test function
+  - Requires: `colorama` package
+
+- **Documentation Updates:**
+  - `docs/index.md` — Added service documentation section, LSTM quick link, security section
+  - `docs/features.md` — Updated feature matrix with JWT checkmarks and LSTM/SUMO status
+  - `docs/api-gateway/index.md` — Added JWT authentication section with config table
+  - `docs/api-gateway/endpoints.md` — Added `/api/auth/login` endpoint documentation
+  - `docs/lstm/architecture.md` — Complete LSTM service architecture documentation
+  - `docs/lstm/endpoints.md` — LSTM API endpoints (health, model_info, forecast)
+  - `docs/lstm/key-features.md` — LSTM service features and capabilities
+  - README.md files updated to reflect JWT integration in main branch
+
+### Changed
+- **System Architecture Description:** Updated to emphasize JWT authentication and LSTM forecasting
+- **Feature Matrix:** Reorganized to reflect current implementation status
+  - JWT moved from "optional" to "implemented"
+  - LSTM endpoints marked as framework-ready (awaiting model training)
+  - SUMO status clarified: "fully operational as standalone, not yet live-integrated with RL"
+
+- **Java API Gateway README:** Enhanced testing section with colorama dependency and color output documentation
+
+### Security
+- JWT authentication now production-ready on main branch (previously in A00163691-JWTAuth branch)
+- Stateless token management with configurable expiration
+- Bearer token validation on all protected endpoints
+
+---
 
 ## [2.0.0] - 2026-03-31
 
@@ -33,12 +87,12 @@ All notable changes to the AI-Driven Predictive Traffic Flow Optimisation System
 ### Added
 - **Microservices Architecture:** Integrated Java Spring Boot API Gateway and Python RL-Inference service.
 - **ML Pipeline:** Support for PPO (Proximal Policy Optimization) model inference.
-- [cite_start]**Simulation Environment:** Integrated SUMO (Simulation of Urban MObility) configurations for the Athlone "Orange Loop"[cite: 101, 161, 424].
+- **Simulation Environment:** Integrated SUMO (Simulation of Urban MObility) configurations for the Athlone "Orange Loop".
 
 ### Changed
-- [cite_start]**Monorepo Consolidation:** Merged standalone API branch into the main branch to establish a cohesive pipeline[cite: 64, 455].
+- **Monorepo Consolidation:** Merged standalone API branch into the main branch to establish a cohesive pipeline.
 - **Dependency Management:** Updated Python requirements to include FastAPI, Pydantic v2, and Stable-Baselines3.
 
 ### Security
-- [cite_start]**Data Integrity:** Initial implementation of TLS 1.3 for telemetry ingestion[cite: 424].
-- [cite_start]**Authentication:** Added digital signature placeholders in `OpenApiConfig.java` to prevent data injection attacks[cite: 43, 63, 500].
+- **Data Integrity:** Initial implementation of TLS 1.3 for telemetry ingestion.
+- **Authentication:** Added digital signature placeholders in `OpenApiConfig.java` to prevent data injection attacks.

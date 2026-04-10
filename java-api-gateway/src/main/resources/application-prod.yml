@@ -15,3 +15,12 @@ logging:
   level:
     root: WARN  # Less verbose logging for production
     com.example.gateway: INFO
+
+security:
+  jwt:
+    issuer: ${JWT_ISSUER:traffic-api-gateway}
+    secret: ${JWT_SECRET:change-this-secret-key-to-a-very-long-random-value}
+    expiration-minutes: ${JWT_EXPIRATION_MINUTES:60}
+  auth:
+    username: ${JWT_AUTH_USERNAME:admin}
+    password: ${JWT_AUTH_PASSWORD:admin123}

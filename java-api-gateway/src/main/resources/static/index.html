@@ -30,7 +30,7 @@
 
 					<a href="https://ai-traffic-control-api.onrender.com/swagger-ui/index.html" target="_blank"
 						class="flex justify-between items-center bg-white/10 hover:bg-white/20 p-3 rounded-xl transition">
-						<span>Gateway Swagger (Cloud)</span>
+						<span>Gateway Swagger Docs (Cloud)</span>
 						<svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
 							<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
 								d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path>
@@ -150,12 +150,40 @@
 							<strong>Networking: </strong> Decoupled Microservices
 						</li>
 						<li class="flex items-start"><span class="mr-3 text-indigo-500">🛡️</span>
-							<strong>Resilience: </strong> Circuit Breaker Fault Tolerance
+							<strong>Security: </strong> JWT HS256 Authentication
 						</li>
 						<li class="flex items-start"><span class="mr-3 text-indigo-500">⚡</span>
+							<strong>Resilience: </strong> Fallback Mode & Circuit Breaker
+						</li>
+						<li class="flex items-start"><span class="mr-3 text-indigo-500">🚀</span>
+							<strong>Roadmap: </strong> <span class="text-yellow-600 font-bold">LSTM Coming Soon</span>
+						</li>
+						<li class="flex items-start"><span class="mr-3 text-indigo-500">⚙️</span>
 							<strong>Deployment: </strong> Containerized on Render
 						</li>
 					</ul>
+				</div>
+
+				<div class="bg-white rounded-3xl p-6 border border-gray-200 shadow-sm">
+					<h2 class="text-xl font-black text-gray-800 mb-4 border-b pb-2">Features & Security</h2>
+					<div class="space-y-3 text-sm text-gray-600">
+						<div class="flex items-center">
+							<span class="text-green-500 font-bold mr-2">✓</span>
+							<span><strong>JWT Authentication:</strong> Secure token-based API access</span>
+						</div>
+						<div class="flex items-center">
+							<span class="text-green-500 font-bold mr-2">✓</span>
+							<span><strong>Protected Endpoints:</strong> Traffic prediction, state reset</span>
+						</div>
+						<div class="flex items-center">
+							<span class="text-green-500 font-bold mr-2">✓</span>
+							<span><strong>Public Endpoints:</strong> Health checks, authentication</span>
+						</div>
+						<div class="flex items-center">
+							<span class="text-yellow-500 font-bold mr-2">◐</span>
+							<span><strong>LSTM Enhancement:</strong> Stateful sequence learning (Roadmap)</span>
+						</div>
+					</div>
 				</div>
 
 				<div class="space-y-4">
@@ -188,11 +216,73 @@
 
 			<div class="lg:col-span-2 space-y-6">
 
-
 				<h2 class="text-xl font-black text-gray-800 mb-4 border-b pb-2 text-center mt-8">API Gateway Examples
 				</h2>
 
+				<!-- Authentication & JWT -->
 				<div class="mt-8 bg-white rounded-3xl shadow-sm border border-gray-200 overflow-hidden flex flex-col">
+					<div class="p-6 border-b border-gray-100 bg-gray-50/50 flex justify-between items-center">
+						<div>
+							<h2 class="text-xl font-black text-gray-800">🔐 JWT Authentication Flow</h2>
+							<p class="text-sm text-gray-500">Obtain Bearer token via <span
+									class="font-mono bg-gray-200 px-1 rounded text-indigo-600">POST
+									/api/auth/login</span></p>
+						</div>
+						<div
+							class="flex items-center gap-2 px-3 py-1 bg-yellow-100 text-yellow-700 rounded-full text-[10px] font-black uppercase tracking-tighter border border-yellow-200">
+							<span class="w-1.5 h-1.5 rounded-full bg-yellow-500 animate-pulse mr-1"></span>
+							Required First
+						</div>
+					</div>
+
+					<div class="p-6 grid grid-cols-1 md:grid-cols-2 gap-6 bg-slate-50/50">
+						<div class="space-y-3">
+							<div class="flex items-center justify-between px-1">
+								<span
+									class="text-[10px] font-bold uppercase tracking-widest text-indigo-600 bg-indigo-50 px-2 py-1 rounded">POST
+									Request</span>
+								<span class="text-[10px] font-mono text-gray-400">Credentials</span>
+							</div>
+							<pre
+								class="bg-slate-900 text-indigo-300 p-5 rounded-2xl text-xs font-mono shadow-xl border-l-4 border-indigo-500 overflow-x-auto leading-relaxed">
+{
+  "username": "admin",
+  "password": "admin123"
+}</pre>
+							<p class="text-[11px] text-gray-500 italic px-2">Default credentials for testing.</p>
+						</div>
+
+						<div class="space-y-3">
+							<div class="flex items-center justify-between px-1">
+								<span
+									class="text-[10px] font-bold uppercase tracking-widest text-emerald-600 bg-emerald-50 px-2 py-1 rounded">200
+									OK Response</span>
+								<span class="text-[10px] font-mono text-gray-400">JWT Token</span>
+							</div>
+							<pre
+								class="bg-slate-900 text-emerald-400 p-5 rounded-2xl text-xs font-mono shadow-xl border-l-4 border-emerald-500 overflow-x-auto leading-relaxed">
+{
+  "tokenType": "Bearer",
+  "accessToken": "eyJhbGc...",
+  "expiresIn": 3600,
+  "timestamp": 1774324036164
+}</pre>
+							<p class="text-[11px] text-emerald-700/80 font-medium italic px-2">Save token for 1 hour.
+								Use in Authorization header.</p>
+						</div>
+					</div>
+
+					<div class="px-6 py-4 bg-gray-50 border-t border-gray-100 flex items-center gap-3">
+						<div class="w-2 h-2 rounded-full bg-yellow-500 animate-pulse"></div>
+						<p class="text-[11px] font-medium text-gray-600 uppercase tracking-tight">
+							Algorithm: HS256 &bull; Expiration: 60 minutes &bull; Header: Authorization: Bearer
+							&lt;token&gt;
+						</p>
+					</div>
+				</div>
+
+				<!-- Gateway Traffic Orchestration (existing) -->
+				<div class="bg-white rounded-3xl shadow-sm border border-gray-200 overflow-hidden flex flex-col">
 					<div class="p-6 border-b border-gray-100 bg-gray-50/50 flex justify-between items-center">
 						<div>
 							<h2 class="text-xl font-black text-gray-800">Gateway Traffic Orchestration</h2>
@@ -203,7 +293,7 @@
 						<div
 							class="flex items-center gap-2 px-3 py-1 bg-indigo-100 text-indigo-700 rounded-full text-[10px] font-black uppercase tracking-tighter border border-indigo-200">
 							<span class="w-1.5 h-1.5 rounded-full bg-indigo-500 animate-pulse mr-1"></span>
-							Real-Time Inference
+							🔐 Authenticated
 						</div>
 					</div>
 
@@ -224,7 +314,7 @@
   "status": "success"
 }</pre>
 							<p class="text-[11px] text-gray-500 italic px-2 font-medium text-emerald-700/80">AI Active:
-								The signal state is being optimized by the RL model.</p>
+								Signal optimized by RL model.</p>
 						</div>
 
 						<div class="space-y-3">
@@ -242,8 +332,121 @@
   "timestamp": 1774324080448,
   "status": "fallback_mode (inference service down)"
 }</pre>
-							<p class="text-[11px] text-red-500/80 font-medium italic px-2">Fail-Safe: Service detected
-								AI outage and defaulted to RED for safety.</p>
+							<p class="text-[11px] text-red-500/80 font-medium italic px-2">Fail-Safe: AI outage
+								detected, defaulted to RED.</p>
+						</div>
+					</div>
+				</div>
+
+				<!-- Inference Data Contract with JWT -->
+				<div class="bg-white rounded-3xl shadow-sm border border-gray-200 overflow-hidden flex flex-col">
+					<div class="p-6 border-b border-gray-100 bg-gray-50/50">
+						<h2 class="text-xl font-black text-gray-800">Authenticated Inference Request</h2>
+						<p class="text-sm text-gray-500">Live JSON exchange with JWT token in <span
+								class="font-mono bg-gray-200 px-1 rounded text-indigo-600 text-xs uppercase">POST
+								/api/traffic/action</span></p>
+					</div>
+
+					<div class="p-6 grid grid-cols-1 md:grid-cols-2 gap-8">
+						<div class="space-y-3">
+							<div class="flex items-center justify-between">
+								<span
+									class="text-[10px] font-bold uppercase tracking-widest text-indigo-600 bg-indigo-50 px-2 py-1 rounded">POST
+									Request (with Auth)</span>
+								<span class="text-[10px] font-mono text-gray-400">Content-Type: application/json</span>
+							</div>
+							<pre
+								class="bg-gray-900 text-indigo-300 p-4 rounded-2xl text-[11px] font-mono shadow-inner overflow-x-auto">
+Headers:
+Authorization: Bearer eyJhbGc...
+
+Body:
+{
+  "junctionId": "300839359",
+  "observations": [
+    0.12, 0.33, 0.41, 0.55, 0.62,
+    0.7, 0.81, 0.9, 0.95
+  ],
+  "metadata": "morning-peak"
+}</pre>
+							<p class="text-[11px] text-gray-500 italic px-2">JWT token required in Authorization header.
+							</p>
+						</div>
+
+						<div class="space-y-6">
+							<div class="space-y-2">
+								<div class="flex items-center justify-between">
+									<span
+										class="text-[10px] font-bold uppercase tracking-widest text-emerald-600 bg-emerald-50 px-2 py-0.5 rounded">Response:
+										Success</span>
+									<span class="text-[10px] font-mono text-gray-400">Inference Up</span>
+								</div>
+								<pre
+									class="bg-gray-900 text-emerald-400 p-3 rounded-xl text-[10px] font-mono shadow-inner border-l-2 border-emerald-500 overflow-x-auto">
+{
+  "junctionId": "300839359",
+  "predictedAction": 2,
+  "signalState": "GREEN",
+  "timestamp": 1774327222761,
+  "status": "success"
+}</pre>
+							</div>
+
+							<div class="space-y-2">
+								<div class="flex items-center justify-between">
+									<span
+										class="text-[10px] font-bold uppercase tracking-widest text-orange-600 bg-orange-50 px-2 py-0.5 rounded">Response:
+										Fallback</span>
+									<span class="text-[10px] font-mono text-gray-400">Inference Down</span>
+								</div>
+								<pre
+									class="bg-gray-900 text-orange-400 p-3 rounded-xl text-[10px] font-mono shadow-inner border-l-2 border-orange-500 overflow-x-auto">
+{
+  "junctionId": "300839359",
+  "predictedAction": 0,
+  "signalState": "RED",
+  "timestamp": 1774327374219,
+  "status": "fallback_mode (inference service down)"
+}</pre>
+							</div>
+						</div>
+					</div>
+
+					<div class="px-6 py-4 bg-gray-50 border-t border-gray-100 flex items-center gap-3">
+						<div class="w-2 h-2 rounded-full bg-indigo-500 animate-pulse"></div>
+						<p class="text-[11px] font-medium text-gray-600 uppercase tracking-tight">
+							Model: PPO-SB3 &bull; Observation Shape: (19,) &bull; Action Space: Discrete(4)
+						</p>
+					</div>
+				</div>
+
+				<!-- Future LSTM Enhancement -->
+				<div
+					class="bg-gradient-to-r from-purple-50 to-pink-50 rounded-3xl shadow-sm border border-purple-200 overflow-hidden flex flex-col">
+					<div class="p-6 border-b border-purple-200 bg-gradient-to-r from-purple-100/50 to-pink-100/50">
+						<h2 class="text-xl font-black text-purple-900">🔮 Future Enhancement: LSTM Temporal Modeling
+						</h2>
+						<p class="text-sm text-purple-700 mt-2">Planned feature to capture temporal dependencies in
+							traffic patterns</p>
+					</div>
+
+					<div class="p-6 space-y-4 text-purple-900">
+						<div class="bg-white/60 p-4 rounded-2xl border border-purple-200">
+							<p class="text-[11px] font-bold uppercase tracking-widest text-purple-600 mb-2">Upcoming
+								Capability</p>
+							<p class="text-sm">LSTM-enhanced inference to model time-series traffic behavior and improve
+								long-horizon predictions beyond PPO's stateless decisions.</p>
+						</div>
+						<div class="bg-white/60 p-4 rounded-2xl border border-purple-200">
+							<p class="text-[11px] font-bold uppercase tracking-widest text-purple-600 mb-2">Expected
+								Endpoint</p>
+							<p class="text-sm font-mono text-purple-700">POST /api/traffic/action/temporal — Accepts
+								observation history with timestamps</p>
+						</div>
+						<div class="bg-white/60 p-4 rounded-2xl border border-purple-200">
+							<p class="text-[11px] font-bold uppercase tracking-widest text-purple-600 mb-2">Benefit</p>
+							<p class="text-sm">Improved signal timing by recognizing recurring traffic patterns and
+								anticipating demand shifts.</p>
 						</div>
 					</div>
 				</div>
@@ -538,7 +741,7 @@
 					</div>
 				</div>
 
-			</div>
+			</div><!-- End of main -->
 		</div>
 	</div>
 

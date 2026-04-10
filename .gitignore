@@ -58,9 +58,6 @@ Thumbs.db
 .metadata/
 .factorypath
 
-# Virtual environment
-venv/
-
 # mkdocs
 site/
 *.tar

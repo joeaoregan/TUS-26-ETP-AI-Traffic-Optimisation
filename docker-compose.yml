@@ -1,6 +1,7 @@
 services:
   rl-inference:
-    image: rl-inference-service:2.0.0
+    # image: rl-inference-service:2.0.0
+    build: ./rl-inference-service
     container_name: rl-inference-service
     ports:
       - "8000:8000"
@@ -26,7 +27,8 @@ services:
         max-file: "3"
 
   java-gateway:
-    image: traffic-api-gateway:2.0.0
+    # image: traffic-api-gateway:2.0.0
+    build: ./java-api-gateway
     container_name: traffic-api-gateway
     ports:
       - "8080:8080"
@@ -36,6 +38,10 @@ services:
     environment:
       RL_INFERENCE_URL: http://rl-inference:8000/predict_action
       RL_INFERENCE_SERVICE_TIMEOUT: "10000"
+      JWT_SECRET: change-this-secret-key-to-a-very-long-random-value
+      JWT_AUTH_USERNAME: admin
+      JWT_AUTH_PASSWORD: admin123
+      JWT_EXPIRATION_MINUTES: "60"
     networks:
       - traffic-network
     healthcheck:

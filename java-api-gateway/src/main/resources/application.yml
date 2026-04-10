@@ -28,6 +28,28 @@ spring:
       connect-timeout: 5000
       read-timeout: 10000
 
+springdoc:
+  api-docs:
+    path: /v3/api-docs
+  swagger-ui:
+    path: /swagger-ui.html
+    enabled: true
+  show-actuator: false
+  # Force scan the package
+  packagesToScan: com.example.gateway
+  # Auto-configure model converters
+  model-and-view-supported: true
+
+security:
+  jwt:
+    issuer: ${JWT_ISSUER:traffic-api-gateway}
+    # Must be at least 32 bytes for HS256.
+    secret: ${JWT_SECRET:change-this-secret-key-to-a-very-long-random-value}
+    expiration-minutes: ${JWT_EXPIRATION_MINUTES:60}
+  auth:
+    username: ${JWT_AUTH_USERNAME:admin}
+    password: ${JWT_AUTH_PASSWORD:admin123}
+
 api:
   title: "AI Traffic Control API"
   version: "1.0.0"
@@ -37,22 +59,43 @@ api:
     <img src="/images/logo.png" width="360" alt="AI Traffic Management System Logo" />
     ## Joe O'Regan, Edgars Peskaitis
     ## Adam O Neill Mc Knight, David Claffey
+    [![Test Page](https://img.shields.io/badge/Render-Test%20Page-blue?logo=internet-explorer)](https://ai-traffic-control-api.onrender.com/)
+    [![Repository](https://img.shields.io/badge/repo-TUS--26--ETP--AI--Traffic--Optimisation-blue?logo=github&logoColor=white)](https://github.com/joeaoregan/TUS-26-ETP-AI-Traffic-Optimisation)
+    [![Docs](https://img.shields.io/badge/Docs-Read-blue?logo=readme)](https://joeaoregan.github.io/TUS-26-ETP-AI-Traffic-Optimisation/)
   
     This API provides traffic signal control capabilities powered by a Reinforcement Learning (RL) inference service.
 
     ## Overview
+    [Documentation](https://joeaoregan.github.io/TUS-26-ETP-AI-Traffic-Optimisation/api-gateway/authentication/)  
+    
     The system simulates or accepts real-time traffic observations and uses an RL model to predict the optimal traffic signal action. \
     These predictions help manage congestion, improve flow efficiency, and support adaptive traffic control strategies.
 
+    ## Authentication
+    [Authentication Documentation](https://joeaoregan.github.io/TUS-26-ETP-AI-Traffic-Optimisation/api-gateway/authentication/)
+    
+    Most endpoints require **JWT Bearer token authentication**. \
+    Obtain a token via `POST /api/auth/login` using default credentials (username: `admin`, password: `admin123`). \
+    Include the token in the `Authorization` header: `Bearer <your-jwt-token>`
+
     ## Key Features
+    [Key Feature Documentation](https://joeaoregan.github.io/TUS-26-ETP-AI-Traffic-Optimisation/api-gateway/key-features/)
+    - **JWT authentication** (HS256) for secure API access.
     - **Automatic traffic signal prediction** using RL inference.
     - **Support for custom observation inputs** for testing and experimentation.
     - **Health monitoring** to verify the availability of the inference service.
     - **Structured success and error responses** for consistent API behavior.
+    - **Fallback mode** when inference service is unavailable.
 
     ## Endpoints
-    - **GET /api/traffic/action** — Generates dummy observations and returns a predicted traffic signal state.
-    - **POST /api/traffic/action** — Accepts custom observations and returns a model prediction.
-    - **GET /api/traffic/health** — Reports the health status of the RL inference service.
+    [Endpoint Documentation](https://joeaoregan.github.io/TUS-26-ETP-AI-Traffic-Optimisation/api-gateway/endpoints/)
+    - `POST /api/auth/login` Authenticate and receive JWT token (public).
+    - `GET /api/traffic/action` Generates dummy observations and returns a predicted traffic signal state.
+    - `POST /api/traffic/action` Accepts custom observations and returns a model prediction.
+    - `POST /api/traffic/reset` Reset GRU hidden states for all junctions (requires authentication).
+    - `GET /api/traffic/health` Reports the health status of the RL inference service.
 
     This API is designed for academic, experimental, and demonstration purposes within a cloud‑native microservices architecture.
+
+    ---
+    [Joe O'Regan](https://github.com/joeaoregan), [Edgars Peskaitis](https://github.com/edgar183) [Adam O Neill Mc Knight](https://github.com/AdamQ45), [David Claffey](https://github.com/dclaff)	

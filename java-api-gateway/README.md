@@ -1,243 +1,287 @@
-# AI Traffic Control API Gateway
+# Java API Gateway Authentication
+
+![TUS](https://img.shields.io/badge/TUS-2026-black?style=flat-square&logo=data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiIHN0YW5kYWxvbmU9Im5vIj8+CjwhLS0gQ3JlYXRlZCB3aXRoIElua3NjYXBlIChodHRwOi8vd3d3Lmlua3NjYXBlLm9yZy8pIC0tPgoKPHN2ZwogICB3aWR0aD0iMTU3LjU1OTM2bW0iCiAgIGhlaWdodD0iMjA1LjE3MTE2bW0iCiAgIHZpZXdCb3g9IjAgMCAxNTcuNTU5MzYgMjA1LjE3MTE2IgogICB2ZXJzaW9uPSIxLjEiCiAgIGlkPSJzdmcxIgogICB4bWw6c3BhY2U9InByZXNlcnZlIgogICB4bWxuczppbmtzY2FwZT0iaHR0cDovL3d3dy5pbmtzY2FwZS5vcmcvbmFtZXNwYWNlcy9pbmtzY2FwZSIKICAgeG1sbnM6c29kaXBvZGk9Imh0dHA6Ly9zb2RpcG9kaS5zb3VyY2Vmb3JnZS5uZXQvRFREL3NvZGlwb2RpLTAuZHRkIgogICB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciCiAgIHhtbG5zOnN2Zz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPjxzb2RpcG9kaTpuYW1lZHZpZXcKICAgICBpZD0ibmFtZWR2aWV3MSIKICAgICBwYWdlY29sb3I9IiNmZmZmZmYiCiAgICAgYm9yZGVyY29sb3I9IiMwMDAwMDAiCiAgICAgYm9yZGVyb3BhY2l0eT0iMC4yNSIKICAgICBpbmtzY2FwZTpzaG93cGFnZXNoYWRvdz0iMiIKICAgICBpbmtzY2FwZTpwYWdlb3BhY2l0eT0iMC4wIgogICAgIGlua3NjYXBlOnBhZ2VjaGVja2VyYm9hcmQ9IjAiCiAgICAgaW5rc2NhcGU6ZGVza2NvbG9yPSIjZDFkMWQxIgogICAgIGlua3NjYXBlOmRvY3VtZW50LXVuaXRzPSJtbSI+PGlua3NjYXBlOnBhZ2UKICAgICAgIHg9IjAiCiAgICAgICB5PSIwIgogICAgICAgd2lkdGg9IjE1Ny41NTkzNiIKICAgICAgIGhlaWdodD0iMjA1LjE3MTE2IgogICAgICAgaWQ9InBhZ2UyIgogICAgICAgbWFyZ2luPSIwIgogICAgICAgYmxlZWQ9IjAiIC8+PC9zb2RpcG9kaTpuYW1lZHZpZXc+PGRlZnMKICAgICBpZD0iZGVmczEiPjxzdHlsZQogICAgICAgaWQ9InN0eWxlMSI+LmNscy0xe2ZpbGw6I2EzOTQ2MTt9PC9zdHlsZT48c3R5bGUKICAgICAgIGlkPSJzdHlsZTEtNCI+LmNscy0xe2ZpbGw6I2EzOTQ2MTt9PC9zdHlsZT48L2RlZnM+PGcKICAgICBpbmtzY2FwZTpsYWJlbD0iTGF5ZXIgMSIKICAgICBpbmtzY2FwZTpncm91cG1vZGU9ImxheWVyIgogICAgIGlkPSJsYXllcjEiCiAgICAgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoMjA4LjE2MDkzLDQ4Ljg3NTE2MikiPjxnCiAgICAgICBpZD0iQXJ0d29yayIKICAgICAgIHRyYW5zZm9ybT0ibWF0cml4KDAuMjY0NTgzMzMsMCwwLDAuMjY0NTgzMzMsLTIwOC4xNjA5NCwtNDguODc1MTU4KSI+PHBhdGgKICAgICAgICAgY2xhc3M9ImNscy0xIgogICAgICAgICBkPSJNIDU5NS40OCwwIEggNDc2LjM4IFYgNTguNTIgSCAzNTcuMyBWIDAgSCAyMzguMiBWIDU4LjUyIEggMTE5LjEgViAwIEggMCB2IDM1Ny4yOSBoIDExOS4xIGEgMTc4LjY0LDE3OC42NCAwIDEgMSAzNTcuMjgsMCBoIDExOS4wNiB6IgogICAgICAgICBpZD0icGF0aDEiIC8+PHJlY3QKICAgICAgICAgY2xhc3M9ImNscy0xIgogICAgICAgICB4PSI0NzYuMzgiCiAgICAgICAgIHk9IjcxNS45MDAwMiIKICAgICAgICAgd2lkdGg9IjExOS4xIgogICAgICAgICBoZWlnaHQ9IjU5LjU0OTk5OSIKICAgICAgICAgaWQ9InJlY3QxIiAvPjxyZWN0CiAgICAgICAgIGNsYXNzPSJjbHMtMSIKICAgICAgICAgeT0iNzE1LjkwMDAyIgogICAgICAgICB3aWR0aD0iMTE5LjEiCiAgICAgICAgIGhlaWdodD0iNTkuNTQ5OTk5IgogICAgICAgICBpZD0icmVjdDIiCiAgICAgICAgIHg9IjAiIC8+PHJlY3QKICAgICAgICAgY2xhc3M9ImNscy0xIgogICAgICAgICB5PSI1OTYuNzk5OTkiCiAgICAgICAgIHdpZHRoPSIxMTkuMSIKICAgICAgICAgaGVpZ2h0PSI1OS41NDk5OTkiCiAgICAgICAgIGlkPSJyZWN0MyIKICAgICAgICAgeD0iMCIgLz48cmVjdAogICAgICAgICBjbGFzcz0iY2xzLTEiCiAgICAgICAgIHg9IjQ3Ni4zOTk5OSIKICAgICAgICAgeT0iNTk2Ljc5OTk5IgogICAgICAgICB3aWR0aD0iMTE5LjEiCiAgICAgICAgIGhlaWdodD0iNTkuNTQ5OTk5IgogICAgICAgICBpZD0icmVjdDQiIC8+PHJlY3QKICAgICAgICAgY2xhc3M9ImNscy0xIgogICAgICAgICB4PSIxMTkuMSIKICAgICAgICAgeT0iNTM3LjI1IgogICAgICAgICB3aWR0aD0iMzU3LjI5OTk5IgogICAgICAgICBoZWlnaHQ9IjU5LjU0OTk5OSIKICAgICAgICAgaWQ9InJlY3Q1IiAvPjxwb2x5Z29uCiAgICAgICAgIGNsYXNzPSJjbHMtMSIKICAgICAgICAgcG9pbnRzPSI0NzYuMzksNjU2LjM1IDExOS4xLDY1Ni4zNSAxMTkuMSw3MTUuOSAyMzguMiw3MTUuOSAyMzguMiw3NzUuNDUgMzU3LjI5LDc3NS40NSAzNTcuMjksNzE1LjkgNDc2LjM5LDcxNS45ICIKICAgICAgICAgaWQ9InBvbHlnb241IiAvPjxyZWN0CiAgICAgICAgIGNsYXNzPSJjbHMtMSIKICAgICAgICAgeD0iNDc2LjM5OTk5IgogICAgICAgICB5PSI0MTguMTYiCiAgICAgICAgIHdpZHRoPSIxMTkuMSIKICAgICAgICAgaGVpZ2h0PSIxMTkuMSIKICAgICAgICAgaWQ9InJlY3Q2IiAvPjxyZWN0CiAgICAgICAgIGNsYXNzPSJjbHMtMSIKICAgICAgICAgeT0iNDE4LjE2IgogICAgICAgICB3aWR0aD0iMTE5LjEiCiAgICAgICAgIGhlaWdodD0iMTE5LjEiCiAgICAgICAgIGlkPSJyZWN0NyIKICAgICAgICAgeD0iMCIgLz48L2c+PC9nPjwvc3ZnPgo=)
+![Module](https://img.shields.io/badge/Module-Engineering%20Team%20Project-blue?style=flat-square)
+![Topic](https://img.shields.io/badge/Topic-AI%20Traffic%20Optimisation-blue?style=flat-square)
 
 ## Overview
 
-The **Traffic Control API Gateway** is a Spring Boot REST API that serves as the orchestration layer for an AI-driven traffic optimization system. It interfaces with a Reinforcement Learning (RL) inference service to predict optimal traffic signal states and manage traffic flow in real-time.
+This document describes the JWT authentication that has been added to the Spring Boot API gateway.
 
-## Purpose
+Authentication is handled at the gateway layer using JSON Web Tokens (JWT).
 
-This microservice provides:
+The flow is intentionally simple:
 
-- **Traffic Signal Prediction**: Uses a MAPPO (Multi-Agent PPO) RL model to predict optimal traffic signal actions
-- **Inference Orchestration**: Acts as a bridge between traffic control applications and the RL inference backend
-- **Resilience & Fallback**: Implements circuit-breaker patterns with graceful fallback when the inference service is unavailable
-- **Health Monitoring**: Exposes health check endpoints to verify inference service availability
-- **API Documentation**: Auto-generated OpenAPI (Swagger) documentation for all endpoints
+1. A client sends a username and password to `POST /api/auth/login`.
+2. The gateway validates those credentials against configured values.
+3. If the credentials are valid, the gateway returns a signed bearer token.
+4. The client sends that token in the `Authorization` header when calling protected endpoints.
 
-## Key Features
+This implementation uses stateless authentication. No server-side session is created.
 
-- **Dual Prediction Modes**:
-  - **Demo Mode** (`GET /api/traffic/action`): Generates random observations for quick testing
-  - **Custom Mode** (`POST /api/traffic/action`): Accepts real or experimental observation vectors
+## What Is Protected
 
-- **Flexible Observations**: Supports variable-length observation vectors (up to 19 floats per junction)
+### Public endpoints
 
-- **Multiple Junction Support**: Preconfigured for 5 known traffic junctions:
-  - `joinedS_265580996_300839357`
-  - `300839359`
-  - `265580972`
-  - `1270712555`
-  - `8541180897`
+- `POST /api/auth/login`
+- `GET /api/traffic/health`
+- `GET /swagger-ui/**`
+- `GET /v3/api-docs/**`
+- Static resources such as `/`, `/index.html`, `/app.js`, `/styles.css`, and `/images/**`
 
-- **Signal State Mapping**: Translates RL model outputs (0-3) to human-readable states:
-  - `0` → RED
-  - `1` → YELLOW
-  - `2` → GREEN
-  - `3` → GREEN_EXTENDED
-  - `default` → UNKNOWN
+### Protected endpoints
 
-- **Graceful Degradation**: Falls back to RED signal when inference service is unavailable
+- `GET /api/traffic/action`
+- `POST /api/traffic/action`
 
-- **Stateful Inference**: Includes endpoints to reset GRU hidden states for multi-step simulations
+Requests to protected endpoints must include a bearer token.
 
-## Architecture
+## Configuration
 
-### Technology Stack
+Authentication and JWT settings are configured in `application.yml` and can be overridden with environment variables.
 
-- **Framework**: Spring Boot 3.2.3
-- **Language**: Java 17
-- **Build**: Maven
-- **Deployment**: Docker (Render cloud platform)
-- **API Documentation**: SpringDoc OpenAPI (Swagger UI)
+| Property                          | Environment variable     | Default                                              | Notes |
+|-----------------------------------|--------------------------|------------------------------------------------------|-------|
+| `security.jwt.issuer`             | `JWT_ISSUER`             | `traffic-api-gateway`                                | Used as the JWT issuer claim        |
+| `security.jwt.secret`             | `JWT_SECRET`             | `change-this-secret-key-to-a-very-long-random-value` | Must be at least 32 bytes for HS256 |
+| `security.jwt.expiration-minutes` | `JWT_EXPIRATION_MINUTES` | `60`                                                 | Token lifetime |
+| `security.auth.username`          | `JWT_AUTH_USERNAME`      | `admin`                                              | Login username |
+| `security.auth.password`          | `JWT_AUTH_PASSWORD`      | `admin123`                                           | Login password |
 
-### Configuration
+## Security Notes
 
-- **Local Development**: Port `8080`
-- **Production URL**: `https://ai-traffic-control-api.onrender.com`
-- **Inference Service**: Communicates via REST to RL backend (default: `http://localhost:8000`)
+- The default username, password, and secret are for local development only.
+- Replace `JWT_SECRET` before deploying anywhere outside a local environment.
+- This implementation currently uses a single configured username and password.
+- There is no refresh-token flow yet.
+- Invalid or expired tokens are treated as unauthenticated requests.
 
-### Core Components
+## How It Works Internally
 
-**REST Controller** (`TrafficController.java`)
+### `AuthController`
 
-- Handles all HTTP traffic prediction requests
-- Manages error responses and validation
-- Coordinates with the inference client
+`POST /api/auth/login` accepts a JSON payload:
 
-**Inference Client** (`RlInferenceClient.java`)
-
-- HTTP client for RL inference service communication
-- Handles timeouts (2s default), retries, and error mapping
-- Provides health checks and state reset functionality
-
-**Configuration**
-
-- `OpenApiConfig`: Swagger/OpenAPI configuration
-- `WebConfig`: Static resource routing (serves `index.html`)
-- `GatewayApplication`: Spring Boot application entry point with RestTemplate bean
-
-## API Endpoints
-
-### Traffic Prediction
-
-#### GET `/api/traffic/action`
-**Demo endpoint** - Picks a random junction and generates dummy observations.
-
-**Response (200)**:
-``` json
+```json
 {
-  "junctionId": "300839359",
-  "predictedAction": 1,
-  "signalState": "YELLOW",
-  "timestamp": 1710000000000,
-  "status": "success"
+  "username": "admin",
+  "password": "admin123"
 }
 ```
 
-**Response (Fallback - Inference Down)**:
-``` json
+If the credentials match the configured values, the controller returns:
+
+```json
 {
-  "junctionId": "300839359",
-  "predictedAction": 0,
-  "signalState": "RED",
-  "timestamp": 1710000000000,
-  "status": "fallback_mode (inference service down)"
-}
-```
-
-#### POST `/api/traffic/action`
-**Production endpoint** - Accepts junction ID and custom observation vector.
-
-**Request**:
-``` json
-{
-  "junctionId": "joinedS_265580996_300839357",
-  "observations": [0.0, 1.0, 0.0, 0.0, 0.0, 1.0, 0.0, 1.0, 0.12, 0.08, 0.33, 0.41, 0.22, 0.55, 0.18, 0.62, 0.70, 0.81, 0.50],
-  "metadata": "morning-peak"
-}
-```
-
-**Response (200)**: Same structure as demo endpoint
-
-**Errors**:
-
-- `400`: Missing or invalid `junctionId` / `observations`
-- `400`: Observations exceed maximum size (19)
-- `500`: Unexpected internal error
-
-### State Management
-
-#### POST `/api/traffic/reset`
-**Reset GRU hidden states** for all junctions (call at start of simulation run).
-
-**Response (200)**:
-
-``` json
-{
-  "status": "ok",
-  "message": "Hidden states reset for all junctions"
-}
-```
-
-### Health & Monitoring
-
-#### GET `/api/traffic/health`
-
-**Service health check** - Verifies inference service availability.
-
-**Response (200 - Healthy)**:
-``` json
-{
-  "status": "healthy",
-  "inferenceService": "up",
+  "tokenType": "Bearer",
+  "accessToken": "<jwt>",
+  "expiresIn": 3600,
   "timestamp": 1710000000000
 }
 ```
 
-**Response (503 - Degraded)**:
-``` json
-{
-  "status": "degraded",
-  "inferenceService": "down",
-  "timestamp": 1710000000000
-}
+### `JwtService`
+
+The JWT service:
+
+- Validates the configured signing secret at startup
+- Signs tokens using HS256
+- Stores the username in the `sub` claim
+- Adds `iss`, `iat`, and `exp` claims
+- Parses and validates incoming tokens
+
+### `JwtAuthenticationFilter`
+
+The request filter:
+
+- Reads the `Authorization` header
+- Expects the format `Bearer <token>`
+- Validates the token
+- Extracts the username from the token subject
+- Adds an authenticated principal to the Spring Security context
+
+### `SecurityConfig`
+
+Spring Security is configured to:
+
+- Disable CSRF for this stateless API
+- Disable HTTP Basic authentication
+- Use stateless session management
+- Allow public access to login, health, Swagger, and static assets
+- Require authentication for traffic action endpoints
+
+## Running Locally
+
+### Option 1: Docker Compose
+
+The `docker-compose.yml` file includes these JWT-related environment variables for the gateway:
+
+```yaml
+JWT_SECRET: change-this-secret-key-to-a-very-long-random-value
+JWT_AUTH_USERNAME: admin
+JWT_AUTH_PASSWORD: admin123
+JWT_EXPIRATION_MINUTES: "60"
 ```
 
-## Configuration Files
+Start the services:
 
-### `application.yml` (Local Development)
-
-- Inference URL: `http://localhost:8000/predict_action`
-- Read/connect timeouts: 2s
-- Observation dimension: 19 floats
-- Logging level: DEBUG
-
-### `application-prod.yml` (Production)
-
-- Inference URL: Loaded from `RL_INFERENCE_URL` environment variable
-- Read/connect timeouts: 20s (longer for cloud)
-- Logging level: WARN (production-optimized)
-
-## Deployment
-
-### Docker Build
-
-``` bash
-docker build -t traffic-gateway:latest .
+```bash
+docker-compose up --build
 ```
 
-The Dockerfile uses a multi-stage build:
+### Option 2: Maven
 
-1. **Builder Stage**: Compiles Maven project with Java 17
-2. **Runtime Stage**: Minimal JRE container (~200MB)
+From the `java-api-gateway` directory:
 
-### Running Locally
-
-``` bash
-mvn clean install
+```bash
 mvn spring-boot:run
 ```
 
-Then visit:
+If you want to override the defaults, set environment variables first.
 
-- **Swagger UI**: `http://localhost:8080/swagger-ui/index.html`
-- **OpenAPI JSON**: `http://localhost:8080/v3/api-docs`
+Example PowerShell:
 
-## Error Handling
+```powershell
+$env:JWT_SECRET="replace-with-a-long-random-secret-of-at-least-32-characters"
+$env:JWT_AUTH_USERNAME="admin"
+$env:JWT_AUTH_PASSWORD="admin123"
+$env:JWT_EXPIRATION_MINUTES="60"
+mvn spring-boot:run
+```
 
-| Error | Status | Handling |
-|-------|--------|----------|
-| Invalid junction ID           | 400            | Validation error with message |
-| Observations too large        | 400            | Validation error with size info |
-| Inference service unreachable | 200 (Fallback) | Returns RED signal state with fallback status |
-| Unexpected exception          | 500            | Generic error response |
+## Usage Examples
 
-## Dependencies
+### PowerShell
 
-**Core**:
+Authenticate:
 
-- `spring-boot-starter-web`: REST API framework
-- `spring-boot-starter-webflux`: Async support
-- `springdoc-openapi-starter-webmvc-ui` (v2.5.0): Swagger documentation
-- `jackson-databind`: JSON serialization
+```powershell
+$loginBody = @{
+    username = "admin"
+    password = "admin123"
+} | ConvertTo-Json
 
-**Development**:
+$tokenResponse = Invoke-RestMethod -Method Post -Uri "http://localhost:8080/api/auth/login" -ContentType "application/json" -Body $loginBody
+$token = $tokenResponse.accessToken
+```
 
-- `lombok`: Reduce boilerplate (@Data, @Slf4j, @RequiredArgsConstructor)
+Call a protected endpoint:
 
-## Integration with AI Inference Service
+```powershell
+$headers = @{ Authorization = "Bearer $token" }
+Invoke-RestMethod -Method Get -Uri "http://localhost:8080/api/traffic/action" -Headers $headers
+```
 
-This gateway expects a Python FastAPI backend at the configured `RL_INFERENCE_URL` with endpoints:
+Call the prediction endpoint with custom observations:
 
-- `POST /predict_action`: Accepts `{"junction_id": "...", "obs_data": [...]}`, returns `{"action": 0-3, "confidence": 0.0-1.0}`
-- `GET /health`: Returns `{"status": "healthy", "modelLoaded": true, "junctions": [...]}`
-- `POST /reset_hidden`: Resets GRU hidden states
+```powershell
+$headers = @{ Authorization = "Bearer $token" }
+$body = @{
+    observations = @(0.12, 0.33, 0.41, 0.55, 0.62, 0.70, 0.81, 0.90, 0.95)
+    metadata = "morning-peak"
+} | ConvertTo-Json
 
-## Quick Links
+Invoke-RestMethod -Method Post -Uri "http://localhost:8080/api/traffic/action" -Headers $headers -ContentType "application/json" -Body $body
+```
 
-- **GitHub Repository**: https://github.com/joeaoregan/TUS-26-ETP-AI-Traffic-Optimisation
-- **Live Swagger UI (Cloud)**: https://ai-traffic-control-api.onrender.com/swagger-ui/index.html
-- **Inference Service Docs**: https://traffic-inference-service.onrender.com/docs
-- **Full Project Documentation**: https://joeaoregan.github.io/TUS-26-ETP-AI-Traffic-Optimisation/
+### curl
+
+Authenticate and capture the token:
+
+```bash
+TOKEN=$(curl -s -X POST http://localhost:8080/api/auth/login \
+  -H "Content-Type: application/json" \
+  -d '{"username":"admin","password":"admin123"}' | jq -r '.accessToken')
+```
+
+Call a protected endpoint:
+
+```bash
+curl -X GET http://localhost:8080/api/traffic/action \
+  -H "Authorization: Bearer $TOKEN"
+```
+
+Call the prediction endpoint with custom observations:
+
+```bash
+curl -X POST http://localhost:8080/api/traffic/action \
+  -H "Content-Type: application/json" \
+  -H "Authorization: Bearer $TOKEN" \
+  -d '{
+    "observations": [0.12, 0.33, 0.41, 0.55, 0.62, 0.70, 0.81, 0.90, 0.95],
+    "metadata": "morning-peak"
+  }'
+```
+
+## Swagger Usage
+
+Swagger UI is still publicly reachable.
+
+Open:
+
+```text
+http://localhost:8080/swagger-ui/index.html
+```
+
+You can authenticate by first calling `POST /api/auth/login`, copying the returned `accessToken`, and then using the Swagger `Authorize` button with:
+
+```text
+Bearer <your-token>
+```
 
 ---
+
+## Testing
+
+The root-level `test_api.py` script has been updated to:
+
+- Authenticate first using JWT credentials
+- Cache the returned access token
+- Send the token on protected requests
+- Display color-coded output for better readability
+- Track test results (e.g., "All tests passed! 4/4")
+- Return boolean status for each test function
+
+Run it from the repository root:
+
+```bash
+python test_api.py
+```
+
+Test output includes:
+
+✅ Green checkmarks for successful operations
+❌ Red X marks for failures
+🔵 Blue headers for test sections
+🔄 Test counter showing passed/total tests
+
+### Requirements
+
+To use the enhanced test script with color output, install colorama:
+
+```bash
+pip install colorama
+```
+
+## Relevant Files
+
+- `src/main/java/com/example/gateway/controller/AuthController.java`
+- `src/main/java/com/example/gateway/config/SecurityConfig.java`
+- `src/main/java/com/example/gateway/security/JwtService.java`
+- `src/main/java/com/example/gateway/security/JwtAuthenticationFilter.java`
+- `src/main/resources/application.yml`
+- `src/main/resources/application-prod.yml`
+- `src/main/java/com/example/gateway/dto/LoginRequest.java`
+- `src/main/java/com/example/gateway/dto/LoginResponse.java`
+- `src/main/java/com/example/gateway/dto/ErrorResponse.java`
+- `test_api.py`
+
+## Current Limitations
+
+- Single configured user only
+- No user database integration
+- No role-based authorization
+- No refresh tokens
+- No logout endpoint because the system is stateless
+
+If the project needs stronger access control later, the next logical step is to replace configured credentials with a persistent user store and add roles.

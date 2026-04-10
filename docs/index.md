@@ -9,7 +9,8 @@ AI-Driven Predictive Traffic Flow Optimisation System
 - [Quick Start](quickstart.md)
 - [Setup Complete](setup-complete/index.md)
 - [File Manifest](file-manifest/index.md)
-- [API Docs](api-docs/index.md)
+- [API Docs](api/index.md)
+- [API Endpoints](api/endpoints.md)
 - [Changelog](CHANGELOG.md)
 - [Support](support.md)
 
@@ -34,23 +35,39 @@ AI-Driven Predictive Traffic Flow Optimisation System
 
 ---
 
-### 🔗 Quick Links
+## 🔗 Quick Links
 
-| 🌐 API Gateway | 🤖 Inference Service |
-|-------------|-------------------|
-| [App](https://ai-traffic-control-api.onrender.com/)                                  | [App](https://traffic-inference-service.onrender.com)                  |
-| [Swagger UI Docs](https://ai-traffic-control-api.onrender.com/swagger-ui/index.html) | [Swagger UI Docs](https://traffic-inference-service.onrender.com/docs) |
+| 🌐 API Gateway                                                                 | 🤖 Inference Service                                              | 📊 LSTM Predictor |
+|---|---|---|
+| [App](https://ai-traffic-control-api.onrender.com/)                             | [App](https://traffic-inference-service.onrender.com)             | [Local: 8001](http://localhost:8001)     |
+| [Swagger UI](https://ai-traffic-control-api.onrender.com/swagger-ui/index.html) | [Swagger UI](https://traffic-inference-service.onrender.com/docs) | [Swagger UI](http://localhost:8001/docs) |
 
 ---
 
 ## 🏗️ System Architecture
 
-This repository implements a **Cloud-Native Microservices Pipeline** designed for the Athlone "Orange Loop" case study. 
+This repository implements a **Cloud-Native Microservices Pipeline** designed for the Athlone "Orange Loop" case study.
 
-- **Traffic Monitoring Gateway (Java/Spring Boot):** Manages secure telemetry ingestion and orchestrates service communication.
+- **Traffic Monitoring Gateway (Java/Spring Boot):** Manages secure telemetry ingestion and orchestrates service communication with JWT authentication.
 - **RL-Inference Service (Python/FastAPI):** Hosts a trained **PPO (Proximal Policy Optimization)** model to predict optimal signal timings based on real-time traffic density.
+- **LSTM Traffic Predictor (Python/FastAPI):** Forecasts vehicle flow 15 minutes ahead using historical SUMO data for context-aware decision making.
 - **Simulation Layer (SUMO):** Integrated high-fidelity environment for testing adaptive signal logic against baseline fixed-time controllers.
 
-This system is specifically modeled to address the saturation flow rates and signal-timing patterns of the Athlone 'Orange Loop' corridor, providing a scalable template for Smart City traffic management in regional Irish hubs.
+This system is specifically modeled to address the saturation flow rates and signal-timing patterns of the Athlone 'Orange Loop' corridor, providing a scalable template for Smart City traffic management.
 
 *For more details see [System Architecture](system-architecture/index.md) page.*
+
+---
+
+## 📚 Service Documentation
+
+- **[Java API Gateway](api-gateway/index.md)** — JWT authentication, traffic prediction endpoints, circuit breaker resilience
+- **[Python Inference Service](inference-service/index.md)** — PPO model inference, GRU hidden state management
+- **[LSTM Traffic Predictor](lstm/index.md)** — Time-series forecasting, SUMO data integration
+- **[SUMO Simulator](sumo/architecture.md)** — Road network, traffic flows, output data generation
+
+---
+
+## 🔐 Security
+
+JWT authentication is integrated into the API Gateway. See [Java API Gateway Authentication Guide](security/java-api-gateway.md) for configuration and usage.

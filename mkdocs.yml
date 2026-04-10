@@ -1,7 +1,13 @@
 site_name: AI Traffic Optimisation System
-docs_dir: docs
+site_description: Comprehensive documentation for the AI Traffic Optimisation System, covering architecture, setup, API usage, and more.
+site_url: https://joeaoregan.github.io/TUS-26-ETP-AI-Traffic-Optimisation/
+site_author: Joe O'Regan, Edgars Peskaitis, Adam O Neill Mc Knight, David Claffey
 site_dir: site
+docs_dir: docs
 theme:
+  font:
+    text: Roboto
+    code: Roboto Mono
   icon:
     admonition:
       note: material/car-sports
@@ -24,6 +30,7 @@ theme:
         name: Switch to dark mode
 
   name: material
+  favicon: images/favicon.ico
   features:
     - navigation.tabs
     - navigation.tabs.sticky
@@ -37,36 +44,66 @@ theme:
 
 nav:
   - Home: 
-    - index.md
+    - index.md    
+    - 🗂️ Project Structure: system-architecture/project-structure.md
     - External Links:    
-      - API Gateway: https://ai-traffic-control-api.onrender.com
-      - API Gateway Documentation: https://ai-traffic-control-api.onrender.com/swagger-ui/index.html
-      - Inference Service: https://traffic-inference-service.onrender.com
-      - Inference Service Documentation: https://traffic-inference-service.onrender.com/docs
-      - GitHub Repository: https://github.com/joeaoregan/TUS-26-ETP-AI-Traffic-Optimisation
-  - API Gateway: api-gateway/index.md
-  - Inference Service: inference-service/index.md
-  - SUMO: sumo/index.md
-  - LSTM: lstm/index.md
-  - Security: security/index.md
+      - 🔐 API Gateway: https://ai-traffic-control-api.onrender.com
+      - 📚 API Gateway Documentation: https://ai-traffic-control-api.onrender.com/swagger-ui/index.html
+      - 🤖 Inference Service: https://traffic-inference-service.onrender.com
+      - 📚 Inference Service Documentation: https://traffic-inference-service.onrender.com/docs
+      - 🔗 GitHub Repository: https://github.com/joeaoregan/TUS-26-ETP-AI-Traffic-Optimisation
+  - API Gateway: 
+    - Overview: api-gateway/index.md
+    - Architecture: api-gateway/architecture.md
+    - File Structure: api-gateway/file-structure.md
+    - Endpoints: api-gateway/endpoints.md
+    - Authentication: api-gateway/authentication.md
+    - Key Features: api-gateway/key-features.md
+  - Inference Service: 
+    - Overview: inference-service/index.md
+    - Architecture: inference-service/architecture.md
+    - File Structure: inference-service/file-structure.md
+    - Endpoints: inference-service/endpoints.md
+    - Key Features: inference-service/key-features.md
+  - LSTM: 
+    - Overview: lstm/index.md
+    - Architecture: lstm/architecture.md
+    - File Structure: lstm/file-structure.md
+    - Endpoints: lstm/endpoints.md
+    - Key Features: lstm/key-features.md
+  - SUMO: 
+    - Overview: sumo/index.md
+    - Architecture: sumo/architecture.md
+    - File Structure: sumo/file-structure.md
+    - Key Features: sumo/key-features.md
+  - Security: 
+    - Overview: security/index.md
+    - Java API Gateway: security/java-api-gateway.md
+    - Gateway Testing: security/gateway-testing.md
   - System Architecture: 
-    - system-architecture/index.md
-    - 1. High-Level: system-architecture/high-level.md
-    - 2. Request-Response Flow: system-architecture/request-response-flow.md
-    - 3. System Components: system-architecture/system-components.md
-    - 4. Data Flow Through System: system-architecture/data-flow-through-system.md
-    - 5. Deployment Architecture: system-architecture/deployment-architecture.md
-    - 6. Detailed Internal Flow - Action Prediction: system-architecture/detailed-internal-flow.md
-    - 7. Error Handling Flow: system-architecture/error-handling-flow.md
-    - 8. Inter-Service Communication Protocol: system-architecture/inter-service-communication-protocol.md
-    - 9. Model Loading & Caching Strategy: system-architecture/model-loading-and-caching-strategy.md
-    - 10. Complete End-to-End Workflow: system-architecture/complete-end-to-end-workflow.md
-    - 11. Architecture Decision Rationale: system-architecture/architecture-decision-rationale.md
-    - 12. Performance Characteristics: system-architecture/performance-characteristics.md
-    - 13. Scalability Considerations: system-architecture/scalability-considerations.md
-    - 14. Security Architecture: system-architecture/security-architecture.md
-    - 15. Monitoring & Observability Points: system-architecture/monitoring-and-observability-points.md
-    - 16. Deployment Patterns: system-architecture/deployment-patterns.md
+    - Overview: system-architecture/index.md    
+    - 🗂️ Project Structure: system-architecture/project-structure.md
+    - 📚 Conceptual Understanding:
+      - High-Level: system-architecture/high-level.md
+      - System Components: system-architecture/system-components.md
+      - Request-Response Flow: system-architecture/request-response-flow.md
+    - 🔄 Data & Processing:
+      - Data Flow Through System: system-architecture/data-flow-through-system.md
+      - Detailed Internal Flow - Action Prediction: system-architecture/detailed-internal-flow.md
+      - Model Loading & Caching Strategy: system-architecture/model-loading-and-caching-strategy.md
+    - 🔗 Workflows & Protocols:
+      - Complete End-to-End Workflow: system-architecture/complete-end-to-end-workflow.md
+      - Inter-Service Communication Protocol: system-architecture/inter-service-communication-protocol.md
+      - Error Handling Flow: system-architecture/error-handling-flow.md
+    - 🚀 Operations & Deployment:
+      - Deployment Architecture: system-architecture/deployment-architecture.md
+      - Deployment Patterns: system-architecture/deployment-patterns.md
+      - Monitoring & Observability Points: system-architecture/monitoring-and-observability-points.md
+    - 🎯 Design & Optimization:
+      - Architecture Decision Rationale: system-architecture/architecture-decision-rationale.md
+      - Security Architecture: system-architecture/security-architecture.md
+      - Performance Characteristics: system-architecture/performance-characteristics.md
+      - Scalability Considerations: system-architecture/scalability-considerations.md
   - Setup:
     - Quick Start: 
       - quickstart.md
@@ -75,31 +112,32 @@ nav:
       - What Was Created: setup-complete/what-was-created.md
       - Quick Start (5 Minutes): setup-complete/quickstart.md
       - Architecture Overview: setup-complete/architecture-overview.md
-      - API Endpoints: setup-complete/api-endpoints.md
       - Using Different Models: setup-complete/using-different-models.md
       - Testing: setup-complete/testing.md
       - Environment Variables: setup-complete/environment-variables.md
       - Development vs Production: setup-complete/development-vs-production.md
-      - MkDocs Setup: setup-complete/mkdocs-setup.md
-      - Documentation Files: setup-complete/documentation-files.md
       - Next Steps: setup-complete/next-steps.md
       - Support: setup-complete/support.md
-  - API:
     - Documentation:
-      - API Docs: api-docs/index.md
-      - api-docs/api-gateway.md
-      - api-docs/inference-service.md
-    - API Setup: 
-      - api-setup/index.md
-      - 🚗 API Setup Guide: api-setup/api-setup-guide.md
-      - 📡 API Usage Examples: api-setup/api-usage-examples.md
-      - 🔐 Environment Variables: api-setup/environment-variables.md
-      - 🐳 Docker Compose Configuration: api-setup/docker-compose-configuration.md
-      - 📊 Monitoring and Logging: api-setup/monitoring-and-logging.md
-      - 🔄 Using Different Models: api-setup/using-different-models.md
-      - ⚡ Performance Tuning: api-setup/performance-tuning.md
-      - 🐛 Troubleshooting: api-setup/troubleshooting.md
-      - 🌍 Production Deployment: api-setup/production-deployment.md
+      - MkDocs Setup: setup-complete/mkdocs-setup.md
+      - Documentation Files: setup-complete/documentation-files.md
+  - API:
+    - Overview: api/index.md
+    - Endpoints: api/endpoints.md    
+    - API Setup:
+      - Overview: api/setup/index.md
+      - 🐳 Docker Compose Configuration: api/setup/docker-compose-configuration.md
+      - 🔐 Environment Variables: api/setup/environment-variables.md
+      - 🚀 Local Development: api/setup/local-dev.md
+      - 🌍 Production Deployment: api/setup/production-deployment.md
+      - 🐛 Troubleshooting: api/setup/troubleshooting.md
+      - 🔄 Using Different Models: api/setup/using-different-models.md
+    - Guides:
+      - Overview: api/guides/index.md
+      - 📡 Usage Examples: api/guides/usage-examples.md
+      - 🧩 Components: api/guides/components.md
+      - 📊 Monitoring and Logging: api/guides/monitoring-and-logging.md
+      - ⚡ Performance Tuning: api/guides/performance-tuning.md
   - Features: features.md
   - About:
     - Support: support.md
@@ -135,4 +173,3 @@ markdown_extensions:
 repo_url: https://github.com/joeaoregan/TUS-26-ETP-AI-Traffic-Optimisation
 repo_name: GitHub
 
-site_url: https://joeaoregan.github.io/TUS-26-ETP-AI-Traffic-Optimisation/

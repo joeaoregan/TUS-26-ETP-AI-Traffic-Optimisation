@@ -5,6 +5,9 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
+
+import com.example.gateway.exception.RlInferenceException;
+
 import org.springframework.web.client.HttpClientErrorException;
 import org.springframework.web.client.ResourceAccessException;
 
@@ -117,22 +120,6 @@ public class RlInferenceClient {
         } catch (Exception e) {
             log.warn("Failed to reset hidden states: {}", e.getMessage());
             throw new RlInferenceException("Failed to reset hidden states: " + e.getMessage(), e);
-        }
-    }
-
-    /**
-     * Custom exception for RL Inference errors.
-     */
-    public static class RlInferenceException extends RuntimeException {
-
-        private static final long serialVersionUID = 1L;
-
-        public RlInferenceException(String message) {
-            super(message);
-        }
-
-        public RlInferenceException(String message, Throwable cause) {
-            super(message, cause);
         }
     }
 
