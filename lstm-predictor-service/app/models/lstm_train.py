@@ -13,6 +13,8 @@ from tensorflow.keras.optimizers import Adam
 import xml.etree.ElementTree as ET
 import pickle
 import os
+from colorama import Fore, Back, Style, init
+init(autoreset=True)
 
 # Parse edgeData.xml
 tree = ET.parse('SUMO/Results/MAPPO/edgeData.xml')
@@ -82,18 +84,35 @@ history = model.fit(
 
 # Evaluate
 test_loss, test_mae = model.evaluate(X_test, y_test)
-print(f"\nTest Loss: {test_loss:.4f}, Test MAE: {test_mae:.4f}")
+print(f"\n{Fore.YELLOW}Test Loss: {test_loss:.4f}, Test MAE: {test_mae:.4f}")
 
-# Save model
-model_path = 'lstm-predictor-service/app/trained_models/lstm_model.h5'
-scaler_path = 'lstm-predictor-service/app/trained_models/scaler.pkl'
+# Create model directory
+model_dir = 'lstm-predictor-service/app/trained_models'
+os.makedirs(model_dir, exist_ok=True)
 
-os.makedirs(os.path.dirname(model_path), exist_ok=True)
-# model.save(model_path) # HDF5 format is deprecated, using TensorFlow SavedModel format instead
-# model.save(model_path, save_format='tf')
-model_path = 'lstm-predictor-service/app/trained_models/lstm_model.keras'
-model.save(model_path)
+# Save model in multiple formats
+print(f"\n{Fore.CYAN}=== Saving Models ===")
+
+# 1. HDF5 (legacy - keep for documentation)
+hdf5_path = os.path.join(model_dir, 'lstm_model.h5')
+# model.save(hdf5_path)  # Commented out - using newer formats instead
+print(f"{Fore.LIGHTBLACK_EX}[SKIPPED] HDF5 format (legacy)")
+
+# 2. Keras native format (modern, efficient)
+keras_path = os.path.join(model_dir, 'lstm_model.keras')
+model.save(keras_path)
+print(f"{Fore.GREEN}✓ Keras format saved to {keras_path}")
+
+# 3. TensorFlow SavedModel (production deployment)
+# Note: Keras 3 uses model.export() instead of save_format='tf'
+tf_path = os.path.join(model_dir, 'lstm_model_tf')
+model.export(tf_path)
+print(f"{Fore.GREEN}✓ TensorFlow SavedModel saved to {tf_path}")
+
+# Save scaler
+scaler_path = os.path.join(model_dir, 'scaler.pkl')
 pickle.dump(scaler, open(scaler_path, 'wb'))
+print(f"{Fore.GREEN}✓ Scaler saved to {scaler_path}")
 
-print(f"\nModel saved to {model_path}")
-print(f"Scaler saved to {scaler_path}")
+print(f"\n{Fore.CYAN}=== Training Complete ===")
+print(f"{Fore.YELLOW}Models ready for inference in: {model_dir}")
