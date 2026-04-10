@@ -27,7 +27,8 @@ except FileNotFoundError as e:
     model = None
     scaler = None
 
-# Request/Response models
+from pydantic import ConfigDict
+
 class PredictionRequest(BaseModel):
     """
     Input: 3 hourly measurements for 5 edges
@@ -35,14 +36,17 @@ class PredictionRequest(BaseModel):
     """
     data: list[list[float]]
     
-    class Config:
-        example = {
-            "data": [
-                [18.93, 10.13, 5.23, 4.14, 3.08],
-                [24.02, 11.01, 8.98, 5.42, 4.26],
-                [22.14, 9.34, 5.62, 4.57, 3.81]
-            ]
+    model_config = ConfigDict(
+        json_schema_extra={
+            "example": {
+                "data": [
+                    [18.93, 10.13, 5.23, 4.14, 3.08],
+                    [24.02, 11.01, 8.98, 5.42, 4.26],
+                    [22.14, 9.34, 5.62, 4.57, 3.81]
+                ]
+            }
         }
+    )
 
 class PredictionResponse(BaseModel):
     """Predicted density for next hour (5 edges)"""
