@@ -84,28 +84,30 @@ Stateless token-based security with HS256 signing. Future enhancements: token re
 
 Requires model training on SUMO historical data (edgeData.xml) to achieve MAE < 10% forecasting accuracy.
 
-- [x] Model trained (MAE 0.2084 on normalised data)
 - [x] Load SUMO historical data (edgeData.xml)
 - [x] Preprocess time-series data (stationarity, scaling, sliding windows)
 - [x] Train LSTM model on historical traffic patterns
-- [x] REST endpoints (health, model-info, model_info)
+- [x] Model trained (MAE 0.2084 on normalised data)
+- [x] REST endpoints (/health, /model-info, /predict)
 - [x] Comprehensive error handling
 - [x] Interactive API documentation (Swagger UI)
 - [x] Health monitoring and logging
-- [ ] Docker containerization
+- [x] Data analysis scripts (edge-analysis.py, trip-analysis.py)
 - [ ] Achieve MAE < 10% forecasting accuracy
 - [ ] Predict vehicle flow 15 minutes ahead
 - [ ] Handle missing sensor data (KNN imputation)
 - [ ] Docker containerization
 - [ ] Integration with RL Inference Service
-- [ ] REST endpoints (forecast)
+- [ ] TensorFlow SavedModel format support (implemented but not tested in service)
 
-### Future???
+### Future Enhancements:
 
-- [ ] Bidirectional LSTM for enhanced accuracy (future)
-- [ ] Attention mechanism for temporal weighting (future)
-- [ ] Real-time model retraining capability (future)
-- [ ] Weather data integration (future)
+- [ ] Bidirectional LSTM for enhanced accuracy
+- [ ] Attention mechanism for temporal weighting
+- [ ] Real-time model retraining capability
+- [ ] Weather data integration
+- [ ] Multi-step ahead forecasting (15 min, 30 min, 1 hour)
+- [ ] Ensemble methods (multiple LSTM models)
 
 ## Docker Integration
 
