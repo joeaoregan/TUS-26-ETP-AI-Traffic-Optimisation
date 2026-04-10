@@ -2,6 +2,8 @@
 # FastAPI service for LSTM traffic prediction
 
 from fastapi import FastAPI, HTTPException
+from fastapi.staticfiles import StaticFiles
+from fastapi.openapi.utils import get_openapi
 from pydantic import BaseModel
 import tensorflow as tf
 import pickle
@@ -12,7 +14,47 @@ from colorama import Fore, init
 init(autoreset=True)
 
 # Initialize FastAPI
-app = FastAPI(title="LSTM Traffic Predictor", version="1.0.0")
+app = FastAPI(
+    title="LSTM Traffic Predictor",
+    version="1.0.0",
+    description="""
+<img src="images/logo.png" width="360" alt="LSTM Traffic Prediction Logo" />
+
+## LSTM-Based Traffic Density Prediction
+
+Real-time edge congestion forecasting using Long Short-Term Memory neural networks.
+
+### Overview
+Predicts traffic density for the next hour based on 3 hourly measurements from the 5 most congested edges.
+
+### Key Features
+- **LSTM Neural Network**: 64-unit LSTM with dropout regularization
+- **Real-time Predictions**: Sub-100ms inference latency
+- **Normalized Input**: MinMax scaling for stable predictions
+- **Production Ready**: TensorFlow SavedModel format support
+
+### Model Performance
+- Test Loss (MSE): 0.0698
+- Test MAE: 0.2084
+- Input: (3 timesteps, 5 edges)
+- Output: (5 edge predictions)
+
+### Endpoints
+- `GET /health` - Service health check
+- `GET /model-info` - Model specifications
+- `POST /predict` - Generate predictions
+
+[Repository](https://github.com/joeaoregan/TUS-26-ETP-AI-Traffic-Optimisation)
+""",
+    contact={
+        "name": "Traffic Optimization Team",
+        "url": "https://github.com/joeaoregan/TUS-26-ETP-AI-Traffic-Optimisation",
+        "email": "A00258304@student.tus.ie"
+    }
+)
+
+# Mount static files
+app.mount("/images", StaticFiles(directory="app/images"), name="images")
 
 # Load model and scaler at startup
 MODEL_PATH = 'app/trained_models/lstm_model.keras'
@@ -120,6 +162,29 @@ def model_info():
         "test_loss": 0.0698,
         "test_mae": 0.2084
     }
+
+# Custom OpenAPI schema with logo and server info
+# def custom_openapi():
+#     if app.openapi_schema:
+#         return app.openapi_schema
+#     openapi_schema = get_openapi(
+#         title="LSTM Traffic Predictor",
+#         version="1.0.0",
+#         description="High-performance traffic prediction service",
+#         routes=app.routes,
+#         servers=[
+#             {"url": "http://localhost:8000", "description": "Development"},
+#             {"url": "http://your-production-url", "description": "Production"}
+#         ]
+#     )
+#     openapi_schema["info"]["x-logo"] = {
+#         "url": "https://your-logo-url.png"
+#     }
+#     app.openapi_schema = openapi_schema
+#     return app.openapi_schema
+
+# app.openapi = custom_openapi
+
 
 if __name__ == "__main__":
     import uvicorn
