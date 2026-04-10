@@ -32,4 +32,4 @@ ENV API_HOST=0.0.0.0
 ENV API_PORT=8000
 ENV MAPPO_AGENT_PATH=/app/trained_models/agent.th
 
-CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "8000"]
+CMD ["python", "-m", "uvicorn", "main:app", "--host", "0.0.0.0", "--port", "8000"]
