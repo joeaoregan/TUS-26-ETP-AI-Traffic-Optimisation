@@ -2,6 +2,7 @@
 # FastAPI service for LSTM traffic prediction
 
 from fastapi import FastAPI, HTTPException
+from fastapi.responses import FileResponse
 from fastapi.staticfiles import StaticFiles
 from fastapi.openapi.utils import get_openapi
 from pydantic import BaseModel
@@ -17,6 +18,8 @@ init(autoreset=True)
 app = FastAPI(
     title="LSTM Traffic Predictor",
     version="1.0.0",
+    docs_url=None,   # <--- Disable the default route
+    redoc_url=None,  # <--- Disable redoc too if you want
     description="""
 <img src="images/logo.png" width="360" alt="LSTM Traffic Prediction Logo" />
 
@@ -52,6 +55,14 @@ Predicts traffic density for the next hour based on 3 hourly measurements from t
         "email": "A00258304@student.tus.ie"
     }
 )
+
+@app.get("/favicon.ico", include_in_schema=False)
+async def favicon():
+    favicon_path = "app/images/favicon.ico"
+    return FileResponse(favicon_path, media_type="image/x-icon")
+# @app.get("/favicon.ico", include_in_schema=False)
+# async def favicon():
+#     return FileResponse("app/images/logo.png", media_type="image/png")
 
 # Mount static files
 app.mount("/images", StaticFiles(directory="app/images"), name="images")
@@ -185,6 +196,16 @@ def model_info():
 
 # app.openapi = custom_openapi
 
+from fastapi.openapi.docs import get_swagger_ui_html
+
+@app.get("/docs", include_in_schema=False)
+async def custom_swagger_ui_html():
+    return get_swagger_ui_html(
+        openapi_url=app.openapi_url,
+        title=app.title + " - Swagger UI",
+        oauth2_redirect_url=app.swagger_ui_oauth2_redirect_url,
+        swagger_favicon_url="/favicon.ico",  # matches the route above
+    )
 
 if __name__ == "__main__":
     import uvicorn
