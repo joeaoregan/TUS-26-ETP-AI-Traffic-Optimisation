@@ -2,6 +2,27 @@
 
 All notable changes to the AI-Driven Predictive Traffic Flow Optimisation System will be documented in this file.
 
+## [2.2.0] - 2026-04-10
+
+### Added
+- **`GET /api/traffic/model_info`** (Java Gateway): New endpoint proxying to Python `/model_info`. Returns MAPPO model architecture, junction configuration, and agent indices.
+- **`POST /api/traffic/reset`** and **`GET /api/traffic/model_info`** now require JWT authentication.
+
+### Changed
+- **RL Inference `main.py`**: Replaced old PPO/Stable-Baselines3 implementation with MAPPO `RNNAgent` (GRU). Service now uses `torch` directly — no SB3 dependency.
+- **RL Inference `requirements.txt`**: Removed `stable-baselines3` and `gymnasium`; `torch==2.2.1` used directly for MAPPO inference.
+- **RL Inference `Dockerfile`**: Multi-stage build to reduce image size. CPU-only PyTorch via `--extra-index-url https://download.pytorch.org/whl/cpu`. Final image ~500 MB (down from 1.35 GB).
+- **Java Gateway `RlInferenceClient`**: Added `getModelInfo()` method proxying to Python `/model_info`.
+- **Config reference**: Updated from `mappo_sumo_v4.yaml` to `mappo_sumo_v5.yaml` in README and service documentation.
+- **`index.html`**: Updated inference engine description from `PPO RL Agent (SB3)` to `MAPPO RL Agent (EPyMARL)`.
+
+### Documentation
+- **Java Gateway `README.md`**: Updated protected endpoints list — removed incorrect `GET /api/traffic/action`, added `POST /api/traffic/reset` and `GET /api/traffic/model_info`.
+- **Java Gateway `README.md`**: Fixed curl and PowerShell examples for `POST /api/traffic/action` — added required `junctionId` field and corrected observation vector to 19 floats.
+- **RL Inference `README.md`**: Updated config reference from `mappo_sumo_v4.yaml` to `mappo_sumo_v5.yaml`.
+
+---
+
 ## [2.1.0] - 2026-04-09
 
 ### Added
