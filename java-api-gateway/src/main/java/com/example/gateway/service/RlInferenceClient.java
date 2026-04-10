@@ -124,6 +124,21 @@ public class RlInferenceClient {
     }
 
     /**
+     * Get model architecture info from the inference service.
+     */
+    public Map<String, Object> getModelInfo() {
+        try {
+            String modelInfoUrl = inferenceServiceUrl.replace("/predict_action", "/model_info");
+            @SuppressWarnings("unchecked")
+            Map<String, Object> response = restTemplate.getForObject(modelInfoUrl, Map.class);
+            return response != null ? response : Map.of();
+        } catch (Exception e) {
+            log.error("Failed to get model info: {}", e.getMessage());
+            throw new RlInferenceException("Failed to get model info: " + e.getMessage(), e);
+        }
+    }
+
+    /**
      * Response model for predictions.
      */
     @lombok.Data

@@ -24,6 +24,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Map;
 import java.util.Random;
 
 /**
@@ -221,6 +222,25 @@ public class TrafficController {
 		} catch (RlInferenceException e) {
 			log.error("Failed to reset hidden states: {}", e.getMessage());
 			return buildErrorResponse("Failed to reset hidden states: " + e.getMessage(),
+					HttpStatus.SERVICE_UNAVAILABLE);
+		}
+	}
+
+	/**
+	 * Get MAPPO model info from the inference service.
+	 */
+	@Tag(name = "Traffic Prediction")
+	@Operation(operationId = "getModelInfo", summary = "Get MAPPO model info",
+		description = "Returns architecture details and junction configuration of the loaded MAPPO model.")
+	@SecurityRequirement(name = "bearerAuth")
+	@GetMapping("/model_info")
+	public ResponseEntity<?> getModelInfo() {
+		try {
+			Map<String, Object> response = rlInferenceClient.getModelInfo();
+			return ResponseEntity.ok(response);
+		} catch (RlInferenceException e) {
+			log.error("Model info failed: {}", e.getMessage());
+			return buildErrorResponse("Failed to get model info: " + e.getMessage(),
 					HttpStatus.SERVICE_UNAVAILABLE);
 		}
 	}
