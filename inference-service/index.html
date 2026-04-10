@@ -1342,10 +1342,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#with-lstm-traffic-predictor-future" class="md-nav__link">
+  <a href="#with-lstm-traffic-predictor" class="md-nav__link">
     <span class="md-ellipsis">
       
-        With LSTM Traffic Predictor (Future)
+        With LSTM Traffic Predictor
       
     </span>
   </a>
@@ -4816,10 +4816,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#with-lstm-traffic-predictor-future" class="md-nav__link">
+  <a href="#with-lstm-traffic-predictor" class="md-nav__link">
     <span class="md-ellipsis">
       
-        With LSTM Traffic Predictor (Future)
+        With LSTM Traffic Predictor
       
     </span>
   </a>
@@ -5207,12 +5207,15 @@
 <li><strong>Reward Calculation</strong>: SUMO provides traffic metrics (wait times, throughput) for RL training</li>
 <li><strong>Validation</strong>: Model performance tested on historical SUMO scenarios</li>
 </ul>
-<h3 id="with-lstm-traffic-predictor-future">With LSTM Traffic Predictor (Future)</h3>
-<p>The LSTM service will optionally provide traffic flow forecasts to enhance RL decision-making:</p>
+<h3 id="with-lstm-traffic-predictor">With LSTM Traffic Predictor</h3>
+<p>The LSTM Traffic Predictor service is now operational and can optionally provide traffic flow forecasts to enhance RL decision-making:</p>
 <ul>
-<li><strong>Input</strong>: 15-minute ahead vehicle flow predictions</li>
-<li><strong>Usage</strong>: Provides context for signal timing decisions</li>
-<li><strong>Integration</strong>: LSTM predictions fed as additional observations to the MAPPO model</li>
+<li><strong>Status</strong>: Service operational, predictions available via <code>/predict</code> endpoint</li>
+<li><strong>Forecast Horizon</strong>: 1-hour ahead edge density predictions</li>
+<li><strong>Input</strong>: 3 hourly edge density measurements for 5 most congested edges</li>
+<li><strong>Output</strong>: Predicted density for each edge at next hour</li>
+<li><strong>Integration</strong>: Not yet integrated with MAPPO model (planned for future)</li>
+<li><strong>Purpose</strong>: Can provide context for signal timing decisions when integrated</li>
 </ul>
 <h2 id="performance-characteristics">Performance Characteristics</h2>
 <h3 id="prediction-latency">Prediction Latency</h3>

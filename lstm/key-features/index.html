@@ -1497,6 +1497,17 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#prime-target" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Prime Target
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#time-series-forecasting" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -1530,10 +1541,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#supported-junctions" class="md-nav__link">
+  <a href="#supported-edges" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Supported Junctions
+        Supported Edges
       
     </span>
   </a>
@@ -1552,10 +1563,32 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#model-performance" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Model Performance
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#integration" class="md-nav__link">
     <span class="md-ellipsis">
       
         Integration
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#future-enhancements" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Future Enhancements
       
     </span>
   </a>
@@ -4354,6 +4387,17 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#prime-target" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Prime Target
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#time-series-forecasting" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -4387,10 +4431,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#supported-junctions" class="md-nav__link">
+  <a href="#supported-edges" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Supported Junctions
+        Supported Edges
       
     </span>
   </a>
@@ -4409,10 +4453,32 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#model-performance" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Model Performance
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#integration" class="md-nav__link">
     <span class="md-ellipsis">
       
         Integration
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#future-enhancements" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Future Enhancements
       
     </span>
   </a>
@@ -4447,45 +4513,72 @@
 
 <h1 id="key-features-lstm-traffic-predictor">Key Features (LSTM Traffic Predictor)</h1>
 <p><a data-preview="" href="../../features/#lstm-traffic-predictor-service">Feature List</a></p>
+<h2 id="prime-target">Prime Target</h2>
+<p><strong>Status</strong>: Not yet implemented</p>
+<ul class="task-list">
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> Achieve MAE &lt; 10% on raw traffic values</li>
+</ul>
 <h2 id="time-series-forecasting">Time-Series Forecasting</h2>
-<ul>
+<ul class="task-list">
 <li><strong>LSTM Neural Network</strong>: Long Short-Term Memory architecture for temporal pattern recognition</li>
-<li>Learns long-term traffic patterns (morning/evening peaks)</li>
-<li>Remembers relevant historical events, forgets irrelevant ones</li>
-<li>Handles non-linear traffic spikes and sudden congestion</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled checked/><span class="task-list-indicator"></span></label> Learns long-term traffic patterns (morning/evening peaks)</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled checked/><span class="task-list-indicator"></span></label> Remembers relevant historical events, forgets irrelevant ones</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled checked/><span class="task-list-indicator"></span></label> Handles non-linear traffic spikes and sudden congestion</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled checked/><span class="task-list-indicator"></span></label> <strong>Architecture</strong>: 64-unit LSTM layer with dropout regularization (0.2)</li>
 </ul>
 <h2 id="prediction-capabilities">Prediction Capabilities</h2>
-<ul>
-<li><strong>15-Minute Ahead Forecasting</strong>: Predicts vehicle flow for the next 15 minutes</li>
-<li><strong>Target Accuracy</strong>: MAE &lt; 10% on historical validation data</li>
-<li><strong>Lookback Window</strong>: Uses 60 minutes of historical data for predictions</li>
-<li><strong>Multi-Feature Input</strong>: Considers vehicle count, average speed, and occupancy</li>
+<ul class="task-list">
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled checked/><span class="task-list-indicator"></span></label> <strong>1-Hour Ahead Forecasting</strong>: Predicts edge traffic density for the next hour</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled checked/><span class="task-list-indicator"></span></label> <strong>Sequence Length</strong>: Uses 3 hourly measurements (timesteps) for predictions</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled checked/><span class="task-list-indicator"></span></label> <strong>Achieved Performance</strong>: MAE 0.2084 on normalized density values (test set)</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled checked/><span class="task-list-indicator"></span></label> <strong>Input</strong>: 3 consecutive hourly measurements × 5 edge features</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled checked/><span class="task-list-indicator"></span></label> <strong>Output</strong>: Predicted density for each of the 5 edges at next hour</li>
 </ul>
 <h2 id="data-processing">Data Processing</h2>
-<ul>
-<li><strong>SUMO Integration</strong>: Loads historical traffic data from <code>edgeData.xml</code></li>
-<li><strong>Automatic Normalization</strong>: Scales traffic features to 0-1 range</li>
-<li><strong>Missing Data Handling</strong>: KNN imputation for gaps in sensor data</li>
-<li><strong>Sliding Windows</strong>: Creates temporal windows for training</li>
+<ul class="task-list">
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled checked/><span class="task-list-indicator"></span></label> <strong>SUMO Integration</strong>: Loads historical traffic data from <code>edgeData.xml</code></li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled checked/><span class="task-list-indicator"></span></label> <strong>Feature Selection</strong>: Focuses on top 5 most congested edges by average density</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled checked/><span class="task-list-indicator"></span></label> <strong>Normalization</strong>: MinMaxScaler (0-1 range) for numerical stability</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled checked/><span class="task-list-indicator"></span></label> <strong>Sliding Windows</strong>: Creates sequences of 3 timesteps with 1-step forecast target</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled checked/><span class="task-list-indicator"></span></label> <strong>Data Split</strong>: 80/20 train-test split (temporal, no shuffle)</li>
 </ul>
-<h2 id="supported-junctions">Supported Junctions</h2>
-<p>Trained to forecast for all 5 major junctions:
-- <code>joinedS_265580996_300839357</code>
-- <code>300839359</code>
-- <code>265580972</code>
-- <code>1270712555</code>
-- <code>8541180897</code></p>
+<h2 id="supported-edges">Supported Edges</h2>
+<p>Trained on the 5 most congested edges from SUMO simulation:
+- <code>-269002813</code>
+- <code>-55825089</code>
+- <code>617128762</code>
+- <code>-617128762</code>
+- <code>-312266114#2</code></p>
 <h2 id="api-endpoints">API Endpoints</h2>
+<ul class="task-list">
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled checked/><span class="task-list-indicator"></span></label> <code>GET /health</code> — Service health check</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled checked/><span class="task-list-indicator"></span></label> <code>GET /model-info</code> — Model architecture and performance metadata</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled checked/><span class="task-list-indicator"></span></label> <code>POST /predict</code> — Predict edge density for next hour</li>
+</ul>
+<p><strong>Request Format</strong>: Array of (3 × 5) raw density measurements
+<strong>Response Format</strong>: Array of 5 predicted density values</p>
+<h2 id="model-performance">Model Performance</h2>
 <ul>
-<li><code>GET /health</code> — Service health check</li>
-<li><code>GET /model_info</code> — Model architecture and performance metadata</li>
-<li><code>POST /forecast</code> — Predict vehicle flow 15 minutes ahead</li>
+<li><strong>Test Loss (MSE)</strong>: 0.0698</li>
+<li><strong>Test MAE</strong>: 0.2084 (normalized scale)</li>
+<li><strong>Training</strong>: 50 epochs with batch size 2</li>
+<li><strong>Optimizer</strong>: Adam (learning rate: 0.001)</li>
+<li><strong>Validation</strong>: Evaluated on 20% test set</li>
 </ul>
 <h2 id="integration">Integration</h2>
-<ul>
-<li><strong>Optional Consumer</strong>: RL Inference Service can use forecasts for context-aware decisions</li>
-<li><strong>API Gateway</strong>: Can proxy forecast requests with unified authentication</li>
-<li><strong>SUMO Source</strong>: Uses simulation outputs as training data</li>
+<ul class="task-list">
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> <strong>RL Inference Service</strong>: Can consume predictions for context-aware signal timing decisions</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> <strong>API Gateway</strong>: Can proxy <code>/predict</code> requests with unified authentication</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled checked/><span class="task-list-indicator"></span></label> <strong>SUMO Source</strong>: Uses simulation outputs (<code>edgeData.xml</code>) as training data</li>
+</ul>
+<h2 id="future-enhancements">Future Enhancements</h2>
+<ul class="task-list">
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> 15-minute ahead forecasting (requires model retraining)</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> Handle missing sensor data (KNN imputation)</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> Bidirectional LSTM for enhanced accuracy</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> Attention mechanism for temporal weighting</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> Real-time model retraining capability</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> Weather data integration</li>
 </ul>
 
 
