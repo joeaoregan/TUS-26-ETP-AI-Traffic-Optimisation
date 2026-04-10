@@ -278,7 +278,7 @@ docker run -p 8000:8000 \
 The model was trained using EPyMARL (Epyc PyMARL) with the MAPPO algorithm:
 - Framework: EPyMARL/SMAC
 - Algorithm: MAPPO (Multi-Agent Proximal Policy Optimization)
-- Configuration: mappo_sumo_v4.yaml
+- Configuration: mappo_sumo_v5.yaml
 - Environment: SUMO traffic simulator with 5-junction Athlone town network
 
 ### Model File

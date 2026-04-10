@@ -31,8 +31,9 @@ This implementation uses stateless authentication. No server-side session is cre
 
 ### Protected endpoints
 
-- `GET /api/traffic/action`
 - `POST /api/traffic/action`
+- `POST /api/traffic/reset`
+- `GET /api/traffic/model_info`
 
 Requests to protected endpoints must include a bearer token.
 
@@ -177,7 +178,8 @@ Call the prediction endpoint with custom observations:
 ```powershell
 $headers = @{ Authorization = "Bearer $token" }
 $body = @{
-    observations = @(0.12, 0.33, 0.41, 0.55, 0.62, 0.70, 0.81, 0.90, 0.95)
+    junctionId = "joinedS_265580996_300839357"
+    observations = @(0,1,0,0,0,1,0.5,0.3,0.2,0.1,0.0,0.3,0.0,0.1,0.0,0.2,0.1,0.0,0.3)
     metadata = "morning-peak"
 } | ConvertTo-Json
 
@@ -208,7 +210,8 @@ curl -X POST http://localhost:8080/api/traffic/action \
   -H "Content-Type: application/json" \
   -H "Authorization: Bearer $TOKEN" \
   -d '{
-    "observations": [0.12, 0.33, 0.41, 0.55, 0.62, 0.70, 0.81, 0.90, 0.95],
+    "junctionId": "joinedS_265580996_300839357",
+    "observations": [0,1,0,0,0,1,0.5,0.3,0.2,0.1,0.0,0.3,0.0,0.1,0.0,0.2,0.1,0.0,0.3],
     "metadata": "morning-peak"
   }'
 ```
