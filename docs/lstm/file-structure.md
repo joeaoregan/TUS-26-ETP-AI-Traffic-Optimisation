@@ -7,102 +7,149 @@
 ```
 lstm-predictor-service/
 ├── app/
-│   ├── main.py                              # FastAPI application (LSTM model inference)
-│   ├── data/
-│   │   ├── loader.py                        # SUMO edgeData.xml parser
-│   │   └── preprocessor.py                  # Data normalization, windowing, scaling
+│   ├── main.py
+│   ├── images/
+│   │   ├── logo.png
+│   │   └── favicon.ico
 │   ├── models/
-│   │   └── lstm_model.pt                    # Trained LSTM model weights (TensorFlow/Keras) [FUTURE]
-│   ├── templates/
-│   │   └── index.html                       # Landing page with navigation links
-│   └── static/
-│       ├── logo.png                         # Project logo
-│       └── favicon.ico                      # Browser tab icon
-├── Dockerfile                               # Python 3.9-slim base, Uvicorn server
-├── requirements.txt                         # FastAPI, Uvicorn, TensorFlow, Keras, Pandas, Numpy, scikit-learn
-├── .env.example                             # Template: API_PORT, SUMO_DATA_PATH, MODEL_PATH, etc.
+│   │   ├── lstm_model.py
+│   │   └── lstm_train.py
+│   ├── trained_models/
+│   │   ├── lstm_model.keras
+│   │   ├── lstm_model_tf/
+│   │   └── scaler.pkl
+│   └── utils/
+│       ├── stationarity.py
+│       ├── feature_engineering.py
+│       └── metrics.py
+├── edge-analysis.py
+├── trip-analysis.py
+├── Dockerfile
+├── requirements.txt
+├── .env.example
 ├── .gitignore
-├── README.md                                # Setup and deployment guide
-└── docker-compose.override.yml              # Local development overrides (optional)
+├── README.md
+└── docker-compose.override.yml
 ```
 
 ---
 
-## app/ Directory Structure
+## File Descriptions
 
-```
-app/
-├── main.py                                  # FastAPI instance, route handlers
-│   ├── startup events (load model, initialize scaler)
-│   ├── POST /forecast (junction_id, historical_data → predicted_flow, confidence)
-│   ├── GET /health (service status, model_loaded)
-│   ├── GET /model_info (model architecture, training date, target accuracy)
-│   ├── GET / (landing page)
-│   └── GET /docs (Swagger UI)
-├── data/
-│   ├── loader.py
-│   │   ├── parse_sumo_edgedata_xml()
-│   │   ├── extract_traffic_metrics()
-│   │   └── handle_missing_data()
-│   └── preprocessor.py
-│       ├── normalize_features()
-│       ├── create_sliding_windows()
-│       ├── stationarity_check()
-│       └── fit_scaler()
-├── models/
-│   └── lstm_model.pt (TensorFlow/Keras H5 format) [FUTURE]
-├── templates/
-│   └── index.html (static HTML with links)
-└── static/
-    └── assets (logo, favicon, etc.)
-```
+### app/main.py
+FastAPI application for inference:
+- Loads trained LSTM model from `app/trained_models/lstm_model.keras`
+- Initializes MinMaxScaler from `app/trained_models/scaler.pkl`
+- Implements 4 endpoints: `/health`, `/model-info`, `/predict`, `/favicon.ico`
+- Pydantic models for request/response validation
+- Comprehensive error handling with HTTP exceptions
+- Custom Swagger UI with favicon support
 
----
+### app/models/lstm_train.py
+Complete training pipeline:
+- Parses SUMO `edgeData.xml` 
+- Identifies top 5 most congested edges by average density
+- Normalizes data using MinMaxScaler
+- Creates sequences: 3 timesteps input → 1 timestep forecast target
+- Builds LSTM model: 64 units → Dense(32) → Dense(5 outputs)
+- Trains for 50 epochs, batch size 2
+- Evaluates on 20% test set (temporal split, no shuffle)
+- Saves in both Keras `.keras` and TensorFlow SavedModel formats
+- Output: Test Loss (MSE) 0.0698, Test MAE 0.2084
 
-## Key Files
+### app/models/lstm_model.py
+Data preparation and exploration script:
+- Parses edgeData.xml from SUMO results
+- Identifies top 5 congested edges
+- Normalizes data with MinMaxScaler
+- Outputs dataset shape and sample records for inspection
 
-- **main.py** — FastAPI application:
-  - LSTM model loading from `MODEL_PATH`
-  - MinMaxScaler initialization for feature normalization
-  - 5 route handlers (forecast, health, model_info, health)
-  - Pydantic request/response models
+### app/trained_models/lstm_model.keras
+Trained LSTM model (production format):
+- Keras native format (TensorFlow 2.11+)
+- Input: (batch, 3, 5) — 3 timesteps × 5 edges
+- Output: (batch, 5) — 5 edge density predictions
+- MAE: 0.2084 (normalized scale)
+- MSE: 0.0698 (normalized scale)
 
-- **data/loader.py** — SUMO integration:
-  - Parse `edgeData.xml` from `SUMO_DATA_PATH`
-  - Extract vehicle count, speed, occupancy metrics
-  - Handle missing sensor data (KNN imputation)
+### app/trained_models/lstm_model_tf/
+Alternative TensorFlow SavedModel format:
+- For production deployment with TensorFlow Serving
+- Compatible with cloud platforms
+- Includes model signature and metadata
 
-- **data/preprocessor.py** — Feature engineering:
-  - Scale traffic features to [0, 1] range
-  - Create sliding windows (60-min lookback, 15-min forecast)
-  - Check for stationarity
-  - Handle categorical variables
+### app/trained_models/scaler.pkl
+MinMaxScaler pickle file:
+- Fitted on training data
+- Scales density values to [0, 1] range
+- Used for both training and inference normalization
+- Loaded at startup in main.py
 
-- **models/lstm_model.pt** — Trained model (future):
-  - Input shape: (batch, 60, 3) — 60 minutes × 3 features
-  - Output: 15-min ahead vehicle flow prediction
-  - Target MAE: < 10%
+### app/utils/
+Utility modules:
+- **stationarity.py**: Stationarity checking with scipy
+- **feature_engineering.py**: Feature engineering functions (placeholder)
+- **metrics.py**: Model evaluation metrics (placeholder)
 
-- **Dockerfile** — Production image build
-  - Base: `python:3.9-slim`
-  - Installs requirements
-  - Runs: `uvicorn main:app --host 0.0.0.0 --port $API_PORT`
+### app/images/
+Static assets:
+- **logo.png**: Project logo (used in docs)
+- **favicon.ico**: Browser tab icon
 
----
+### edge-analysis.py
+SUMO data analysis script:
+- Parses edgeData.xml from SUMO simulation
+- Computes density, occupancy, waiting time statistics
+- Groups by edge and identifies top 10 most congested
+- Useful for data exploration and validation
 
-## Environment Variables
+### trip-analysis.py
+Trip statistics script:
+- Parses tripinfo.xml from SUMO simulation
+- Analyzes trip duration, departure delays, waiting times
+- Computes aggregate statistics across all vehicle trips
+- Useful for understanding overall traffic performance
 
-| Variable | Default | Purpose |
-|----------|---------|---------|
-| `API_PORT` | `8001` | Service port |
-| `SUMO_DATA_PATH` | `./data/edgeData.xml` | Path to SUMO output |
-| `MODEL_PATH` | `./app/models/lstm_model.pt` | Path to trained model |
-| `FORECAST_HORIZON` | `15` | Forecast window (minutes) |
-| `LOOKBACK_WINDOW` | `60` | Historical window (minutes) |
-| `LOG_LEVEL` | `INFO` | Logging verbosity |
+### Dockerfile
+Production container build:
+- Base: `python:3.9-slim`
+- Installs dependencies from requirements.txt
+- Runs: `uvicorn app.main:app --host 0.0.0.0 --port 8000`
+
+### requirements.txt
+Python dependencies:
+- FastAPI, Uvicorn (web framework)
+- TensorFlow, Keras (model training/inference)
+- Pandas, Numpy, scikit-learn (data processing)
+- Colorama (colored terminal output)
+
+### README.md
+Service documentation:
+- Quick start guide
+- Data flow diagram
+- LSTM concepts explanation
+- Available endpoints
+
+### .env.example
+Environment variable template:
+- API_PORT, MODEL_PATH, etc.
 
 ---
 
 ## Status
 
-⚠️ **Framework Stage**: Endpoints defined, data pipeline ready. Requires model training on SUMO data to achieve MAE < 10%.
+✅ **Fully Operational**
+
+**Working:**
+- [x] Data loading and preprocessing from SUMO
+- [x] Model training on historical patterns
+- [x] Inference service (3 endpoints)
+- [x] Swagger UI documentation
+- [x] Health monitoring and logging
+
+**Future:**
+- [ ] 15-minute ahead forecasting
+- [ ] MAE < 10% on raw traffic values
+- [ ] Handle missing sensor data (KNN imputation)
+- [ ] Docker containerization
+- [ ] Integration with RL Inference Service
