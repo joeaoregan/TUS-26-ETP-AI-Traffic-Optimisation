@@ -9,7 +9,6 @@ from pydantic import BaseModel
 import tensorflow as tf
 import pickle
 import numpy as np
-import os
 from colorama import Fore, init
 
 init(autoreset=True)
@@ -19,6 +18,7 @@ app = FastAPI(
     title="LSTM Traffic Predictor",
     version="1.0.0",
     docs_url=None,   # <--- Disable the default route
+    # docs_url="/docs", # favicon.ico won't set
     redoc_url=None,  # <--- Disable redoc too if you want
     description="""
 <img src="images/logo.png" width="360" alt="LSTM Traffic Prediction Logo" />
@@ -60,9 +60,6 @@ Predicts traffic density for the next hour based on 3 hourly measurements from t
 async def favicon():
     favicon_path = "app/images/favicon.ico"
     return FileResponse(favicon_path, media_type="image/x-icon")
-# @app.get("/favicon.ico", include_in_schema=False)
-# async def favicon():
-#     return FileResponse("app/images/logo.png", media_type="image/png")
 
 # Mount static files
 app.mount("/images", StaticFiles(directory="app/images"), name="images")
@@ -173,28 +170,6 @@ def model_info():
         "test_loss": 0.0698,
         "test_mae": 0.2084
     }
-
-# Custom OpenAPI schema with logo and server info
-# def custom_openapi():
-#     if app.openapi_schema:
-#         return app.openapi_schema
-#     openapi_schema = get_openapi(
-#         title="LSTM Traffic Predictor",
-#         version="1.0.0",
-#         description="High-performance traffic prediction service",
-#         routes=app.routes,
-#         servers=[
-#             {"url": "http://localhost:8000", "description": "Development"},
-#             {"url": "http://your-production-url", "description": "Production"}
-#         ]
-#     )
-#     openapi_schema["info"]["x-logo"] = {
-#         "url": "https://your-logo-url.png"
-#     }
-#     app.openapi_schema = openapi_schema
-#     return app.openapi_schema
-
-# app.openapi = custom_openapi
 
 from fastapi.openapi.docs import get_swagger_ui_html
 
