@@ -168,13 +168,16 @@ Training and validation use the SUMO (Simulation of Urban Mobility) traffic simu
 - **Reward Calculation**: SUMO provides traffic metrics (wait times, throughput) for RL training
 - **Validation**: Model performance tested on historical SUMO scenarios
 
-### With LSTM Traffic Predictor (Future)
+### With LSTM Traffic Predictor
 
-The LSTM service will optionally provide traffic flow forecasts to enhance RL decision-making:
+The LSTM Traffic Predictor service is now operational and can optionally provide traffic flow forecasts to enhance RL decision-making:
 
-- **Input**: 15-minute ahead vehicle flow predictions
-- **Usage**: Provides context for signal timing decisions
-- **Integration**: LSTM predictions fed as additional observations to the MAPPO model
+- **Status**: Service operational, predictions available via `/predict` endpoint
+- **Forecast Horizon**: 1-hour ahead edge density predictions
+- **Input**: 3 hourly edge density measurements for 5 most congested edges
+- **Output**: Predicted density for each edge at next hour
+- **Integration**: Not yet integrated with MAPPO model (planned for future)
+- **Purpose**: Can provide context for signal timing decisions when integrated
 
 ## Performance Characteristics
 
