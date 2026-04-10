@@ -6,13 +6,13 @@
 
 ## 📋 Project Overview
 
-Predictive Modelling service for the Athlone "Orange Loop" traffic optimization system.
+Predictive modelling service for the Athlone "Orange Loop" traffic optimization system.
 
-**Purpose:** Forecast vehicle flow 15 minutes into the future using Long Short-Term Memory (LSTM) neural networks.
+**Purpose**: Forecast edge traffic density for the next hour using Long Short-Term Memory (LSTM) neural networks.
 
-**Target Performance:** Mean Absolute Error (MAE) < 10%
+**Current Performance**: MAE 0.2084, MSE 0.0698 (on normalized density values)
 
-**Port:** 8001
+**Port**: 8000
 
 **Why LSTM?**
 
@@ -25,14 +25,34 @@ Predictive Modelling service for the Athlone "Orange Loop" traffic optimization 
 
 ## 🚀 Quick Start
 
+### Prerequisites
+- Python 3.9+
+- TensorFlow 2.11+
+- SUMO traffic simulator (for data generation/analysis)
+
+### Installation
+
+1. **Create virtual environment**:
 ```bash
 python -m venv venv
-venv\Scripts\activate  # Windows
-
-pip install -r requirements.txt
-
-python -m uvicorn app.main:app --host 0.0.0.0 --port 8001 --reload
+source venv/bin/activate  # Linux/Mac
+venv\Scripts\activate     # Windows
 ```
+
+2. **Install dependencies**:
+```bash
+pip install -r requirements.txt
+```
+
+3. **Run the service**:
+```bash
+python -m uvicorn app.main:app --host 0.0.0.0 --port 8000 --reload
+```
+
+4. **Access**:
+- API Docs: http://localhost:8000/docs
+- Health Check: http://localhost:8000/health
+- Model Info: http://localhost:8000/model-info
 
 ---
 
@@ -41,19 +61,25 @@ python -m uvicorn app.main:app --host 0.0.0.0 --port 8001 --reload
 ```
 SUMO Simulation
     ↓
-edgeData.xml (vehicle counts, speed, occupancy per junction)
+edgeData.xml (edge metrics: density, occupancy, speed)
     ↓
-Data Loader (extract hourly vehicle flow)
+lstm_train.py (load, preprocess, train)
     ↓
-Preprocessor (scale, normalize, create sliding windows)
+Normalize data (MinMaxScaler)
     ↓
-LSTM Model (trained on historical patterns)
+Create sequences (3 timesteps → 1 forecast)
     ↓
-Forecast (predicted vehicle flow 15 min ahead)
+Train LSTM (64 units, dropout 0.2)
     ↓
-RL Inference Service (uses forecast for signal timing)
+Evaluate (80/20 split)
     ↓
-Traffic Signal Control
+Save model (Keras + TensorFlow SavedModel)
+    ↓
+FastAPI Service (main.py)
+    ↓
+REST Endpoints (/health, /model-info, /predict)
+    ↓
+Prediction Response (5 edge densities)
 ```
 
 ---
@@ -64,9 +90,9 @@ Traffic Signal Control
 
 A type of neural network that:
 
-- **Remembers** long-term patterns (e.g., "Mondays are always congested 8-9am with School / Work traffic")
-- **Forgets** irrelevant old events (e.g., "An accident that happend 3 hours ago is now irrelevant")
-- **Learns** non-linear relationships (e.g., "When School Reopens, rush hour is 8:15-9:00, but on holidays it's 9:30-10:30")
+- **Remembers** long-term patterns (e.g., "Mondays are always congested 8-9am")
+- **Forgets** irrelevant old events (e.g., "An accident 3 hours ago is now irrelevant")
+- **Learns** non-linear relationships (e.g., traffic peaks vary by day of week/weather)
 
 ### LSTM vs ARIMA
 
@@ -76,12 +102,274 @@ A type of neural network that:
 | **Memory**             | Limited (p,d,q params) | Long-term via gates |
 | **Sudden Changes**     | Poor                   | Good                |
 | **Rush Hour Patterns** | Struggles              | Excellent           |
-| **Data Amount Needed** | Small                  | Large (1000+)       |
+| **Data Amount Needed** | Small (100+)           | Large (1000+)       |
+
+---
 
 ## 📁 Service Endpoints
 
-- `GET /health` — Service health check
-- `POST /forecast` — Predict vehicle flow 15 min ahead  
-- `GET /model_info` — Model details
+### GET `/health`
+Service health check.
 
+**Response (200)**:
+```json
+{
+  "status": "healthy",
+  "message": "LSTM service is ready"
+}
+```
 
+### GET `/model-info`
+Retrieve model metadata and performance.
+
+**Response (200)**:
+```json
+{
+  "model_type": "LSTM",
+  "input_shape": [3, 5],
+  "output_shape": [5],
+  "description": "Predicts edge density for next hour based on 3 hourly measurements",
+  "edges": ["-269002813", "-55825089", "617128762", "-617128762", "-312266114#2"],
+  "test_loss": 0.0698,
+  "test_mae": 0.2084
+}
+```
+
+### POST `/predict`
+Predict traffic density for next hour.
+
+**Request**:
+```json
+{
+  "data": [
+    [18.93, 10.13, 5.23, 4.14, 3.08],
+    [24.02, 11.01, 8.98, 5.42, 4.26],
+    [22.14, 9.34, 5.62, 4.57, 3.81]
+  ]
+}
+```
+
+**Parameters**:
+- `data` (required): Array of 3 hourly measurements for 5 edges
+  - Shape: (3, 5) — 3 timesteps × 5 edge density values
+  - Values: Raw (non-normalized) density measurements
+
+**Response (200)**:
+```json
+{
+  "prediction": [25.47, 12.15, 9.23, 6.81, 5.14],
+  "edge_ids": ["-269002813", "-55825089", "617128762", "-617128762", "-312266114#2"]
+}
+```
+
+**Errors**:
+- `400 Bad Request`: Invalid shape or missing `data`
+- `503 Service Unavailable`: Model not loaded
+- `500 Internal Server Error`: Prediction failed
+
+---
+
+## 🏋️ Training the Model
+
+Training is handled by `app/models/lstm_train.py`:
+
+```bash
+python app/models/lstm_train.py
+```
+
+**What it does**:
+1. Parses SUMO `edgeData.xml` 
+2. Identifies top 5 most congested edges by average density
+3. Normalizes data using MinMaxScaler
+4. Creates sequences: 3 timesteps input → 1 timestep forecast
+5. Builds LSTM model (64 units → Dense(32) → Dense(5))
+6. Trains for 50 epochs with batch size 2
+7. Evaluates on 20% test set (temporal split, no shuffle)
+8. Saves model in Keras and TensorFlow SavedModel formats
+
+**Output**:
+- `app/trained_models/lstm_model.keras` (production model)
+- `app/trained_models/lstm_model_tf/` (alternative format)
+- `app/trained_models/scaler.pkl` (normalizer)
+
+---
+
+## 📊 Data Analysis Scripts
+
+### edge-analysis.py
+Analyze SUMO edge data:
+```bash
+python edge-analysis.py
+```
+
+Outputs:
+- Total edge-interval records
+- Unique edges in simulation
+- Density/occupancy/waiting time statistics
+- Top 10 edges by average density
+
+### trip-analysis.py
+Analyze SUMO trip data:
+```bash
+python trip-analysis.py
+```
+
+Outputs:
+- Total trips and time range
+- Trip duration statistics
+- Waiting time statistics
+- Departure delay statistics
+
+---
+
+## 🐳 Docker Deployment
+
+### Build
+```bash
+docker build -t lstm-predictor:latest .
+```
+
+### Run Locally
+```bash
+docker run -p 8000:8000 lstm-predictor:latest
+```
+
+### Run with Volume Mount (for model persistence)
+```bash
+docker run -p 8000:8000 \
+  -v $(pwd)/app/trained_models:/app/app/trained_models \
+  lstm-predictor:latest
+```
+
+### Run on Render
+Set environment variable in Render dashboard:
+- `PORT`: 8000
+
+Model files must be present in `app/trained_models/` at runtime.
+
+---
+
+## 📦 Dependencies
+
+**Core**:
+- `fastapi` (0.110.0): Web framework
+- `uvicorn` (0.28.0): ASGI server
+- `tensorflow` (2.15+): Model training and inference
+- `keras` (3.0+): Model architecture
+
+**Data Processing**:
+- `pandas`: Data manipulation
+- `numpy`: Numerical operations
+- `scikit-learn`: MinMaxScaler normalization
+- `scipy`: Signal processing utilities
+
+**Utilities**:
+- `pydantic`: Request/response validation
+- `colorama`: Colored terminal output
+
+See `requirements.txt` for exact versions.
+
+---
+
+## 🔧 Model Architecture
+
+**Input**: (batch, 3, 5)
+- 3 consecutive hourly measurements
+- 5 edge density features
+
+**Architecture**:
+```
+Input Layer (3, 5)
+    ↓
+LSTM(64 units, activation='relu')
+    ↓
+Dropout(0.2)
+    ↓
+Dense(32, activation='relu')
+    ↓
+Dropout(0.2)
+    ↓
+Dense(5)  # Output: 5 edge predictions
+```
+
+**Training**:
+- Optimizer: Adam (lr=0.001)
+- Loss: Mean Squared Error (MSE)
+- Metrics: Mean Absolute Error (MAE)
+- Epochs: 50
+- Batch Size: 2
+- Validation: 20% test set
+
+**Performance**:
+- Test Loss (MSE): 0.0698
+- Test MAE: 0.2084 (normalized scale)
+
+---
+
+## 🚦 Supported Edges
+
+Model trained on 5 most congested edges from SUMO simulation:
+
+1. `-269002813`
+2. `-55825089`
+3. `617128762`
+4. `-617128762`
+5. `-312266114#2`
+
+---
+
+## 🔮 Future Enhancements
+
+- [ ] 15-minute ahead forecasting (requires retraining)
+- [ ] Achieve MAE < 10% on raw traffic values
+- [ ] Handle missing sensor data (KNN imputation)
+- [ ] Bidirectional LSTM for enhanced accuracy
+- [ ] Attention mechanism for temporal weighting
+- [ ] Real-time model retraining capability
+- [ ] Weather data integration
+- [ ] Integration with RL Inference Service
+
+---
+
+## 📚 Documentation
+
+- [API Endpoints](../docs/lstm/endpoints.md)
+- [Key Features](../docs/lstm/key-features.md)
+- [File Structure](../docs/lstm/file-structure.md)
+- [Overall Project Docs](https://joeaoregan.github.io/TUS-26-ETP-AI-Traffic-Optimisation/)
+
+---
+
+## 🐛 Troubleshooting
+
+### Model not loading
+```
+FileNotFoundError: app/trained_models/lstm_model.keras not found
+```
+**Solution**: Run `python app/models/lstm_train.py` to train and save model.
+
+### Port already in use
+```
+OSError: [Errno 48] Address already in use
+```
+**Solution**: Change port with `--port 8001` or kill existing process.
+
+### Shape mismatch in prediction
+```
+ValueError: Expected shape (3, 5), got (2, 5)
+```
+**Solution**: Ensure input data has exactly 3 hourly measurements.
+
+---
+
+## 📝 License
+
+Part of TUS Engineering Team Project 2026.
+
+---
+
+## 🔗 Quick Links
+
+- **GitHub**: https://github.com/joeaoregan/TUS-26-ETP-AI-Traffic-Optimisation
+- **API Docs (Local)**: http://localhost:8000/docs
+- **Project Docs**: https://joeaoregan.github.io/TUS-26-ETP-AI-Traffic-Optimisation/
