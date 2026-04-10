@@ -10,14 +10,11 @@
     ```json
     {
       "status": "healthy",
-      "model_loaded": true,
-      "model_version": "1.0",
-      "forecast_horizon": 15,
-      "timestamp": 1710000000000
+      "message": "LSTM service is ready"
     }
     ```
 
-!!! note "GET `/model_info`"
+!!! note "GET `/model-info`"
     Retrieve LSTM model metadata.
 
     Response (200):
@@ -25,51 +22,74 @@
     ```json
     {
       "model_type": "LSTM",
-      "model_version": "1.0",
-      "input_features": 3,
-      "input_window": 60,
-      "output_window": 15,
-      "target_accuracy": "MAE < 10%",
-      "training_date": "2026-04-01",
-      "trained_on_junctions": ["300839359", "265580972", "1270712555", "8541180897", "joinedS_265580996_300839357"],
-      "timestamp": 1710000000000
+      "input_shape": [3, 5],
+      "output_shape": [5],
+      "description": "Predicts edge density for next hour based on 3 hourly measurements",
+      "edges": ["-269002813", "-55825089", "617128762", "-617128762", "-312266114#2"],
+      "test_loss": 0.0698,
+      "test_mae": 0.2084
     }
     ```
 
-## Traffic Forecasting
+## Traffic Density Prediction
 
-!!! success "POST `/forecast`"
-    Predict vehicle flow 15 minutes ahead.
+!!! success "POST `/predict`"
+    Predict traffic density for the next hour.
 
-    Request:
+    **Request:**
 
     ```json
     {
-      "junction_id": "300839359",
-      "historical_data": [
-        {"timestamp": 1710000000, "vehicle_count": 45, "avg_speed": 35.2, "occupancy": 0.12},
-        {"timestamp": 1710000060, "vehicle_count": 48, "avg_speed": 34.8, "occupancy": 0.13}
+      "data": [
+        [18.93, 10.13, 5.23, 4.14, 3.08],
+        [24.02, 11.01, 8.98, 5.42, 4.26],
+        [22.14, 9.34, 5.62, 4.57, 3.81]
       ]
     }
     ```
 
-    Response (200):
+    **Parameters:**
+    - `data` (required): Array of 3 hourly measurements for 5 edges. Shape: (3, 5)
+      - 3 timesteps (hours)
+      - 5 edge density values per timestep
+
+    **Response (200):**
 
     ```json
     {
-      "junction_id": "300839359",
-      "forecast_timestamp": 1710000900,
-      "predicted_flow": 52,
-      "confidence": 0.92,
-      "lookback_window": 60,
-      "forecast_window": 15,
-      "status": "success",
-      "timestamp": 1710000000000
+      "prediction": [25.47, 12.15, 9.23, 6.81, 5.14],
+      "edge_ids": ["-269002813", "-55825089", "617128762", "-617128762", "-312266114#2"]
     }
     ```
 
-    Errors:
+    **Error Responses:**
 
-    - `400`: Missing or invalid `junction_id` / `historical_data`
-    - `400`: Insufficient data points (< lookback window)
-    - `500`: Model inference error
+    - `400 Bad Request`: Invalid shape or missing `data` field
+      ```json
+      {
+        "detail": "Expected shape (3, 5), got (2, 5)"
+      }
+      ```
+
+    - `503 Service Unavailable`: Model not loaded
+      ```json
+      {
+        "detail": "Model not loaded"
+      }
+      ```
+
+    - `500 Internal Server Error`: Prediction inference failed
+      ```json
+      {
+        "detail": "Prediction error: [error details]"
+      }
+      ```
+
+---
+
+## Notes
+
+- **Input Format**: Raw (non-normalized) traffic density values
+- **Output Format**: Predicted density values for next hour (denormalized)
+- **Normalization**: Handled internally using MinMaxScaler
+- **Top 5 Edges**: Model trained on the 5 most congested edges from SUMO simulation
