@@ -6,6 +6,10 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
+        <meta name="description" content="Comprehensive documentation for the AI Traffic Optimisation System, covering architecture, setup, API usage, and more.">
+      
+      
+        <meta name="author" content="Joe O'Regan, Edgars Peskaitis, Adam O Neill Mc Knight, David Claffey">
       
       
         <link rel="canonical" href="https://joeaoregan.github.io/TUS-26-ETP-AI-Traffic-Optimisation/features/">
@@ -3909,6 +3913,23 @@
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="LSTM Traffic Predictor Service">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#future-enhancements" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Future Enhancements:
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
         <li class="md-nav__item">
@@ -4463,6 +4484,23 @@
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="LSTM Traffic Predictor Service">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#future-enhancements" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Future Enhancements:
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
         <li class="md-nav__item">
@@ -4621,21 +4659,30 @@
 <p><strong>Status</strong>: Framework and endpoints defined. Data pipeline ready.  </p>
 <p>Requires model training on SUMO historical data (edgeData.xml) to achieve MAE &lt; 10% forecasting accuracy.</p>
 <ul class="task-list">
-<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> Load SUMO historical data (edgeData.xml)</li>
-<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> Preprocess time-series data (stationarity, scaling, sliding windows)</li>
-<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> Train LSTM model on historical traffic patterns</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled checked/><span class="task-list-indicator"></span></label> Load SUMO historical data (edgeData.xml)</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled checked/><span class="task-list-indicator"></span></label> Preprocess time-series data (stationarity, scaling, sliding windows)</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled checked/><span class="task-list-indicator"></span></label> Train LSTM model on historical traffic patterns</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled checked/><span class="task-list-indicator"></span></label> Model trained (MAE 0.2084 on normalised data)</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled checked/><span class="task-list-indicator"></span></label> REST endpoints (/health, /model-info, /predict)</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled checked/><span class="task-list-indicator"></span></label> Comprehensive error handling</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled checked/><span class="task-list-indicator"></span></label> Interactive API documentation (Swagger UI)</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled checked/><span class="task-list-indicator"></span></label> Health monitoring and logging</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled checked/><span class="task-list-indicator"></span></label> Data analysis scripts (edge-analysis.py, trip-analysis.py)</li>
 <li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> Achieve MAE &lt; 10% forecasting accuracy</li>
 <li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> Predict vehicle flow 15 minutes ahead</li>
 <li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> Handle missing sensor data (KNN imputation)</li>
-<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> REST endpoints (health, forecast, model_info)</li>
-<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> Interactive API documentation (Swagger UI)</li>
-<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> Health monitoring and logging</li>
 <li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> Docker containerization</li>
 <li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> Integration with RL Inference Service</li>
-<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> Bidirectional LSTM for enhanced accuracy (future)</li>
-<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> Attention mechanism for temporal weighting (future)</li>
-<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> Real-time model retraining capability (future)</li>
-<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> Weather data integration (future)</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> TensorFlow SavedModel format support (implemented but not tested in service)</li>
+</ul>
+<h3 id="future-enhancements">Future Enhancements:</h3>
+<ul class="task-list">
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> Bidirectional LSTM for enhanced accuracy</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> Attention mechanism for temporal weighting</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> Real-time model retraining capability</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> Weather data integration</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> Multi-step ahead forecasting (15 min, 30 min, 1 hour)</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> Ensemble methods (multiple LSTM models)</li>
 </ul>
 <h2 id="docker-integration">Docker Integration</h2>
 <p><strong>Status</strong>: Fully operational.  </p>
