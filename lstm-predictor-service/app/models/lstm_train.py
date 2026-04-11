@@ -122,7 +122,8 @@ print(f"\n{Fore.CYAN}=== Saving Models ===")
 # Save weights only (avoids Keras 3.x serialization issues)
 print(f"\n{Fore.CYAN}=== Saving Models ===")
 
-weights_path = os.path.join(model_dir, 'lstm_model_weights.h5')
+# weights_path = os.path.join(model_dir, 'lstm_model_weights.h5')
+weights_path = os.path.join(model_dir, 'lstm_model.weights.h5')
 model.save_weights(weights_path)
 print(f"{Fore.GREEN}✓ Weights saved to {weights_path}")
 

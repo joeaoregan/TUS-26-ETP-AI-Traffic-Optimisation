@@ -74,7 +74,8 @@ app.mount("/images", StaticFiles(directory="app/images"), name="images")
 # MODEL_PATH = 'app/trained_models/lstm_model'
 # Load model and scaler at startup
 SCALER_PATH = 'app/trained_models/scaler.pkl'
-WEIGHTS_PATH = 'app/trained_models/lstm_model_weights.h5'
+# WEIGHTS_PATH = 'app/trained_models/lstm_model_weights.h5'
+WEIGHTS_PATH = 'app/trained_models/lstm_model.weights.h5'
 
 # Define model architecture (doesn't deserialize from config)
 def create_model():
