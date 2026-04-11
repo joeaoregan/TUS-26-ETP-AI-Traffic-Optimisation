@@ -87,8 +87,40 @@
 
 ---
 
+## Testing
+
+### Health Check
+
+```bash
+curl http://localhost:8001/health
+```
+
+### Model Info
+
+```bash
+curl http://localhost:8001/model-info
+```
+
+### Predict Density
+
+```bash
+curl -X POST \
+  -H "Content-Type: application/json" \
+  -d '{
+    "data":[
+      [18.93,10.13,5.23,4.14,3.08],
+      [24.02,11.01,8.98,5.42,4.26],
+      [22.14,9.34,5.62,4.57,3.81]
+    ]
+  }' \
+  http://localhost:8001/predict
+```
+
+---
+
 ## Notes
 
+- **Port**: 8001
 - **Input Format**: Raw (non-normalized) traffic density values
 - **Output Format**: Predicted density values for next hour (denormalized)
 - **Normalization**: Handled internally using MinMaxScaler
