@@ -30,10 +30,12 @@
 ### 🌐 Live Services
 - **[API Gateway](https://ai-traffic-control-api.onrender.com)** — REST API service
 - **[Inference Service](https://traffic-inference-service.onrender.com)** — RL model inference
+- **[LSTM Predictor](https://lstm-predictor-service.onrender.com)** — Traffic density forecasting
 
 ### 📖 API Documentation (Swagger)
 - **[API Gateway Swagger](https://ai-traffic-control-api.onrender.com/swagger-ui/index.html)** — Interactive API docs
 - **[Inference Service Swagger](https://traffic-inference-service.onrender.com/docs)** — Interactive API docs
+- **[LSTM Predictor Swagger](https://lstm-predictor-service.onrender.com/docs)** — Interactive API docs
 
 ### 📚 Documentation
 - **[System Architecture](docs/system-architecture/index.md)** — Detailed system design

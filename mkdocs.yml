@@ -51,6 +51,8 @@ nav:
       - 📚 API Gateway Documentation: https://ai-traffic-control-api.onrender.com/swagger-ui/index.html
       - 🤖 Inference Service: https://traffic-inference-service.onrender.com
       - 📚 Inference Service Documentation: https://traffic-inference-service.onrender.com/docs
+      - 🧠 LSTM Predictor: https://lstm-predictor-service.onrender.com
+      - 📚 LSTM Predictor Documentation: https://lstm-predictor-service.onrender.com/docs
       - 🔗 GitHub Repository: https://github.com/joeaoregan/TUS-26-ETP-AI-Traffic-Optimisation
   - API Gateway: 
     - Overview: api-gateway/index.md
