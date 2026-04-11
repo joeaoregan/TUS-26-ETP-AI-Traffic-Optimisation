@@ -1,6 +1,4 @@
 # test_utils_demo.py
-
-# test_utils_demo.py
 """
 Quick validation script for LSTM utils.
 Tests metrics, preprocessing, and feature engineering without pytest.
@@ -10,6 +8,9 @@ Run: python test_utils_demo.py
 import numpy as np
 import pandas as pd
 from pathlib import Path
+from colorama import Fore, Back, Style, init
+
+init(autoreset=True)
 
 # Import utils
 from app.utils.metrics import mae, mse, rmse
@@ -19,9 +20,9 @@ from app.models.preprocessor import DataPreprocessor, prepare_prediction_input
 
 def print_section(title):
     """Pretty print section header."""
-    print(f"\n{'='*60}")
-    print(f"  {title}")
-    print(f"{'='*60}")
+    print(f"\n{Back.CYAN}{Fore.BLACK}{'='*60}{Style.RESET_ALL}")
+    print(f"{Back.CYAN}{Fore.BLACK}  {title}{Style.RESET_ALL}")
+    print(f"{Back.CYAN}{Fore.BLACK}{'='*60}{Style.RESET_ALL}")
 
 
 def test_metrics():
@@ -39,16 +40,16 @@ def test_metrics():
     mse_score = mse(y_true, y_pred)
     rmse_score = rmse(y_true, y_pred)
     
-    print(f"\n✓ MAE:  {mae_score:.4f}")
-    print(f"✓ MSE:  {mse_score:.4f}")
-    print(f"✓ RMSE: {rmse_score:.4f}")
+    print(f"\n{Fore.GREEN}✓ MAE:  {mae_score:.4f}")
+    print(f"{Fore.GREEN}✓ MSE:  {mse_score:.4f}")
+    print(f"{Fore.GREEN}✓ RMSE: {rmse_score:.4f}")
     
     assert mae_score > 0, "MAE should be positive"
     assert mse_score > 0, "MSE should be positive"
     assert rmse_score > 0, "RMSE should be positive"
     assert rmse_score == np.sqrt(mse_score), "RMSE should equal sqrt(MSE)"
     
-    print("\n✅ All metrics tests passed!")
+    print(f"{Fore.GREEN}✅ All metrics tests passed!")
 
 
 def test_normalization():
@@ -86,7 +87,7 @@ def test_normalization():
     
     assert error < 1e-10, "Reconstruction error should be near zero"
     
-    print("\n✅ All normalization tests passed!")
+    print(f"{Fore.GREEN}✅ All normalization tests passed!")
 
 
 def test_sequence_creation():
@@ -108,8 +109,8 @@ def test_sequence_creation():
     print(f"  seq_length: 3 (input timesteps)")
     print(f"  Expected sequences: {len(raw_data) - 3} (10 - 3)")
     
-    print(f"\nX shape: {X.shape} (samples, timesteps, features)")
-    print(f"y shape: {y.shape} (samples, features)")
+    print(f"\n{Fore.CYAN}X shape: {X.shape} (samples, timesteps, features)")
+    print(f"{Fore.CYAN}y shape: {y.shape} (samples, features)")
     
     assert X.shape == (7, 3, 5), f"Expected X shape (7, 3, 5), got {X.shape}"
     assert y.shape == (7, 5), f"Expected y shape (7, 5), got {y.shape}"
@@ -119,7 +120,7 @@ def test_sequence_creation():
     print(f"  Input (3 timesteps):  {X[0]}")
     print(f"  Target (1 timestep):  {y[0]}")
     
-    print("\n✅ All sequence tests passed!")
+    print(f"{Fore.GREEN}✅ All sequence tests passed!")
 
 
 def test_preprocessor():
@@ -128,7 +129,7 @@ def test_preprocessor():
     
     # Initialize
     preprocessor = DataPreprocessor()
-    print(f"\n✓ DataPreprocessor initialized")
+    print(f"\n{Fore.GREEN}✓ DataPreprocessor initialized")
     
     # Sample data
     raw_data = np.array([
@@ -140,11 +141,11 @@ def test_preprocessor():
     
     # Fit scaler
     normalized = preprocessor.fit_scaler(raw_data)
-    print(f"✓ Fitted scaler on {raw_data.shape[0]} samples")
+    print(f"{Fore.GREEN}✓ Fitted scaler on {raw_data.shape[0]} samples")
     
     # Create sequences
     X, y = DataPreprocessor.create_sequences(normalized, seq_length=3)
-    print(f"✓ Created {len(X)} sequences")
+    print(f"{Fore.GREEN}✓ Created {len(X)} sequences")
     
     # Test prediction input preparation
     recent_data = [
@@ -154,15 +155,15 @@ def test_preprocessor():
     ]
     
     batch_input = prepare_prediction_input(recent_data, preprocessor)
-    print(f"✓ Prepared prediction input shape: {batch_input.shape}")
+    print(f"{Fore.GREEN}✓ Prepared prediction input shape: {batch_input.shape}")
     
     assert batch_input.shape == (1, 3, 5), f"Expected (1, 3, 5), got {batch_input.shape}"
     
     # Test denormalization
     denorm = preprocessor.denormalize(batch_input[0])
-    print(f"✓ Denormalized prediction: {denorm}")
+    print(f"{Fore.GREEN}✓ Denormalized prediction: {denorm}")
     
-    print("\n✅ All preprocessor tests passed!")
+    print(f"{Fore.GREEN}✅ All preprocessor tests passed!")
 
 
 def test_edge_data_load():
@@ -172,13 +173,13 @@ def test_edge_data_load():
     edge_xml_path = Path("SUMO/Results/MAPPO/edgeData.xml")
     
     if not edge_xml_path.exists():
-        print(f"\n⚠️  {edge_xml_path} not found. Skipping edge data test.")
-        print("   (This is OK — edge data is optional for this validation)")
+        print(f"\n{Fore.YELLOW}⚠️  {edge_xml_path} not found. Skipping edge data test.")
+        print(f"{Fore.YELLOW}   (This is OK — edge data is optional for this validation)")
         return
     
     import xml.etree.ElementTree as ET
     
-    print(f"\n✓ Loading {edge_xml_path}")
+    print(f"\n{Fore.GREEN}✓ Loading {edge_xml_path}")
     
     try:
         tree = ET.parse(edge_xml_path)
@@ -193,23 +194,23 @@ def test_edge_data_load():
         
         if edges_data:
             densities = np.array([e['density'] for e in edges_data])
-            print(f"✓ Loaded {len(edges_data)} edge measurements")
-            print(f"  Density range: [{densities.min():.2f}, {densities.max():.2f}]")
-            print(f"  Density mean: {densities.mean():.2f}")
-            print("\n✅ Edge data loading test passed!")
+            print(f"{Fore.GREEN}✓ Loaded {len(edges_data)} edge measurements")
+            print(f"{Fore.CYAN}  Density range: [{densities.min():.2f}, {densities.max():.2f}]")
+            print(f"{Fore.CYAN}  Density mean: {densities.mean():.2f}")
+            print(f"{Fore.GREEN}✅ Edge data loading test passed!")
         else:
-            print("⚠️  No edge data found in XML")
+            print(f"{Fore.YELLOW}⚠️  No edge data found in XML")
     
     except Exception as e:
-        print(f"⚠️  Error loading edge data: {e}")
-        print("   (This is OK — edge data is optional)")
+        print(f"{Fore.YELLOW}⚠️  Error loading edge data: {e}")
+        print(f"{Fore.YELLOW}   (This is OK — edge data is optional)")
 
 
 def main():
     """Run all validation tests."""
-    print("\n" + "="*60)
-    print("  LSTM Utils Validation Suite")
-    print("="*60)
+    print(f"\n{Back.MAGENTA}{Fore.WHITE}{'='*60}{Style.RESET_ALL}")
+    print(f"{Back.MAGENTA}{Fore.WHITE}  LSTM Utils Validation Suite{Style.RESET_ALL}")
+    print(f"{Back.MAGENTA}{Fore.WHITE}{'='*60}{Style.RESET_ALL}")
     
     try:
         test_metrics()
@@ -218,15 +219,15 @@ def main():
         test_preprocessor()
         test_edge_data_load()
         
-        print("\n" + "="*60)
-        print("  ✅ ALL TESTS PASSED!")
-        print("="*60 + "\n")
+        print(f"\n{Back.GREEN}{Fore.BLACK}{'='*60}{Style.RESET_ALL}")
+        print(f"{Back.GREEN}{Fore.BLACK}  ✅ ALL TESTS PASSED!{Style.RESET_ALL}")
+        print(f"{Back.GREEN}{Fore.BLACK}{'='*60}{Style.RESET_ALL}\n")
         
     except AssertionError as e:
-        print(f"\n❌ TEST FAILED: {e}\n")
+        print(f"\n{Back.RED}{Fore.WHITE}❌ TEST FAILED: {e}{Style.RESET_ALL}\n")
         return False
     except Exception as e:
-        print(f"\n❌ ERROR: {e}\n")
+        print(f"\n{Back.RED}{Fore.WHITE}❌ ERROR: {e}{Style.RESET_ALL}\n")
         import traceback
         traceback.print_exc()
         return False

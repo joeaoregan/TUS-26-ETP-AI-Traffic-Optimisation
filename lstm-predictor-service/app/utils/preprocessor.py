@@ -9,6 +9,9 @@ import pickle
 from pathlib import Path
 from sklearn.preprocessing import MinMaxScaler
 from typing import Tuple, Optional
+from colorama import Fore, init
+
+init(autoreset=True)
 
 
 class DataPreprocessor:
@@ -33,10 +36,10 @@ class DataPreprocessor:
         if self.scaler_path.exists():
             with open(self.scaler_path, 'rb') as f:
                 self.scaler = pickle.load(f)
-            print(f"✓ Loaded scaler from {self.scaler_path}")
+            print(f"{Fore.GREEN}✓ Loaded scaler from {self.scaler_path}")
         else:
             self.scaler = MinMaxScaler(feature_range=(0, 1))
-            print(f"✓ Created new MinMaxScaler")
+            print(f"{Fore.GREEN}✓ Created new MinMaxScaler")
     
     def fit_scaler(self, data: np.ndarray) -> np.ndarray:
         """
@@ -50,7 +53,7 @@ class DataPreprocessor:
         """
         normalized = self.scaler.fit_transform(data)
         self._save_scaler()
-        print(f"✓ Fitted scaler on {data.shape[0]} samples, {data.shape[1]} features")
+        print(f"{Fore.GREEN}✓ Fitted scaler on {data.shape[0]} samples, {data.shape[1]} features")
         return normalized
     
     def normalize(self, data: np.ndarray) -> np.ndarray:
@@ -86,7 +89,7 @@ class DataPreprocessor:
         self.scaler_path.parent.mkdir(parents=True, exist_ok=True)
         with open(self.scaler_path, 'wb') as f:
             pickle.dump(self.scaler, f)
-        print(f"✓ Saved scaler to {self.scaler_path}")
+        print(f"{Fore.GREEN}✓ Saved scaler to {self.scaler_path}")
     
     @staticmethod
     def create_sequences(data: np.ndarray, seq_length: int = 3) -> Tuple[np.ndarray, np.ndarray]:
@@ -114,9 +117,9 @@ class DataPreprocessor:
         X = np.array(X)
         y = np.array(y)
         
-        print(f"✓ Created {len(X)} sequences (seq_length={seq_length})")
-        print(f"  X shape: {X.shape}  (samples, timesteps, features)")
-        print(f"  y shape: {y.shape}  (samples, features)")
+        print(f"{Fore.GREEN}✓ Created {len(X)} sequences (seq_length={seq_length})")
+        print(f"{Fore.CYAN}  X shape: {X.shape}  (samples, timesteps, features)")
+        print(f"{Fore.CYAN}  y shape: {y.shape}  (samples, features)")
         
         return X, y
     
@@ -146,7 +149,7 @@ class DataPreprocessor:
         X_train, X_val = X[:split_idx], X[split_idx:]
         y_train, y_val = y[:split_idx], y[split_idx:]
         
-        print(f"✓ Temporal split: {len(X_train)} train, {len(X_val)} validation")
+        print(f"{Fore.GREEN}✓ Temporal split: {len(X_train)} train, {len(X_val)} validation")
         
         return X_train, X_val, y_train, y_val
 
@@ -180,5 +183,7 @@ def prepare_prediction_input(
     
     # Add batch dimension: (seq_length, n_features) → (1, seq_length, n_features)
     batch_input = np.expand_dims(normalized, axis=0)
+    
+    print(f"{Fore.GREEN}✓ Prepared prediction input: {batch_input.shape}")
     
     return batch_input
