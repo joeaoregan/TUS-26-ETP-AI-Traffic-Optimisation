@@ -15,6 +15,7 @@ import pickle
 import os
 from colorama import Fore, Back, Style, init
 init(autoreset=True)
+os.environ['TF_KERAS'] = '1'  # Force TensorFlow's native Keras (v2.x)
 
 # Parse edgeData.xml
 # tree = ET.parse('SUMO/Results/MAPPO/edgeData.xml')
