@@ -70,7 +70,8 @@ async def favicon():
 app.mount("/images", StaticFiles(directory="app/images"), name="images")
 
 # Load model and scaler at startup
-MODEL_PATH = 'app/trained_models/lstm_model.keras'
+# MODEL_PATH = 'app/trained_models/lstm_model.keras'
+MODEL_PATH = 'app/trained_models/lstm_model'
 SCALER_PATH = 'app/trained_models/scaler.pkl'
 
 try:
