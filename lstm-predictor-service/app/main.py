@@ -71,12 +71,13 @@ app.mount("/images", StaticFiles(directory="app/images"), name="images")
 
 # Load model and scaler at startup
 # MODEL_PATH = 'app/trained_models/lstm_model.keras'
-MODEL_PATH = 'app/trained_models/lstm_model'
+# MODEL_PATH = 'app/trained_models/lstm_model'
 SCALER_PATH = 'app/trained_models/scaler.pkl'
+MODEL_PATH = 'app/trained_models/lstm_model.keras'
 
 try:
-    # model = tf.keras.models.load_model(MODEL_PATH)
-    model = tf.saved_model.load(MODEL_PATH)
+    model = tf.keras.models.load_model(MODEL_PATH)
+    # model = tf.saved_model.load(MODEL_PATH)
     scaler = pickle.load(open(SCALER_PATH, 'rb'))
     print(f"{Fore.GREEN}✓ Model and scaler loaded successfully")
 except FileNotFoundError as e:
