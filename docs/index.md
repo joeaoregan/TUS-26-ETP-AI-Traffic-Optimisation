@@ -39,8 +39,8 @@ AI-Driven Predictive Traffic Flow Optimisation System
 
 | 🌐 API Gateway                                                                 | 🤖 Inference Service                                              | 📊 LSTM Predictor |
 |---|---|---|
-| [App](https://ai-traffic-control-api.onrender.com/)                             | [App](https://traffic-inference-service.onrender.com)             | [Local: 8001](http://localhost:8001)     |
-| [Swagger UI](https://ai-traffic-control-api.onrender.com/swagger-ui/index.html) | [Swagger UI](https://traffic-inference-service.onrender.com/docs) | [Swagger UI](http://localhost:8001/docs) |
+| [App](https://ai-traffic-control-api.onrender.com/)                             | [App](https://traffic-inference-service.onrender.com)             | [App](https://lstm-predictor-service.onrender.com)     |
+| [Swagger UI](https://ai-traffic-control-api.onrender.com/swagger-ui/index.html) | [Swagger UI](https://traffic-inference-service.onrender.com/docs) | [Swagger UI](https://lstm-predictor-service.onrender.com/docs) |
 
 ---
 

@@ -8,7 +8,7 @@ Swagger UI provides interactive, real-time API documentation with live testing c
 
 - **[API Gateway Swagger UI](https://ai-traffic-control-api.onrender.com/swagger-ui/index.html)** — Traffic prediction and state management
 - **[Inference Service Swagger UI](https://traffic-inference-service.onrender.com/docs)** — RL model inference
-- **[LSTM Predictor Swagger UI](https://lstm-predictor-service.onrender.com/docs)** — Traffic forecasting (planned)
+- **[LSTM Predictor Swagger UI](https://lstm-predictor-service.onrender.com/docs)** — Traffic forecasting
 
 ### Local Development
 
