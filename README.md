@@ -156,6 +156,37 @@ This repository implements a **Cloud-Native Microservices Pipeline** designed fo
 
 This system is specifically modeled to address the saturation flow rates and signal-timing patterns of the Athlone 'Orange Loop' corridor, providing a scalable template for Smart City traffic management in regional Irish hubs.
 
+Two FastAPI microservices:
+
+**RL Inference Service** (Port 8000)
+- MAPPO agent for signal prediction
+- [Full docs](./rl-inference-service/README.md)
+
+**LSTM Predictor Service** (Port 8001)
+- LSTM for traffic density forecasting
+- [Full docs](./lstm-predictor-service/README.md)
+
+## 🚀 Quick Start
+
+Start both services in separate terminals:
+
+```bash
+cd rl-inference-service
+python -m uvicorn app.main:app --host 0.0.0.0 --port 8000 --reload
+```
+
+```bash
+cd lstm-predictor-service
+python -m uvicorn app.main:app --host 0.0.0.0 --port 8001 --reload
+```
+
+Test integration:
+
+
+```bash
+python lstm-predictor-service/test_rl_integration.py
+```
+
 ---
 
 ## 🗂️ Project Structure

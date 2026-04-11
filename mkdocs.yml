@@ -71,6 +71,7 @@ nav:
     - File Structure: lstm/file-structure.md
     - Endpoints: lstm/endpoints.md
     - Key Features: lstm/key-features.md
+  - Service Integration: integration.md
   - SUMO: 
     - Overview: sumo/index.md
     - Architecture: sumo/architecture.md

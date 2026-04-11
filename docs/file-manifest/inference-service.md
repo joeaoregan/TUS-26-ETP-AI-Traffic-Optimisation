@@ -16,7 +16,7 @@
 
 📄 `requirements.txt` - Python dependencies
 
-```python
+```python title="requirements.txt"
 fastapi==0.110.0
 uvicorn==0.28.0
 stable-baselines3==2.2.1

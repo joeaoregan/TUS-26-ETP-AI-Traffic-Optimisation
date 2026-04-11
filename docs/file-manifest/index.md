@@ -30,7 +30,7 @@
 - Comprehensive error handling and logging in both services
 - Configurable via environment variables for flexibility
 
---
+---
 
 ## Success Indicators
 
