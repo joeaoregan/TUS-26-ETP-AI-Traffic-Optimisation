@@ -74,7 +74,8 @@ MODEL_PATH = 'app/trained_models/lstm_model.keras'
 SCALER_PATH = 'app/trained_models/scaler.pkl'
 
 try:
-    model = tf.keras.models.load_model(MODEL_PATH)
+    # model = tf.keras.models.load_model(MODEL_PATH)
+    model = tf.saved_model.load(MODEL_PATH)
     scaler = pickle.load(open(SCALER_PATH, 'rb'))
     print(f"{Fore.GREEN}✓ Model and scaler loaded successfully")
 except FileNotFoundError as e:

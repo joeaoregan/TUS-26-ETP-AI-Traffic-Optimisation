@@ -1,19 +1,21 @@
 # Production Overrides for Render
-rl:
-  inference:
-    service:
-      timeout: 20000
-      # This will look for a Render Environment Variable named RL_INFERENCE_URL
-      # If not found, it defaults to the placeholder string
-      url: ${RL_INFERENCE_URL:http://localhost:8000/predict_action}
+server:
+  port: 8080
+  shutdown: graceful
+  servlet:
+    context-path: /
 
 spring:
   application:
     name: traffic-control-gateway-prod
+  jmx:
+    enabled: false
+  lifecycle:
+    timeout-per-shutdown-phase: 30s
 
 logging:
   level:
-    root: WARN  # Less verbose logging for production
+    root: WARN
     com.example.gateway: INFO
 
 security:
@@ -24,3 +26,18 @@ security:
   auth:
     username: ${JWT_AUTH_USERNAME:admin}
     password: ${JWT_AUTH_PASSWORD:admin123}
+
+rl:
+  inference:
+    service:
+      timeout: 20000
+      url: ${RL_INFERENCE_URL:http://localhost:8000/predict_action}
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health
+  endpoint:
+    health:
+      show-details: always
