@@ -37,6 +37,7 @@ Predicts traffic density for the next hour based on 3 hourly measurements from t
 - **Real-time Predictions**: Sub-100ms inference latency
 - **Normalized Input**: MinMax scaling for stable predictions
 - **Production Ready**: TensorFlow SavedModel format support
+- **Batch Predictions**: Multi-step ahead forecasting for RL integration
 
 ### Model Performance
 - Test Loss (MSE): 0.0698
@@ -47,7 +48,8 @@ Predicts traffic density for the next hour based on 3 hourly measurements from t
 ### Endpoints
 - `GET /health` - Service health check
 - `GET /model-info` - Model specifications
-- `POST /predict` - Generate predictions
+- `POST /predict` - Single prediction
+- `POST /predict-batch` - Multi-step batch predictions (RL integration)
 - `GET /metrics` - Service metrics
 
 [Repository](https://github.com/joeaoregan/TUS-26-ETP-AI-Traffic-Optimisation)
@@ -83,6 +85,7 @@ except FileNotFoundError as e:
 # Metrics tracking
 prediction_metrics = {
     "total_predictions": 0,
+    "total_batch_predictions": 0,
     "avg_inference_time_ms": 0.0,
     "last_prediction_time": None,
     "inference_times": []  # Track last 100 for rolling average
@@ -115,6 +118,48 @@ class PredictionResponse(BaseModel):
     edge_ids: list[str]
     timestamp: str = None
     inference_time_ms: float = None
+
+class BatchPredictionRequest(BaseModel):
+    """
+    Batch prediction for multiple sequences.
+    Each sequence is 3 timesteps x 5 edges.
+    
+    Use case: Get multi-step ahead forecasts for RL service.
+    Example: 3 sequences → 3 consecutive hourly predictions
+    """
+    sequences: list[list[list[float]]]
+    
+    model_config = ConfigDict(
+        json_schema_extra={
+            "example": {
+                "sequences": [
+                    [
+                        [18.93, 10.13, 5.23, 4.14, 3.08],
+                        [24.02, 11.01, 8.98, 5.42, 4.26],
+                        [22.14, 9.34, 5.62, 4.57, 3.81]
+                    ],
+                    [
+                        [24.02, 11.01, 8.98, 5.42, 4.26],
+                        [22.14, 9.34, 5.62, 4.57, 3.81],
+                        [20.50, 10.75, 6.10, 4.90, 3.50]
+                    ],
+                    [
+                        [22.14, 9.34, 5.62, 4.57, 3.81],
+                        [20.50, 10.75, 6.10, 4.90, 3.50],
+                        [21.75, 11.20, 6.85, 5.15, 3.95]
+                    ]
+                ]
+            }
+        }
+    )
+
+class BatchPredictionResponse(BaseModel):
+    """Multiple predictions for batch request"""
+    predictions: list[list[float]]
+    edge_ids: list[str]
+    timestamp: str = None
+    inference_time_ms: float = None
+    num_predictions: int = None
 
 # Routes
 @app.get("/health")
@@ -199,6 +244,95 @@ def predict(request: PredictionRequest) -> PredictionResponse:
         print(f"{Fore.RED}✗ Prediction error: {e}")
         raise HTTPException(status_code=500, detail=f"Prediction error: {str(e)}")
 
+@app.post("/predict-batch")
+def predict_batch(request: BatchPredictionRequest) -> BatchPredictionResponse:
+    """
+    Batch prediction for multiple sequences.
+    
+    Use case: Get multi-step ahead forecasts for RL service planning.
+    
+    Input: List of sequences, each with 3 timesteps x 5 edges
+    Output: List of predictions, one per input sequence
+    
+    Example: Pass 3 consecutive sequences to get hours 4, 5, 6 predictions.
+    
+    **RL Service Integration**: Use this for lookahead planning and proactive signal timing.
+    """
+    if model is None or scaler is None:
+        raise HTTPException(status_code=503, detail="Model not loaded")
+    
+    start_time = time.time()
+    
+    try:
+        sequences = request.sequences
+        
+        # Validate number of sequences
+        if not sequences or len(sequences) == 0:
+            raise ValueError("At least 1 sequence required")
+        
+        if len(sequences) > 100:
+            raise ValueError("Maximum 100 sequences per request")
+        
+        # Validate and normalize all sequences
+        normalized_sequences = []
+        for i, seq in enumerate(sequences):
+            raw_seq = np.array(seq, dtype=np.float32)
+            
+            if raw_seq.shape != (3, 5):
+                raise ValueError(f"Sequence {i}: expected shape (3, 5), got {raw_seq.shape}")
+            
+            normalized_seq = scaler.transform(raw_seq)
+            normalized_sequences.append(normalized_seq)
+        
+        # Convert to batch array (N, 3, 5)
+        batch_data = np.array(normalized_sequences, dtype=np.float32)
+        
+        # Predict all sequences in batch
+        predictions_normalized = model.predict(batch_data, verbose=0)
+        
+        # Denormalize all predictions
+        predictions_raw = scaler.inverse_transform(predictions_normalized)
+        
+        # Convert to list format
+        predictions_list = predictions_raw.tolist()
+        
+        # Edge IDs (from training data)
+        edge_ids = ['-269002813', '-55825089', '617128762', '-617128762', '-312266114#2']
+        
+        # Calculate inference time
+        inference_time = (time.time() - start_time) * 1000  # Convert to ms
+        
+        # Update metrics
+        prediction_metrics["total_batch_predictions"] += 1
+        prediction_metrics["inference_times"].append(inference_time)
+        
+        # Keep only last 100 inference times for rolling average
+        if len(prediction_metrics["inference_times"]) > 100:
+            prediction_metrics["inference_times"].pop(0)
+        
+        prediction_metrics["avg_inference_time_ms"] = np.mean(prediction_metrics["inference_times"])
+        prediction_metrics["last_prediction_time"] = datetime.now().isoformat()
+        
+        # Log batch prediction
+        print(f"{Fore.GREEN}✓ Batch prediction #{prediction_metrics['total_batch_predictions']} ({len(sequences)} sequences) generated in {inference_time:.2f}ms")
+        for idx, pred in enumerate(predictions_list):
+            print(f"{Fore.CYAN}  Sequence {idx}: {[f'{p:.2f}' for p in pred]}")
+        
+        return BatchPredictionResponse(
+            predictions=predictions_list,
+            edge_ids=edge_ids,
+            timestamp=prediction_metrics["last_prediction_time"],
+            inference_time_ms=inference_time,
+            num_predictions=len(sequences)
+        )
+    
+    except ValueError as e:
+        print(f"{Fore.RED}✗ Validation error: {e}")
+        raise HTTPException(status_code=400, detail=str(e))
+    except Exception as e:
+        print(f"{Fore.RED}✗ Batch prediction error: {e}")
+        raise HTTPException(status_code=500, detail=f"Prediction error: {str(e)}")
+
 @app.get("/model-info")
 def model_info():
     """Get model specifications"""
@@ -215,7 +349,9 @@ def model_info():
         "test_mae": 0.2084,
         "training_samples": 9,
         "test_samples": 2,
-        "sequence_length": 3
+        "sequence_length": 3,
+        "batch_prediction_supported": True,
+        "max_batch_size": 100
     }
 
 @app.get("/metrics")
@@ -224,7 +360,8 @@ def get_metrics():
     Get service performance metrics
     
     Returns:
-    - total_predictions: Number of predictions served
+    - total_predictions: Number of single predictions served
+    - total_batch_predictions: Number of batch predictions served
     - avg_inference_time_ms: Average inference latency (last 100 predictions)
     - last_prediction_time: Timestamp of last prediction
     - service_status: Health status
@@ -236,6 +373,7 @@ def get_metrics():
         "version": "1.0.0",
         "status": status,
         "total_predictions": prediction_metrics["total_predictions"],
+        "total_batch_predictions": prediction_metrics["total_batch_predictions"],
         "avg_inference_time_ms": round(prediction_metrics["avg_inference_time_ms"], 2),
         "last_prediction_time": prediction_metrics["last_prediction_time"],
         "model_loaded": model is not None,
