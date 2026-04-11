@@ -144,17 +144,19 @@ public class TrafficController {
 					List.of(22.14, 9.34, 5.62, 4.57, 3.81)    // Current hour
 			);
 
+			long start = System.currentTimeMillis();
 			List<Double> prediction = lstmPredictorClient.predict(historicalData);
+			double inferenceTimeMs = System.currentTimeMillis() - start;
 			String[] edgeIds = { "-269002813", "-55825089", "617128762", "-617128762", "-312266114#2" };
 
 			TrafficForecastResponse response = new TrafficForecastResponse(
 					edgeIds,
 					prediction.toArray(new Double[0]),
-					null,  // Will be set by client
+					inferenceTimeMs,
 					System.currentTimeMillis(),
 					"success",
-					null,  // No lookahead for single prediction
-					null   // No error
+					null,
+					null
 			);
 
 			log.info("Forecast generated: edges={} densities={}", edgeIds, prediction);
@@ -255,6 +257,178 @@ public class TrafficController {
 		}
 	}
 
+	/**
+	 * Predict green phase with real observation data.
+	 */
+	@Tag(name = "Traffic Prediction")
+	@Operation(operationId = "predictTrafficAction", summary = "Predict green phase for a junction",
+			description = """
+					Accepts real observation values from the junction and returns the predicted green phase index.
+
+					Observation vector layout (observations):
+					  [phase_one_hot_0, ..., phase_one_hot_N,   ← current active green phase (one-hot)
+					   min_green_flag,                           ← 1 if min green time elapsed, else 0
+					   lane_queue_0, lane_queue_1, ...]          ← queue per lane, normalised 0–1
+
+					Sizes: joinedS=19 floats, 300839359≈10 floats, 265580972≈8 floats
+
+					Action (green phase index):
+					  joinedS_265580996_300839357: 0–3
+					  300839359:                  0–1
+					  265580972:                  0–1
+					""")
+	@SecurityRequirement(name = "bearerAuth")
+	@ApiResponse(responseCode = "200", description = "Prediction generated successfully",
+			content = @Content(mediaType = "application/json", examples = @ExampleObject(value = """
+					{
+					  "junctionId": "joinedS_265580996_300839357",
+					  "predictedAction": 2,
+					  "signalState": "GREEN",
+					  "timestamp": 1710000000000,
+					  "status": "success"
+					}
+					""")))
+	@ApiResponse(responseCode = "400", description = "Invalid request (missing junctionId or observations)")
+	@ApiResponse(responseCode = "503", description = "Inference service unavailable")
+	@PostMapping("/action")
+	public ResponseEntity<?> predictTrafficAction(
+			@io.swagger.v3.oas.annotations.parameters.RequestBody(
+					description = "Junction ID and observation vector", required = true,
+					content = @Content(mediaType = "application/json", examples = {
+							@ExampleObject(name = "joinedS main junction", value = """
+									{
+									  "junctionId": "joinedS_265580996_300839357",
+									  "observations": [0,0,1,0,1,0.2,0.1,0.0,0.3,0.0,0.1,0.0,0.2,0.1,0.0,0.3,0.0,0.1,0.0],
+									  "metadata": "morning-peak"
+									}
+									"""),
+							@ExampleObject(name = "300839359 medium junction", value = """
+									{
+									  "junctionId": "300839359",
+									  "observations": [1,0,1,0.3,0.0,0.1,0.2,0.0,0.1,0.0],
+									  "metadata": "off-peak"
+									}
+									"""),
+							@ExampleObject(name = "265580972 small junction", value = """
+									{
+									  "junctionId": "265580972",
+									  "observations": [0,1,0,0.1,0.4,0.0,0.2,0.0],
+									  "metadata": "off-peak"
+									}
+									""") }))
+			@RequestBody TrafficActionRequest request) {
+		try {
+			if (request.getJunctionId() == null || request.getJunctionId().isBlank()) {
+				return buildErrorResponse("junctionId is required", HttpStatus.BAD_REQUEST);
+			}
+			if (request.getObservations() == null || request.getObservations().isEmpty()) {
+				return buildErrorResponse("observations is required", HttpStatus.BAD_REQUEST);
+			}
+
+			log.info("Prediction request: junction={} obs_size={}", request.getJunctionId(), request.getObservations().size());
+
+			int predictedAction = rlInferenceClient.predictAction(request.getJunctionId(), request.getObservations());
+			TrafficSignalState signalState = mapActionToSignalState(predictedAction);
+			TrafficActionResponse response = new TrafficActionResponse(
+					request.getJunctionId(), predictedAction, signalState, System.currentTimeMillis(), "success");
+
+			log.info("Predicted: junction={} action={} state={}", request.getJunctionId(), predictedAction, signalState);
+			return ResponseEntity.ok(response);
+
+		} catch (RlInferenceException e) {
+			log.error("Inference error: {}", e.getMessage());
+			return buildErrorResponse("Inference service error: " + e.getMessage(), HttpStatus.SERVICE_UNAVAILABLE);
+		} catch (Exception e) {
+			log.error("Unexpected error", e);
+			return buildErrorResponse("Internal server error: " + e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
+		}
+	}
+
+	/**
+	 * Reset MAPPO GRU hidden states for all junctions.
+	 */
+	@Tag(name = "Traffic Prediction")
+	@Operation(operationId = "resetHiddenStates", summary = "Reset MAPPO GRU hidden states",
+			description = "Resets the GRU hidden states for all 5 junctions. Call at the start of each new simulation run.")
+	@SecurityRequirement(name = "bearerAuth")
+	@ApiResponse(responseCode = "200", description = "Hidden states reset successfully")
+	@ApiResponse(responseCode = "503", description = "Inference service unavailable")
+	@PostMapping("/reset")
+	public ResponseEntity<?> resetHiddenStates() {
+		try {
+			rlInferenceClient.resetHiddenStates();
+			return ResponseEntity.ok(Map.of("status", "success", "message", "Hidden states reset for all junctions"));
+		} catch (RlInferenceException | org.springframework.web.client.ResourceAccessException e) {
+			log.error("Failed to reset hidden states: {}", e.getMessage());
+			return buildErrorResponse("Failed to reset hidden states: " + e.getMessage(), HttpStatus.SERVICE_UNAVAILABLE);
+		}
+	}
+
+	/**
+	 * Get combined model info from both RL and LSTM services.
+	 */
+	@Tag(name = "Traffic Prediction")
+	@Operation(operationId = "getModelInfo", summary = "Get model info (RL + LSTM)",
+			description = "Returns combined model info from both the MAPPO RL inference service and the LSTM predictor service.")
+	@SecurityRequirement(name = "bearerAuth")
+	@ApiResponse(responseCode = "200", description = "Model info retrieved — individual service errors reported inline")
+	@GetMapping("/model_info")
+	public ResponseEntity<?> getModelInfo() {
+		Map<String, Object> combined = new java.util.LinkedHashMap<>();
+
+		try {
+			combined.put("rl", rlInferenceClient.getModelInfo());
+		} catch (Exception e) {
+			log.error("Failed to get RL model info: {}", e.getMessage());
+			combined.put("rl", Map.of("status", "unavailable", "error", e.getMessage()));
+		}
+
+		try {
+			combined.put("lstm", lstmPredictorClient.getModelInfo());
+		} catch (Exception e) {
+			log.error("Failed to get LSTM model info: {}", e.getMessage());
+			combined.put("lstm", Map.of("status", "unavailable", "error", e.getMessage()));
+		}
+
+		return ResponseEntity.ok(combined);
+	}
+
+	/**
+	 * Health check — reports status of both RL inference and LSTM predictor services.
+	 */
+	@Tag(name = "System Health")
+	@Operation(operationId = "healthCheck", summary = "Health check",
+			description = "Checks both RL inference and LSTM predictor services. Overall status is 'healthy' only if both are up.")
+	@ApiResponse(responseCode = "200", description = "All services healthy")
+	@ApiResponse(responseCode = "503", description = "One or both services unreachable")
+	@GetMapping("/health")
+	public ResponseEntity<?> healthCheck() {
+		boolean rlHealthy = false;
+		boolean lstmHealthy = false;
+
+		try {
+			rlHealthy = rlInferenceClient.isServiceHealthy();
+		} catch (Exception e) {
+			log.warn("RL health check failed: {}", e.getMessage());
+		}
+
+		try {
+			lstmHealthy = lstmPredictorClient.isServiceHealthy();
+		} catch (Exception e) {
+			log.warn("LSTM health check failed: {}", e.getMessage());
+		}
+
+		String overallStatus = (rlHealthy && lstmHealthy) ? "healthy" : (rlHealthy || lstmHealthy) ? "degraded" : "unhealthy";
+		HealthResponse response = new HealthResponse(
+				overallStatus,
+				rlHealthy ? "up" : "down",
+				lstmHealthy ? "up" : "down",
+				System.currentTimeMillis());
+
+		HttpStatus httpStatus = rlHealthy && lstmHealthy ? HttpStatus.OK : HttpStatus.SERVICE_UNAVAILABLE;
+		return new ResponseEntity<>(response, httpStatus);
+	}
+
 	// Helper methods
 	private List<Double> generateDummyObservations(int dimension) {
 		List<Double> observations = new java.util.ArrayList<>();
@@ -269,8 +443,38 @@ public class TrafficController {
 			case 0 -> TrafficSignalState.RED;
 			case 1 -> TrafficSignalState.YELLOW;
 			case 2 -> TrafficSignalState.GREEN;
-			default -> TrafficSignalState.RED;
+			case 3 -> TrafficSignalState.GREEN_EXTENDED;
+			default -> TrafficSignalState.UNKNOWN;
 		};
+	}
+
+	private ResponseEntity<ErrorResponse> buildErrorResponse(String message, HttpStatus status) {
+		return new ResponseEntity<>(new ErrorResponse("error", message, System.currentTimeMillis()), status);
+	}
+
+	/**
+	 * Request DTO for traffic signal prediction.
+	 */
+	@io.swagger.v3.oas.annotations.media.Schema(description = "Request body for traffic signal prediction")
+	@lombok.Data
+	@lombok.NoArgsConstructor
+	@lombok.AllArgsConstructor
+	public static class TrafficActionRequest {
+
+		@io.swagger.v3.oas.annotations.media.Schema(description = "Junction ID to predict for",
+				example = "joinedS_265580996_300839357",
+				allowableValues = { "joinedS_265580996_300839357", "300839359", "265580972",
+						"1270712555", "8541180897" })
+		private String junctionId;
+
+		@io.swagger.v3.oas.annotations.media.Schema(
+				description = "Observation vector: [phase_one_hot..., min_green_flag, lane_queues...]",
+				example = "[0,0,1,0,1,0.2,0.1,0.0,0.3,0.0,0.1,0.0,0.2,0.1,0.0,0.3,0.0,0.1,0.0]")
+		private List<Double> observations;
+
+		@io.swagger.v3.oas.annotations.media.Schema(description = "Optional metadata for logging",
+				example = "morning-peak")
+		private String metadata;
 	}
 
 	/**

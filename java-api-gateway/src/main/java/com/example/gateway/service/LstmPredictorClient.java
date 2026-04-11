@@ -120,6 +120,21 @@ public class LstmPredictorClient {
 	}
 
 	/**
+	 * Get model architecture info from the LSTM predictor service.
+	 */
+	public Map<String, Object> getModelInfo() {
+		try {
+			String modelInfoUrl = predictorServiceUrl.replace("/predict", "/model-info");
+			@SuppressWarnings("unchecked")
+			Map<String, Object> response = restTemplate.getForObject(modelInfoUrl, Map.class);
+			return response != null ? response : Map.of();
+		} catch (Exception e) {
+			log.error("Failed to get LSTM model info: {}", e.getMessage());
+			throw new RlInferenceException("Failed to get LSTM model info: " + e.getMessage(), e);
+		}
+	}
+
+	/**
 	 * Check health of the LSTM predictor service.
 	 *
 	 * @return true if service is healthy, false otherwise

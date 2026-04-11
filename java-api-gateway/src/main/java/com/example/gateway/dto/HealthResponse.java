@@ -11,11 +11,14 @@ import lombok.NoArgsConstructor;
 @Schema(description = "Health check response")
 public class HealthResponse {
 
-    @Schema(description = "Overall service status", example = "healthy")
+    @Schema(description = "Overall system status — healthy only if all services are up", example = "healthy")
     private String status;
 
-    @Schema(description = "Inference service status", example = "up")
+    @Schema(description = "RL inference service status", example = "up")
     private String inferenceService;
+
+    @Schema(description = "LSTM predictor service status", example = "up")
+    private String lstmPredictorService;
 
     @Schema(description = "Unix timestamp", example = "1710000000000")
     private long timestamp;
