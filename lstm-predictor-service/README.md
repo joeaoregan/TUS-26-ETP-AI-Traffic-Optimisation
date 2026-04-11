@@ -12,7 +12,7 @@ Predictive modelling service for the Athlone "Orange Loop" traffic optimization 
 
 **Current Performance**: MAE 0.2084, MSE 0.0698 (on normalized density values)
 
-**Port**: 8000
+**Port**: 8001
 
 **Why LSTM?**
 
@@ -46,13 +46,13 @@ pip install -r requirements.txt
 
 3. **Run the service**:
 ```bash
-python -m uvicorn app.main:app --host 0.0.0.0 --port 8000 --reload
+python -m uvicorn app.main:app --host 0.0.0.0 --port 8001 --reload
 ```
 
 4. **Access**:
-- API Docs: http://localhost:8000/docs
-- Health Check: http://localhost:8000/health
-- Model Info: http://localhost:8000/model-info
+- API Docs: http://localhost:8001/docs
+- Health Check: http://localhost:8001/health
+- Model Info: http://localhost:8001/model-info
 
 ---
 
@@ -222,33 +222,6 @@ Outputs:
 
 ---
 
-## 🐳 Docker Deployment
-
-### Build
-```bash
-docker build -t lstm-predictor:latest .
-```
-
-### Run Locally
-```bash
-docker run -p 8000:8000 lstm-predictor:latest
-```
-
-### Run with Volume Mount (for model persistence)
-```bash
-docker run -p 8000:8000 \
-  -v $(pwd)/app/trained_models:/app/app/trained_models \
-  lstm-predictor:latest
-```
-
-### Run on Render
-Set environment variable in Render dashboard:
-- `PORT`: 8000
-
-Model files must be present in `app/trained_models/` at runtime.
-
----
-
 ## 📦 Dependencies
 
 **Core**:
@@ -371,5 +344,5 @@ Part of TUS Engineering Team Project 2026.
 ## 🔗 Quick Links
 
 - **GitHub**: https://github.com/joeaoregan/TUS-26-ETP-AI-Traffic-Optimisation
-- **API Docs (Local)**: http://localhost:8000/docs
+- **API Docs (Local)**: http://localhost:8001/docs
 - **Project Docs**: https://joeaoregan.github.io/TUS-26-ETP-AI-Traffic-Optimisation/
