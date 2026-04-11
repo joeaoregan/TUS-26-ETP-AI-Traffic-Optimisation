@@ -11,6 +11,13 @@ rl:
       timeout: 10000
     observation-dimension: 19
 
+# LSTM Predictor Service Configuration
+lstm:
+  predictor:
+    service:
+      url: "http://localhost:8001/predict"
+      timeout: 10000
+
 logging:
   level:
     root: INFO
@@ -63,13 +70,13 @@ api:
     [![Repository](https://img.shields.io/badge/repo-TUS--26--ETP--AI--Traffic--Optimisation-blue?logo=github&logoColor=white)](https://github.com/joeaoregan/TUS-26-ETP-AI-Traffic-Optimisation)
     [![Docs](https://img.shields.io/badge/Docs-Read-blue?logo=readme)](https://joeaoregan.github.io/TUS-26-ETP-AI-Traffic-Optimisation/)
   
-    This API provides traffic signal control capabilities powered by a Reinforcement Learning (RL) inference service.
+    This API provides traffic signal control capabilities powered by a Reinforcement Learning (RL) inference service and traffic forecasting via LSTM.
 
     ## Overview
-    [Documentation](https://joeaoregan.github.io/TUS-26-ETP-AI-Traffic-Optimisation/api-gateway/authentication/)  
+    [Documentation](https://joeaoregan.github.io/TUS-26-ETP-AI-Traffic-Optimisation/)
     
     The system simulates or accepts real-time traffic observations and uses an RL model to predict the optimal traffic signal action. \
-    These predictions help manage congestion, improve flow efficiency, and support adaptive traffic control strategies.
+    LSTM service provides density forecasts for lookahead planning and proactive signal timing optimization.
 
     ## Authentication
     [Authentication Documentation](https://joeaoregan.github.io/TUS-26-ETP-AI-Traffic-Optimisation/api-gateway/authentication/)
@@ -82,20 +89,24 @@ api:
     [Key Feature Documentation](https://joeaoregan.github.io/TUS-26-ETP-AI-Traffic-Optimisation/api-gateway/key-features/)
     - **JWT authentication** (HS256) for secure API access.
     - **Automatic traffic signal prediction** using RL inference.
+    - **Traffic density forecasting** using LSTM predictor.
+    - **Batch predictions** for multi-step lookahead planning.
     - **Support for custom observation inputs** for testing and experimentation.
-    - **Health monitoring** to verify the availability of the inference service.
+    - **Health monitoring** to verify availability of all services.
     - **Structured success and error responses** for consistent API behavior.
-    - **Fallback mode** when inference service is unavailable.
+    - **Fallback mode** when services are unavailable.
 
     ## Endpoints
     [Endpoint Documentation](https://joeaoregan.github.io/TUS-26-ETP-AI-Traffic-Optimisation/api-gateway/endpoints/)
     - `POST /api/auth/login` Authenticate and receive JWT token (public).
-    - `GET /api/traffic/action` Generates dummy observations and returns a predicted traffic signal state.
-    - `POST /api/traffic/action` Accepts custom observations and returns a model prediction.
-    - `POST /api/traffic/reset` Reset GRU hidden states for all junctions (requires authentication).
-    - `GET /api/traffic/health` Reports the health status of the RL inference service.
+    - `GET /api/traffic/action` Generates dummy observations and returns predicted traffic signal state.
+    - `POST /api/traffic/action` Accepts custom observations and returns model prediction.
+    - `GET /api/traffic/forecast` Get traffic density forecast for next hour.
+    - `POST /api/traffic/forecast-batch` Get multi-step ahead density predictions.
+    - `POST /api/traffic/reset` Reset GRU hidden states for all junctions.
+    - `GET /api/traffic/health` Reports health status of all services.
 
-    This API is designed for academic, experimental, and demonstration purposes within a cloud‑native microservices architecture.
+    This API is designed for academic, experimental, and demonstration purposes within a cloud-native microservices architecture.
 
     ---
-    [Joe O'Regan](https://github.com/joeaoregan), [Edgars Peskaitis](https://github.com/edgar183) [Adam O Neill Mc Knight](https://github.com/AdamQ45), [David Claffey](https://github.com/dclaff)	
+    [Joe O'Regan](https://github.com/joeaoregan), [Edgars Peskaitis](https://github.com/edgar183), [Adam O Neill Mc Knight](https://github.com/AdamQ45), [David Claffey](https://github.com/dclaff)
