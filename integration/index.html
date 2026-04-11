@@ -12,13 +12,13 @@
         <meta name="author" content="Joe O'Regan, Edgars Peskaitis, Adam O Neill Mc Knight, David Claffey">
       
       
-        <link rel="canonical" href="https://joeaoregan.github.io/TUS-26-ETP-AI-Traffic-Optimisation/api/">
+        <link rel="canonical" href="https://joeaoregan.github.io/TUS-26-ETP-AI-Traffic-Optimisation/integration/">
       
       
-        <link rel="prev" href="../setup-complete/documentation-files/">
+        <link rel="prev" href="../lstm/key-features/">
       
       
-        <link rel="next" href="endpoints/">
+        <link rel="next" href="../sumo/">
       
       
         
@@ -29,7 +29,7 @@
     
     
       
-        <title>Overview - AI Traffic Optimisation System</title>
+        <title>Service Integration - AI Traffic Optimisation System</title>
       
     
     
@@ -105,7 +105,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#overview" class="md-skip">
+        <a href="#service-integration-guide" class="md-skip">
           Skip to content
         </a>
       
@@ -140,7 +140,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Overview
+              Service Integration
             
           </span>
         </div>
@@ -323,9 +323,11 @@
   
   
   
+    
   
-    <li class="md-tabs__item">
-      <a href="../integration/" class="md-tabs__link">
+  
+    <li class="md-tabs__item md-tabs__item--active">
+      <a href="./" class="md-tabs__link">
         
   
   
@@ -432,13 +434,11 @@
   
   
   
-    
-  
   
     
     
-      <li class="md-tabs__item md-tabs__item--active">
-        <a href="./" class="md-tabs__link">
+      <li class="md-tabs__item">
+        <a href="../api/" class="md-tabs__link">
           
   
   
@@ -1483,10 +1483,37 @@
       
   
   
+    
   
   
-    <li class="md-nav__item">
-      <a href="../integration/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Service Integration
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         
   
   
@@ -1502,6 +1529,98 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#architecture" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Architecture
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#testing" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Testing
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#api-endpoints" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        API Endpoints
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="API Endpoints">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#rl-service" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        RL Service
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#lstm-service" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        LSTM Service
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Configuration
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -3290,31 +3409,26 @@
       
   
   
-    
   
   
-  
     
     
     
     
-      
-        
-        
       
       
         
       
     
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_10" checked>
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_10" >
         
           
-          <label class="md-nav__link" for="__nav_10" id="__nav_10_label" tabindex="">
+          <label class="md-nav__link" for="__nav_10" id="__nav_10_label" tabindex="0">
             
   
   
@@ -3332,7 +3446,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_10_label" aria-expanded="true">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_10_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_10">
             <span class="md-nav__icon md-icon"></span>
             
@@ -3347,37 +3461,10 @@
                 
   
   
-    
   
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Overview
-  
-
-    
-  </span>
-  
-  
-
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../api/" class="md-nav__link">
         
   
   
@@ -3393,59 +3480,6 @@
   
 
       </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#endpoints" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Endpoints
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#setup" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Setup
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#guides" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Guides
-      
-    </span>
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -3458,7 +3492,7 @@
   
   
     <li class="md-nav__item">
-      <a href="endpoints/" class="md-nav__link">
+      <a href="../api/endpoints/" class="md-nav__link">
         
   
   
@@ -3492,20 +3526,17 @@
       
       
         
-          
-          
-        
       
     
     
-    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
         
         
         <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_10_3" >
         
           
-          <label class="md-nav__link" for="__nav_10_3" id="__nav_10_3_label" tabindex="">
+          <label class="md-nav__link" for="__nav_10_3" id="__nav_10_3_label" tabindex="0">
             
   
   
@@ -3541,7 +3572,7 @@
   
   
     <li class="md-nav__item">
-      <a href="setup/" class="md-nav__link">
+      <a href="../api/setup/" class="md-nav__link">
         
   
   
@@ -3569,7 +3600,7 @@
   
   
     <li class="md-nav__item">
-      <a href="setup/docker-compose-configuration/" class="md-nav__link">
+      <a href="../api/setup/docker-compose-configuration/" class="md-nav__link">
         
   
   
@@ -3597,7 +3628,7 @@
   
   
     <li class="md-nav__item">
-      <a href="setup/environment-variables/" class="md-nav__link">
+      <a href="../api/setup/environment-variables/" class="md-nav__link">
         
   
   
@@ -3625,7 +3656,7 @@
   
   
     <li class="md-nav__item">
-      <a href="setup/local-dev/" class="md-nav__link">
+      <a href="../api/setup/local-dev/" class="md-nav__link">
         
   
   
@@ -3653,7 +3684,7 @@
   
   
     <li class="md-nav__item">
-      <a href="setup/production-deployment/" class="md-nav__link">
+      <a href="../api/setup/production-deployment/" class="md-nav__link">
         
   
   
@@ -3681,7 +3712,7 @@
   
   
     <li class="md-nav__item">
-      <a href="setup/troubleshooting/" class="md-nav__link">
+      <a href="../api/setup/troubleshooting/" class="md-nav__link">
         
   
   
@@ -3709,7 +3740,7 @@
   
   
     <li class="md-nav__item">
-      <a href="setup/using-different-models/" class="md-nav__link">
+      <a href="../api/setup/using-different-models/" class="md-nav__link">
         
   
   
@@ -3751,20 +3782,17 @@
       
       
         
-          
-          
-        
       
     
     
-    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
         
         
         <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_10_4" >
         
           
-          <label class="md-nav__link" for="__nav_10_4" id="__nav_10_4_label" tabindex="">
+          <label class="md-nav__link" for="__nav_10_4" id="__nav_10_4_label" tabindex="0">
             
   
   
@@ -3800,7 +3828,7 @@
   
   
     <li class="md-nav__item">
-      <a href="guides/" class="md-nav__link">
+      <a href="../api/guides/" class="md-nav__link">
         
   
   
@@ -3828,7 +3856,7 @@
   
   
     <li class="md-nav__item">
-      <a href="guides/usage-examples/" class="md-nav__link">
+      <a href="../api/guides/usage-examples/" class="md-nav__link">
         
   
   
@@ -3856,7 +3884,7 @@
   
   
     <li class="md-nav__item">
-      <a href="guides/components/" class="md-nav__link">
+      <a href="../api/guides/components/" class="md-nav__link">
         
   
   
@@ -3884,7 +3912,7 @@
   
   
     <li class="md-nav__item">
-      <a href="guides/monitoring-and-logging/" class="md-nav__link">
+      <a href="../api/guides/monitoring-and-logging/" class="md-nav__link">
         
   
   
@@ -3912,7 +3940,7 @@
   
   
     <li class="md-nav__item">
-      <a href="guides/performance-tuning/" class="md-nav__link">
+      <a href="../api/guides/performance-tuning/" class="md-nav__link">
         
   
   
@@ -4401,10 +4429,10 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#endpoints" class="md-nav__link">
+  <a href="#architecture" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Endpoints
+        Architecture
       
     </span>
   </a>
@@ -4412,10 +4440,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#setup" class="md-nav__link">
+  <a href="#testing" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Setup
+        Testing
       
     </span>
   </a>
@@ -4423,10 +4451,49 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#guides" class="md-nav__link">
+  <a href="#api-endpoints" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Guides
+        API Endpoints
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="API Endpoints">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#rl-service" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        RL Service
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#lstm-service" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        LSTM Service
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Configuration
       
     </span>
   </a>
@@ -4459,34 +4526,124 @@
   
 
 
-<h1 id="overview">Overview</h1>
-<p>This project provides a complete REST API solution for traffic signal control using trained RL models.</p>
-<h2 id="endpoints">Endpoints</h2>
-<ul>
-<li><a href="endpoints/">API Endpoints</a><ul>
-<li><a href="../api-gateway/endpoints/">Java API Gateway</a></li>
-<li><a href="../inference-service/endpoints/">Python Inference Service</a></li>
-<li><a href="../lstm/endpoints/">LSTM Traffic Predictor</a></li>
-</ul>
-</li>
-</ul>
-<h2 id="setup">Setup</h2>
-<ol>
-<li><a href="setup/">API Setup Guide</a></li>
-<li><a href="setup/docker-compose-configuration/">Docker Compose Configuration</a></li>
-<li><a href="setup/environment-variables/">Environment Variables</a></li>
-<li><a href="setup/production-deployment/">Production Deployment</a></li>
-<li><a href="setup/troubleshooting/">Troubleshooting</a></li>
-<li><a href="setup/using-different-models/">Using Different Models</a></li>
-</ol>
-<h2 id="guides">Guides</h2>
-<ol>
-<li><a href="guides/">API Guides</a></li>
-<li><a href="guides/usage-examples/">API Usage Examples</a></li>
-<li><a href="guides/components/">Components</a></li>
-<li><a href="guides/monitoring-and-logging/">Monitoring and Logging</a></li>
-<li><a href="guides/performance-tuning/">Performance Tuning</a></li>
-</ol>
+<h1 id="service-integration-guide">Service Integration Guide</h1>
+<h2 id="architecture">Architecture</h2>
+<p>RL Service (<code>8000</code>) + LSTM Service (<code>8001</code>) work together for traffic optimization.</p>
+<h2 id="testing">Testing</h2>
+<p>Run the integration test:
+<div class="highlight"><pre><span></span><code>python<span class="w"> </span>lstm-predictor-service/test_rl_integration.py
+</code></pre></div></p>
+<h2 id="api-endpoints">API Endpoints</h2>
+<h3 id="rl-service">RL Service</h3>
+<div class="admonition success">
+<p class="admonition-title">POST <code>/predict_action</code></p>
+<p>Get signal phase</p>
+</div>
+<div class="admonition success">
+<p class="admonition-title">POST <code>/reset_hidden</code></p>
+<p>Reset hidden states</p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">GET <code>/health</code></p>
+<p>Health check</p>
+</div>
+<h3 id="lstm-service">LSTM Service</h3>
+<div class="admonition success">
+<p class="admonition-title">POST <code>/predict</code></p>
+<p>Density prediction</p>
+</div>
+<div class="admonition success">
+<p class="admonition-title">POST <code>/predict-batch</code></p>
+<p>Batch predictions</p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">GET <code>/health</code></p>
+<p>Health check</p>
+</div>
+<h2 id="configuration">Configuration</h2>
+<p>See .env.example in each service directory.</p>
+<div class="highlight"><span class="filename">rl-inference-service\.env.example</span><pre><span></span><code><span class="c1"># RL Inference Service Configuration</span>
+
+<span class="c1"># Server</span>
+<span class="n">API_HOST</span><span class="o">=</span><span class="mf">0.0.0.0</span>
+<span class="n">API_PORT</span><span class="o">=</span><span class="mi">8000</span>
+
+<span class="c1"># Model</span>
+<span class="n">MAPPO_AGENT_PATH</span><span class="o">=</span><span class="n">app</span><span class="o">/</span><span class="n">trained_models</span><span class="o">/</span><span class="n">agent</span><span class="o">.</span><span class="n">th</span>
+
+<span class="c1"># Development mode</span>
+<span class="n">API_RELOAD</span><span class="o">=</span><span class="n">false</span>
+
+<span class="o">---</span>
+
+<span class="c1"># AWS Deployment (Optional)</span>
+
+<span class="c1"># EC2/ECS Task Definition</span>
+<span class="n">AWS_REGION</span><span class="o">=</span><span class="n">eu</span><span class="o">-</span><span class="n">west</span><span class="o">-</span><span class="mi">1</span>
+<span class="n">AWS_INSTANCE_TYPE</span><span class="o">=</span><span class="n">t3</span><span class="o">.</span><span class="n">micro</span>
+
+<span class="c1"># ECS Task Configuration</span>
+<span class="n">AWS_ECS_TASK_CPU</span><span class="o">=</span><span class="mi">512</span>
+<span class="n">AWS_ECS_TASK_MEMORY</span><span class="o">=</span><span class="mi">1024</span>
+<span class="n">AWS_ECS_CONTAINER_PORT</span><span class="o">=</span><span class="mi">8000</span>
+
+<span class="c1"># AppRunner (serverless container)</span>
+<span class="n">AWS_APPRUNNER_SERVICE_NAME</span><span class="o">=</span><span class="n">rl</span><span class="o">-</span><span class="n">inference</span><span class="o">-</span><span class="n">service</span>
+<span class="n">AWS_APPRUNNER_INSTANCE_ROLE_ARN</span><span class="o">=</span><span class="n">arn</span><span class="p">:</span><span class="n">aws</span><span class="p">:</span><span class="n">iam</span><span class="p">::</span><span class="n">ACCOUNT_ID</span><span class="p">:</span><span class="n">role</span><span class="o">/</span><span class="n">AppRunnerServiceRole</span>
+
+<span class="c1"># Optional: Performance monitoring</span>
+<span class="n">AWS_XRAY_ENABLED</span><span class="o">=</span><span class="n">false</span>
+<span class="n">AWS_XRAY_DAEMON_ADDRESS</span><span class="o">=</span><span class="mf">127.0.0.1</span><span class="p">:</span><span class="mi">2000</span>
+</code></pre></div>
+<div class="highlight"><span class="filename">rl-inference-service\.env.example</span><pre><span></span><code><span class="c1"># LSTM Traffic Predictor Configuration</span>
+
+<span class="c1"># Server</span>
+<span class="n">API_HOST</span><span class="o">=</span><span class="mf">0.0.0.0</span>
+<span class="n">API_PORT</span><span class="o">=</span><span class="mi">8001</span>
+
+<span class="c1"># Model paths (for Docker/production)</span>
+<span class="n">MODEL_PATH</span><span class="o">=</span><span class="n">app</span><span class="o">/</span><span class="n">trained_models</span><span class="o">/</span><span class="n">lstm_model</span><span class="o">.</span><span class="n">keras</span>
+<span class="n">SCALER_PATH</span><span class="o">=</span><span class="n">app</span><span class="o">/</span><span class="n">trained_models</span><span class="o">/</span><span class="n">scaler</span><span class="o">.</span><span class="n">pkl</span>
+
+<span class="c1"># Logging</span>
+<span class="n">LOG_LEVEL</span><span class="o">=</span><span class="n">INFO</span>
+
+<span class="c1"># Optional: Development mode (auto-reload on code changes)</span>
+<span class="n">API_RELOAD</span><span class="o">=</span><span class="n">false</span>
+
+<span class="o">---</span>
+
+<span class="c1"># AWS Deployment (Optional)</span>
+
+<span class="c1"># EC2/ECS Task Definition</span>
+<span class="n">AWS_REGION</span><span class="o">=</span><span class="n">eu</span><span class="o">-</span><span class="n">west</span><span class="o">-</span><span class="mi">1</span>
+<span class="n">AWS_INSTANCE_TYPE</span><span class="o">=</span><span class="n">t3</span><span class="o">.</span><span class="n">micro</span>
+
+<span class="c1"># S3 (for model storage/backup)</span>
+<span class="n">AWS_S3_BUCKET</span><span class="o">=</span><span class="n">lstm</span><span class="o">-</span><span class="n">traffic</span><span class="o">-</span><span class="n">models</span>
+<span class="n">AWS_S3_MODEL_KEY</span><span class="o">=</span><span class="n">lstm_model</span><span class="o">.</span><span class="n">keras</span>
+<span class="n">AWS_S3_SCALER_KEY</span><span class="o">=</span><span class="n">scaler</span><span class="o">.</span><span class="n">pkl</span>
+
+<span class="c1"># CloudWatch Logging</span>
+<span class="n">AWS_CLOUDWATCH_LOG_GROUP</span><span class="o">=/</span><span class="n">aws</span><span class="o">/</span><span class="n">lstm</span><span class="o">-</span><span class="n">predictor</span>
+<span class="n">AWS_CLOUDWATCH_LOG_STREAM</span><span class="o">=</span><span class="n">inference</span><span class="o">-</span><span class="n">service</span>
+
+<span class="c1"># Secrets Manager (for sensitive config)</span>
+<span class="n">AWS_SECRETS_MANAGER_NAME</span><span class="o">=</span><span class="n">lstm</span><span class="o">-</span><span class="n">predictor</span><span class="o">-</span><span class="n">config</span>
+
+<span class="c1"># ECS Task Configuration</span>
+<span class="n">AWS_ECS_TASK_CPU</span><span class="o">=</span><span class="mi">512</span>
+<span class="n">AWS_ECS_TASK_MEMORY</span><span class="o">=</span><span class="mi">1024</span>
+<span class="n">AWS_ECS_CONTAINER_PORT</span><span class="o">=</span><span class="mi">8001</span>
+
+<span class="c1"># AppRunner (serverless container)</span>
+<span class="n">AWS_APPRUNNER_SERVICE_NAME</span><span class="o">=</span><span class="n">lstm</span><span class="o">-</span><span class="n">predictor</span><span class="o">-</span><span class="n">service</span>
+<span class="n">AWS_APPRUNNER_INSTANCE_ROLE_ARN</span><span class="o">=</span><span class="n">arn</span><span class="p">:</span><span class="n">aws</span><span class="p">:</span><span class="n">iam</span><span class="p">::</span><span class="n">ACCOUNT_ID</span><span class="p">:</span><span class="n">role</span><span class="o">/</span><span class="n">AppRunnerServiceRole</span>
+
+<span class="c1"># Optional: Performance monitoring</span>
+<span class="n">AWS_XRAY_ENABLED</span><span class="o">=</span><span class="n">false</span>
+<span class="n">AWS_XRAY_DAEMON_ADDRESS</span><span class="o">=</span><span class="mf">127.0.0.1</span><span class="p">:</span><span class="mi">2000</span>
+</code></pre></div>
 
 
 
@@ -4522,7 +4679,7 @@
       <nav class="md-footer__inner md-grid" aria-label="Footer" >
         
           
-          <a href="../setup-complete/documentation-files/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Documentation Files">
+          <a href="../lstm/key-features/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Key Features">
             <div class="md-footer__button md-icon">
               
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
@@ -4532,20 +4689,20 @@
                 Previous
               </span>
               <div class="md-ellipsis">
-                Documentation Files
+                Key Features
               </div>
             </div>
           </a>
         
         
           
-          <a href="endpoints/" class="md-footer__link md-footer__link--next" aria-label="Next: Endpoints">
+          <a href="../sumo/" class="md-footer__link md-footer__link--next" aria-label="Next: Overview">
             <div class="md-footer__title">
               <span class="md-footer__direction">
                 Next
               </span>
               <div class="md-ellipsis">
-                Endpoints
+                Overview
               </div>
             </div>
             <div class="md-footer__button md-icon">
