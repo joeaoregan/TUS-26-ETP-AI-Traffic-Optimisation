@@ -128,8 +128,14 @@ model.save_weights(weights_path)
 print(f"{Fore.GREEN}✓ Weights saved to {weights_path}")
 
 # Save scaler
-scaler_path = os.path.join(model_dir, 'scaler.pkl')
-pickle.dump(scaler, open(scaler_path, 'wb'))
+# scaler_path = os.path.join(model_dir, 'scaler.pkl')
+# pickle.dump(scaler, open(scaler_path, 'wb'))
+# print(f"{Fore.GREEN}✓ Scaler saved to {scaler_path}")
+
+# Save scaler using joblib (more robust than pickle)
+scaler_path = os.path.join(model_dir, 'scaler.joblib')
+import joblib
+joblib.dump(scaler, scaler_path)
 print(f"{Fore.GREEN}✓ Scaler saved to {scaler_path}")
 
 print(f"\n{Fore.CYAN}=== Training Complete ===")
