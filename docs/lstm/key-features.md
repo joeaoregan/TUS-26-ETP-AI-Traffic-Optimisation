@@ -60,8 +60,8 @@ Trained on the 5 most congested edges from SUMO simulation:
 
 ## Integration
 
-- [ ] **RL Inference Service**: Can consume predictions for context-aware signal timing decisions
-- [ ] **API Gateway**: Can proxy `/predict` requests with unified authentication
+- [x] **RL Inference Service**: Runs in parallel — gateway calls both RL and LSTM independently
+- [x] **API Gateway**: Proxies `/predict` via `GET /api/traffic/forecast` and `POST /api/traffic/forecast-batch` with JWT authentication
 - [x] **SUMO Source**: Uses simulation outputs (`edgeData.xml`) as training data
 
 ## Future Enhancements
