@@ -2,6 +2,8 @@ package com.example.gateway.service;
 
 import com.example.gateway.dto.HealthResponse;
 import com.example.gateway.exception.RlInferenceException;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
@@ -136,93 +138,25 @@ public class LstmPredictorClient {
 	/**
 	 * Response DTO for single prediction.
 	 */
+	@Data
+	@NoArgsConstructor
 	public static class PredictorResponse {
 		private List<Double> prediction;
 		private List<String> edge_ids;
 		private String timestamp;
 		private Double inference_time_ms;
-
-		public List<Double> getPrediction() {
-			return prediction;
-		}
-
-		public void setPrediction(List<Double> prediction) {
-			this.prediction = prediction;
-		}
-
-		public List<String> getEdge_ids() {
-			return edge_ids;
-		}
-
-		public void setEdge_ids(List<String> edge_ids) {
-			this.edge_ids = edge_ids;
-		}
-
-		public String getTimestamp() {
-			return timestamp;
-		}
-
-		public void setTimestamp(String timestamp) {
-			this.timestamp = timestamp;
-		}
-
-		public Double getInference_time_ms() {
-			return inference_time_ms;
-		}
-
-		public void setInference_time_ms(Double inference_time_ms) {
-			this.inference_time_ms = inference_time_ms;
-		}
 	}
 
 	/**
 	 * Response DTO for batch prediction.
 	 */
+	@Data
+	@NoArgsConstructor
 	public static class BatchPredictorResponse {
 		private List<List<Double>> predictions;
 		private List<String> edge_ids;
 		private String timestamp;
 		private Double inference_time_ms;
 		private Integer num_predictions;
-
-		public List<List<Double>> getPredictions() {
-			return predictions;
-		}
-
-		public void setPredictions(List<List<Double>> predictions) {
-			this.predictions = predictions;
-		}
-
-		public List<String> getEdge_ids() {
-			return edge_ids;
-		}
-
-		public void setEdge_ids(List<String> edge_ids) {
-			this.edge_ids = edge_ids;
-		}
-
-		public String getTimestamp() {
-			return timestamp;
-		}
-
-		public void setTimestamp(String timestamp) {
-			this.timestamp = timestamp;
-		}
-
-		public Double getInference_time_ms() {
-			return inference_time_ms;
-		}
-
-		public void setInference_time_ms(Double inference_time_ms) {
-			this.inference_time_ms = inference_time_ms;
-		}
-
-		public Integer getNum_predictions() {
-			return num_predictions;
-		}
-
-		public void setNum_predictions(Integer num_predictions) {
-			this.num_predictions = num_predictions;
-		}
 	}
 }
