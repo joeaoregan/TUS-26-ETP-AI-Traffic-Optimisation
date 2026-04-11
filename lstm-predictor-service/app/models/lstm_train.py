@@ -17,6 +17,7 @@ from colorama import Fore, Back, Style, init
 init(autoreset=True)
 
 # Parse edgeData.xml
+# tree = ET.parse('SUMO/Results/MAPPO/edgeData.xml')
 tree = ET.parse('SUMO/Results/MAPPO/edgeData.xml')
 root = tree.getroot()
 
