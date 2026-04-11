@@ -75,7 +75,8 @@ app.mount("/images", StaticFiles(directory="app/images"), name="images")
 # Load model and scaler at startup
 # WEIGHTS_PATH = 'app/trained_models/lstm_model_weights.h5'
 # Load model and scaler at startup
-SCALER_PATH = 'app/trained_models/scaler.pkl'
+# SCALER_PATH = 'app/trained_models/scaler.pkl'
+SCALER_PATH = 'app/trained_models/scaler.joblib'
 WEIGHTS_PATH = 'app/trained_models/lstm_model.weights.h5'
 
 # Define model architecture
@@ -98,8 +99,16 @@ except Exception as e:
     print(f"{Fore.RED}✗ Error loading model: {e}")
     model = None
 
+# try:
+#     scaler = pickle.load(open(SCALER_PATH, 'rb'))
+#     print(f"{Fore.GREEN}✓ Scaler loaded successfully")
+# except Exception as e:
+#     print(f"{Fore.RED}✗ Error loading scaler: {e}")
+#     scaler = None
+
 try:
-    scaler = pickle.load(open(SCALER_PATH, 'rb'))
+    import joblib
+    scaler = joblib.load(SCALER_PATH)
     print(f"{Fore.GREEN}✓ Scaler loaded successfully")
 except Exception as e:
     print(f"{Fore.RED}✗ Error loading scaler: {e}")
