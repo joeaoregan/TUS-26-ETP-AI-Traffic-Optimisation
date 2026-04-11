@@ -73,11 +73,12 @@ app.mount("/images", StaticFiles(directory="app/images"), name="images")
 # MODEL_PATH = 'app/trained_models/lstm_model.keras'
 # MODEL_PATH = 'app/trained_models/lstm_model'
 # Load model and scaler at startup
-SCALER_PATH = 'app/trained_models/scaler.pkl'
 # WEIGHTS_PATH = 'app/trained_models/lstm_model_weights.h5'
+# Load model and scaler at startup
+SCALER_PATH = 'app/trained_models/scaler.pkl'
 WEIGHTS_PATH = 'app/trained_models/lstm_model.weights.h5'
 
-# Define model architecture (doesn't deserialize from config)
+# Define model architecture
 def create_model():
     from tensorflow.keras.layers import LSTM, Dense, Dropout
     from tensorflow.keras.models import Sequential
@@ -92,11 +93,16 @@ def create_model():
 try:
     model = create_model()
     model.load_weights(WEIGHTS_PATH)
-    scaler = pickle.load(open(SCALER_PATH, 'rb'))
-    print(f"{Fore.GREEN}✓ Model and scaler loaded successfully")
-except FileNotFoundError as e:
+    print(f"{Fore.GREEN}✓ Model loaded successfully")
+except Exception as e:
     print(f"{Fore.RED}✗ Error loading model: {e}")
     model = None
+
+try:
+    scaler = pickle.load(open(SCALER_PATH, 'rb'))
+    print(f"{Fore.GREEN}✓ Scaler loaded successfully")
+except Exception as e:
+    print(f"{Fore.RED}✗ Error loading scaler: {e}")
     scaler = None
 
 # Metrics tracking
