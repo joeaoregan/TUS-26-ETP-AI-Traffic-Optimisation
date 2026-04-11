@@ -16,7 +16,7 @@
 
 - **Container**: Docker (Python 3.9-slim base)
 - **Port**: 8001 (configurable via `API_PORT`)
-- **Production URL**: https://lstm-predictor-service.onrender.com (planned)
+- **Production URL**: https://lstm-predictor-service.onrender.com
 - **Local Development**: http://localhost:8001
 
 ## Configuration
