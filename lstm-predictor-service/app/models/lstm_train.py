@@ -8,7 +8,6 @@ import xml.etree.ElementTree as ET
 import joblib
 import numpy as np
 import pandas as pd
-import tensorflow as tf
 from colorama import Fore, init
 from sklearn.metrics import mean_absolute_error, mean_squared_error
 from sklearn.model_selection import train_test_split
@@ -38,11 +37,12 @@ SCALER_FILENAME = "scaler.joblib"
 EXPORT_KERAS_MODEL = False      # writes lstm_model.keras
 EXPORT_SAVEDMODEL = False       # writes lstm_model_tf/ (SavedModel directory)
 
+
 # Helper function to create sequences for LSTMs
 def create_sequences(data: np.ndarray, seq_length: int = 3):
     X, y = [], []
     for i in range(len(data) - seq_length):
-        X.append(data[i : i + seq_length])
+        X.append(data[i:i + seq_length])
         y.append(data[i + seq_length])
     return np.array(X), np.array(y)
 
@@ -50,7 +50,6 @@ def create_sequences(data: np.ndarray, seq_length: int = 3):
 # Load + prepare data
 # -------------------
 # Parse edgeData.xml
-# tree = ET.parse('SUMO/Results/MAPPO/edgeData.xml')
 tree = ET.parse(EDGE_DATA_XML)
 root = tree.getroot()
 
@@ -137,41 +136,10 @@ os.makedirs(model_dir, exist_ok=True)
 # Save model in multiple formats
 print(f"\n{Fore.CYAN}=== Saving Models ===")
 
-# # 1. HDF5 (legacy - keep for documentation)
-# hdf5_path = os.path.join(model_dir, 'lstm_model.h5')
-# # model.save(hdf5_path)  # Commented out - using newer formats instead
-# print(f"{Fore.LIGHTBLACK_EX}[SKIPPED] HDF5 format (legacy)")
-
-# # 2. Keras native format (modern, efficient)
-# keras_path = os.path.join(model_dir, 'lstm_model.keras')
-# model.save(keras_path)
-# print(f"{Fore.GREEN}✓ Keras format saved to {keras_path}")
-
-# # 3. TensorFlow SavedModel (production deployment)
-# # Note: Keras 3 uses model.export() instead of save_format='tf'
-# tf_path = os.path.join(model_dir, 'lstm_model_tf')
-# model.export(tf_path)
-# print(f"{Fore.GREEN}✓ TensorFlow SavedModel saved to {tf_path}")
-
-# # Save scaler
-# scaler_path = os.path.join(model_dir, 'scaler.pkl')
-# pickle.dump(scaler, open(scaler_path, 'wb'))
-# print(f"{Fore.GREEN}✓ Scaler saved to {scaler_path}")
-
-# print(f"\n{Fore.CYAN}=== Training Complete ===")
-# print(f"{Fore.YELLOW}Models ready for inference in: {model_dir}")
-
 # Save weights only (avoids Keras 3.x serialization issues)
-
-# weights_path = os.path.join(model_dir, 'lstm_model_weights.h5')
 weights_path = os.path.join(model_dir, WEIGHTS_FILENAME)
 model.save_weights(weights_path)
 print(f"{Fore.GREEN}✓ Weights saved to {weights_path}")
-
-# Save scaler
-# scaler_path = os.path.join(model_dir, 'scaler.pkl')
-# pickle.dump(scaler, open(scaler_path, 'wb'))
-# print(f"{Fore.GREEN}✓ Scaler saved to {scaler_path}")
 
 # Save scaler using joblib (more robust than pickle)
 scaler_path = os.path.join(model_dir, SCALER_FILENAME)

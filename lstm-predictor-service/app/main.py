@@ -1,17 +1,17 @@
 # main.py
 # FastAPI service for LSTM traffic prediction
 
-from fastapi import FastAPI, HTTPException
-from fastapi.responses import FileResponse
-from fastapi.staticfiles import StaticFiles
-from fastapi.openapi.utils import get_openapi
-from pydantic import BaseModel
-import tensorflow as tf
-import pickle
+import os
+import time
+from datetime import datetime
+
 import numpy as np
 from colorama import Fore, init
-from datetime import datetime
-import time
+from fastapi import FastAPI, HTTPException
+from fastapi.openapi.docs import get_swagger_ui_html
+from fastapi.responses import FileResponse
+from fastapi.staticfiles import StaticFiles
+from pydantic import BaseModel, ConfigDict
 
 init(autoreset=True)
 
@@ -61,23 +61,20 @@ Predicts traffic density for the next hour based on 3 hourly measurements from t
     }
 )
 
+
 @app.get("/favicon.ico", include_in_schema=False)
 async def favicon():
     favicon_path = "app/images/favicon.ico"
     return FileResponse(favicon_path, media_type="image/x-icon")
 
+
 # Mount static files
 app.mount("/images", StaticFiles(directory="app/images"), name="images")
 
 # Load model and scaler at startup
-# MODEL_PATH = 'app/trained_models/lstm_model.keras'
-# MODEL_PATH = 'app/trained_models/lstm_model'
-# Load model and scaler at startup
-# WEIGHTS_PATH = 'app/trained_models/lstm_model_weights.h5'
-# Load model and scaler at startup
-# SCALER_PATH = 'app/trained_models/scaler.pkl'
 SCALER_PATH = 'app/trained_models/scaler.joblib'
 WEIGHTS_PATH = 'app/trained_models/lstm_model.weights.h5'
+
 
 # Define model architecture
 def create_model():
@@ -91,6 +88,7 @@ def create_model():
         Dense(5)
     ])
 
+
 try:
     model = create_model()
     model.load_weights(WEIGHTS_PATH)
@@ -98,13 +96,6 @@ try:
 except Exception as e:
     print(f"{Fore.RED}✗ Error loading model: {e}")
     model = None
-
-# try:
-#     scaler = pickle.load(open(SCALER_PATH, 'rb'))
-#     print(f"{Fore.GREEN}✓ Scaler loaded successfully")
-# except Exception as e:
-#     print(f"{Fore.RED}✗ Error loading scaler: {e}")
-#     scaler = None
 
 try:
     import joblib
@@ -123,7 +114,6 @@ prediction_metrics = {
     "inference_times": []  # Track last 100 for rolling average
 }
 
-from pydantic import ConfigDict
 
 class PredictionRequest(BaseModel):
     """
@@ -131,7 +121,7 @@ class PredictionRequest(BaseModel):
     Shape: (3, 5) - 3 timesteps, 5 edges
     """
     data: list[list[float]]
-    
+
     model_config = ConfigDict(
         json_schema_extra={
             "example": {
@@ -144,6 +134,7 @@ class PredictionRequest(BaseModel):
         }
     )
 
+
 class PredictionResponse(BaseModel):
     """Predicted density for next hour (5 edges)"""
     prediction: list[float]
@@ -151,16 +142,17 @@ class PredictionResponse(BaseModel):
     timestamp: str = None
     inference_time_ms: float = None
 
+
 class BatchPredictionRequest(BaseModel):
     """
     Batch prediction for multiple sequences.
     Each sequence is 3 timesteps x 5 edges.
-    
+
     Use case: Get multi-step ahead forecasts for RL service.
-    Example: 3 sequences → 3 consecutive hourly predictions
+    Example: 3 sequences -> 3 consecutive hourly predictions
     """
     sequences: list[list[list[float]]]
-    
+
     model_config = ConfigDict(
         json_schema_extra={
             "example": {
@@ -185,6 +177,7 @@ class BatchPredictionRequest(BaseModel):
         }
     )
 
+
 class BatchPredictionResponse(BaseModel):
     """Multiple predictions for batch request"""
     predictions: list[list[float]]
@@ -192,6 +185,7 @@ class BatchPredictionResponse(BaseModel):
     timestamp: str = None
     inference_time_ms: float = None
     num_predictions: int = None
+
 
 # Routes
 @app.get("/health")
@@ -206,69 +200,71 @@ def health_check():
         "version": "1.0.0"
     }
 
+
 @app.post("/predict")
 def predict(request: PredictionRequest) -> PredictionResponse:
     """
     Predict traffic density for next hour
-    
+
     Input: 3 hourly edge density measurements (raw values)
     Output: Predicted density for each edge at next hour
-    
+
     **RL Service Integration**: Call this endpoint to get 1-hour ahead density predictions.
     """
     if model is None or scaler is None:
         raise HTTPException(status_code=503, detail="Model not loaded")
-    
+
     start_time = time.time()
-    
+
     try:
         # Convert to numpy array
         raw_data = np.array(request.data, dtype=np.float32)
-        
+
         # Validate shape
         if raw_data.shape != (3, 5):
             raise ValueError(f"Expected shape (3, 5), got {raw_data.shape}")
-        
+
         # Normalize
         normalized = scaler.transform(raw_data)
-        
+
         # Reshape for LSTM (batch_size=1, timesteps=3, features=5)
         input_sequence = np.expand_dims(normalized, axis=0)
-        
+
         # Predict
         prediction_normalized = model.predict(input_sequence, verbose=0)
-        
+
         # Denormalize
         prediction_raw = scaler.inverse_transform(prediction_normalized)[0]
-        
+
         # Edge IDs (from training data)
         edge_ids = ['-269002813', '-55825089', '617128762', '-617128762', '-312266114#2']
-        
+
         # Calculate inference time
         inference_time = (time.time() - start_time) * 1000  # Convert to ms
-        
+
         # Update metrics
         prediction_metrics["total_predictions"] += 1
         prediction_metrics["inference_times"].append(inference_time)
-        
+
         # Keep only last 100 inference times for rolling average
         if len(prediction_metrics["inference_times"]) > 100:
             prediction_metrics["inference_times"].pop(0)
-        
+
         prediction_metrics["avg_inference_time_ms"] = np.mean(prediction_metrics["inference_times"])
         prediction_metrics["last_prediction_time"] = datetime.now().isoformat()
-        
+
         # Log prediction
-        print(f"{Fore.GREEN}✓ Prediction #{prediction_metrics['total_predictions']} generated in {inference_time:.2f}ms")
+        total = prediction_metrics['total_predictions']
+        print(f"{Fore.GREEN}✓ Prediction #{total} generated in {inference_time:.2f}ms")
         print(f"{Fore.CYAN}  Predicted densities: {[f'{p:.2f}' for p in prediction_raw.tolist()]}")
-        
+
         return PredictionResponse(
             prediction=prediction_raw.tolist(),
             edge_ids=edge_ids,
             timestamp=prediction_metrics["last_prediction_time"],
             inference_time_ms=inference_time
         )
-    
+
     except ValueError as e:
         print(f"{Fore.RED}✗ Validation error: {e}")
         raise HTTPException(status_code=400, detail=str(e))
@@ -276,80 +272,83 @@ def predict(request: PredictionRequest) -> PredictionResponse:
         print(f"{Fore.RED}✗ Prediction error: {e}")
         raise HTTPException(status_code=500, detail=f"Prediction error: {str(e)}")
 
+
 @app.post("/predict-batch")
 def predict_batch(request: BatchPredictionRequest) -> BatchPredictionResponse:
     """
     Batch prediction for multiple sequences.
-    
+
     Use case: Get multi-step ahead forecasts for RL service planning.
-    
+
     Input: List of sequences, each with 3 timesteps x 5 edges
     Output: List of predictions, one per input sequence
-    
+
     Example: Pass 3 consecutive sequences to get hours 4, 5, 6 predictions.
-    
+
     **RL Service Integration**: Use this for lookahead planning and proactive signal timing.
     """
     if model is None or scaler is None:
         raise HTTPException(status_code=503, detail="Model not loaded")
-    
+
     start_time = time.time()
-    
+
     try:
         sequences = request.sequences
-        
+
         # Validate number of sequences
         if not sequences or len(sequences) == 0:
             raise ValueError("At least 1 sequence required")
-        
+
         if len(sequences) > 100:
             raise ValueError("Maximum 100 sequences per request")
-        
+
         # Validate and normalize all sequences
         normalized_sequences = []
         for i, seq in enumerate(sequences):
             raw_seq = np.array(seq, dtype=np.float32)
-            
+
             if raw_seq.shape != (3, 5):
                 raise ValueError(f"Sequence {i}: expected shape (3, 5), got {raw_seq.shape}")
-            
+
             normalized_seq = scaler.transform(raw_seq)
             normalized_sequences.append(normalized_seq)
-        
+
         # Convert to batch array (N, 3, 5)
         batch_data = np.array(normalized_sequences, dtype=np.float32)
-        
+
         # Predict all sequences in batch
         predictions_normalized = model.predict(batch_data, verbose=0)
-        
+
         # Denormalize all predictions
         predictions_raw = scaler.inverse_transform(predictions_normalized)
-        
+
         # Convert to list format
         predictions_list = predictions_raw.tolist()
-        
+
         # Edge IDs (from training data)
         edge_ids = ['-269002813', '-55825089', '617128762', '-617128762', '-312266114#2']
-        
+
         # Calculate inference time
         inference_time = (time.time() - start_time) * 1000  # Convert to ms
-        
+
         # Update metrics
         prediction_metrics["total_batch_predictions"] += 1
         prediction_metrics["inference_times"].append(inference_time)
-        
+
         # Keep only last 100 inference times for rolling average
         if len(prediction_metrics["inference_times"]) > 100:
             prediction_metrics["inference_times"].pop(0)
-        
+
         prediction_metrics["avg_inference_time_ms"] = np.mean(prediction_metrics["inference_times"])
         prediction_metrics["last_prediction_time"] = datetime.now().isoformat()
-        
+
         # Log batch prediction
-        print(f"{Fore.GREEN}✓ Batch prediction #{prediction_metrics['total_batch_predictions']} ({len(sequences)} sequences) generated in {inference_time:.2f}ms")
+        total = prediction_metrics['total_batch_predictions']
+        n_seq = len(sequences)
+        print(f"{Fore.GREEN}✓ Batch prediction #{total} ({n_seq} sequences) in {inference_time:.2f}ms")
         for idx, pred in enumerate(predictions_list):
             print(f"{Fore.CYAN}  Sequence {idx}: {[f'{p:.2f}' for p in pred]}")
-        
+
         return BatchPredictionResponse(
             predictions=predictions_list,
             edge_ids=edge_ids,
@@ -357,7 +356,7 @@ def predict_batch(request: BatchPredictionRequest) -> BatchPredictionResponse:
             inference_time_ms=inference_time,
             num_predictions=len(sequences)
         )
-    
+
     except ValueError as e:
         print(f"{Fore.RED}✗ Validation error: {e}")
         raise HTTPException(status_code=400, detail=str(e))
@@ -365,12 +364,13 @@ def predict_batch(request: BatchPredictionRequest) -> BatchPredictionResponse:
         print(f"{Fore.RED}✗ Batch prediction error: {e}")
         raise HTTPException(status_code=500, detail=f"Prediction error: {str(e)}")
 
+
 @app.get("/model-info")
 def model_info():
     """Get model specifications"""
     if model is None:
         raise HTTPException(status_code=503, detail="Model not loaded")
-    
+
     return {
         "model_type": "LSTM",
         "input_shape": (3, 5),
@@ -386,11 +386,12 @@ def model_info():
         "max_batch_size": 100
     }
 
+
 @app.get("/metrics")
 def get_metrics():
     """
     Get service performance metrics
-    
+
     Returns:
     - total_predictions: Number of single predictions served
     - total_batch_predictions: Number of batch predictions served
@@ -399,7 +400,7 @@ def get_metrics():
     - service_status: Health status
     """
     status = "healthy" if model and scaler else "unhealthy"
-    
+
     return {
         "service": "lstm-predictor",
         "version": "1.0.0",
@@ -412,7 +413,6 @@ def get_metrics():
         "scaler_loaded": scaler is not None
     }
 
-from fastapi.openapi.docs import get_swagger_ui_html
 
 @app.get("/docs", include_in_schema=False)
 async def custom_swagger_ui_html():

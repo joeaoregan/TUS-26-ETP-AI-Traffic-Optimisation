@@ -1,16 +1,10 @@
 # lstm_model.py
 # Prepares the data from SUMO edgeData.xml and builds an LSTM model for traffic prediction.
 
-# import torch
-# import torch.nn as nn
+import xml.etree.ElementTree as ET
 
 import pandas as pd
-import numpy as np
 from sklearn.preprocessing import MinMaxScaler
-import tensorflow as tf
-from tensorflow.keras.models import Sequential
-from tensorflow.keras.layers import LSTM, Dense, Dropout
-import xml.etree.ElementTree as ET
 
 # Parse edgeData.xml
 tree = ET.parse('SUMO/Results/MAPPO/edgeData.xml')
