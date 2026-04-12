@@ -88,6 +88,19 @@
 		    <artifactId>springdoc-openapi-starter-webmvc-ui</artifactId>
 		    <version>2.5.0</version>
 		</dependency>
+
+        <!-- Monitoring & Metrics -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-actuator</artifactId>
+        </dependency>
+
+        <!-- Security test support -->
+        <dependency>
+            <groupId>org.springframework.security</groupId>
+            <artifactId>spring-security-test</artifactId>
+            <scope>test</scope>
+        </dependency>
     </dependencies>
 
     <build>

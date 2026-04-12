@@ -1,0 +1,34 @@
+# docker-compose.tls.yml — TLS overlay for inter-service encryption
+# Usage: docker compose -f docker-compose.yml -f docker-compose.tls.yml up
+#
+# Prerequisites: Run ./tls/generate-certs.sh first to create certificates.
+# This enables TLS 1.3 between all microservices as described in the
+# security architecture (Article Section VI).
+
+services:
+  rl-inference:
+    environment:
+      TLS_ENABLED: "true"
+      TLS_CERT_FILE: /certs/server.crt
+      TLS_KEY_FILE: /certs/server.key
+      TLS_CA_FILE: /certs/ca.crt
+    volumes:
+      - ./tls/certs:/certs:ro
+
+  lstm-predictor:
+    environment:
+      TLS_ENABLED: "true"
+      TLS_CERT_FILE: /certs/server.crt
+      TLS_KEY_FILE: /certs/server.key
+      TLS_CA_FILE: /certs/ca.crt
+    volumes:
+      - ./tls/certs:/certs:ro
+
+  java-gateway:
+    environment:
+      RL_INFERENCE_URL: https://rl-inference:8000/predict_action
+      LSTM_PREDICTOR_URL: https://lstm-predictor:8001/predict
+      JAVAX_NET_SSL_TRUSTSTORE: /certs/truststore.jks
+      JAVAX_NET_SSL_TRUSTSTOREPASSWORD: changeit
+    volumes:
+      - ./tls/certs:/certs:ro

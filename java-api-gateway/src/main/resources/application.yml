@@ -35,6 +35,22 @@ spring:
       connect-timeout: 5000
       read-timeout: 10000
 
+# Actuator — exposes health, metrics, and info endpoints
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info,metrics,prometheus
+  endpoint:
+    health:
+      show-details: when-authorized
+  info:
+    env:
+      enabled: true
+  metrics:
+    tags:
+      application: traffic-control-gateway
+
 springdoc:
   api-docs:
     path: /v3/api-docs

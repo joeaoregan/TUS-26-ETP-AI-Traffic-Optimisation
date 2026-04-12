@@ -425,4 +425,18 @@ async def custom_swagger_ui_html():
 
 if __name__ == "__main__":
     import uvicorn
-    uvicorn.run(app, host="0.0.0.0", port=8001)
+
+    ssl_kwargs = {}
+    if os.getenv("TLS_ENABLED", "false").lower() == "true":
+        ssl_kwargs = {
+            "ssl_certfile": os.getenv("TLS_CERT_FILE"),
+            "ssl_keyfile": os.getenv("TLS_KEY_FILE"),
+            "ssl_ca_certs": os.getenv("TLS_CA_FILE"),
+        }
+
+    uvicorn.run(
+        app,
+        host=os.getenv("API_HOST", "0.0.0.0"),
+        port=int(os.getenv("API_PORT", 8001)),
+        **ssl_kwargs,
+    )

@@ -45,13 +45,13 @@
 <details>
   <summary>🛠️ API Setup — Docker, Environment Variables, Components, Examples, Monitoring</summary>
 
-- [🐳 Docker Compose Configuration](docs/api/setup/docker-compose.md)
+- [🐳 Docker Compose Configuration](docs/api/setup/docker-compose-configuration.md)
 - [🔐 Environment Variables](docs/api/setup/environment-variables.md)
-- [🚗 Local Development Setup](docs/api/setup/local-development.md)
+- [🚗 Local Development Setup](docs/api/setup/local-dev.md)
 - [🌍 Production Deployment](docs/api/setup/production-deployment.md)
 - [🧩 Components Overview](docs/api/guides/components.md)
 - [📡 API Usage Examples](docs/api/guides/usage-examples.md)
-- [📊 Monitoring and Logging](docs/api/guides/monitoring-logging.md)
+- [📊 Monitoring and Logging](docs/api/guides/monitoring-and-logging.md)
 - [⚡ Performance Tuning](docs/api/guides/performance-tuning.md)
 - [🔄 Using Different Models](docs/api/setup/using-different-models.md)
 - [🐛 Troubleshooting](docs/api/setup/troubleshooting.md)
@@ -306,24 +306,30 @@ TUS-26-ETP-AI-Traffic-Optimisation/
 │   └── images/
 │       └── logo.png
 ├── SUMO/                                   # SUMO traffic simulation (Athlone network)
-│   ├── osm.net.xml.gz
-│   ├── osm.sumocfg
-│   ├── town_routes.rou.xml
-│   ├── tii_flows.xml
-│   ├── tii_hourly_traffic.csv
-│   ├── osm.view.xml
-│   ├── osm_bbox.osm.xml.gz
-│   ├── osm.netccfg
-│   ├── run.bat
 │   ├── Results/
 │   │   ├── Base/
 │   │   │   ├── edgeData.xml
-│   │   │   ├── tripinfos.xml
+│   │   │   ├── tripinfo.xml
 │   │   │   └── stats.xml
-│   │   └── MAPPO/
-│   │       └── edgeData.xml
+│   │   ├── MAPPO/
+│   │   │   ├── edgeData.xml
+│   │   │   ├── tripinfo.xml
+│   │   │   └── stats.xml
+│   │   └── report/
+│   │       ├── chart1_trip_stats.png
+│   │       ├── chart2_teleports.png
+│   │       ├── chart3_hourly_speed.png
+│   │       └── chart4_hourly_waiting.png
 │   ├── Simulations/
 │   │   └── Base/
+│   │       ├── osm.net.xml.gz
+│   │       ├── osm.sumocfg
+│   │       ├── town_routes.rou.xml
+│   │       ├── tii_flows.xml
+│   │       ├── tii_hourly_traffic.csv
+│   │       ├── osm.view.xml
+│   │       ├── osm_bbox.osm.xml.gz
+│   │       └── run.bat
 │   └── README.md
 ├── docker-compose.yml
 ├── test_api.py

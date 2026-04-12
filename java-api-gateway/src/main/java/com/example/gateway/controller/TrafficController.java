@@ -1,6 +1,7 @@
 package com.example.gateway.controller;
 
 import com.example.gateway.dto.ErrorResponse;
+import com.example.gateway.dto.EnhancedTrafficActionResponse;
 import com.example.gateway.dto.HealthResponse;
 import com.example.gateway.dto.TrafficActionResponse;
 import com.example.gateway.dto.TrafficSignalState;
@@ -252,6 +253,103 @@ public class TrafficController {
 			log.error("Unexpected error during batch forecast: {}", e.getMessage(), e);
 			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
 					.body(new ErrorResponse("error", "Internal server error: " + e.getMessage(), System.currentTimeMillis()));
+		}
+	}
+
+	/**
+	 * Enhanced endpoint: LSTM forecast → augment RL observation → predict signal.
+	 * Demonstrates the proactive control pipeline described in the article (Section III).
+	 * LSTM density forecasts are appended to the observation vector, giving the RL
+	 * agent awareness of predicted future traffic conditions.
+	 */
+	@Tag(name = "Traffic Prediction")
+	@Operation(operationId = "getEnhancedTrafficAction",
+			summary = "Get LSTM-augmented traffic signal prediction",
+			description = "Chains LSTM density forecast with RL signal prediction. "
+					+ "The LSTM predicts edge densities for the next hour, which are appended "
+					+ "to the RL observation vector to enable proactive signal control. "
+					+ "Falls back to reactive-only prediction if LSTM is unavailable.")
+	@SecurityRequirement(name = "bearerAuth")
+	@ApiResponse(responseCode = "200", description = "Enhanced prediction generated",
+			content = @Content(mediaType = "application/json",
+					examples = @ExampleObject(value = """
+					{
+					  "junctionId": "300839359",
+					  "predictedAction": 2,
+					  "signalState": "GREEN",
+					  "forecastedDensities": [22.45, 11.23, 7.89, 5.34, 4.12],
+					  "forecastAugmented": true,
+					  "confidence": 0.87,
+					  "pipelineLatencyMs": 45.2,
+					  "timestamp": 1710000000000,
+					  "status": "success"
+					}
+					""")))
+	@GetMapping("/action-enhanced")
+	public ResponseEntity<?> getEnhancedTrafficAction() {
+		long startTime = System.currentTimeMillis();
+		String junctionId = KNOWN_JUNCTIONS.get(random.nextInt(KNOWN_JUNCTIONS.size()));
+
+		try {
+			log.info("Enhanced request — junction={}", junctionId);
+
+			// Step 1: Get LSTM density forecast
+			List<Double> forecastedDensities = null;
+			boolean forecastAugmented = false;
+			try {
+				List<List<Double>> historicalData = List.of(
+						List.of(18.93, 10.13, 5.23, 4.14, 3.08),
+						List.of(24.02, 11.01, 8.98, 5.42, 4.26),
+						List.of(22.14, 9.34, 5.62, 4.57, 3.81)
+				);
+				forecastedDensities = lstmPredictorClient.predict(historicalData);
+				forecastAugmented = true;
+				log.info("LSTM forecast obtained: {}", forecastedDensities);
+			} catch (Exception e) {
+				log.warn("LSTM unavailable, proceeding with reactive-only mode: {}", e.getMessage());
+			}
+
+			// Step 2: Build observation vector, augmented with LSTM forecast if available
+			List<Double> observations = generateDummyObservations(observationDimension);
+			if (forecastAugmented && forecastedDensities != null) {
+				// Normalize densities to [0,1] range (max ~50 vehicles/edge) and inject
+				// into the observation vector's queue-length slots to bias the RL agent
+				for (int i = 0; i < Math.min(forecastedDensities.size(), 5); i++) {
+					double normalizedDensity = Math.min(forecastedDensities.get(i) / 50.0, 1.0);
+					// Overwrite the last 5 slots of the observation with forecast data
+					int slot = observationDimension - 5 + i;
+					if (slot >= 0 && slot < observations.size()) {
+						observations.set(slot, normalizedDensity);
+					}
+				}
+			}
+
+			// Step 3: Get RL prediction with augmented observation
+			int predictedAction = rlInferenceClient.predictAction(junctionId, observations);
+			TrafficSignalState signalState = mapActionToSignalState(predictedAction);
+			double latency = System.currentTimeMillis() - startTime;
+
+			EnhancedTrafficActionResponse response = new EnhancedTrafficActionResponse(
+					junctionId, predictedAction, signalState,
+					forecastedDensities != null ? forecastedDensities.toArray(new Double[0]) : null,
+					forecastAugmented, null, latency,
+					System.currentTimeMillis(), "success"
+			);
+
+			log.info("Enhanced action: junction={} action={} state={} augmented={} latency={}ms",
+					junctionId, predictedAction, signalState, forecastAugmented, latency);
+			return ResponseEntity.ok(response);
+
+		} catch (RlInferenceException | org.springframework.web.client.ResourceAccessException e) {
+			log.error("RL inference unavailable, FALLBACK: {}", e.getMessage());
+			double latency = System.currentTimeMillis() - startTime;
+
+			EnhancedTrafficActionResponse fallback = new EnhancedTrafficActionResponse(
+					junctionId, 0, TrafficSignalState.RED,
+					null, false, null, latency,
+					System.currentTimeMillis(), "fallback_mode (inference service down)"
+			);
+			return ResponseEntity.ok(fallback);
 		}
 	}
 

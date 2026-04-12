@@ -310,9 +310,20 @@ async def read_root(request: Request):
 
 if __name__ == "__main__":
     import uvicorn
+
+    ssl_kwargs = {}
+    if os.getenv("TLS_ENABLED", "false").lower() == "true":
+        ssl_kwargs = {
+            "ssl_certfile": os.getenv("TLS_CERT_FILE"),
+            "ssl_keyfile": os.getenv("TLS_KEY_FILE"),
+            "ssl_ca_certs": os.getenv("TLS_CA_FILE"),
+        }
+        logger.info("TLS enabled for inter-service communication")
+
     uvicorn.run(
         "main:app",
         host=os.getenv("API_HOST", "0.0.0.0"),
         port=int(os.getenv("API_PORT", 8000)),
         reload=os.getenv("API_RELOAD", "false").lower() == "true",
+        **ssl_kwargs,
     )

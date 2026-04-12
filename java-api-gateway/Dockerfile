@@ -19,4 +19,7 @@ COPY --from=builder /build/target/traffic-gateway-*.jar app.jar
 
 EXPOSE 8080
 
+HEALTHCHECK --interval=10s --timeout=5s --start-period=30s --retries=3 \
+  CMD curl -f http://localhost:8080/api/traffic/health || exit 1
+
 ENTRYPOINT ["java", "-jar", "app.jar"]
