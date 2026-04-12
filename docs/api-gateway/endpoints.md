@@ -139,7 +139,7 @@
     - `503`: LSTM predictor service unavailable
 
 !!! success "POST `/api/traffic/forecast-batch`"
-    **Batch proxy to LSTM predictor** - Predict traffic density for multiple sequences. Requires JWT authentication.
+    **Batch proxy to LSTM predictor** - Predict traffic density for multiple consecutive sequences (rolling window). Returns multi-step lookahead predictions. Requires JWT authentication.
 
     **Headers**:
     ```
@@ -147,19 +147,24 @@
     Content-Type: application/json
     ```
 
-    **Request**:
+    **Request** — 3 sequences, each 3 timesteps × 5 edges (rolling window, each shifts 1 hour forward):
     ```json
     {
       "sequences": [
         [
           [18.93, 10.13, 5.23, 4.14, 3.08],
           [24.02, 11.01, 8.98, 5.42, 4.26],
-          [22.14, 9.34, 5.62, 4.57, 3.81]
+          [22.14,  9.34, 5.62, 4.57, 3.81]
         ],
         [
           [24.02, 11.01, 8.98, 5.42, 4.26],
-          [22.14, 9.34, 5.62, 4.57, 3.81],
+          [22.14,  9.34, 5.62, 4.57, 3.81],
           [20.50, 10.75, 6.10, 4.90, 3.50]
+        ],
+        [
+          [22.14,  9.34, 5.62, 4.57, 3.81],
+          [20.50, 10.75, 6.10, 4.90, 3.50],
+          [21.75, 11.20, 6.85, 5.15, 3.95]
         ]
       ]
     }
@@ -168,15 +173,19 @@
     **Response (200)**:
     ```json
     {
-      "predictions": [
-        [25.47, 12.15, 9.23, 6.81, 5.14],
-        [24.02, 11.85, 8.50, 6.20, 4.80]
-      ],
-      "edge_ids": ["-269002813", "-55825089", "617128762", "-617128762", "-312266114#2"],
-      "num_predictions": 2,
-      "inference_time_ms": 65.3
+      "edgeIds": ["-269002813", "-55825089", "617128762", "-617128762", "-312266114#2"],
+      "inferenceTimeMs": 114.0,
+      "timestamp": 1776027573581,
+      "status": "success",
+      "lookaheadPredictions": [
+        [36.45, 6.60, 12.08, 7.26, 14.61],
+        [37.45, 6.75, 12.33, 7.40, 15.06],
+        [38.06, 6.76, 12.60, 7.52, 15.17]
+      ]
     }
     ```
+
+    Each array in `lookaheadPredictions` is one hour's forecast for all 5 edges — 3 sequences in = 3 hourly predictions out.
 
     **Errors**:
     - `400`: Invalid sequence shape or empty list
