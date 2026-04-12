@@ -1,5 +1,6 @@
-import tensorflow as tf
 import os
+
+import tensorflow as tf
 from colorama import Fore, init
 
 init(autoreset=True)
