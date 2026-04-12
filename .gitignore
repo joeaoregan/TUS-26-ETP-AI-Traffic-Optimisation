@@ -64,3 +64,4 @@ Thumbs.db
 # mkdocs
 site/
 *.tar
+.github/
