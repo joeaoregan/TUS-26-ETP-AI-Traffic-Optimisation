@@ -59,9 +59,9 @@ AVAIL_ACTIONS = {
 AGENT_INDEX = {tl: i for i, tl in enumerate(TRAFFIC_LIGHTS)}
 
 # Training hyperparams — must match mappo_sumo_v4.yaml
-N_AGENTS   = 5
-OBS_SHAPE  = 19   # max padded obs size (joinedS has 19)
-N_ACTIONS  = 4    # max action size (joinedS has 4)
+N_AGENTS = 5
+OBS_SHAPE = 19  # max padded obs size (joinedS has 19)
+N_ACTIONS = 4  # max action size (joinedS has 4)
 HIDDEN_DIM = 128
 
 
