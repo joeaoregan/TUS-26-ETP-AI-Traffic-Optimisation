@@ -28,8 +28,9 @@
 ## 🔗 Quick Links
 
 ### 🌐 Live Services
-- **[API Gateway](https://ai-traffic-control-api.onrender.com)** — REST API service
-- **[Inference Service](https://traffic-inference-service.onrender.com)** — RL model inference
+- [**API Gateway**](https://ai-traffic-control-api.onrender.com) — REST API service on Render
+- [**Inference Service**](https://traffic-inference-service.onrender.com) — RL model inference on Render
+- [**LSTM Predictor Service**](https://lstm-predictor-service.onrender.com/) - LSTM Predictor Service on Render
 
 ### 📖 API Documentation (Swagger)
 - **[API Gateway Swagger](https://ai-traffic-control-api.onrender.com/swagger-ui/index.html)** — Interactive API docs
