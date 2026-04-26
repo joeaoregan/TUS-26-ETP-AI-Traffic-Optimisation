@@ -52,6 +52,10 @@ echo Python FastAPI Service (RL Inference):
 echo   URL: http://localhost:8000
 echo   Docs: http://localhost:8000/docs
 echo.
+echo Python FastAPI Service (LSTM Predictor):
+echo   URL: http://localhost:8001
+echo   Docs: http://localhost:8001/docs
+echo.
 echo Java API Gateway:
 echo   URL: http://localhost:8080
 echo   Traffic API: http://localhost:8080/api/traffic

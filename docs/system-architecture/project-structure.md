@@ -4,127 +4,99 @@
 
 ```
 TUS-26-ETP-AI-Traffic-Optimisation/
-├── java-api-gateway/                       # Java Spring Boot gateway (with JWT Auth)
-│   ├── src/
-│   │   ├── main/java/com/example/gateway/
-│   │   │   ├── GatewayApplication.java     # Spring Boot app
-│   │   │   ├── controller/
-│   │   │   │   ├── AuthController.java      # JWT authentication endpoints
-│   │   │   │   └── TrafficController.java   # REST traffic endpoints
-│   │   │   ├── config/
-│   │   │   │   └── SecurityConfig.java      # Spring Security configuration
-│   │   │   ├── security/
-│   │   │   │   ├── JwtService.java          # JWT token generation and validation
-│   │   │   │   └── JwtAuthenticationFilter.java  # JWT request filter
-│   │   │   ├── exception/
-│   │   │   │   └── RlInferenceException.java # RL service communication errors
-│   │   │   ├── dto/
-│   │   │   │   ├── LoginRequest.java        # Login request DTO
-│   │   │   │   ├── LoginResponse.java       # Login response DTO
-│   │   │   │   ├── TrafficActionRequest.java # Traffic prediction request DTO
-│   │   │   │   ├── TrafficActionResponse.java # Traffic prediction response DTO
-│   │   │   │   ├── ErrorResponse.java       # Error response DTO
-│   │   │   │   └── HealthResponse.java      # Health check response DTO
-│   │   │   └── service/
-│   │   │       └── RlInferenceClient.java   # RL service client (communicates with inference service)
-│   │   └── main/resources/
-│   │       ├── application.yml              # Spring config (local development)
-│   │       └── application-prod.yml         # Production config (Render)
-│   ├── pom.xml                             # Maven configuration
-│   ├── Dockerfile                          # Multi-stage Java service Docker image
-│   ├── README.md                           # Gateway setup and authentication guide
-│   └── test_api.py                         # API test client with color output (local)
-├── lstm-predictor-service/                 # Python LSTM forecasting service (framework stage)
+├── java-api-gateway/                       # Spring Boot Edge & Orchestration Service
+│   ├── src/main/java/com/example/gateway/
+│   │   ├── GatewayApplication.java         # Main entry point for the Java Gateway
+│   │   ├── config/
+│   │   │   ├── OpenApiConfig.java          # Swagger UI / OpenAPI documentation config
+│   │   │   ├── RateLimitFilter.java        # Individual contribution: API traffic throttling
+│   │   │   ├── SecurityConfig.java         # Spring Security & JWT Filter chain config
+│   │   │   └── WebConfig.java              # CORS and MVC configuration
+│   │   ├── controller/
+│   │   │   ├── AuthController.java         # David's work: Login and token endpoints
+│   │   │   └── TrafficController.java      # Orchestration: Enhanced prediction & RL logic
+│   │   ├── dto/                            # Data Transfer Objects (JSON Contracts)
+│   │   │   ├── ErrorResponse.java          # Standardised error payload
+│   │   │   ├── HealthResponse.java         # Service health status payload
+│   │   │   ├── LoginRequest.java           # Authentication input
+│   │   │   ├── LoginResponse.java          # JWT token delivery
+│   │   │   ├── TrafficActionRequest.java   # Observation vector input for RL
+│   │   │   ├── TrafficActionResponse.java  # Basic reactive action output
+│   │   │   ├── EnhancedTrafficActionResponse.java # Merged LSTM/RL proactive output
+│   │   │   ├── TrafficForecastResponse.java# Direct forecasting output
+│   │   │   └── TrafficSignalState.java     # Model for current signal phase data
+│   │   ├── exception/
+│   │   │   ├── GlobalExceptionHandler.java # Centralised @ControllerAdvice
+│   │   │   └── RlInferenceException.java    # Refactored: Custom exception for service errors
+│   │   ├── security/
+│   │   │   ├── JwtAuthenticationFilter.java# Custom stateless security filter
+│   │   │   └── JwtService.java             # David's work: Token logic & validation
+│   │   └── service/
+│   │       ├── LstmPredictorClient.java    # Feign/Rest client for forecasting
+│   │       └── RlInferenceClient.java      # Feign/Rest client for MAPPO inference
+│   ├── src/main/resources/
+│   │   ├── application.yml                 # Default development configuration
+│   │   ├── application-prod.yml            # Deployment: Cloud-specific config (Render)
+│   │   └── static/index.html               # Observability Dashboard (HTML/JS)
+│   ├── src/test/java/com/example/gateway/  # JUnit & Mockito test suite
+│   ├── Dockerfile                          # Multi-stage production container build
+│   └── pom.xml                             # Maven dependency management
+│
+├── lstm-predictor-service/                 # Python FastAPI Forecasting Service
 │   ├── app/
-│   │   ├── main.py                         # FastAPI application entry point
-│   │   ├── data/
-│   │   │   ├── loader.py                   # SUMO edgeData.xml parser
-│   │   │   └── preprocessor.py             # Data normalization and windowing
-│   │   ├── models/                         # Directory for trained LSTM models
-│   │   ├── templates/
-│   │   │   └── index.html                  # Landing page
-│   │   └── static/                         # Static assets (logo, favicon)
-│   ├── Dockerfile                          # Python service Docker image
-│   ├── requirements.txt                    # Python dependencies (FastAPI, TensorFlow, pandas, etc.)
-│   ├── .env.example                        # Environment variables template
-│   └── README.md                           # LSTM service setup guide
-├── rl-inference-service/                   # Python FastAPI RL inference service
-│   ├── app/
-│   │   ├── main.py                         # FastAPI application (MAPPO model)
-│   │   ├── templates/
-│   │   │   └── index.html                  # Landing page
-│   │   └── static/                         # Static assets (logo, favicon)
+│   │   ├── main.py                         # FastAPI entry, health & metrics endpoints
+│   │   ├── models/
+│   │   │   ├── lstm_model.py               # Core Keras/TensorFlow model architecture
+│   │   │   ├── lstm_train.py               # Model training and validation logic
+│   │   │   └── preprocessor.py             # Refactored: Min-Max Scaling & Windowing
+│   │   └── utils/
+│   │       ├── feature_engineering.py      # Spatial-temporal lag feature logic
+│   │       ├── metrics.py                  # MAE/RMSE calculation utilities
+│   │       └── stationarity.py             # Research implementation: Stationarity enhancements
 │   ├── trained_models/
-│   │   └── agent.th                        # Trained MAPPO model weights (PyTorch)
-│   ├── Dockerfile                          # Python service Docker image
-│   ├── requirements.txt                    # Python dependencies (FastAPI, PyTorch, etc.)
-│   ├── .env.example                        # Environment variables template
-│   └── README.md                           # Inference service setup guide
+│   │   ├── lstm_model.keras                # Persisted production model file
+│   │   ├── scaler.pkl                      # Serialised Normalisation parameters
+│   │   └── lstm_model_tf/                  # SavedModel format for alternate deployments
+│   ├── tests/
+│   │   └── test_api.py                     # Refactored: Pytest suite with coloured output
+│   ├── Dockerfile                          # Lightweight Python deployment container
+│   ├── requirements.txt                    # Python dependency manifest
+│   └── runtime.txt                         # Platform-specific runtime versioning
+│
+├── rl-inference-service/                   # Python FastAPI RL Inference Service
+│   ├── app/
+│   │   ├── main.py                         # MAPPO logic & GRU hidden state management
+│   │   ├── templates/index.html            # Service landing page
+│   │   └── static/                         # Assets for service UI
+│   ├── trained_models/
+│   │   └── agent.th                        # Multi-Agent RL model weights (PyTorch)
+│   ├── tests/
+│   │   └── test_api.py                     # RL service validation suite
+│   ├── Dockerfile                          # Container definition for RL component
+│   └── requirements.txt                    # RL stack (PyTorch, numpy, FastAPI)
+│
+├── SUMO/                                   # Microscopic Traffic Simulation Layer
+│   ├── Simulations/Base/
+│   │   ├── osm.net.xml                     # Athlone 'Orange Loop' road network
+│   │   ├── tii_hourly_traffic.csv          # TII real-world traffic count data
+│   │   ├── town_routes.rou.xml             # Simulation demand & route definitions
+│   │   └── osm.sumocfg                     # Simulation master configuration
+│   └── Results/
+│       ├── Base/                           # Metrics for Fixed-Time control
+│       ├── MAPPO/                          # Metrics for Multi-Agent RL control
+│       ├── matplotlib_stats_sumo.py        # Visualisation script for result comparison
+│       └── report/                         # Comparative charts (74% improvement data)
+│
 ├── docs/                                   # MkDocs documentation (Material theme)
-│   ├── index.md                            # Home page with quick links
-│   ├── features.md                         # Feature matrix across all services
-│   ├── CHANGELOG.md                        # Version history and updates
-│   ├── support.md                          # Support and troubleshooting
-│   ├── api-docs/
-│   │   ├── index.md                        # API documentation hub
-│   │   ├── api-gateway.md                  # API Gateway docs overview
-│   │   ├── inference-service.md            # Inference Service docs overview
-│   │   └── lstm.md                         # LSTM Service docs overview
-│   ├── api-gateway/
-│   │   ├── index.md                        # Gateway service overview
-│   │   ├── architecture.md                 # Technology stack and components
-│   │   ├── key-features.md                 # Security, prediction modes, etc.
-│   │   └── endpoints.md                    # REST endpoint specifications
-│   ├── inference-service/
-│   │   ├── index.md                        # Inference service overview
-│   │   ├── architecture.md                 # MAPPO model, GRU architecture
-│   │   ├── key-features.md                 # Junctions, neural network details
-│   │   └── endpoints.md                    # REST endpoint specifications
-│   ├── lstm/
-│   │   ├── index.md                        # LSTM service overview (placeholder)
-│   │   ├── architecture.md                 # Technology stack, file structure
-│   │   ├── key-features.md                 # Time-series forecasting capabilities
-│   │   └── endpoints.md                    # REST endpoint specifications
-│   ├── sumo/
-│   │   ├── architecture.md                 # Network setup, simulation configuration
-│   │   └── key-features.md                 # Traffic flows, output formats
-│   ├── security/
-│   │   └── java-api-gateway.md             # JWT authentication guide and configuration
-│   ├── api-setup/
-│   │   ├── api-setup-guide/
-│   │   │   └── index.md
-│   │   ├── api-usage-examples/
-│   │   │   └── index.md
-│   │   └── environment-variables/
-│   │       └── index.md
-│   ├── system-architecture/
-│   │   └── index.md
-│   ├── quickstart.md                       # 5-minute quick start
-│   ├── mkdocs.yml                          # MkDocs configuration (Material theme)
-│   └── images/
-│       └── logo.png
-├── SUMO/                                   # SUMO traffic simulation (Athlone network)
-│   ├── osm.net.xml.gz                      # Road network (OpenStreetMap derived)
-│   ├── osm.sumocfg                         # Main simulation configuration
-│   ├── town_routes.rou.xml                 # 7 predefined routes with hourly flows
-│   ├── tii_flows.xml                       # Vehicle type definitions
-│   ├── tii_hourly_traffic.csv              # Source TII traffic data
-│   ├── osm.view.xml                        # GUI display settings
-│   ├── run.bat                             # One-click launcher
-│   ├── Results/
-│   │   ├── Base/
-│   │   │   ├── edgeData.xml                # Per-edge hourly statistics
-│   │   │   ├── tripinfos.xml               # Per-vehicle trip statistics
-│   │   │   └── stats.xml                   # Overall simulation summary
-│   │   └── MAPPO/
-│   │       └── edgeData.xml                # Sample output from MAPPO training run
-│   └── Simulations/
-│       └── Base/
-├── docker-compose.yml                      # Docker Compose orchestration (all services)
-├── test_api.py                             # Python API test client (colorama, health checks)
-├── CHANGELOG.md                            # Version history (v2.1.0 current)
-├── README.md                               # Main project readme
-└── SUPPORT.md                              # Support and contributing guidelines
+|
+├── tls/                                    # Security infrastructure
+│   └── generate-certs.sh                   # Adam's work: TLS 1.3 certificate generation
+├── docker-compose.yml                      # Main container orchestration
+├── docker-compose.tls.yml                  # Overlay for secured communication
+├── start.bat                               # Windows: Orchestrated startup script
+├── start.sh                                # Linux/macOS: Orchestrated startup script
+├── test_api.py                             # Root-level health & integration testing
+└── README.md                               # Main project entry point
 ```
 
 ## Individual Service Structure

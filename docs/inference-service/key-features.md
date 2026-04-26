@@ -1,6 +1,6 @@
 # Key Features (Python Inference Service)
 
-[Feature List](../features.md#python-fastapi-service)
+[Feature List](../features.md#python-rl-inference-service)
 
 ## Supported Junctions
 

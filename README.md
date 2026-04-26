@@ -44,6 +44,24 @@
 - **[Gateway JWT Authentication Guide](docs/security/java-api-gateway.md)** — JWT configuration and usage
 
 <details>
+  <summary>🚀Running the System</summary>
+
+You can start all three microservices (API Gateway, RL Inference, and LSTM Predictor) using the provided startup scripts:
+
+#### Windows:
+
+```bash
+start.bat
+```
+
+#### Linux/macOS:
+
+```bash
+./start.sh
+```
+
+</details>
+<details>
   <summary>🛠️ API Setup — Docker, Environment Variables, Components, Examples, Monitoring</summary>
 
 - [🐳 Docker Compose Configuration](docs/api/setup/docker-compose-configuration.md)
@@ -183,7 +201,6 @@ python -m uvicorn app.main:app --host 0.0.0.0 --port 8001 --reload
 
 Test integration:
 
-
 ```bash
 python lstm-predictor-service/test_rl_integration.py
 ```
@@ -194,150 +211,17 @@ python lstm-predictor-service/test_rl_integration.py
 
 ```
 TUS-26-ETP-AI-Traffic-Optimisation/
-├── java-api-gateway/                       # Java Spring Boot gateway (JWT Auth)
-│   ├── src/
-│   │   ├── main/java/com/example/gateway/
-│   │   │   ├── GatewayApplication.java
-│   │   │   ├── controller/
-│   │   │   │   ├── AuthController.java
-│   │   │   │   └── TrafficController.java
-│   │   │   ├── config/
-│   │   │   │   ├── SecurityConfig.java
-│   │   │   │   ├── OpenApiConfig.java
-│   │   │   │   └── WebConfig.java
-│   │   │   ├── security/
-│   │   │   │   ├── JwtService.java
-│   │   │   │   └── JwtAuthenticationFilter.java
-│   │   │   ├── exception/
-│   │   │   │   └── RlInferenceException.java
-│   │   │   ├── service/
-│   │   │   │   └── RlInferenceClient.java
-│   │   │   └── dto/
-│   │   │       ├── LoginRequest.java
-│   │   │       ├── LoginResponse.java
-│   │   │       ├── TrafficActionRequest.java
-│   │   │       ├── TrafficActionResponse.java
-│   │   │       ├── TrafficSignalState.java
-│   │   │       ├── ErrorResponse.java
-│   │   │       └── HealthResponse.java
-│   │   └── main/resources/
-│   │       ├── application.yml
-│   │       └── application-prod.yml
-│   ├── pom.xml
-│   ├── Dockerfile
-│   └── README.md
-├── rl-inference-service/                   # Python FastAPI RL inference service
-│   ├── app/
-│   │   ├── main.py
-│   │   ├── templates/
-│   │   │   └── index.html
-│   │   └── static/
-│   ├── trained_models/
-│   │   └── agent.th
-│   ├── Dockerfile
-│   ├── requirements.txt
-│   ├── .env.example
-│   └── README.md
-├── lstm-predictor-service/                 # Python FastAPI LSTM forecasting service
-│   ├── app/
-│   │   ├── main.py
-│   │   ├── data/
-│   │   │   ├── loader.py
-│   │   │   └── preprocessor.py
-│   │   ├── models/
-│   │   ├── templates/
-│   │   │   └── index.html
-│   │   └── static/
-│   ├── Dockerfile
-│   ├── requirements.txt
-│   ├── .env.example
-│   └── README.md
-├── docs/                                   # MkDocs documentation (Material theme)
-│   ├── index.md
-│   ├── features.md
-│   ├── CHANGELOG.md
-│   ├── support.md
-│   ├── quickstart.md
-│   ├── api/                                # API documentation & setup
-│   │   ├── index.md
-│   │   ├── endpoints.md
-│   │   ├── setup/
-│   │   │   ├── index.md
-│   │   │   ├── docker-compose.md
-│   │   │   ├── environment-variables.md
-│   │   │   ├── local-development.md
-│   │   │   ├── production-deployment.md
-│   │   │   ├── troubleshooting.md
-│   │   │   └── using-different-models.md
-│   │   └── guides/
-│   │       ├── index.md
-│   │       ├── usage-examples.md
-│   │       ├── components.md
-│   │       ├── monitoring-logging.md
-│   │       └── performance-tuning.md
-│   ├── api-gateway/
-│   │   ├── index.md
-│   │   ├── architecture.md
-│   │   ├── key-features.md
-│   │   ├── endpoints.md
-│   │   └── file-structure.md
-│   ├── inference-service/
-│   │   ├── index.md
-│   │   ├── architecture.md
-│   │   ├── key-features.md
-│   │   ├── endpoints.md
-│   │   └── file-structure.md
-│   ├── lstm/
-│   │   ├── index.md
-│   │   ├── architecture.md
-│   │   ├── key-features.md
-│   │   ├── endpoints.md
-│   │   └── file-structure.md
-│   ├── sumo/
-│   │   ├── index.md
-│   │   ├── architecture.md
-│   │   ├── key-features.md
-│   │   └── file-structure.md
-│   ├── security/
-│   │   └── java-api-gateway.md
-│   ├── system-architecture/
-│   │   ├── index.md
-│   │   └── project-structure.md
-│   ├── mkdocs.yml
-│   └── images/
-│       └── logo.png
-├── SUMO/                                   # SUMO traffic simulation (Athlone network)
-│   ├── Results/
-│   │   ├── Base/
-│   │   │   ├── edgeData.xml
-│   │   │   ├── tripinfo.xml
-│   │   │   └── stats.xml
-│   │   ├── MAPPO/
-│   │   │   ├── edgeData.xml
-│   │   │   ├── tripinfo.xml
-│   │   │   └── stats.xml
-│   │   └── report/
-│   │       ├── chart1_trip_stats.png
-│   │       ├── chart2_teleports.png
-│   │       ├── chart3_hourly_speed.png
-│   │       └── chart4_hourly_waiting.png
-│   ├── Simulations/
-│   │   └── Base/
-│   │       ├── osm.net.xml.gz
-│   │       ├── osm.sumocfg
-│   │       ├── town_routes.rou.xml
-│   │       ├── tii_flows.xml
-│   │       ├── tii_hourly_traffic.csv
-│   │       ├── osm.view.xml
-│   │       ├── osm_bbox.osm.xml.gz
-│   │       └── run.bat
-│   └── README.md
-├── docker-compose.yml
-├── test_api.py
-├── CHANGELOG.md
-├── README.md
-└── SUPPORT.md
+├── java-api-gateway/          # Spring Boot Edge Service (JWT Auth, LSTM/RL Orchestration)
+├── rl-inference-service/      # Python FastAPI (MAPPO Multi-Agent RL Inference)
+├── lstm-predictor-service/    # Python FastAPI (Time-Series Traffic Density Forecasting)
+├── SUMO/                      # Traffic Simulation (Athlone 'Orange Loop' Network & Results)
+├── docs/                      # Central Documentation (MkDocs source & guides)
+├── docker-compose.yml         # Container orchestration for all services
+├── start.bat / start.sh       # Multi-platform quickstart scripts
+└── README.md                  # This file
 ```
+
+For a detailed breakdown of every file, please refer to our detailed [Project Structure](https://joeaoregan.github.io/TUS-26-ETP-AI-Traffic-Optimisation/system-architecture/project-structure/) documentation.
 
 ---
 

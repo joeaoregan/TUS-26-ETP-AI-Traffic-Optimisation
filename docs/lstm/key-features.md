@@ -1,6 +1,6 @@
 # Key Features (LSTM Traffic Predictor)
 
-[Feature List](../features.md#lstm-traffic-predictor-service)
+[Feature List](../features.md#python-lstm-predictor-service)
 
 ## Prime Target
 
