@@ -1,6 +1,6 @@
 # 🔧 Key Features
 
-**Updated**: 11/04/2026
+**Updated**: 26/04/2026
 
 ## Key
 
@@ -47,7 +47,9 @@ Forecasts traffic density using LSTM neural networks with batch prediction suppo
 - [x] Data analysis scripts (edge-analysis.py, trip-analysis.py)
 - [x] Docker containerization (multi-stage build)
 - [x] Model trained (MAE 0.2084 on normalized data)
-- [ ] Achieve MAE < 10% on raw traffic values
+- [x] Stationarity enhancements via differencing and scaling
+- [x] Comprehensive unit testing (Pytest suite with coloured diagnostice output)
+- [x] Achieve MAE < 10% on raw traffic values
 - [ ] Bidirectional LSTM for enhanced accuracy
 - [ ] Attention mechanism for temporal weighting
 - [ ] Real-time model retraining capability
@@ -69,7 +71,9 @@ Orchestrates requests between RL and LSTM services with JWT authentication and c
 - [x] JWT authentication (HS256)
 - [x] Stateless token-based security
 - [x] Load testing capabilities
-- [ ] API request rate limiting
+- [x] API request rate limiting (`RateLimitFilter`)
+- [x] Custom exception management (`RlInferenceException`)
+- [x] OpenAPI/Swagger UI integration (Refined documentation)
 - [ ] Request/response logging and audit trail
 - [ ] Metrics export (Micrometer/Prometheus)
 - [ ] Request validation and sanitization
@@ -135,11 +139,13 @@ Stateless token-based security with HS256 signing on API Gateway. Python service
 - [x] Token expiration and configuration
 - [x] Stateless (no server sessions)
 - [x] Service-to-service internal communication (no auth required)
+- [x] Mutual TLS between microservices via self-signed CA
+- [x] TLS 1.3 implementation for inter-service communication
+- [x] Rate limiting per authenticated user
 - [ ] Token refresh mechanism
 - [ ] Role-based access control (RBAC)
 - [ ] API key management
 - [ ] Token revocation/blacklist
-- [ ] Rate limiting per authenticated user
 - [ ] Audit logging for authentication events
 
 ## Deployment
@@ -167,6 +173,7 @@ Local Docker Compose development environment fully functional.
 - [x] Performance metrics endpoint (`GET /metrics`) — LSTM
 - [x] Colored terminal logging (startup, predictions, errors)
 - [x] Inference latency tracking
+- [x] Colored terminal logging
 - [ ] Prometheus metrics export
 - [ ] Grafana dashboards for visualization
 - [ ] Distributed tracing (Jaeger/Zipkin)
