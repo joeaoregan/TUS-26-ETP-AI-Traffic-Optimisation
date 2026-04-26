@@ -4,7 +4,7 @@
 import os
 import time
 from datetime import datetime
-from typing import List
+from typing import List, Optional
 
 import numpy as np
 from colorama import Fore, init
@@ -46,6 +46,31 @@ class MetricsResponse(BaseModel):
     last_prediction_time: str
     model_loaded: bool
     scaler_loaded: bool
+    
+class MetricsResponse(BaseModel):
+    service: str
+    version: str
+    status: str
+    total_predictions: int
+    total_batch_predictions: int
+    avg_inference_time_ms: float
+    last_prediction_time: Optional[str]
+    model_loaded: bool
+    scaler_loaded: bool
+    
+class ModelInfoResponse(BaseModel):
+    model_type: str
+    input_shape: List[int]
+    output_shape: List[int]
+    description: str
+    edges: List[str]
+    test_loss: float
+    test_mae: float
+    training_samples: int
+    test_samples: int
+    sequence_length: int
+    batch_prediction_supported: bool
+    max_batch_size: int
 
 tags_metadata = [
     {
@@ -419,7 +444,7 @@ def predict_batch(request: BatchPredictionRequest) -> BatchPredictionResponse:
         raise HTTPException(status_code=500, detail=f"Prediction error: {str(e)}")
 
 
-@app.get("/model-info", tags=["LSTM Predictor"])
+@app.get("/model-info", tags=["LSTM Predictor"], response_model=ModelInfoResponse)
 def model_info():
     """Get model specifications"""
     if model is None:
@@ -441,7 +466,7 @@ def model_info():
     }
 
 
-@app.get("/metrics", tags=["LSTM Predictor"])
+@app.get("/metrics", tags=["LSTM Predictor"], response_model=MetricsResponse)
 def get_metrics():
     """
     Get service performance metrics
