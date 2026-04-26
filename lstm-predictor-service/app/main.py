@@ -4,6 +4,7 @@
 import os
 import time
 from datetime import datetime
+from typing import List
 
 import numpy as np
 from colorama import Fore, init
@@ -15,13 +16,63 @@ from pydantic import BaseModel, ConfigDict
 
 init(autoreset=True)
 
+class HealthResponse(BaseModel):
+    status: str
+    message: str
+    service: str
+    version: str
+    
+class ModelInfoResponse(BaseModel):
+    model_type: str
+    input_shape: tuple
+    output_shape: tuple
+    description: str
+    edges: List[str]
+    test_loss: float
+    test_mae: float
+    training_samples: int
+    test_samples: int
+    sequence_length: int
+    batch_prediction_supported: bool
+    max_batch_size: int
+
+class MetricsResponse(BaseModel):
+    service: str
+    version: str
+    status: str
+    total_predictions: int
+    total_batch_predictions: int
+    avg_inference_time_ms: float
+    last_prediction_time: str
+    model_loaded: bool
+    scaler_loaded: bool
+
+tags_metadata = [
+    {
+        "name": "LSTM Predictor",
+        "description": "Endpoints for traffic density prediction using LSTM model.",
+    },
+    {
+        "name": "System Health",
+        "description": "Endpoints to monitor service status and model availability.",
+    },
+    {
+        "name": "Navigation",
+        "description": "Main landing pages and UI components.",
+    },
+]
+
 # Initialize FastAPI
 app = FastAPI(
     title="LSTM Traffic Predictor",
     version="1.0.0",
-    docs_url=None,   # <--- Disable the default route
-    # docs_url="/docs", # favicon.ico won't set
-    redoc_url=None,  # <--- Disable redoc too if you want
+    docs_url=None,
+    redoc_url=None,    
+    openapi_tags=tags_metadata,
+    servers=[
+        {"url": "http://localhost:8001", "description": "Local development server"},
+        {"url": "https://lstm-predictor-service.onrender.com/", "description": "Production Cloud server (Render)"},
+    ],
     description="""
 <img src="images/logo.png" width="360" alt="LSTM Traffic Prediction Logo" />
 
@@ -40,10 +91,10 @@ Predicts traffic density for the next hour based on 3 hourly measurements from t
 - **Batch Predictions**: Multi-step ahead forecasting for RL integration
 
 ### Model Performance
-- Test Loss (MSE): 0.0698
-- Test MAE: 0.2084
-- Input: (3 timesteps, 5 edges)
-- Output: (5 edge predictions)
+- **Test Loss (MSE)**: 0.0698
+- **Test MAE**: 0.2084
+- **Input**: (3 timesteps, 5 edges)
+- **Output**: (5 edge predictions)
 
 ### Endpoints
 - `GET /health` - Service health check
@@ -52,7 +103,10 @@ Predicts traffic density for the next hour based on 3 hourly measurements from t
 - `POST /predict-batch` - Multi-step batch predictions (RL integration)
 - `GET /metrics` - Service metrics
 
-[Repository](https://github.com/joeaoregan/TUS-26-ETP-AI-Traffic-Optimisation)
+[Documentation](https://joeaoregan.github.io/TUS-26-ETP-AI-Traffic-Optimisation/)  
+[API Gateway OpenAPI Docs](https://ai-traffic-control-api.onrender.com/swagger-ui/index.html)  
+[RL Inference OpenAPI Docs](https://traffic-inference-service.onrender.com/docs)  
+[Repository](https://github.com/joeaoregan/TUS-26-ETP-AI-Traffic-Optimisation)  
 """,
     contact={
         "name": "Traffic Optimization Team",
@@ -188,7 +242,7 @@ class BatchPredictionResponse(BaseModel):
 
 
 # Routes
-@app.get("/health")
+@app.get("/health", tags=["System Health"], response_model=HealthResponse)
 def health_check():
     """Health check endpoint"""
     if model is None or scaler is None:
@@ -201,7 +255,7 @@ def health_check():
     }
 
 
-@app.post("/predict")
+@app.post("/predict", tags=["LSTM Predictor"], response_model=PredictionResponse)
 def predict(request: PredictionRequest) -> PredictionResponse:
     """
     Predict traffic density for next hour
@@ -273,7 +327,7 @@ def predict(request: PredictionRequest) -> PredictionResponse:
         raise HTTPException(status_code=500, detail=f"Prediction error: {str(e)}")
 
 
-@app.post("/predict-batch")
+@app.post("/predict-batch", tags=["LSTM Predictor"], response_model=BatchPredictionResponse)
 def predict_batch(request: BatchPredictionRequest) -> BatchPredictionResponse:
     """
     Batch prediction for multiple sequences.
@@ -365,7 +419,7 @@ def predict_batch(request: BatchPredictionRequest) -> BatchPredictionResponse:
         raise HTTPException(status_code=500, detail=f"Prediction error: {str(e)}")
 
 
-@app.get("/model-info")
+@app.get("/model-info", tags=["LSTM Predictor"])
 def model_info():
     """Get model specifications"""
     if model is None:
@@ -387,7 +441,7 @@ def model_info():
     }
 
 
-@app.get("/metrics")
+@app.get("/metrics", tags=["LSTM Predictor"])
 def get_metrics():
     """
     Get service performance metrics
