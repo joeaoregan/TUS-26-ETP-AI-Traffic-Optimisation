@@ -48,9 +48,11 @@ nav:
     - 🗂️ Project Structure: system-architecture/project-structure.md
     - External Links:    
       - 🔐 API Gateway: https://ai-traffic-control-api.onrender.com
-      - 📚 API Gateway Documentation: https://ai-traffic-control-api.onrender.com/swagger-ui/index.html
+      - 📚 API Gateway Docs: https://ai-traffic-control-api.onrender.com/swagger-ui/index.html
       - 🤖 Inference Service: https://traffic-inference-service.onrender.com
-      - 📚 Inference Service Documentation: https://traffic-inference-service.onrender.com/docs
+      - 📚 Inference Service Docs: https://traffic-inference-service.onrender.com/docs
+      - 🧠 LSTM Predictor Service: https://lstm-predictor-service.onrender.com/
+      - 📚 LSTM Predictor Service Docs: https://lstm-predictor-service.onrender.com/docs
       - 🔗 GitHub Repository: https://github.com/joeaoregan/TUS-26-ETP-AI-Traffic-Optimisation
   - API Gateway: 
     - Overview: api-gateway/index.md

@@ -4,6 +4,9 @@
 
 The [Traffic Control API Gateway](https://ai-traffic-control-api.onrender.com/) is a Spring Boot REST API that serves as the orchestration layer for an AI-driven traffic optimization system. It interfaces with a Reinforcement Learning (RL) inference service to predict optimal traffic signal states and manage traffic flow in real-time.
 
+- [Render App](https://ai-traffic-control-api.onrender.com)
+- [Swagger UI Docs](https://ai-traffic-control-api.onrender.com/swagger-ui/index.html)
+
 ## Purpose
 
 This microservice provides:

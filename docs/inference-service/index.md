@@ -4,6 +4,9 @@
 
 The [RL Inference Service](https://traffic-inference-service.onrender.com/) is a FastAPI-based Python microservice that hosts a trained MAPPO (Multi-Agent Proximal Policy Optimization) neural network model for traffic signal prediction. It serves as the "AI brain" of the traffic optimization system, making real-time predictions about optimal traffic signal states for 5 junctions in the Athlone town network.
 
+- [Render App](https://traffic-inference-service.onrender.com)
+- [FastAPI Docs](https://traffic-inference-service.onrender.com/docs)
+
 ## Purpose
 
 This service provides:

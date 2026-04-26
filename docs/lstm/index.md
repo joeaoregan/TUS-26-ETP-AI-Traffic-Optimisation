@@ -4,6 +4,9 @@
 
 Predictive Modelling service for the Athlone "Orange Loop" traffic optimization system.
 
+- [Render App](https://lstm-predictor-service.onrender.com/)
+- [FastAPI Docs](https://lstm-predictor-service.onrender.com/docs)
+
 **Goal:** Use Long Short-Term Memory (LSTM) neural networks to forecast vehicle flow 15 minutes into the future with Mean Absolute Error (MAE) < 10%.
 
 **Why LSTM?**
