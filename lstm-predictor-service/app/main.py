@@ -143,6 +143,7 @@ WEIGHTS_PATH = 'trained_models/lstm_model.weights.h5'
 
 # Define model architecture
 def create_model():
+    # These are intentionally inside function for test mocking support!
     from tensorflow.keras.layers import LSTM, Dense, Dropout
     from tensorflow.keras.models import Sequential
     return Sequential([
@@ -492,9 +493,8 @@ async def custom_swagger_ui_html():
 @app.get("/", response_class=HTMLResponse, tags=["Navigation"])
 async def read_root(request: Request):
     return templates.TemplateResponse(
-        name="index.html",
-        context={"request": request},
-        request=request  # Explicitly passing it as a keyword argument as well
+        "index.html",
+        {"request": request},
     )
 
 
