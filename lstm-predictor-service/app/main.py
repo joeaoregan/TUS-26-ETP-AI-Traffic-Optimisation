@@ -8,10 +8,11 @@ from typing import List, Optional
 
 import numpy as np
 from colorama import Fore, init
-from fastapi import FastAPI, HTTPException
+from fastapi import FastAPI, HTTPException, Request
 from fastapi.openapi.docs import get_swagger_ui_html
-from fastapi.responses import FileResponse
+from fastapi.responses import FileResponse, HTMLResponse
 from fastapi.staticfiles import StaticFiles
+from fastapi.templating import Jinja2Templates
 from pydantic import BaseModel, ConfigDict
 
 init(autoreset=True)
@@ -24,8 +25,8 @@ class HealthResponse(BaseModel):
     
 class ModelInfoResponse(BaseModel):
     model_type: str
-    input_shape: tuple
-    output_shape: tuple
+    input_shape: List[int]
+    output_shape: List[int]
     description: str
     edges: List[str]
     test_loss: float
@@ -46,31 +47,6 @@ class MetricsResponse(BaseModel):
     last_prediction_time: str
     model_loaded: bool
     scaler_loaded: bool
-    
-class MetricsResponse(BaseModel):
-    service: str
-    version: str
-    status: str
-    total_predictions: int
-    total_batch_predictions: int
-    avg_inference_time_ms: float
-    last_prediction_time: Optional[str]
-    model_loaded: bool
-    scaler_loaded: bool
-    
-class ModelInfoResponse(BaseModel):
-    model_type: str
-    input_shape: List[int]
-    output_shape: List[int]
-    description: str
-    edges: List[str]
-    test_loss: float
-    test_mae: float
-    training_samples: int
-    test_samples: int
-    sequence_length: int
-    batch_prediction_supported: bool
-    max_batch_size: int
 
 tags_metadata = [
     {
@@ -99,7 +75,7 @@ app = FastAPI(
         {"url": "https://lstm-predictor-service.onrender.com/", "description": "Production Cloud server (Render)"},
     ],
     description="""
-<img src="images/logo.png" width="360" alt="LSTM Traffic Prediction Logo" />
+<img src="static/logo.png" width="360" alt="LSTM Traffic Prediction Logo" />
 
 ## LSTM-Based Traffic Density Prediction
 
@@ -143,16 +119,21 @@ Predicts traffic density for the next hour based on 3 hourly measurements from t
 
 @app.get("/favicon.ico", include_in_schema=False)
 async def favicon():
-    favicon_path = "app/images/favicon.ico"
+    favicon_path = "app/static/favicon.ico"
     return FileResponse(favicon_path, media_type="image/x-icon")
 
 
 # Mount static files
-app.mount("/images", StaticFiles(directory="app/images"), name="images")
+# app.mount("/images", StaticFiles(directory="app/images"), name="images")
+# templates = Jinja2Templates(directory=os.path.join(os.path.dirname(__file__), "templates"))
+app.mount("/static", StaticFiles(directory="static"), name="static")
+# templates = Jinja2Templates(directory="templates")
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+templates = Jinja2Templates(directory=os.path.join(BASE_DIR, "templates"))
 
 # Load model and scaler at startup
-SCALER_PATH = 'app/trained_models/scaler.joblib'
-WEIGHTS_PATH = 'app/trained_models/lstm_model.weights.h5'
+SCALER_PATH = 'trained_models/scaler.joblib'
+WEIGHTS_PATH = 'trained_models/lstm_model.weights.h5'
 
 
 # Define model architecture
@@ -500,6 +481,15 @@ async def custom_swagger_ui_html():
         title=app.title + " - Swagger UI",
         oauth2_redirect_url=app.swagger_ui_oauth2_redirect_url,
         swagger_favicon_url="/favicon.ico",  # matches the route above
+    )
+
+
+@app.get("/", response_class=HTMLResponse, tags=["Navigation"])
+async def read_root(request: Request):
+    return templates.TemplateResponse(
+        name="index.html",
+        context={"request": request},
+        request=request  # Explicitly passing it as a keyword argument as well
     )
 
 if __name__ == "__main__":
