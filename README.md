@@ -170,15 +170,15 @@ start.bat
 This repository implements a **Cloud-Native Microservices Pipeline** designed for the Athlone "Orange Loop" case study.
 
 - **[Traffic Monitoring Gateway](https://joeaoregan.github.io/TUS-26-ETP-AI-Traffic-Optimisation/api-gateway/) (Java/Spring Boot):** Manages secure telemetry ingestion and orchestrates service communication.
-  - **JWT authentication:** Stateless token-based security with HS256 signing
-  - **Exception handling:** Dedicated exception package for RL service communication errors
+  - **[JWT authentication](https://joeaoregan.github.io/TUS-26-ETP-AI-Traffic-Optimisation/security/java-api-gateway/):** Stateless token-based security with HS256 signing
+  - **[Exception handling](https://joeaoregan.github.io/TUS-26-ETP-AI-Traffic-Optimisation/security/exception-handling/):** Dedicated exception package for RL service communication errors
   - See [Java API Gateway README](java-api-gateway/README.md) for configuration and usage examples
 
 - **[RL Inference Service](https://joeaoregan.github.io/TUS-26-ETP-AI-Traffic-Optimisation/inference-service/) (Python/FastAPI):** Hosts a trained **MAPPO (Multi-Agent Proximal Policy Optimization)** model to predict optimal signal timings based on real-time traffic observations from 5 junctions
 
 - **[LSTM Predictor Service](https://joeaoregan.github.io/TUS-26-ETP-AI-Traffic-Optimisation/lstm/) (Python/FastAPI):** Forecasts vehicle flow 15 minutes ahead using historical traffic patterns from SUMO simulations, targeting MAE < 10% accuracy
 
-- **[Simulation Layer](https://joeaoregan.github.io/TUS-26-ETP-AI-Traffic-Optimisation/sumo/) (SUMO):** Integrated high-fidelity traffic simulation environment for testing adaptive signal logic against baseline fixed-time controllers. [Demo](https://youtu.be/UqK8_AHlZl4)
+- **[Simulation Layer](https://joeaoregan.github.io/TUS-26-ETP-AI-Traffic-Optimisation/sumo/) (SUMO):** Integrated high-fidelity traffic simulation environment for testing adaptive signal logic against baseline fixed-time controllers. [YouTube Demo.](https://youtu.be/UqK8_AHlZl4)
 
 This system is specifically modeled to address the saturation flow rates and signal-timing patterns of the Athlone 'Orange Loop' corridor, providing a scalable template for Smart City traffic management in regional Irish hubs.
 

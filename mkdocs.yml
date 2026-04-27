@@ -83,6 +83,7 @@ nav:
     - Overview: security/index.md
     - Java API Gateway: security/java-api-gateway.md
     - Gateway Testing: security/gateway-testing.md
+    - Exception Handling: security/exception-handling.md
   - System Architecture: 
     - Overview: system-architecture/index.md    
     - 🗂️ Project Structure: system-architecture/project-structure.md

@@ -14,3 +14,9 @@ This optional branch extends the API Gateway with enterprise-grade JWT (JSON Web
 - **Token Expiration & Revocation** — Configurable token lifetimes with blacklist support
 - **Audit Logging** — Complete authentication event tracking for compliance
 - **Rate Limiting** — Per-user rate limits to prevent abuse
+
+## Exception Handling
+
+Further security features include custom [exception handling](exception-handling.md).
+
+- **Secure Exception Management** — Centralised handling to prevent information leakage through stack traces
