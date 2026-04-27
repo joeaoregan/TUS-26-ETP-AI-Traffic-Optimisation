@@ -438,8 +438,8 @@ def model_info():
 
     return {
         "model_type": "LSTM",
-        "input_shape": (3, 5),
-        "output_shape": (5,),
+        "input_shape": [3, 5],
+        "output_shape": [5],
         "description": "Predicts edge density for next hour based on 3 hourly measurements",
         "edges": ['-269002813', '-55825089', '617128762', '-617128762', '-312266114#2'],
         "test_loss": 0.0698,
