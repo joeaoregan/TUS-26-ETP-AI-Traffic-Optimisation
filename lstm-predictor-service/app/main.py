@@ -476,7 +476,7 @@ def get_metrics():
         "last_prediction_time": (
             str(prediction_metrics["last_prediction_time"])
             if prediction_metrics["last_prediction_time"] else None
-    ),
+        ),
         "model_loaded": bool(model is not None),
         "scaler_loaded": bool(scaler is not None)
     }
