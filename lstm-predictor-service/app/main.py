@@ -4,7 +4,7 @@
 import os
 import time
 from datetime import datetime
-from typing import List, Optional
+from typing import List
 
 import numpy as np
 from colorama import Fore, init
@@ -17,12 +17,14 @@ from pydantic import BaseModel, ConfigDict
 
 init(autoreset=True)
 
+
 class HealthResponse(BaseModel):
     status: str
     message: str
     service: str
     version: str
-    
+
+
 class ModelInfoResponse(BaseModel):
     model_type: str
     input_shape: List[int]
@@ -37,6 +39,7 @@ class ModelInfoResponse(BaseModel):
     batch_prediction_supported: bool
     max_batch_size: int
 
+
 class MetricsResponse(BaseModel):
     service: str
     version: str
@@ -47,6 +50,7 @@ class MetricsResponse(BaseModel):
     last_prediction_time: str
     model_loaded: bool
     scaler_loaded: bool
+
 
 tags_metadata = [
     {
@@ -63,12 +67,13 @@ tags_metadata = [
     },
 ]
 
+
 # Initialize FastAPI
 app = FastAPI(
     title="LSTM Traffic Predictor",
     version="1.0.0",
     docs_url=None,
-    redoc_url=None,    
+    redoc_url=None,
     openapi_tags=tags_metadata,
     servers=[
         {"url": "http://localhost:8001", "description": "Local development server"},
@@ -104,10 +109,10 @@ Predicts traffic density for the next hour based on 3 hourly measurements from t
 - `POST /predict-batch` - Multi-step batch predictions (RL integration)
 - `GET /metrics` - Service metrics
 
-[Documentation](https://joeaoregan.github.io/TUS-26-ETP-AI-Traffic-Optimisation/)  
-[API Gateway OpenAPI Docs](https://ai-traffic-control-api.onrender.com/swagger-ui/index.html)  
-[RL Inference OpenAPI Docs](https://traffic-inference-service.onrender.com/docs)  
-[Repository](https://github.com/joeaoregan/TUS-26-ETP-AI-Traffic-Optimisation)  
+- [Documentation](https://joeaoregan.github.io/TUS-26-ETP-AI-Traffic-Optimisation/)
+- [API Gateway OpenAPI Docs](https://ai-traffic-control-api.onrender.com/swagger-ui/index.html)
+- [RL Inference OpenAPI Docs](https://traffic-inference-service.onrender.com/docs)
+- [Repository](https://github.com/joeaoregan/TUS-26-ETP-AI-Traffic-Optimisation)
 """,
     contact={
         "name": "Traffic Optimization Team",
@@ -491,6 +496,7 @@ async def read_root(request: Request):
         context={"request": request},
         request=request  # Explicitly passing it as a keyword argument as well
     )
+
 
 if __name__ == "__main__":
     import uvicorn
