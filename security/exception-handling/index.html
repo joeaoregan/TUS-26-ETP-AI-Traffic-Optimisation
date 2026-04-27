@@ -12,29 +12,31 @@
         <meta name="author" content="Joe O'Regan, Edgars Peskaitis, Adam O Neill Mc Knight, David Claffey">
       
       
-        <link rel="canonical" href="https://joeaoregan.github.io/TUS-26-ETP-AI-Traffic-Optimisation/CHANGELOG/">
+        <link rel="canonical" href="https://joeaoregan.github.io/TUS-26-ETP-AI-Traffic-Optimisation/security/exception-handling/">
       
       
-        <link rel="prev" href="../file-manifest/quick-reference/">
+        <link rel="prev" href="../gateway-testing/">
       
+      
+        <link rel="next" href="../../system-architecture/">
       
       
         
       
       
-      <link rel="icon" href="../images/favicon.ico">
+      <link rel="icon" href="../../images/favicon.ico">
       <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
     
     
       
-        <title>Changelog - AI Traffic Optimisation System</title>
+        <title>Exception Handling - AI Traffic Optimisation System</title>
       
     
     
-      <link rel="stylesheet" href="../assets/stylesheets/main.484c7ddc.min.css">
+      <link rel="stylesheet" href="../../assets/stylesheets/main.484c7ddc.min.css">
       
         
-        <link rel="stylesheet" href="../assets/stylesheets/palette.ab4e12ef.min.css">
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
       
       
   
@@ -78,7 +80,7 @@
       
     
     
-    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
 
@@ -103,7 +105,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#changelog" class="md-skip">
+        <a href="#exception-handling-resilience" class="md-skip">
           Skip to content
         </a>
       
@@ -119,9 +121,9 @@
 
 <header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href=".." title="AI Traffic Optimisation System" class="md-header__button md-logo" aria-label="AI Traffic Optimisation System" data-md-component="logo">
+    <a href="../.." title="AI Traffic Optimisation System" class="md-header__button md-logo" aria-label="AI Traffic Optimisation System" data-md-component="logo">
       
-  <img src="../images/logo.png" alt="logo">
+  <img src="../../images/logo.png" alt="logo">
 
     </a>
     <label class="md-header__button md-icon" for="__drawer">
@@ -138,7 +140,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Changelog
+              Exception Handling
             
           </span>
         </div>
@@ -245,7 +247,7 @@
     
     
       <li class="md-tabs__item">
-        <a href=".." class="md-tabs__link">
+        <a href="../.." class="md-tabs__link">
           
   
   
@@ -265,7 +267,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="../api-gateway/" class="md-tabs__link">
+        <a href="../../api-gateway/" class="md-tabs__link">
           
   
   
@@ -285,7 +287,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="../inference-service/" class="md-tabs__link">
+        <a href="../../inference-service/" class="md-tabs__link">
           
   
   
@@ -305,7 +307,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="../lstm/" class="md-tabs__link">
+        <a href="../../lstm/" class="md-tabs__link">
           
   
   
@@ -323,7 +325,7 @@
   
   
     <li class="md-tabs__item">
-      <a href="../integration/" class="md-tabs__link">
+      <a href="../../integration/" class="md-tabs__link">
         
   
   
@@ -344,7 +346,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="../sumo/" class="md-tabs__link">
+        <a href="../../sumo/" class="md-tabs__link">
           
   
   
@@ -360,11 +362,13 @@
   
   
   
+    
+  
   
     
     
-      <li class="md-tabs__item">
-        <a href="../security/" class="md-tabs__link">
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../" class="md-tabs__link">
           
   
   
@@ -384,7 +388,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="../system-architecture/" class="md-tabs__link">
+        <a href="../../system-architecture/" class="md-tabs__link">
           
   
   
@@ -411,7 +415,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="../quickstart/" class="md-tabs__link">
+        <a href="../../quickstart/" class="md-tabs__link">
           
   
   
@@ -434,7 +438,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="../api/" class="md-tabs__link">
+        <a href="../../api/" class="md-tabs__link">
           
   
   
@@ -452,7 +456,7 @@
   
   
     <li class="md-tabs__item">
-      <a href="../features/" class="md-tabs__link">
+      <a href="../../features/" class="md-tabs__link">
         
   
   
@@ -469,13 +473,11 @@
   
   
   
-    
-  
   
     
     
-      <li class="md-tabs__item md-tabs__item--active">
-        <a href="../support/" class="md-tabs__link">
+      <li class="md-tabs__item">
+        <a href="../../support/" class="md-tabs__link">
           
   
   
@@ -515,9 +517,9 @@
 
 <nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href=".." title="AI Traffic Optimisation System" class="md-nav__button md-logo" aria-label="AI Traffic Optimisation System" data-md-component="logo">
+    <a href="../.." title="AI Traffic Optimisation System" class="md-nav__button md-logo" aria-label="AI Traffic Optimisation System" data-md-component="logo">
       
-  <img src="../images/logo.png" alt="logo">
+  <img src="../../images/logo.png" alt="logo">
 
     </a>
     AI Traffic Optimisation System
@@ -596,7 +598,7 @@
   
   
     <li class="md-nav__item">
-      <a href=".." class="md-nav__link">
+      <a href="../.." class="md-nav__link">
         
   
   
@@ -624,7 +626,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../system-architecture/project-structure/" class="md-nav__link">
+      <a href="../../system-architecture/project-structure/" class="md-nav__link">
         
   
   
@@ -967,7 +969,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../api-gateway/" class="md-nav__link">
+      <a href="../../api-gateway/" class="md-nav__link">
         
   
   
@@ -995,7 +997,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../api-gateway/architecture/" class="md-nav__link">
+      <a href="../../api-gateway/architecture/" class="md-nav__link">
         
   
   
@@ -1023,7 +1025,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../api-gateway/file-structure/" class="md-nav__link">
+      <a href="../../api-gateway/file-structure/" class="md-nav__link">
         
   
   
@@ -1051,7 +1053,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../api-gateway/endpoints/" class="md-nav__link">
+      <a href="../../api-gateway/endpoints/" class="md-nav__link">
         
   
   
@@ -1079,7 +1081,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../api-gateway/authentication/" class="md-nav__link">
+      <a href="../../api-gateway/authentication/" class="md-nav__link">
         
   
   
@@ -1107,7 +1109,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../api-gateway/key-features/" class="md-nav__link">
+      <a href="../../api-gateway/key-features/" class="md-nav__link">
         
   
   
@@ -1194,7 +1196,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../inference-service/" class="md-nav__link">
+      <a href="../../inference-service/" class="md-nav__link">
         
   
   
@@ -1222,7 +1224,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../inference-service/architecture/" class="md-nav__link">
+      <a href="../../inference-service/architecture/" class="md-nav__link">
         
   
   
@@ -1250,7 +1252,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../inference-service/file-structure/" class="md-nav__link">
+      <a href="../../inference-service/file-structure/" class="md-nav__link">
         
   
   
@@ -1278,7 +1280,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../inference-service/endpoints/" class="md-nav__link">
+      <a href="../../inference-service/endpoints/" class="md-nav__link">
         
   
   
@@ -1306,7 +1308,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../inference-service/key-features/" class="md-nav__link">
+      <a href="../../inference-service/key-features/" class="md-nav__link">
         
   
   
@@ -1393,7 +1395,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../lstm/" class="md-nav__link">
+      <a href="../../lstm/" class="md-nav__link">
         
   
   
@@ -1421,7 +1423,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../lstm/architecture/" class="md-nav__link">
+      <a href="../../lstm/architecture/" class="md-nav__link">
         
   
   
@@ -1449,7 +1451,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../lstm/file-structure/" class="md-nav__link">
+      <a href="../../lstm/file-structure/" class="md-nav__link">
         
   
   
@@ -1477,7 +1479,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../lstm/endpoints/" class="md-nav__link">
+      <a href="../../lstm/endpoints/" class="md-nav__link">
         
   
   
@@ -1505,7 +1507,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../lstm/key-features/" class="md-nav__link">
+      <a href="../../lstm/key-features/" class="md-nav__link">
         
   
   
@@ -1540,7 +1542,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../integration/" class="md-nav__link">
+      <a href="../../integration/" class="md-nav__link">
         
   
   
@@ -1619,7 +1621,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../sumo/" class="md-nav__link">
+      <a href="../../sumo/" class="md-nav__link">
         
   
   
@@ -1647,7 +1649,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../sumo/architecture/" class="md-nav__link">
+      <a href="../../sumo/architecture/" class="md-nav__link">
         
   
   
@@ -1675,7 +1677,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../sumo/file-structure/" class="md-nav__link">
+      <a href="../../sumo/file-structure/" class="md-nav__link">
         
   
   
@@ -1703,7 +1705,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../sumo/key-features/" class="md-nav__link">
+      <a href="../../sumo/key-features/" class="md-nav__link">
         
   
   
@@ -1735,26 +1737,31 @@
       
   
   
+    
   
   
+  
     
     
     
     
+      
+        
+        
       
       
         
       
     
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" checked>
         
           
-          <label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="">
             
   
   
@@ -1772,7 +1779,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_7">
             <span class="md-nav__icon md-icon"></span>
             
@@ -1790,7 +1797,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../security/" class="md-nav__link">
+      <a href="../" class="md-nav__link">
         
   
   
@@ -1818,7 +1825,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../security/java-api-gateway/" class="md-nav__link">
+      <a href="../java-api-gateway/" class="md-nav__link">
         
   
   
@@ -1846,7 +1853,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../security/gateway-testing/" class="md-nav__link">
+      <a href="../gateway-testing/" class="md-nav__link">
         
   
   
@@ -1871,10 +1878,37 @@
                 
   
   
+    
   
   
-    <li class="md-nav__item">
-      <a href="../security/exception-handling/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Exception Handling
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         
   
   
@@ -1890,6 +1924,76 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#architecture" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        🏗️ Architecture
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🏗️ Architecture">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#key-components" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Key Components
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#handling-inter-service-failures" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        🚦 Handling Inter-Service Failures
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#standardised-error-response" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        📝 Standardised Error Response
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -1961,7 +2065,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../system-architecture/" class="md-nav__link">
+      <a href="../../system-architecture/" class="md-nav__link">
         
   
   
@@ -1989,7 +2093,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../system-architecture/project-structure/" class="md-nav__link">
+      <a href="../../system-architecture/project-structure/" class="md-nav__link">
         
   
   
@@ -2069,7 +2173,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../system-architecture/high-level/" class="md-nav__link">
+      <a href="../../system-architecture/high-level/" class="md-nav__link">
         
   
   
@@ -2097,7 +2201,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../system-architecture/system-components/" class="md-nav__link">
+      <a href="../../system-architecture/system-components/" class="md-nav__link">
         
   
   
@@ -2125,7 +2229,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../system-architecture/request-response-flow/" class="md-nav__link">
+      <a href="../../system-architecture/request-response-flow/" class="md-nav__link">
         
   
   
@@ -2213,7 +2317,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../system-architecture/data-flow-through-system/" class="md-nav__link">
+      <a href="../../system-architecture/data-flow-through-system/" class="md-nav__link">
         
   
   
@@ -2241,7 +2345,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../system-architecture/detailed-internal-flow/" class="md-nav__link">
+      <a href="../../system-architecture/detailed-internal-flow/" class="md-nav__link">
         
   
   
@@ -2269,7 +2373,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../system-architecture/model-loading-and-caching-strategy/" class="md-nav__link">
+      <a href="../../system-architecture/model-loading-and-caching-strategy/" class="md-nav__link">
         
   
   
@@ -2357,7 +2461,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../system-architecture/complete-end-to-end-workflow/" class="md-nav__link">
+      <a href="../../system-architecture/complete-end-to-end-workflow/" class="md-nav__link">
         
   
   
@@ -2385,7 +2489,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../system-architecture/inter-service-communication-protocol/" class="md-nav__link">
+      <a href="../../system-architecture/inter-service-communication-protocol/" class="md-nav__link">
         
   
   
@@ -2413,7 +2517,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../system-architecture/error-handling-flow/" class="md-nav__link">
+      <a href="../../system-architecture/error-handling-flow/" class="md-nav__link">
         
   
   
@@ -2501,7 +2605,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../system-architecture/deployment-architecture/" class="md-nav__link">
+      <a href="../../system-architecture/deployment-architecture/" class="md-nav__link">
         
   
   
@@ -2529,7 +2633,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../system-architecture/deployment-patterns/" class="md-nav__link">
+      <a href="../../system-architecture/deployment-patterns/" class="md-nav__link">
         
   
   
@@ -2557,7 +2661,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../system-architecture/monitoring-and-observability-points/" class="md-nav__link">
+      <a href="../../system-architecture/monitoring-and-observability-points/" class="md-nav__link">
         
   
   
@@ -2645,7 +2749,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../system-architecture/architecture-decision-rationale/" class="md-nav__link">
+      <a href="../../system-architecture/architecture-decision-rationale/" class="md-nav__link">
         
   
   
@@ -2673,7 +2777,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../system-architecture/security-architecture/" class="md-nav__link">
+      <a href="../../system-architecture/security-architecture/" class="md-nav__link">
         
   
   
@@ -2701,7 +2805,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../system-architecture/performance-characteristics/" class="md-nav__link">
+      <a href="../../system-architecture/performance-characteristics/" class="md-nav__link">
         
   
   
@@ -2729,7 +2833,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../system-architecture/scalability-considerations/" class="md-nav__link">
+      <a href="../../system-architecture/scalability-considerations/" class="md-nav__link">
         
   
   
@@ -2876,7 +2980,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../quickstart/" class="md-nav__link">
+      <a href="../../quickstart/" class="md-nav__link">
         
   
   
@@ -2964,7 +3068,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../setup-complete/" class="md-nav__link">
+      <a href="../../setup-complete/" class="md-nav__link">
         
   
   
@@ -2992,7 +3096,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../setup-complete/what-was-created/" class="md-nav__link">
+      <a href="../../setup-complete/what-was-created/" class="md-nav__link">
         
   
   
@@ -3020,7 +3124,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../setup-complete/quickstart/" class="md-nav__link">
+      <a href="../../setup-complete/quickstart/" class="md-nav__link">
         
   
   
@@ -3048,7 +3152,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../setup-complete/architecture-overview/" class="md-nav__link">
+      <a href="../../setup-complete/architecture-overview/" class="md-nav__link">
         
   
   
@@ -3076,7 +3180,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../setup-complete/using-different-models/" class="md-nav__link">
+      <a href="../../setup-complete/using-different-models/" class="md-nav__link">
         
   
   
@@ -3104,7 +3208,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../setup-complete/testing/" class="md-nav__link">
+      <a href="../../setup-complete/testing/" class="md-nav__link">
         
   
   
@@ -3132,7 +3236,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../setup-complete/environment-variables/" class="md-nav__link">
+      <a href="../../setup-complete/environment-variables/" class="md-nav__link">
         
   
   
@@ -3160,7 +3264,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../setup-complete/development-vs-production/" class="md-nav__link">
+      <a href="../../setup-complete/development-vs-production/" class="md-nav__link">
         
   
   
@@ -3188,7 +3292,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../setup-complete/next-steps/" class="md-nav__link">
+      <a href="../../setup-complete/next-steps/" class="md-nav__link">
         
   
   
@@ -3216,7 +3320,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../setup-complete/support/" class="md-nav__link">
+      <a href="../../setup-complete/support/" class="md-nav__link">
         
   
   
@@ -3304,7 +3408,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../setup-complete/mkdocs-setup/" class="md-nav__link">
+      <a href="../../setup-complete/mkdocs-setup/" class="md-nav__link">
         
   
   
@@ -3332,7 +3436,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../setup-complete/documentation-files/" class="md-nav__link">
+      <a href="../../setup-complete/documentation-files/" class="md-nav__link">
         
   
   
@@ -3427,7 +3531,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../api/" class="md-nav__link">
+      <a href="../../api/" class="md-nav__link">
         
   
   
@@ -3455,7 +3559,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../api/endpoints/" class="md-nav__link">
+      <a href="../../api/endpoints/" class="md-nav__link">
         
   
   
@@ -3535,7 +3639,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../api/setup/" class="md-nav__link">
+      <a href="../../api/setup/" class="md-nav__link">
         
   
   
@@ -3563,7 +3667,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../api/setup/docker-compose-configuration/" class="md-nav__link">
+      <a href="../../api/setup/docker-compose-configuration/" class="md-nav__link">
         
   
   
@@ -3591,7 +3695,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../api/setup/environment-variables/" class="md-nav__link">
+      <a href="../../api/setup/environment-variables/" class="md-nav__link">
         
   
   
@@ -3619,7 +3723,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../api/setup/local-dev/" class="md-nav__link">
+      <a href="../../api/setup/local-dev/" class="md-nav__link">
         
   
   
@@ -3647,7 +3751,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../api/setup/production-deployment/" class="md-nav__link">
+      <a href="../../api/setup/production-deployment/" class="md-nav__link">
         
   
   
@@ -3675,7 +3779,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../api/setup/troubleshooting/" class="md-nav__link">
+      <a href="../../api/setup/troubleshooting/" class="md-nav__link">
         
   
   
@@ -3703,7 +3807,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../api/setup/using-different-models/" class="md-nav__link">
+      <a href="../../api/setup/using-different-models/" class="md-nav__link">
         
   
   
@@ -3791,7 +3895,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../api/guides/" class="md-nav__link">
+      <a href="../../api/guides/" class="md-nav__link">
         
   
   
@@ -3819,7 +3923,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../api/guides/usage-examples/" class="md-nav__link">
+      <a href="../../api/guides/usage-examples/" class="md-nav__link">
         
   
   
@@ -3847,7 +3951,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../api/guides/components/" class="md-nav__link">
+      <a href="../../api/guides/components/" class="md-nav__link">
         
   
   
@@ -3875,7 +3979,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../api/guides/monitoring-and-logging/" class="md-nav__link">
+      <a href="../../api/guides/monitoring-and-logging/" class="md-nav__link">
         
   
   
@@ -3903,7 +4007,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../api/guides/performance-tuning/" class="md-nav__link">
+      <a href="../../api/guides/performance-tuning/" class="md-nav__link">
         
   
   
@@ -3946,7 +4050,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../features/" class="md-nav__link">
+      <a href="../../features/" class="md-nav__link">
         
   
   
@@ -3970,31 +4074,26 @@
       
   
   
-    
   
   
-  
     
     
     
     
-      
-        
-        
       
       
         
       
     
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_12" checked>
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_12" >
         
           
-          <label class="md-nav__link" for="__nav_12" id="__nav_12_label" tabindex="">
+          <label class="md-nav__link" for="__nav_12" id="__nav_12_label" tabindex="0">
             
   
   
@@ -4012,7 +4111,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_12_label" aria-expanded="true">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_12_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_12">
             <span class="md-nav__icon md-icon"></span>
             
@@ -4030,7 +4129,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../support/" class="md-nav__link">
+      <a href="../../support/" class="md-nav__link">
         
   
   
@@ -4064,20 +4163,17 @@
       
       
         
-          
-          
-        
       
     
     
-    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
         
         
         <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_12_2" >
         
           
-          <label class="md-nav__link" for="__nav_12_2" id="__nav_12_2_label" tabindex="">
+          <label class="md-nav__link" for="__nav_12_2" id="__nav_12_2_label" tabindex="0">
             
   
   
@@ -4113,7 +4209,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../file-manifest/" class="md-nav__link">
+      <a href="../../file-manifest/" class="md-nav__link">
         
   
   
@@ -4141,7 +4237,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../file-manifest/inference-service/" class="md-nav__link">
+      <a href="../../file-manifest/inference-service/" class="md-nav__link">
         
   
   
@@ -4169,7 +4265,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../file-manifest/api-gateway/" class="md-nav__link">
+      <a href="../../file-manifest/api-gateway/" class="md-nav__link">
         
   
   
@@ -4197,7 +4293,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../file-manifest/file-statistics/" class="md-nav__link">
+      <a href="../../file-manifest/file-statistics/" class="md-nav__link">
         
   
   
@@ -4225,7 +4321,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../file-manifest/integration-with-existing-project/" class="md-nav__link">
+      <a href="../../file-manifest/integration-with-existing-project/" class="md-nav__link">
         
   
   
@@ -4253,7 +4349,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../file-manifest/environment-setup/" class="md-nav__link">
+      <a href="../../file-manifest/environment-setup/" class="md-nav__link">
         
   
   
@@ -4281,7 +4377,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../file-manifest/how-to-use-each-component/" class="md-nav__link">
+      <a href="../../file-manifest/how-to-use-each-component/" class="md-nav__link">
         
   
   
@@ -4309,7 +4405,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../file-manifest/quick-reference/" class="md-nav__link">
+      <a href="../../file-manifest/quick-reference/" class="md-nav__link">
         
   
   
@@ -4342,37 +4438,10 @@
                 
   
   
-    
   
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Changelog
-  
-
-    
-  </span>
-  
-  
-
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../../CHANGELOG/" class="md-nav__link">
         
   
   
@@ -4388,237 +4457,6 @@
   
 
       </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#220-2026-04-10" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        [2.2.0] - 2026-04-10
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="[2.2.0] - 2026-04-10">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#added" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Added
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#changed" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Changed
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#documentation" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Documentation
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#210-2026-04-09" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        [2.1.0] - 2026-04-09
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="[2.1.0] - 2026-04-09">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#added_1" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Added
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#changed_1" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Changed
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#security" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Security
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#200-2026-03-31" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        [2.0.0] - 2026-03-31
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="[2.0.0] - 2026-03-31">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#changed_2" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Changed
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#added_2" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Added
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#removed" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Removed
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#performance" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Performance
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#100-2026-03-21" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        [1.0.0] - 2026-03-21
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="[1.0.0] - 2026-03-21">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#added_3" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Added
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#changed_3" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Changed
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#security_1" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Security
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -4658,44 +4496,22 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#220-2026-04-10" class="md-nav__link">
+  <a href="#architecture" class="md-nav__link">
     <span class="md-ellipsis">
       
-        [2.2.0] - 2026-04-10
+        🏗️ Architecture
       
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="[2.2.0] - 2026-04-10">
+    <nav class="md-nav" aria-label="🏗️ Architecture">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#added" class="md-nav__link">
+  <a href="#key-components" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Added
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#changed" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Changed
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#documentation" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Documentation
+        Key Components
       
     </span>
   </a>
@@ -4708,163 +4524,24 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#210-2026-04-09" class="md-nav__link">
+  <a href="#handling-inter-service-failures" class="md-nav__link">
     <span class="md-ellipsis">
       
-        [2.1.0] - 2026-04-09
+        🚦 Handling Inter-Service Failures
       
     </span>
   </a>
-  
-    <nav class="md-nav" aria-label="[2.1.0] - 2026-04-09">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#added_1" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Added
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#changed_1" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Changed
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#security" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Security
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#200-2026-03-31" class="md-nav__link">
+  <a href="#standardised-error-response" class="md-nav__link">
     <span class="md-ellipsis">
       
-        [2.0.0] - 2026-03-31
+        📝 Standardised Error Response
       
     </span>
   </a>
-  
-    <nav class="md-nav" aria-label="[2.0.0] - 2026-03-31">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#changed_2" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Changed
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#added_2" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Added
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#removed" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Removed
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#performance" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Performance
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#100-2026-03-21" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        [1.0.0] - 2026-03-21
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="[1.0.0] - 2026-03-21">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#added_3" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Added
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#changed_3" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Changed
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#security_1" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Security
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
   
 </li>
       
@@ -4894,146 +4571,51 @@
   
 
 
-<h1 id="changelog">Changelog</h1>
-<p>All notable changes to the AI-Driven Predictive Traffic Flow Optimisation System will be documented in this file.</p>
-<h2 id="220-2026-04-10">[2.2.0] - 2026-04-10</h2>
-<h3 id="added">Added</h3>
+<h1 id="exception-handling-resilience">🛡️ Exception Handling &amp; Resilience</h1>
+<p>The system implements a centralised exception handling strategy to ensure service stability, especially during inter-service communication between the <strong>Java API Gateway</strong> and the <strong>Python AI Services</strong>.</p>
+<h2 id="architecture">🏗️ Architecture</h2>
+<p>The project uses Spring Boot's <code>@ControllerAdvice</code> to intercept exceptions globally. This prevents raw stack traces from being exposed to the end-user, which is a key security best practice.</p>
+<h3 id="key-components">Key Components</h3>
 <ul>
-<li><strong><code>GET /api/traffic/model_info</code></strong> (Java Gateway): New endpoint proxying to Python <code>/model_info</code>. Returns MAPPO model architecture, junction configuration, and agent indices.</li>
-<li><strong><code>POST /api/traffic/reset</code></strong> and <strong><code>GET /api/traffic/model_info</code></strong> now require JWT authentication.</li>
+<li><strong><code>RlInferenceException</code></strong>: A custom runtime exception used specifically for failures during Reinforcement Learning inference requests.</li>
+<li><strong><code>GlobalExceptionHandler</code></strong>: Intercepts all exceptions and maps them to standardised <code>ErrorResponse</code> DTOs.</li>
 </ul>
-<h3 id="changed">Changed</h3>
-<ul>
-<li><strong>RL Inference <code>main.py</code></strong>: Replaced old PPO/Stable-Baselines3 implementation with MAPPO <code>RNNAgent</code> (GRU). Service now uses <code>torch</code> directly — no SB3 dependency.</li>
-<li><strong>RL Inference <code>requirements.txt</code></strong>: Removed <code>stable-baselines3</code> and <code>gymnasium</code>; <code>torch==2.2.1</code> used directly for MAPPO inference.</li>
-<li><strong>RL Inference <code>Dockerfile</code></strong>: Multi-stage build to reduce image size. CPU-only PyTorch via <code>--extra-index-url https://download.pytorch.org/whl/cpu</code>. Final image ~500 MB (down from 1.35 GB).</li>
-<li><strong>Java Gateway <code>RlInferenceClient</code></strong>: Added <code>getModelInfo()</code> method proxying to Python <code>/model_info</code>.</li>
-<li><strong>Config reference</strong>: Updated from <code>mappo_sumo_v4.yaml</code> to <code>mappo_sumo_v5.yaml</code> in README and service documentation.</li>
-<li><strong><code>index.html</code></strong>: Updated inference engine description from <code>PPO RL Agent (SB3)</code> to <code>MAPPO RL Agent (EPyMARL)</code>.</li>
-</ul>
-<h3 id="documentation">Documentation</h3>
-<ul>
-<li><strong>Java Gateway <code>README.md</code></strong>: Updated protected endpoints list — removed incorrect <code>GET /api/traffic/action</code>, added <code>POST /api/traffic/reset</code> and <code>GET /api/traffic/model_info</code>.</li>
-<li><strong>Java Gateway <code>README.md</code></strong>: Fixed curl and PowerShell examples for <code>POST /api/traffic/action</code> — added required <code>junctionId</code> field and corrected observation vector to 19 floats.</li>
-<li><strong>RL Inference <code>README.md</code></strong>: Updated config reference from <code>mappo_sumo_v4.yaml</code> to <code>mappo_sumo_v5.yaml</code>.</li>
-</ul>
-<hr />
-<h2 id="210-2026-04-09">[2.1.0] - 2026-04-09</h2>
-<h3 id="added_1">Added</h3>
-<ul>
-<li><strong>JWT Authentication:</strong> Implemented stateless token-based security in Java API Gateway</li>
-<li>HS256 HMAC signing for bearer tokens</li>
-<li>Configurable token expiration (default 60 minutes)</li>
-<li>Protected endpoints: <code>/api/traffic/action</code> (GET/POST), <code>/api/traffic/reset</code></li>
-<li>Public endpoints: <code>/api/auth/login</code>, <code>/api/traffic/health</code>, Swagger UI</li>
-<li>
-<p>New DTOs: <code>LoginRequest</code>, <code>LoginResponse</code>, <code>ErrorResponse</code></p>
-</li>
-<li>
-<p><strong>LSTM Traffic Predictor Framework:</strong> Foundation for time-series forecasting service</p>
-</li>
-<li>Architecture defined with FastAPI endpoints (<code>/health</code>, <code>/forecast</code>, <code>/model_info</code>)</li>
-<li>Data pipeline ready (loader, preprocessor modules)</li>
-<li>Configured for SUMO integration (edgeData.xml input)</li>
-<li>Target: 15-minute ahead forecasting with MAE &lt; 10%</li>
-<li>
-<p>Supports all 5 major junctions</p>
-</li>
-<li>
-<p><strong>SUMO Documentation:</strong> Comprehensive service documentation added</p>
-</li>
-<li><code>docs/sumo/architecture.md</code> — Network structure, file organization, data flow</li>
-<li>
-<p><code>docs/sumo/key-features.md</code> — Traffic flows, route configuration, output formats</p>
-</li>
-<li>
-<p><strong>Enhanced Test Suite:</strong> <code>test_api.py</code> updated with improved usability</p>
-</li>
-<li>Color-coded output (green/red/blue) for better readability</li>
-<li>Test result tracking (e.g., "4/4 tests passed")</li>
-<li>Boolean status returns for each test function</li>
-<li>
-<p>Requires: <code>colorama</code> package</p>
-</li>
-<li>
-<p><strong>Documentation Updates:</strong></p>
-</li>
-<li><code>docs/index.md</code> — Added service documentation section, LSTM quick link, security section</li>
-<li><code>docs/features.md</code> — Updated feature matrix with JWT checkmarks and LSTM/SUMO status</li>
-<li><code>docs/api-gateway/index.md</code> — Added JWT authentication section with config table</li>
-<li><code>docs/api-gateway/endpoints.md</code> — Added <code>/api/auth/login</code> endpoint documentation</li>
-<li><code>docs/lstm/architecture.md</code> — Complete LSTM service architecture documentation</li>
-<li><code>docs/lstm/endpoints.md</code> — LSTM API endpoints (health, model_info, forecast)</li>
-<li><code>docs/lstm/key-features.md</code> — LSTM service features and capabilities</li>
-<li>README.md files updated to reflect JWT integration in main branch</li>
-</ul>
-<h3 id="changed_1">Changed</h3>
-<ul>
-<li><strong>System Architecture Description:</strong> Updated to emphasize JWT authentication and LSTM forecasting</li>
-<li><strong>Feature Matrix:</strong> Reorganized to reflect current implementation status</li>
-<li>JWT moved from "optional" to "implemented"</li>
-<li>LSTM endpoints marked as framework-ready (awaiting model training)</li>
-<li>
-<p>SUMO status clarified: "fully operational as standalone, not yet live-integrated with RL"</p>
-</li>
-<li>
-<p><strong>Java API Gateway README:</strong> Enhanced testing section with colorama dependency and color output documentation</p>
-</li>
-</ul>
-<h3 id="security">Security</h3>
-<ul>
-<li>JWT authentication now production-ready on main branch (previously in A00163691-JWTAuth branch)</li>
-<li>Stateless token management with configurable expiration</li>
-<li>Bearer token validation on all protected endpoints</li>
-</ul>
-<hr />
-<h2 id="200-2026-03-31">[2.0.0] - 2026-03-31</h2>
-<h3 id="changed_2">Changed</h3>
-<ul>
-<li><strong>RL Model:</strong> Replaced single-agent PPO (Stable-Baselines3, <code>model.zip</code>) with MAPPO v4 (EPyMARL, <code>agent.th</code>) — shared GRU RNNAgent controlling 5 junctions simultaneously.</li>
-<li><strong>Python inference service:</strong> <code>main.py</code> rewritten to load EPyMARL <code>RNNAgent</code> (PyTorch) instead of SB3 PPO. Architecture: <code>fc1(24→128) → GRUCell(128→128) → fc2(128→4)</code>.</li>
-<li><strong>POST <code>/predict_action</code> payload:</strong> Now requires <code>junction_id</code> (string) and <code>obs_data</code> (float[]). Previously only <code>obs_data</code> was needed.</li>
-<li><strong>POST <code>/api/traffic/action</code> payload (Java):</strong> Now requires <code>junctionId</code> (string) and <code>observations</code> (float[], max 19). Previously only <code>observations</code> was needed.</li>
-<li><strong>Response payload:</strong> Both services now include <code>junctionId</code> / <code>junction_id</code> in the prediction response.</li>
-<li><strong>Environment variable:</strong> <code>MODEL_PATH</code>, <code>OBSERVATION_SHAPE_DIM</code>, <code>NUM_AGENTS</code> replaced by <code>MAPPO_AGENT_PATH</code>.</li>
-<li><strong>Observation dimension:</strong> 9 → up to 19 (padded to max junction obs size internally).</li>
-<li><strong>Agent count:</strong> 1 → 5 (one per controlled junction).</li>
-<li><strong>Docker images:</strong> Versioned as <code>rl-inference-service:2.0.0</code> and <code>traffic-api-gateway:2.0.0</code>.</li>
-</ul>
-<h3 id="added_2">Added</h3>
-<ul>
-<li><strong>POST <code>/reset_hidden</code></strong> (Python) and <strong>POST <code>/api/traffic/reset</code></strong> (Java): Reset MAPPO GRU hidden states between simulation runs.</li>
-<li><strong>GET <code>/model_info</code>:</strong> Now returns full junction map with agent indices and action masks.</li>
-<li><strong>GRU hidden state management:</strong> Per-junction recurrent state maintained between <code>/predict_action</code> calls within a simulation run.</li>
-</ul>
-<h3 id="removed">Removed</h3>
-<ul>
-<li><code>stable-baselines3</code> and <code>shimmy</code> dependencies from <code>requirements.txt</code>.</li>
-<li><code>MODEL_PATH</code>, <code>OBSERVATION_SHAPE_DIM</code>, <code>NUM_AGENTS</code> environment variables.</li>
-</ul>
-<h3 id="performance">Performance</h3>
-<ul>
-<li>Mean waiting time reduced <strong>69.8%</strong> vs fixed-time baseline (28.8 s → 8.7 s) with MAPPO v4 model.</li>
-<li>100% episode completion rate (vs 13.3% for previous IPPO model).</li>
-</ul>
-<hr />
-<h2 id="100-2026-03-21">[1.0.0] - 2026-03-21</h2>
-<h3 id="added_3">Added</h3>
-<ul>
-<li><strong>Microservices Architecture:</strong> Integrated Java Spring Boot API Gateway and Python RL-Inference service.</li>
-<li><strong>ML Pipeline:</strong> Support for PPO (Proximal Policy Optimization) model inference.</li>
-<li><strong>Simulation Environment:</strong> Integrated SUMO (Simulation of Urban MObility) configurations for the Athlone "Orange Loop".</li>
-</ul>
-<h3 id="changed_3">Changed</h3>
-<ul>
-<li><strong>Monorepo Consolidation:</strong> Merged standalone API branch into the main branch to establish a cohesive pipeline.</li>
-<li><strong>Dependency Management:</strong> Updated Python requirements to include FastAPI, Pydantic v2, and Stable-Baselines3.</li>
-</ul>
-<h3 id="security_1">Security</h3>
-<ul>
-<li><strong>Data Integrity:</strong> Initial implementation of TLS 1.3 for telemetry ingestion.</li>
-<li><strong>Authentication:</strong> Added digital signature placeholders in <code>OpenApiConfig.java</code> to prevent data injection attacks.</li>
-</ul>
+<h2 id="handling-inter-service-failures">🚦 Handling Inter-Service Failures</h2>
+<p>When the Gateway communicates with the <code>rl-inference-service</code> or <code>lstm-predictor-service</code>, several things can go wrong (timeouts, connection refused, or invalid model state).</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Exception</th>
+<th style="text-align: left;">HTTP Status</th>
+<th style="text-align: left;">Mitigation Strategy</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><code>RlInferenceException</code></td>
+<td style="text-align: left;">502 Bad Gateway</td>
+<td style="text-align: left;">Logs the specific AI service error and returns a clean JSON response.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>MethodArgumentNotValidException</code></td>
+<td style="text-align: left;">400 Bad Request</td>
+<td style="text-align: left;">Validates input telemetry vectors before they reach the AI models.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>Exception</code> (General)</td>
+<td style="text-align: left;">500 Internal Error</td>
+<td style="text-align: left;">Generic fallback to prevent internal logic leakage.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="standardised-error-response">📝 Standardised Error Response</h2>
+<p>All exceptions return a consistent JSON contract, allowing the frontend or simulation scripts to handle errors gracefully:</p>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;message&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Error communicating with RL service&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;details&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Connection timed out&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;timestamp&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;2026-04-27T10:00:00Z&quot;</span>
+<span class="p">}</span>
+</code></pre></div>
 
 
 
@@ -5069,7 +4651,7 @@
       <nav class="md-footer__inner md-grid" aria-label="Footer" >
         
           
-          <a href="../file-manifest/quick-reference/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Quick Reference">
+          <a href="../gateway-testing/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Gateway Testing">
             <div class="md-footer__button md-icon">
               
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
@@ -5079,11 +4661,27 @@
                 Previous
               </span>
               <div class="md-ellipsis">
-                Quick Reference
+                Gateway Testing
               </div>
             </div>
           </a>
         
+        
+          
+          <a href="../../system-architecture/" class="md-footer__link md-footer__link--next" aria-label="Next: Overview">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              <div class="md-ellipsis">
+                Overview
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+            </div>
+          </a>
         
       </nav>
     
@@ -5113,10 +4711,10 @@
     
       
       
-      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": ["navigation.tabs", "navigation.tabs.sticky", "navigation.sections", "toc.follow", "navigation.footer", "navigation.instant.preview", "navigation.tracking", "navigation.path", "navigation.top"], "search": "../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.tabs", "navigation.tabs.sticky", "navigation.sections", "toc.follow", "navigation.footer", "navigation.instant.preview", "navigation.tracking", "navigation.path", "navigation.top"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
     
     
-      <script src="../assets/javascripts/bundle.79ae519e.min.js"></script>
+      <script src="../../assets/javascripts/bundle.79ae519e.min.js"></script>
       
     
   </body>
