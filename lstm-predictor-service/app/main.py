@@ -506,10 +506,9 @@ async def custom_swagger_ui_html():
 
 
 @app.get("/", response_class=HTMLResponse, tags=["Navigation"])
-@app.head("/", include_in_schema=False) # Fixes Render 405 errors
+@app.head("/", include_in_schema=False)
 async def read_root(request: Request):
     """LSTM Predictor Landing Page"""
-    # Use positional arguments to ensure compatibility across all environments
     return templates.TemplateResponse(
         "index.html",
         {"request": request}
