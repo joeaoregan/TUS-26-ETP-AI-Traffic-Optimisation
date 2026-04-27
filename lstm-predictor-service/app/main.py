@@ -48,7 +48,7 @@ class MetricsResponse(BaseModel):
     total_predictions: int
     total_batch_predictions: int
     avg_inference_time_ms: float
-    last_prediction_time: Optional[str]
+    last_prediction_time: Optional[str] = None
     model_loaded: bool
     scaler_loaded: bool
     model_config = ConfigDict(protected_namespaces=())
@@ -130,9 +130,11 @@ Predicts traffic density for the next hour based on 3 hourly measurements from t
 # app.mount("/static", StaticFiles(directory="static"), name="static")
 # templates = Jinja2Templates(directory="templates")
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
-
 static_path = os.path.join(BASE_DIR, "static")
 template_path = os.path.join(BASE_DIR, "templates")
+
+os.makedirs(static_path, exist_ok=True)
+os.makedirs(template_path, exist_ok=True)
 
 app.mount("/static", StaticFiles(directory=static_path), name="static")
 templates = Jinja2Templates(directory=template_path)
@@ -474,7 +476,12 @@ def get_metrics():
     - last_prediction_time: Timestamp of last prediction
     - service_status: Health status
     """
-    status = "healthy" if model and scaler else "unhealthy"
+    status = "healthy" if (model is not None and scaler is not None) else "unhealthy"
+    
+    last_time = prediction_metrics["last_prediction_time"]
+    if last_time and not isinstance(last_time, str):
+        last_time = str(last_time)
+
     return {
         "service": "lstm-predictor",
         "version": "1.0.0",
@@ -482,7 +489,7 @@ def get_metrics():
         "total_predictions": prediction_metrics["total_predictions"],
         "total_batch_predictions": prediction_metrics["total_batch_predictions"],
         "avg_inference_time_ms": round(prediction_metrics["avg_inference_time_ms"], 2),
-        "last_prediction_time": prediction_metrics["last_prediction_time"],
+        "last_prediction_time": last_time,
         "model_loaded": model is not None,
         "scaler_loaded": scaler is not None
     }
@@ -499,10 +506,13 @@ async def custom_swagger_ui_html():
 
 
 @app.get("/", response_class=HTMLResponse, tags=["Navigation"])
+@app.head("/", include_in_schema=False) # Fixes Render 405 errors
 async def read_root(request: Request):
+    """LSTM Predictor Landing Page"""
+    # Use positional arguments to ensure compatibility across all environments
     return templates.TemplateResponse(
         "index.html",
-        {"request": request},
+        {"request": request}
     )
 
 
