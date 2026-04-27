@@ -4,7 +4,7 @@
 import os
 import time
 from datetime import datetime
-from typing import List
+from typing import List, Optional
 
 import numpy as np
 from colorama import Fore, init
@@ -38,6 +38,7 @@ class ModelInfoResponse(BaseModel):
     sequence_length: int
     batch_prediction_supported: bool
     max_batch_size: int
+    model_config = ConfigDict(protected_namespaces=())
 
 
 class MetricsResponse(BaseModel):
@@ -47,9 +48,10 @@ class MetricsResponse(BaseModel):
     total_predictions: int
     total_batch_predictions: int
     avg_inference_time_ms: float
-    last_prediction_time: str
+    last_prediction_time: Optional[str]
     model_loaded: bool
     scaler_loaded: bool
+    model_config = ConfigDict(protected_namespaces=())
 
 
 tags_metadata = [
@@ -124,8 +126,8 @@ Predicts traffic density for the next hour based on 3 hourly measurements from t
 
 @app.get("/favicon.ico", include_in_schema=False)
 async def favicon():
-    favicon_path = "app/static/favicon.ico"
-    return FileResponse(favicon_path, media_type="image/x-icon")
+    favicon_file = os.path.join(static_path, "favicon.ico")
+    return FileResponse(favicon_file, media_type="image/x-icon")
 
 
 # Mount static files
@@ -137,8 +139,8 @@ BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 templates = Jinja2Templates(directory=os.path.join(BASE_DIR, "templates"))
 
 # Load model and scaler at startup
-SCALER_PATH = 'trained_models/scaler.joblib'
-WEIGHTS_PATH = 'trained_models/lstm_model.weights.h5'
+SCALER_PATH = os.path.join(BASE_DIR, 'trained_models/scaler.joblib')
+WEIGHTS_PATH = os.path.join(BASE_DIR, 'trained_models/lstm_model.weights.h5')
 
 
 # Define model architecture
@@ -470,15 +472,12 @@ def get_metrics():
         "service": "lstm-predictor",
         "version": "1.0.0",
         "status": status,
-        "total_predictions": int(prediction_metrics["total_predictions"]),
-        "total_batch_predictions": int(prediction_metrics["total_batch_predictions"]),
-        "avg_inference_time_ms": float(prediction_metrics["avg_inference_time_ms"]),
-        "last_prediction_time": (
-            str(prediction_metrics["last_prediction_time"])
-            if prediction_metrics["last_prediction_time"] else None
-        ),
-        "model_loaded": bool(model is not None),
-        "scaler_loaded": bool(scaler is not None)
+        "total_predictions": prediction_metrics["total_predictions"],
+        "total_batch_predictions": prediction_metrics["total_batch_predictions"],
+        "avg_inference_time_ms": round(prediction_metrics["avg_inference_time_ms"], 2),
+        "last_prediction_time": prediction_metrics["last_prediction_time"], 
+        "model_loaded": model is not None,
+        "scaler_loaded": scaler is not None
     }
 
 
