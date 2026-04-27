@@ -37,6 +37,9 @@
 - **[Inference Service Swagger UI](https://traffic-inference-service.onrender.com/docs)** — Interactive API docs
 - **[LSTM Predictor Service Swagger UI](https://lstm-predictor-service.onrender.com//docs)** — Interactive API docs
 
+### 🎬 Mappo Traffic Flow Simulation Demonstration
+- **[Mappo Simulation v2](https://youtu.be/UqK8_AHlZl4)** - Mappo Traffic Flow Simulation v2 demo
+
 ### 📚 Documentation
 - **[Detailed MkDocs Documentation](https://joeaoregan.github.io/TUS-26-ETP-AI-Traffic-Optimisation/)** - Complete mkdocs site
     - **[System Architecture](https://joeaoregan.github.io/TUS-26-ETP-AI-Traffic-Optimisation/system-architecture/)** — Detailed system design
@@ -175,7 +178,7 @@ This repository implements a **Cloud-Native Microservices Pipeline** designed fo
 
 - **[LSTM Predictor Service](https://joeaoregan.github.io/TUS-26-ETP-AI-Traffic-Optimisation/lstm/) (Python/FastAPI):** Forecasts vehicle flow 15 minutes ahead using historical traffic patterns from SUMO simulations, targeting MAE < 10% accuracy
 
-- **[Simulation Layer](https://joeaoregan.github.io/TUS-26-ETP-AI-Traffic-Optimisation/sumo/) (SUMO):** Integrated high-fidelity traffic simulation environment for testing adaptive signal logic against baseline fixed-time controllers
+- **[Simulation Layer](https://joeaoregan.github.io/TUS-26-ETP-AI-Traffic-Optimisation/sumo/) (SUMO):** Integrated high-fidelity traffic simulation environment for testing adaptive signal logic against baseline fixed-time controllers. [Demo](https://youtu.be/UqK8_AHlZl4)
 
 This system is specifically modeled to address the saturation flow rates and signal-timing patterns of the Athlone 'Orange Loop' corridor, providing a scalable template for Smart City traffic management in regional Irish hubs.
 
