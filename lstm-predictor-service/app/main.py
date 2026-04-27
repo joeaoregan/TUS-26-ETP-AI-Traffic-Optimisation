@@ -124,23 +124,30 @@ Predicts traffic density for the next hour based on 3 hourly measurements from t
 )
 
 
-@app.get("/favicon.ico", include_in_schema=False)
-async def favicon():
-    favicon_file = os.path.join(BASE_DIR, "static", "favicon.ico")
-    return FileResponse(favicon_file, media_type="image/x-icon")
-
-
 # Mount static files
 # app.mount("/images", StaticFiles(directory="app/images"), name="images")
 # templates = Jinja2Templates(directory=os.path.join(os.path.dirname(__file__), "templates"))
-app.mount("/static", StaticFiles(directory="static"), name="static")
+# app.mount("/static", StaticFiles(directory="static"), name="static")
 # templates = Jinja2Templates(directory="templates")
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
-templates = Jinja2Templates(directory=os.path.join(BASE_DIR, "templates"))
+
+static_path = os.path.join(BASE_DIR, "static")
+template_path = os.path.join(BASE_DIR, "templates")
+
+app.mount("/static", StaticFiles(directory=static_path), name="static")
+templates = Jinja2Templates(directory=template_path)
 
 # Load model and scaler at startup
 SCALER_PATH = os.path.join(BASE_DIR, 'trained_models/scaler.joblib')
 WEIGHTS_PATH = os.path.join(BASE_DIR, 'trained_models/lstm_model.weights.h5')
+
+
+@app.get("/favicon.ico", include_in_schema=False)
+async def favicon():
+    favicon_file = os.path.join(static_path, "favicon.ico")
+    if os.path.exists(favicon_file):
+        return FileResponse(favicon_file, media_type="image/x-icon")
+    return None
 
 
 # Define model architecture
