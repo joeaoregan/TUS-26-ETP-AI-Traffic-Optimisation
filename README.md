@@ -33,15 +33,19 @@
 - [**LSTM Predictor Service**](https://lstm-predictor-service.onrender.com/) - LSTM Predictor Service on Render
 
 ### 📖 API Documentation (Swagger)
-- **[API Gateway Swagger](https://ai-traffic-control-api.onrender.com/swagger-ui/index.html)** — Interactive API docs
-- **[Inference Service Swagger](https://traffic-inference-service.onrender.com/docs)** — Interactive API docs
+- **[API Gateway Swagger UI](https://ai-traffic-control-api.onrender.com/swagger-ui/index.html)** — Interactive API docs
+- **[Inference Service Swagger UI](https://traffic-inference-service.onrender.com/docs)** — Interactive API docs
+- **[LSTM Predictor Service Swagger UI](https://lstm-predictor-service.onrender.com//docs)** — Interactive API docs
 
 ### 📚 Documentation
-- **[System Architecture](docs/system-architecture/index.md)** — Detailed system design
-- **[API Endpoints](docs/api/endpoints.md)** — Quick reference and full API specifications
-- **[Quick Start Guide](docs/quickstart.md)** — Get up and running quickly
-- **[Full Documentation](https://joeaoregan.github.io/TUS-26-ETP-AI-Traffic-Optimisation/)** — Complete mkdocs site
-- **[Gateway JWT Authentication Guide](docs/security/java-api-gateway.md)** — JWT configuration and usage
+- **[Detailed MkDocs Documentation](https://joeaoregan.github.io/TUS-26-ETP-AI-Traffic-Optimisation/)** - Complete mkdocs site
+    - **[System Architecture](https://joeaoregan.github.io/TUS-26-ETP-AI-Traffic-Optimisation/system-architecture/)** — Detailed system design
+    - **[API Endpoints](https://joeaoregan.github.io/TUS-26-ETP-AI-Traffic-Optimisation/api/endpoints/)** — Quick reference and full API specifications
+    - **[API Gateway](https://joeaoregan.github.io/TUS-26-ETP-AI-Traffic-Optimisation/api-gateway/)** - Detailed Java API Gateway documentation
+    - **[RL Inference](https://joeaoregan.github.io/TUS-26-ETP-AI-Traffic-Optimisation/inference-service/)** - Detailed RL Inference service documentation
+    - **[LSTM Predictor](https://joeaoregan.github.io/TUS-26-ETP-AI-Traffic-Optimisation/lstm/)** - Detailed LSTM Predictor service documentation
+    - **[Quick Start Guide](https://joeaoregan.github.io/TUS-26-ETP-AI-Traffic-Optimisation/quickstart/)** — Get up and running quickly
+    - **[Gateway JWT Authentication Guide](https://joeaoregan.github.io/TUS-26-ETP-AI-Traffic-Optimisation/security/java-api-gateway/)** — JWT configuration and usage
 
 <details>
   <summary>🚀Running the System</summary>
@@ -64,34 +68,34 @@ start.bat
 <details>
   <summary>🛠️ API Setup — Docker, Environment Variables, Components, Examples, Monitoring</summary>
 
-- [🐳 Docker Compose Configuration](docs/api/setup/docker-compose-configuration.md)
-- [🔐 Environment Variables](docs/api/setup/environment-variables.md)
-- [🚗 Local Development Setup](docs/api/setup/local-dev.md)
-- [🌍 Production Deployment](docs/api/setup/production-deployment.md)
-- [🧩 Components Overview](docs/api/guides/components.md)
-- [📡 API Usage Examples](docs/api/guides/usage-examples.md)
-- [📊 Monitoring and Logging](docs/api/guides/monitoring-and-logging.md)
-- [⚡ Performance Tuning](docs/api/guides/performance-tuning.md)
-- [🔄 Using Different Models](docs/api/setup/using-different-models.md)
-- [🐛 Troubleshooting](docs/api/setup/troubleshooting.md)
+- [🐳 Docker Compose Configuration](https://joeaoregan.github.io/TUS-26-ETP-AI-Traffic-Optimisation/api/setup/docker-compose-configuration/)
+- [🔐 Environment Variables](https://joeaoregan.github.io/TUS-26-ETP-AI-Traffic-Optimisation/api/setup/environment-variables/)
+- [🚗 Local Development Setup](https://joeaoregan.github.io/TUS-26-ETP-AI-Traffic-Optimisation/api/setup/local-dev/)
+- [🌍 Production Deployment](https://joeaoregan.github.io/TUS-26-ETP-AI-Traffic-Optimisation/api/setup/production-deployment/)
+- [🧩 Components Overview](https://joeaoregan.github.io/TUS-26-ETP-AI-Traffic-Optimisation/api/guides/components/)
+- [📡 API Usage Examples](https://joeaoregan.github.io/TUS-26-ETP-AI-Traffic-Optimisation/api/guides/usage-examples/)
+- [📊 Monitoring and Logging](https://joeaoregan.github.io/TUS-26-ETP-AI-Traffic-Optimisation/api/guides/monitoring-and-logging/)
+- [⚡ Performance Tuning](https://joeaoregan.github.io/TUS-26-ETP-AI-Traffic-Optimisation/api/guides/performance-tuning/)
+- [🔄 Using Different Models](https://joeaoregan.github.io/TUS-26-ETP-AI-Traffic-Optimisation/api/setup/using-different-models/)
+- [🐛 Troubleshooting](https://joeaoregan.github.io/TUS-26-ETP-AI-Traffic-Optimisation/api/setup/troubleshooting/)
 
 </details>
 
 <details>
   <summary>📖 API Reference — Quick Reference & Detailed Specifications</summary>
 
-- [📡 API Endpoints (Quick Reference)](docs/api/endpoints.md)
-- [Java API Gateway Endpoints](docs/api-gateway/endpoints.md)
-- [🤖 Python Inference Service Endpoints](docs/inference-service/endpoints.md)
-- [🧠 LSTM Predictor Endpoints](docs/lstm/endpoints.md)
+- [📡 API Endpoints (Quick Reference)](https://joeaoregan.github.io/TUS-26-ETP-AI-Traffic-Optimisation/api/endpoints/)
+- [Java API Gateway Endpoints](https://joeaoregan.github.io/TUS-26-ETP-AI-Traffic-Optimisation/api-gateway/endpoints/)
+- [🤖 Python Inference Service Endpoints](https://joeaoregan.github.io/TUS-26-ETP-AI-Traffic-Optimisation/inference-service/endpoints/)
+- [🧠 LSTM Predictor Endpoints](https://joeaoregan.github.io/TUS-26-ETP-AI-Traffic-Optimisation/lstm/endpoints/)
     
 </details>
 <details>
   <summary>💬 Support — Contact, Contributing, Issues</summary>
 
-- [👥 Contact](docs/support.md#contact)
-- [🤝 Contributing](docs/support.md#contributing)
-- [⚠️ Issues](docs/support.md#issues)
+- [👥 Contact](https://joeaoregan.github.io/TUS-26-ETP-AI-Traffic-Optimisation/support/#contact)
+- [🤝 Contributing](https://joeaoregan.github.io/TUS-26-ETP-AI-Traffic-Optimisation/support/#contributing)
+- [⚠️ Issues](https://joeaoregan.github.io/TUS-26-ETP-AI-Traffic-Optimisation/support/#issues)
 
 </details>
 
@@ -162,16 +166,16 @@ start.bat
 
 This repository implements a **Cloud-Native Microservices Pipeline** designed for the Athlone "Orange Loop" case study.
 
-- **[Traffic Monitoring Gateway](java-api-gateway/README.md) (Java/Spring Boot):** Manages secure telemetry ingestion and orchestrates service communication.
+- **[Traffic Monitoring Gateway](https://joeaoregan.github.io/TUS-26-ETP-AI-Traffic-Optimisation/api-gateway/) (Java/Spring Boot):** Manages secure telemetry ingestion and orchestrates service communication.
   - **JWT authentication:** Stateless token-based security with HS256 signing
   - **Exception handling:** Dedicated exception package for RL service communication errors
   - See [Java API Gateway README](java-api-gateway/README.md) for configuration and usage examples
 
-- **[RL Inference Service](rl-inference-service/README.md) (Python/FastAPI):** Hosts a trained **MAPPO (Multi-Agent Proximal Policy Optimization)** model to predict optimal signal timings based on real-time traffic observations from 5 junctions
+- **[RL Inference Service](https://joeaoregan.github.io/TUS-26-ETP-AI-Traffic-Optimisation/inference-service/) (Python/FastAPI):** Hosts a trained **MAPPO (Multi-Agent Proximal Policy Optimization)** model to predict optimal signal timings based on real-time traffic observations from 5 junctions
 
-- **[LSTM Predictor Service](lstm-predictor-service/README.md) (Python/FastAPI):** Forecasts vehicle flow 15 minutes ahead using historical traffic patterns from SUMO simulations, targeting MAE < 10% accuracy
+- **[LSTM Predictor Service](https://joeaoregan.github.io/TUS-26-ETP-AI-Traffic-Optimisation/lstm/) (Python/FastAPI):** Forecasts vehicle flow 15 minutes ahead using historical traffic patterns from SUMO simulations, targeting MAE < 10% accuracy
 
-- **[Simulation Layer](SUMO/README.md) (SUMO):** Integrated high-fidelity traffic simulation environment for testing adaptive signal logic against baseline fixed-time controllers
+- **[Simulation Layer](https://joeaoregan.github.io/TUS-26-ETP-AI-Traffic-Optimisation/sumo/) (SUMO):** Integrated high-fidelity traffic simulation environment for testing adaptive signal logic against baseline fixed-time controllers
 
 This system is specifically modeled to address the saturation flow rates and signal-timing patterns of the Athlone 'Orange Loop' corridor, providing a scalable template for Smart City traffic management in regional Irish hubs.
 
@@ -179,11 +183,11 @@ Two FastAPI microservices:
 
 **RL Inference Service** (Port 8000)
 - MAPPO agent for signal prediction
-- [Full docs](./rl-inference-service/README.md)
+- [Full docs](https://joeaoregan.github.io/TUS-26-ETP-AI-Traffic-Optimisation/inference-service/)
 
 **LSTM Predictor Service** (Port 8001)
 - LSTM for traffic density forecasting
-- [Full docs](./lstm-predictor-service/README.md)
+- [Full docs](https://joeaoregan.github.io/TUS-26-ETP-AI-Traffic-Optimisation/lstm/)
 
 ## 🚀 Quick Start
 
