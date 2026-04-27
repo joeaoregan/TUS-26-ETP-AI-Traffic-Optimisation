@@ -111,6 +111,7 @@ Predicts traffic density for the next hour based on 3 hourly measurements from t
 - `POST /predict-batch` - Multi-step batch predictions (RL integration)
 - `GET /metrics` - Service metrics
 
+### Links
 - [Documentation](https://joeaoregan.github.io/TUS-26-ETP-AI-Traffic-Optimisation/)
 - [API Gateway OpenAPI Docs](https://ai-traffic-control-api.onrender.com/swagger-ui/index.html)
 - [RL Inference OpenAPI Docs](https://traffic-inference-service.onrender.com/docs)
