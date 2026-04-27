@@ -473,7 +473,10 @@ def get_metrics():
         "total_predictions": int(prediction_metrics["total_predictions"]),
         "total_batch_predictions": int(prediction_metrics["total_batch_predictions"]),
         "avg_inference_time_ms": float(prediction_metrics["avg_inference_time_ms"]),
-        "last_prediction_time": str(prediction_metrics["last_prediction_time"]) if prediction_metrics["last_prediction_time"] else None,
+        "last_prediction_time": (
+            str(prediction_metrics["last_prediction_time"])
+            if prediction_metrics["last_prediction_time"] else None
+    ),
         "model_loaded": bool(model is not None),
         "scaler_loaded": bool(scaler is not None)
     }
