@@ -8,7 +8,7 @@ from typing import List, Optional
 
 import numpy as np
 from colorama import Fore, init
-from fastapi import FastAPI, HTTPException, Request
+from fastapi import FastAPI, HTTPException
 from fastapi.openapi.docs import get_swagger_ui_html
 from fastapi.responses import FileResponse
 from fastapi.staticfiles import StaticFiles
