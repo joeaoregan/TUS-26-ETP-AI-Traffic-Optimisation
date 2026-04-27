@@ -10,7 +10,7 @@ import numpy as np
 from colorama import Fore, init
 from fastapi import FastAPI, HTTPException, Request
 from fastapi.openapi.docs import get_swagger_ui_html
-from fastapi.responses import FileResponse, HTMLResponse
+from fastapi.responses import FileResponse
 from fastapi.staticfiles import StaticFiles
 from fastapi.templating import Jinja2Templates
 from pydantic import BaseModel, ConfigDict
@@ -477,7 +477,7 @@ def get_metrics():
     - service_status: Health status
     """
     status = "healthy" if (model is not None and scaler is not None) else "unhealthy"
-    
+
     last_time = prediction_metrics["last_prediction_time"]
     if last_time and not isinstance(last_time, str):
         last_time = str(last_time)
@@ -504,8 +504,6 @@ async def custom_swagger_ui_html():
         swagger_favicon_url="/favicon.ico",  # matches the route above
     )
 
-
-from fastapi.responses import FileResponse
 
 @app.get("/", include_in_schema=False)
 async def index():
