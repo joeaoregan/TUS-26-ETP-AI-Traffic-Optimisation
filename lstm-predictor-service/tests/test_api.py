@@ -25,6 +25,7 @@ def client():
         "tensorflow": mock_tf,
         "tensorflow.keras": mock_keras,
         "tensorflow.keras.models": MagicMock(),
+        "tensorflow.keras.layers": MagicMock(),
         "joblib": mock_joblib,
     }):
         import app.main as main_module
