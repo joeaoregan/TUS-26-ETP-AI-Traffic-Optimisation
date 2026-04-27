@@ -126,7 +126,7 @@ Predicts traffic density for the next hour based on 3 hourly measurements from t
 
 @app.get("/favicon.ico", include_in_schema=False)
 async def favicon():
-    favicon_file = os.path.join(static_path, "favicon.ico")
+    favicon_file = os.path.join(BASE_DIR, "static", "favicon.ico")
     return FileResponse(favicon_file, media_type="image/x-icon")
 
 
@@ -475,7 +475,7 @@ def get_metrics():
         "total_predictions": prediction_metrics["total_predictions"],
         "total_batch_predictions": prediction_metrics["total_batch_predictions"],
         "avg_inference_time_ms": round(prediction_metrics["avg_inference_time_ms"], 2),
-        "last_prediction_time": prediction_metrics["last_prediction_time"], 
+        "last_prediction_time": prediction_metrics["last_prediction_time"],
         "model_loaded": model is not None,
         "scaler_loaded": scaler is not None
     }
