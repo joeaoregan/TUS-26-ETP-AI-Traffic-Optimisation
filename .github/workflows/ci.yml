@@ -57,7 +57,7 @@ jobs:
       - name: Test LSTM predictor service
         working-directory: lstm-predictor-service
         run: |
-          mkdir -p app/static
+          mkdir -p static
           pip install -r requirements.txt
           python -m pytest tests/ -v
 
