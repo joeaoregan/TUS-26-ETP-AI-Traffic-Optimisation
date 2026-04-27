@@ -55,7 +55,8 @@ jobs:
           python -m pytest tests/ -v
 
       - name: Ensure static directory exists for LSTM predictor service
-        run: mkdir -p lstm-predictor-service/app/static
+        working-directory: lstm-predictor-service
+        run: mkdir -p app/static
 
       - name: Test LSTM predictor service
         working-directory: lstm-predictor-service
