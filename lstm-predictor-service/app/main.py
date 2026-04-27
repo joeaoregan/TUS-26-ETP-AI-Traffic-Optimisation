@@ -505,14 +505,12 @@ async def custom_swagger_ui_html():
     )
 
 
-@app.get("/", response_class=HTMLResponse, tags=["Navigation"])
-@app.head("/", include_in_schema=False)
-async def read_root(request: Request):
-    """LSTM Predictor Landing Page"""
-    return templates.TemplateResponse(
-        "index.html",
-        {"request": request}
-    )
+from fastapi.responses import FileResponse
+
+@app.get("/", include_in_schema=False)
+async def index():
+    path = os.path.join(BASE_DIR, "templates", "index.html")
+    return FileResponse(path, media_type="text/html")
 
 
 if __name__ == "__main__":
